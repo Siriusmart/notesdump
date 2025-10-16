@@ -210,7 +210,6 @@ As an inverse to minterms, *maxterm* is all the input variables where $f$ evalua
 )
 
 #definition([
-  === Definition
   *Conjunctive normal form* is where the function is written as the product of sums.
   $
   f = (x+y+z) dot (x + overline(y) + z) dot dots
