@@ -12,4 +12,4 @@
 
 # Maths
 ## Year 1
-- [Vectors](./maths/y1-michaelmas/vectors.pdf)
+- [Vectors](./maths/y1/michaelmas/vectors.pdf)
