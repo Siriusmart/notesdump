@@ -678,3 +678,446 @@ This is due to the difference in *propagation delay* between layers.
 + Add an extra term containing the two squares to remove the static 1 hazard.
 
 To remove a static 0 hazard, draw a K-map of the complement of the output.
+
+== Multiplexers
+
+#definition([
+  *Multiplexers* (mux/selector) chooses 1 of many inputs to output according to the control input.
+])
+
+#let and_gate(
+  (x, y),
+  size: 1.0,
+  out_length: 0.5,
+  in_a_length: 0.5,
+  in_b_length: 0.5,
+) = {
+  import cetz.draw : *
+  line((x + 0.5 * size, y), (x, y), (x, y + 1 * size), (x + 0.5 * size, y + 1 * size))
+  arc((x + 0.5 * size,y), start: -90deg, stop: 90deg, radius: 0.5 * size)
+  line((x + 1.0 * size, y + 0.5 * size), (x + (1.0 + out_length) * size, y + 0.5 * size))
+  line((x, y + 0.7 * size), (x - in_a_length * size, y + 0.7 * size))
+  line((x, y + 0.3 * size), (x - in_b_length * size, y + 0.3 * size))
+}
+
+#let or_gate(
+  (x, y),
+  size: 1.0,
+  out_length: 0.5,
+  in_a_length: 0.5,
+  in_b_length: 0.5,
+) = {
+  import cetz.draw : *
+  arc((x,y), start: -45deg, stop: 45deg, radius: 0.5 * size * calc.sqrt(2))
+  arc((x, y + size), start: 90deg, stop: 83deg, radius: size * 3.5)
+  arc((x + 0.425 * size, y + 0.9745 * size), start: 83deg, stop: 18deg, radius: size * 0.7)
+  arc((x, y), start: -90deg, stop: -83deg, radius: size * 3.5)
+  arc((x + 0.425 * size, y + (1 - 0.9745) * size), start: -83deg, stop: -18deg, radius: size * 0.7)
+  line((x + size, y + 0.5 * size), (x + (1 + out_length) * size, y + 0.5 * size))
+  line((x -in_a_length * size, y + 0.7 * size), (x + 0.19 * size, y + 0.7 * size))
+  line((x -in_a_length * size, y + 0.3 * size), (x + 0.19 * size, y + 0.3 * size))
+}
+
+#let not_gate(
+  (x, y),
+  size: 1.0,
+  out_length: 0.5,
+  in_length: 0.5,
+) = {
+  import cetz.draw : *
+  line((x + size * 0.93, 0.5 * size + y), (x, y), (x, size + y), (x + size * 0.93, 0.5*size + y))
+  line((x, y + 0.5 * size), (x - in_length * size, y + 0.5 * size))
+  line((x + 1.0 * size, y + 0.5 * size), (x + (1.0 + out_length) * size, y + 0.5 * size))
+  circle((x + size * 0.95, size * 0.5 + y), fill: white, radius: 0.12 * size)
+}
+
+#let nor_gate(
+  (x, y),
+  size: 1.0,
+  in_a_length: 0.5,
+  in_b_length: 0.5,
+  out_length: 0.5,
+) = {
+  import cetz.draw : *
+  arc((x,y), start: -45deg, stop: 45deg, radius: 0.5 * size * calc.sqrt(2))
+  arc((x, y + size), start: 90deg, stop: 83deg, radius: size * 3.5)
+  arc((x + 0.425 * size, y + 0.9745 * size), start: 83deg, stop: 18deg, radius: size * 0.7)
+  arc((x, y), start: -90deg, stop: -83deg, radius: size * 3.5)
+  arc((x + 0.425 * size, y + (1 - 0.9745) * size), start: -83deg, stop: -18deg, radius: size * 0.7)
+  line((x + size, y + 0.5 * size), (x + (1 + out_length) * size, y + 0.5 * size))
+  line((x -in_a_length * size, y + 0.7 * size), (x + 0.19 * size, y + 0.7 * size))
+  line((x -in_b_length * size, y + 0.3 * size), (x + 0.19 * size, y + 0.3 * size))
+  circle((x + size * 1.05, size * 0.5 + y), fill: white, radius: 0.12 * size)
+}
+
+=== 2-to-1 Selector
+#grid(
+  columns: (25%, 25%, auto),
+  cetz.canvas({
+    import cetz.draw : *
+    rect((0, 0), (1, 1.5))
+    content((0.5, 0.75), "Mux")
+    line((-0.5, 0.5), (0, 0.5))
+    line((-0.5, 1), (0, 1))
+    line((0.5, 0), (0.5, -0.5))
+    line((1, 0.75), (1.5, 0.75))
+    content((-0.7, 1.05), $a$)
+    content((-0.7, 0.55), $b$)
+    content((1.7, 0.75), $f$)
+    content((0.5, -0.65), $x$)
+  }),
+  table(
+    align: center,
+    columns: (auto, auto, auto, auto),
+    table.header([*$a$*], [*$b$*], [*$x$*], [*$f$*]),
+    [`X`], [$b$], `0`, [$b$],
+    [$a$], [`X`], `0`, [$a$],
+  ),
+  cetz.canvas({
+    import cetz.draw : *
+    line((-0.2, 0), (1, 0), (1, 0.3), (1.1, 0.3))
+    and_gate((1.25, 0.15), size: 0.5)
+    or_gate((2.25, 0.6), size: 0.5)
+    line((1.8, 0.4), (2, 0.4), (2, 0.75), (2.1, 0.75))
+    and_gate((1.25, 0.15), size: 0.5)
+    and_gate((1.25, 1.05), size: 0.5)
+    line((2.1, 0.95), (2, 0.95), (2, 1.3), (1.9, 1.3))
+    not_gate((0.5,0.25), size: 0.5)
+    line((-0.2, 1.2), (1, 1.2))
+    line((-0.2, 1.4), (1, 1.4))
+    line((0.25, 1.2), (0.25, 0.5), (0.3, 0.5))
+    content((-0.4, 0.05), $b$)
+    content((-0.4, 1.2), $x$)
+    content((-0.4, 1.5), $a$)
+    content((3.2, 0.85), $f$)
+  }),
+)
+
+You can also express it as the sum of minterms with using a full truth table.
+- $n$-to-1 mux is possible - an 8:1 mux requires 3 control lines.
+- The mux is also called a hardware lookup table.
+
+Sometimes it is possible to use less control lines if we use the logic variables as control input.
+
+#grid(
+  columns: (25%, 20%, auto),
+  table(
+    columns: (auto, auto, auto, auto),
+    align: center,
+    table.header([*$a$*], [*$b$*], [*$x$*], [*$f$*]),
+    [`0`], [`0`], [`0`], [`1`],
+    [`0`], [`0`], [`1`], [`0`],
+    [`0`], [`1`], [`0`], [`1`],
+    [`0`], [`1`], [`1`], [`0`],
+    [`1`], [`0`], [`0`], [`0`],
+    [`1`], [`0`], [`1`], [`0`],
+    [`1`], [`1`], [`0`], [`1`],
+    [`1`], [`1`], [`1`], [`1`],
+  ),
+  table(
+    columns: (auto, auto),
+    table.header([*$x y$*], [*$f$*]),
+    `00`, $overline(z)$,
+    `01`, $overline(z)$,
+    `10`, `0`,
+    `11`, `1`,
+  ),
+  cetz.canvas({
+    import cetz.draw : *
+
+    rect((0, 0), (2.5, 2.5))
+    let ins = ($overline(z)$, $overline(z)$, `0`, `1`)
+    for i in range(4) {
+      content((0.3, 2 - i * 0.5), $I_#i$)
+      content((-1.2, 2 - i * 0.5), ins.at(i))
+      line((-1, 2 - i * 0.5), (0, 2 - i * 0.5))
+    }
+
+    content((1.6, 0.3), $S_0$)
+    content((2.15, 0.3), $S_1$)
+    line((1.6, 0), (1.6, -1))
+    line((2.15, 0), (2.15, -1))
+    content((1.6, -1.15), $x$)
+    content((2.15, -1.15), $y$)
+
+    content((2.15, 2), $F$)
+    line((2.5, 2), (3.5, 2))
+    content((3.65, 2), $f$)
+  })
+)
+
+=== Demultiplexer
+
+A single output is directed to exactly one of its inputs.
+
+#grid(
+  columns: (25%, 25%, auto),
+  cetz.canvas({
+    import cetz.draw : *
+    content((0.5, 0.75), [De-\ mux])
+    rect((0, 0), (1, 1.5))
+    content((-0.7, 0.75), $g$)
+    content((1.7, 0.5), $f_1$)
+    content((1.7, 1), $f_0$)
+    content((0.5, -0.65), $x$)
+    line((-0.5, 0.75), (0, 0.75))
+    line((1, 0.5), (1.5, 0.5))
+    line((1, 1), (1.5, 1))
+    line((0.5, 0), (0.5, -0.5))
+  }),
+  table(
+    align: center,
+    columns: (auto, auto, auto, auto),
+    table.header([*$g$*], [*$x$*], [*$f_0$*], [*$f_1$*]),
+    $g$, `0`, $g$, `0`,
+    $g$, `1`, `0`, $g$,
+  ),
+  cetz.canvas({
+    import cetz.draw : *
+    line((0, 0), (1, 0))
+    line((0, 0.55), (1.9, 0.55))
+    line((1.7, 0), (1.75, 0), (1.75, 0.35), (1.8, 0.35))
+    not_gate((1, -0.25), size: 0.5)
+    and_gate((2, 0.2), size: 0.5)
+    and_gate((2, -1), size: 0.5)
+    line((0.7, 0.55), (0.7, -0.65), (1.8, -0.65))
+    line((0.3, 0.55), (0.3, -0.85), (1.8, -0.85))
+    content((-0.15, 0.05), $x$)
+    content((-0.15, 0.6), $g$)
+    content((2.95, 0.45), $f_0$)
+    content((2.95, -0.75), $f_1$)
+  }),
+)
+
+Larger demultiplexers are possible, e.g. a 3:8 demux.
+
+A *decoder* is a demux where $g$ is permanently set to `1`, so only one output is `1` at any time. An *enabler* enables 1 out of $n$ logical subsystems.
+
+If the number of pins is limited, using a decoder/multiplexer is essential.
+- Without decoder: you need 8 pins to control 8 subsystems.
+- With decoder: you need 3 pins to control 8 subsystems.
+
+We can also create any combinational logic block using the decoder. By OR-ing the outputs that corresponds to the minterms of the logic.
+
+=== ROM
+
+ROM is a storage device that can be
+- Written into once
+- Read at will
+- Non-volatile
+- Essentially a lookup table: $n$ output lines specify the address of location holding $m$-bit data words.
+
+The ROM has $2^n$ possible locations.
+
+We can create any combinational logic by holding all the minterms in ROM and output the stored value.
+- No simplification needed.
+- Reasonably efficient if lots of minterms need to be generated.
+- Can be inefficiently large if many spaces are zero (there are very few minterms).
+
+=== Programmable Logic Array
+
+In a PLA, only the required minterms are generated using the *AND-plane* and *OR-plane*.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  for i in range(3) {
+    line((0, i), (12, i))
+    line((1.5, i + 0.5), (12, i + 0.5))
+    line((0.75, i), (0.75, i + 0.5), (0.8, i + 0.5))
+    not_gate((1, i + 0.25), size: 0.5)
+
+    for x in range(3) {
+      line((x + 2 + i / 4, i), (x + 2 + i / 4, -1 - (2 - x) * 1.5 - (0.5 - i / 4)), (5, -1 - (2 - x) * 1.5 - (0.5 - i / 4)))
+      line((x + 2 + i / 4 + 0.125, i + 0.5), (x + 2 + i / 4 + 0.125, -(1.375 - i / 4) - (2 - x) * 1.5), (5, -(1.375 - i / 4) - (2 - x) * 1.5))
+    }
+  }
+
+  and_gate((5, -4.7), in_a_length: 0, in_b_length: 0)
+  and_gate((5, -3.2), in_a_length: 0, in_b_length: 0)
+  and_gate((5, -1.7), in_a_length: 0, in_b_length: 0)
+
+  line((6, -1.2), (8, -1.2), (8, -8))
+  line((6, -2.7), (7.5, -2.7), (7.5, -8))
+  line((6, -4.2), (7, -4.2), (7, -8))
+
+  for i in range(3) {
+    or_gate((9, -i * 1.5 - 5))
+    line((8, -i * 1.5 - 4.3), (9, -i * 1.5 - 4.3))
+    line((7.5, -i * 1.5 - 4.5), (9.2, -i * 1.5 - 4.5))
+    line((7, -i * 1.5 - 4.7), (9, -i * 1.5 - 4.7))
+  }
+
+  content((-0.2, 0.05), $c$)
+  content((-0.2, 1.05), $b$)
+  content((-0.2, 2.05), $a$)
+
+  content((10.7, -4.5), $f_0$)
+  content((10.7, -6), $f_1$)
+  content((10.7, -7.5), $f_2$)
+})
+
+The PLA is programmed by selectively removing connections from the AND-plane and OR-plane.
+
+==== Programmable Array Logic
+
+To simplify design, the OR-plane is not programmable. There are instead multiple AND-planes each connected to an OR gate.
+
+=== Memory Applications
+
+Other memory devices includes:
+- Non-volatile memory by ROMs and flash.
+- Volatile memory offered by static RAM or dynamic RAM (much denser than SRAM, but has to be refreshed regularly).
+
+Memory is connected to the CPU using *buses*.
+
+#definition([
+  *Buses* are a bunch of wires in parallel.
+])
+
+- The *address bus* specify the memory location being accessed.
+- The *data bus* conveys data to and from that location.
+
+==== Using Multiple Memory Devices
+
+More than 1 memory device can be connected to the same bus wires. *Tristate buffers* controls which devices to enable by disconnecting the device from the bus when not selected.
+
+#grid(
+  columns: (70%, auto),
+  [
+    The tristate buffers are controlled by *output enabled* (OE) control signals, the other control signals are:
+    - *Write enable* (WE) determines whether data is written or read.
+    - *Chip select* (CS) determines if the chip is activated, otherwise the chip is powered down to conserve power.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    for i in range(4, step: 2) {
+      line((0, i), (1, i + 0.5), (0, i + 1), (0, i))
+      line((0.5, i + 0.25), (0.5, i - 0.25))
+      line((-0.5, i + 0.5), (0, i + 0.5))
+      line((1, i + 0.5), (1.5, i + 0.5))
+      content((0.5, i - 0.4), [OE = #(i / 2)])
+    }
+
+    line((1.5, 0), (1.5, 3))
+    content((1.9, 1.5), [ Bus ])
+  })
+)
+
+
+== Sequential Logic
+... is the end to combinational logic.
+- *Combinational logic* depends only on the condition of the latest inputs.
+- *Sequential logic* also depend on earlier inputs.
+
+#definition([
+  - *Memory* stores data from earlier.
+  - A snapstop of memory is called *state*.
+  - 1 bit memory is called a *bistable*.
+], title: "Definitions")
+
+*Flip-flops* and *latches* are are implementations of bistable.
+
+=== RS-Latch
+
+The RS-latch is a memory element with 2 inputs.
+Where $Q$ is the current state, and $Q'$ the next state.
+
+#grid(
+  columns: (40%, auto),
+  table(
+    align: center,
+    columns: (auto, auto, auto, auto, auto),
+    table.header([*$S$*], [*$R$*], [*$Q'$*], [*$overline(Q)$*], [*Comment*]),
+    `0`, `0`, $Q$, $overline(Q)$, [ hold ],
+    `0`, `1`, `0`, `1`, [ reset ],
+    `1`, `0`, `1`, `0`, [ set ],
+    `1`, `1`, `X`, `X`, [ illegal ],
+  ),
+  cetz.canvas({
+    import cetz.draw : *
+
+    nor_gate((0, 2), in_a_length: 1)
+    nor_gate((0, 0), in_b_length: 1)
+    line((1.5, 0.5), (3, 0.5))
+    line((1.5, 2.5), (3, 2.5))
+    line((2, 0.5), (2, 1), (-0.5, 1.8), (-0.5, 2.3), (-0.4, 2.3))
+    line((2, 2.5), (2, 2), (-0.5, 1.2), (-0.5, 0.7), (-0.4, 0.7))
+    content((-1.3, 0.3), $S$)
+    content((-1.3, 2.7), $R$)
+    content((3.3, 2.5), $Q$)
+    content((3.3, 0.5), $overline(Q)$)
+    content((0.5, 2.5), [1])
+    content((0.5, 0.5), [2])
+  })
+)
+
+- Consider $R=1$ and $S=0$:
+  - Gate 1 is 0, so $Q$ is 0.
+  - Gate 2 gives complement of gate 1, so 1.
+- Consider $R=0$ and $S=0$:
+  - Gate 1 gives the complement of gate 2.
+  - Gate 2 gives the complement of gate 1, which is the hold condition.
+
+==== State Transition Diagrams
++ Create a truth table of the RS-latch.
+  #grid(
+    columns: (48%, auto),
+    table(
+      columns: (auto, auto, auto, auto, auto),
+      align: center,
+      table.header([*$Q$*], [*$S$*], [*$R$*], [*$Q'$*], [*Comment*]),
+      `0`, `0`, `0`, `0`, [hold],
+      `0`, `0`, `1`, `0`, [reset],
+      `0`, `1`, `0`, `1`, [set],
+      `0`, `1`, `1`, `0`, [illegal],
+    ),
+    table(
+      columns: (auto, auto, auto, auto, auto),
+      align: center,
+      table.header([*$Q$*], [*$S$*], [*$R$*], [*$Q'$*], [*Comment*]),
+      `1`, `0`, `0`, `1`, [hold],
+      `1`, `0`, `1`, `0`, [reset],
+      `1`, `1`, `0`, `1`, [set],
+      `1`, `1`, `1`, `0`, [illegal],
+    )
+  )
++ Consider all cases where $Q=1$ and $Q'=1$.
+  #grid(
+    columns: (35%, auto),
+    table(
+      columns: (auto, auto, auto,  auto),
+      align: center,
+      table.header([*$Q$*], [*$S$*], [*$R$*], [*$Q'$*]),
+      `1`, `0`, `0`, `1`,
+      `1`, `1`, `0`, `1`,
+    ),
+    [
+      So when $Q = 1$, the next state $Q' = 1$ if
+      $
+      overline(S) dot overline(R) + S dot overline(R) = overline(R)
+      $
+    ]
+  )
++ Repeat this for all other state transitions, we get.
+  #cetz.canvas({
+    import cetz.draw : *
+
+    arc((0, 0), start: 120deg, stop: 60deg, radius: 4)
+    arc((0, 0), start: -120deg, stop: -60deg, radius: 4)
+    circle((-1, 0), radius: 0.5)
+    circle((5, 0), radius: 0.5)
+    circle((0, 0), radius: 0.7, fill: white)
+    content((), $Q = 0$)
+    circle((4, 0), radius: 0.7, fill: white)
+    content((), $Q = 1$)
+    polygon((2, 0.54), 3, fill: black, radius: 0.1)
+    polygon((2, -0.54), 3, fill: black, radius: 0.1, angle: 180deg)
+    polygon((-1.5, 0), 3, fill: black, radius: 0.1, angle: 90deg)
+    polygon((5.5, 0), 3, fill: black, radius: 0.1, angle: -90deg)
+    content((2, 0.9), $S dot overline(R)$)
+    content((2, -0.9), $R$)
+    content((-1.8, 0), $overline(S) + R$, anchor: "east")
+    content((5.8, 0), $overline(R)$, anchor: "west")
+  })
