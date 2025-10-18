@@ -251,7 +251,7 @@ We use the *right-handed system* so the vector is uniquely defined: $bold(a)$, $
 
 === Properties
 - Distributive: $bold(a) and (bold(b) + bold(c)) = bold(a) and bold(b) + bold(a) and bold(c)$
-- If $bold(a) perp bold(b)$, then $|bold(a) and bold(b) = |bold(a)||bold(b)|$ by definition, similar for $bold(a) parallel bold(b) arrow.double.long |bold(a) and bold(b)| = 0$
+- If $bold(a) perp bold(b)$, then $|bold(a) and bold(b)| = |bold(a)||bold(b)|$ by definition, similar for $bold(a) parallel bold(b) arrow.double.long |bold(a) and bold(b)| = 0$
 
 But it is *not*
 - Commutative: $bold(a) and bold(b) = - bold(b) and bold(a)$, this is called *anti-commutative*.
