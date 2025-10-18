@@ -1,2 +1,2 @@
 # Maths Lecture Notes
-- [Vectors](./y1-michaelmas/vectors.typ)
+- [Vectors](./y1/michaelmas/vectors.typ)

@@ -1,5 +1,16 @@
 #import "@preview/cetz:0.4.2"
 
+#let definition(title: "Definition", body) = {
+  block(
+    fill: luma(230),
+    inset: 8pt,
+    radius: 4pt,
+  )[
+    === #title
+    #body
+  ]
+}
+
 #set page(
   numbering: "1",
   supplement: [p.],
@@ -13,19 +24,14 @@
 
 = Vectors
 == Basic Definitions
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definitions
+#definition([
   - A *scalar* is a real value: $"value" in bb(R)$
   - A *vector* has a magnitude and direction: $"magnitude" times "direction"$
   - A *position vector* gives position relative to origin.
   - A *displacement vector* gives the relation between two points.
   - *Euclidean space* is where the shortest path between any two points is a straight line,
     and parallel lines are possible.
-]
+], title: "Definitions")
 
 Vectors can have up to $infinity$ dimensions (used in quantum mechanics), this course focuses on vectors in 3 dimensions.
 
@@ -43,17 +49,12 @@ Vectors can have up to $infinity$ dimensions (used in quantum mechanics), this c
     $hat(bold(v))$
 )
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
   The unit vector $hat(bold(v))$ is a vector of unit length in the direction of $bold(v)$.
   $
   hat(bold(v))=bold(v)/(|bold(v)|)
   $
-]
+])
 
 The 3D Euclidean space has 3 components, so 3 numbers are required to specify the vector.
 $
@@ -79,16 +80,11 @@ This are non-trivial properties! Group theory studies these properties. Vector s
 
 For vector components, we need to know the orientation of axes, but not the location of the origin.
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
   A *coordinate system* is a selection of terminal axes:
   - Axes of unit length
   - An origin
-]
+])
 
 === The Cartesian Coordinate System
 
@@ -134,6 +130,8 @@ $
 lambda = (x-a_x)/(b_x-a_x) = (y-a_y)/(b_y-a_y) = (z-a_z)/(b_z-a_z)
 $
 
+#line(length: 100%)
+
 == The Scalar Product
 
 Given two vectors $bold(a)$, $bold(b)$, there are different ways of taking the product.
@@ -141,14 +139,9 @@ Given two vectors $bold(a)$, $bold(b)$, there are different ways of taking the p
 - $bold(a) dot bold(b) in "pseudovector"$
 - $bold(a) times.circle bold(b)$ - the tensor product: two vectors of dimension $m$ and $n$ gives a vector of dimension $m times n$
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
   $bold(a) dot bold(b) = |bold(a)| dot |bold(b)| dot cos theta$
-]
+])
 
 === Scalar Product Properties
 - Commutative: $bold(a) dot bold(b) = bold(b) dot bold(a)$
@@ -212,6 +205,8 @@ $
 
 The plane is therefore entirely specified by giving 3 points.
 
+#line(length: 100%)
+
 == Equation of Other Objects
 
 The goal is the parameterise every point on the surface of the object.
@@ -246,16 +241,11 @@ bold(a) and bold(b) = "pseudovector"
 $
 Also denoted $bold(a) times bold(b)$.
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
   $bold(a) and bold(b) = |bold(a)||bold(b)| sin theta dot hat(bold(m))$
 
   where $hat(bold(m))$  is the unit vector orthogonal to both $bold(a)$ and $bold(b)$.
-]
+])
 
 We use the *right-handed system* so the vector is uniquely defined: $bold(a)$, $bold(b)$ and $bold(a) and bold(b)$ are the direction of the first, second and third finger.
 
@@ -303,6 +293,8 @@ $
 (|bold(a) and bold(b)|) / (|bold(a)||bold(b)|) = sin theta
 $
 For this purpose, the scalar product is much more convenient.
+
+#line(length: 100%)
 
 === Vector Product for a Line
 
@@ -365,15 +357,9 @@ The two lines intersect if the distance is 0.
 
 === The Triple Product
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
-
+#definition([
   The triple product of $bold(a) dot (bold(b) and bold(c))$ is also written as $[bold(a), bold(b), bold(c)]$.
-]
+])
 
 $
 [bold(a), bold(b), bold(c)] &= bold(a) dot (bold(b) and bold(c)) \
@@ -429,18 +415,13 @@ Similarly , $(bold(a) and bold(b)) and bold(c) = (bold(c) dot bold(a))bold(b) - 
 
 Basis vectors are linearly independent so no basis vector is redundant.
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
   We say a set of basis vectors $e_1, e_2, dots, e_n$ are *linearly independent* if
   $
   sum_i lambda_i e_i = 0 arrow.double.l.r.long "all" lambda_i = 0
   $
   There are no solutions to the equation where $lambda_i eq.not 0$.
-]
+])
 
 You can also test for linear independence by creating an $N times N$ matrix $bold("M")$. The basis vectors are linearly independent if $|bold("M")| eq.not 0$. (Think of the volume of a parallelepiped spanned by those vectors)
 
@@ -473,16 +454,11 @@ This is useful for changing basis for a vector.
 
 ==== Orthonormal Basis
 
-#block(
-  fill: luma(230),
-  inset: 8pt,
-  radius: 4pt,
-)[
-  === Definition
+#definition([
  The basis is said to be *orthonormal* if
   - They are orthogonal to each other.
   - They have unit length.
-]
+])
 
 For orthonormal basis $bold(a), bold(b), bold(c)$, $bold(A) = bold(a)$, $bold(B) = bold(b)$ and $bold(C) = bold(c)$.
 
@@ -492,3 +468,87 @@ If $bold(e_1), bold(e_2), bold(e_3), dots$ is orthonormal.
 $
 bold(a) dot bold(b) = sum_j a_j b_j
 $
+
+#line(length: 100%)
+
+=== Cylindrical Polar Coordinates
+
+A point $P$ in cylindrical polar coordinates is written as $(r, theta, z)$.
+- $r$ is the length of the projection of $arrow(O P)$ onto the $x y$-plane.
+- $theta$ is the anticlockwise angle between the projection of $arrow(O P)$ and the $x$-axis.
+- $z$ is the same as for Cartesian coordinates.
+$
+bold(p) = r cos theta hat(bold(i)) + r sin theta hat(bold(j)) + z
+$
+
+To define the *cylindrical polar basis vectors*, set
+$
+hat(bold(e_r)) &= cos theta hat(bold(i)) + sin theta hat(bold(j)) \
+hat(bold(e_theta)) &= -sin theta hat(bold(i)) + cos theta hat(bold(j)) \
+hat(bold(e_z)) &= hat(bold(k))
+$
+
+So the basis vectors are orthonormal and forms a right-handed coordinate system. $hat(bold(e_r)), hat(bold(e_theta)), hat(bold(e_z))$ are in the direction where $P$ would move if $r, theta, z$ are increased respectively.
+
+The oritentation of the basis depends on $theta$, if $bold(a)$ and $bold(b)$ uses different orthonormal basis, generally
+$
+bold(a) dot bold(b) eq.not a_r b_r + a_theta b_theta + a_z b_z
+$
+
+We can find the orientation $theta$ of a vector using the tangent, note that $arctan$ only maps to value between $-pi slash 2$ and $pi slash 2$.
+
+#definition([
+  *Plane polar coordinates* only works on the $x y$-plane.
+])
+
+=== Spherical Coordinates
+
+Start with $(x, y, z)$, we want to work out $(r, theta, phi)$
+- $r$ is the distance from the origin to that point, $r gt.eq 0$
+- $theta$ is the angle between the $z$-axis to the vector, $0 lt.eq theta lt.eq pi$
+- $phi$ is the angle the projection of the vector to the $x y$-plane makes with the $x$-axis, $0 lt.eq phi lt.eq 2 pi$
+
+If $r = 0$, we don't need information about $theta$ or $phi$ as there is no angle with either the axes.
+- The distance from the $z$-axis to $P$ is $r sin theta$
+$
+x &= r sin theta cos phi \
+y &= r sin theta sin phi \
+z &= r cos theta
+$
+Since we restrict $0 lt.eq theta lt.eq pi$, $sin theta$ is always positive.
+
+Again define the orthonormal basis.
+$
+hat(bold(e_r)) &= sin theta (cos phi hat(bold(i))+sin phi hat(bold(j))) + cos theta hat(bold(k)) \
+hat(bold(e_theta)) &= cos theta (cos phi hat(bold(i))+sin phi hat(bold(j))) - sin theta hat(bold(k)) \
+hat(bold(e_phi)) &= -sin phi hat(bold(i)) + cos phi hat(bold(j))
+$
+
+== Vector Area
+
+A surface on a 3-dimensional space have a normal vector $hat(bold(n))$.
+- If the surface has area $A$, we can write a vector about it $bold(s) = A hat(bold(m))$.
+- The length of $bold(s)$ is proportional to the area of the surface.
+
+$
+bold(s) = (s_x, s_y, s_z)
+$
+
+If we project the area to the $y z$-plane, it is an image with area $s_x$.
+
+=== Vector Area of Closed Surfaces
+
+Imagine an object (e.g. that of a cube) where the vector on each surface points outwards.
+
+$
+sum_i S_i = bold(0)
+$
+for any object.
+
+If we have a curved surface in 3D, if the surface is *closed* then
+- Take the surface vector at every infitesimally small point and sum them together.
+- It will be 0 for any *closed surface*.
+
+#line(length: 100%)
+
+END Vectors.
