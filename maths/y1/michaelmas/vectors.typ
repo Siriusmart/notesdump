@@ -551,4 +551,6 @@ If we have a curved surface in 3D, if the surface is *closed* then
 
 #line(length: 100%)
 
-END Vectors.
+#align(center)[
+  `END Vectors`
+]
