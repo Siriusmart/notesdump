@@ -219,7 +219,7 @@ let rec sillySum n =
 E.g. space and time, the latter usually being larger than the former.
 
 #definition([
-  The *Big-O* notation is defined as $f(n) = O(g(n))$ provided that $|f(n) lt.eq c|g(n)|$ for large $n$.
+  The *Big-O* notation is defined as $f(n) = O(g(n))$ provided that $|f(n)| lt.eq c|g(n)|$ for large $n$.
 ])
 
 Intuitively, consider the most significant term and ignore the constant coefficient or smaller factors.
@@ -285,3 +285,89 @@ Some examples in analysing time complexity.
     At each call $n$ is halved, and add 1 as there is always some extra work (e.g. calling the function, if branch).
   ]
 )
+
+== Lists
+
+#definition([
+  A *list* is a finite, ordered sequence of elements, all elements must have the same type.
+])
+
+=== List Primitives
+
+There are only 2 kinds of lists, the 2 operations covers all possible lists.
+```ml
+[] (* nil : the empty list *)
+x :: xs (* cons : put one element in front of the list *)
+```
+
+`[3; 5; 9]` is syntactical sugar for `3 :: (5 :: (9 :: []))`.
+
+```ml
+[3; 5; 9]
+(* - : int list = [3; 5; 9] *)
+
+[[3; 1]; [2]]
+(* - : int list list = [[3; 1]; [2]] *)
+
+(* concatenate two lists *)
+[3; 5; 9] @ [2; 4]
+(* - : [3; 5; 9; 2; 4] *)
+
+(* the List library contains useful functions *)
+List.rev [1; 2; 3]
+(* - : [3; 2; 1] *)
+```
+
+=== Tuples
+
+#definition([
+  *Tuples* are fixed size and hetrogeneous sequences.
+])
+
+```ml
+let pair = (1, true)
+(* val pair : int * bool = (1, true) *)
+
+(* you can do it without the brackets *)
+let another_pair = 1, true, 3.2
+(* val another_pair : int * bool * float = (1, true, 3.2) *)
+
+(* take care not to use commas instead of semicolons *)
+let list = [1, 2, 3]
+(* val list : int * int * int list *)
+```
+
+=== Pattern Matching
+
+All possible values that can be matched must be matched.
+
+```ml
+let null = function
+  | [] -> true
+  | _ :: _ -> false
+
+let is_zero = function
+  | 0 -> true
+  | _ -> false
+```
+
+You can also pattern match parameters.
+
+```ml
+let hd = (x :: _) = x
+
+hd [1] (* 1 *)
+hd [] (* match error *)
+```
+In this case is better to use an option type.
+
+=== Polymorphic Functions
+
+The `List.tl` function returns the tail of a list
+
+```ml
+List.tl
+(* - : 'a list -> 'a list = <fun> *)
+```
+
+An `'a` type (read: alpha type) means it can be of any type, but all elements of the list must be the same type.
