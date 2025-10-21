@@ -173,6 +173,8 @@ Sometimes we wish to use `NAND` or `NOR` gates since they are usually simpler an
   - Bubbles change an `AND` into an `OR` when they pass through a gate (vice versa).
 ], title: "Technique: Bubble Logic")
 
+#line(length: 100%)
+
 == Logic Minification
 
 === Normal Forms
@@ -471,6 +473,8 @@ Some combinations will never happen, we can declare those _don't care_ condition
   f = a dot overline(b) dot overline(c) + a dot overline(c) dot d + overline(a) dot b
   $
 
+#line(length: 100%)
+
   == Binary Adders
 
   We are doing the *compositional approach*, where we put half adders and full adders together to build a *ripple carry adder*.
@@ -678,6 +682,8 @@ This is due to the difference in *propagation delay* between layers.
 + Add an extra term containing the two squares to remove the static 1 hazard.
 
 To remove a static 0 hazard, draw a K-map of the complement of the output.
+
+#line(length: 100%)
 
 == Multiplexers
 
@@ -1121,3 +1127,179 @@ Where $Q$ is the current state, and $Q'$ the next state.
     content((-1.8, 0), $overline(S) + R$, anchor: "east")
     content((5.8, 0), $overline(R)$, anchor: "west")
   })
+
+#line(length: 100%)
+
+=== Transparent D-Latch
+
+The output of a transparent D-latch will only change when there is a global *enable signal* called the system clock. This makes it easier to design large scale systems, as opposed to letting the circuits change state when ever the input changes.
+
+#definition([
+  The *system clock* produces square wave signals at a frequency.
+  - Imposes order on state changes.
+  - Allows a lot of states to update simultaneously.
+])
+
+#grid(
+  columns: (42%, auto),
+  gutter: 10pt,
+  [
+    Modify the RS-Latch so the signal only change there is an enabling signal.
+
+    - There is only 1 input, $R$ and $S$ are complement of each other, so we can never set both of them to 1, avoiding the unwanted combination.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    and_gate((-2.2, 2.2))
+    and_gate((-2.2, -0.2))
+    nor_gate((0, 2), in_a_length: 1)
+    nor_gate((0, 0), in_b_length: 1)
+    line((1.5, 0.5), (3, 0.5))
+    line((1.5, 2.5), (3, 2.5))
+    line((2, 0.5), (2, 1), (-0.5, 1.8), (-0.5, 2.3), (-0.4, 2.3))
+    line((2, 2.5), (2, 2), (-0.5, 1.2), (-0.5, 0.7), (-0.4, 0.7))
+    content((-0.5, 0), $S$)
+    content((-0.5, 3), $R$)
+    content((3.3, 2.5), $Q$)
+    content((3.3, 0.5), $overline(Q)$)
+    line((-3.2, 0.5), (-2.7, 0.5), (-2.7, 2.5), (-2.5, 2.5))
+    content((-3.6, 0.5), $E N$)
+    not_gate((-4, 2.4))
+    line((-5.2, 0.1), (-4.5, 0.1), (-4.5, 2.9), (-4.3, 2.9))
+    line((-5.2, 0.1), (-2.5, 0.1))
+    content((-5.5, 0.1), $D$)
+  }),
+  [
+    The square box means it is *level activated*. When it is enabled, it is in *transparent mode*.
+    - $Q = D$ if $E N = 1$
+    - $Q$ remains in previous state if $E N = 0$
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+    rect((0, 0), (1.5, 2))
+    rect((0.6, 0), (0.9, 0.2))
+    line((0.75, -0.7), (0.75, 0))
+    line((-0.7, 1), (0, 1))
+    line((1.5, 1), (2.2, 1))
+    content((0.25, 1), $D$)
+    content((1.25, 1), $Q$)
+    content((0.75, -0.9), $E N$)
+  }),
+)
+
+=== Master Slave Flip-Flops
+
+#grid(
+  columns: (45%, 42%, auto),
+  [
+    The output changes only on a rising edg.
+
+    - It is much simpler to design sequential circuits if outputs only changes on rising or falling edges.
+    - In lab we use a truly F-F device (not affected by propagation delay).
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+    rect((0, 0), (1.5, 2))
+    rect((0.6, 0), (0.9, 0.2))
+    line((0.75, -0.7), (0.75, 0))
+    line((-0.7, 1), (0, 1))
+    line((1.5, 1), (2.2, 1))
+    content((0.25, 1), $D$)
+    content((1.25, 1), $Q$)
+
+    rect((2.2, 0), (3.7, 2))
+    line((2.95, -0.7), (2.95, 0))
+    rect((2.8, 0), (3.1, 0.2))
+    line((3.7, 1), (4.2, 1))
+    content((2.45, 1), $D$)
+    content((3.45, 1), $Q$)
+    not_gate((1.5, -1.1), size: 0.75)
+    not_gate((-0.7, -1.1), size: 0.75)
+    line((0.2, -0.725), (1.2, -0.725))
+    line((2.4, -0.725), (2.95, -0.725), (2.95, -0.5))
+    content((-1, 1), $D$)
+    content((4.45, 1), $Q$)
+    content((-1.5, -0.725), $C l k$)
+  }),
+  cetz.canvas({
+    import cetz.draw : *
+    rect((0, 0), (1.5, 2))
+    line((0.75, -0.7), (0.75, 0))
+    line((-0.5, 1), (0, 1))
+    line((1.5, 1), (2, 1))
+    content((0.25, 1), $D$)
+    content((1.25, 1), $Q$)
+    content((0.75, -0.9), $E N$)
+    line((0.6, 0), (0.75, 0.25), (0.9, 0))
+  }),
+)
+
+=== Other Types of Flip-Flops
+- The *JK F-F*: a clocked RS F-F that has 2 outputs $Q$ and $overline(Q)$. The illegal state now represents *toggle*.
+- The *T F-F*: similar to the D F-F but there are 2 outputs.
+
+
+=== Asynchronous Inputs
+
+It is common for F-Fs to have additional asynchronous inputs which are independent of clock signals.
+- Reset/clear: set $Q$ to 0
+- Preset/set: set $Q$ to 1
+
+==== Timing
+
+The transparent D-latch requires
+- $D$ to change before a minimum *setup time* $t_"su"$ before the clock signal.
+- The data is held for *hold time* $t_"h"$ after the clock edge.
+- Then the output will change in *propagation delay* $t_"p"$ after the clock edge.
+
+== Flip-Flops Applications
+
+#definition([
+  A *counter* is a clock sequential circuit that goes through a predetermined sequence of states.
+])
+
+A *ripple counter* can be made by cascading edge triggered T-type F-Fs operating in toggle mode.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  for i in range(9, step: 3) {
+    rect((i + 0,0), (i + 1.5, 2))
+    content((i + 0.25, 1), $T$)
+    content((i + 1.25, 1.5), $Q$)
+    content((i + 1.25, 0.5), $overline(Q)$)
+    line((i + 0.6, 0), (i + 0.75, 0.25), (i + 0.9, 0))
+
+    if i != 6 {
+      line((i + 1.5, 1.5), (i + 2.25, 1.5), (i + 2.25, -0.5), (i + 3.75, -0.5), (i + 3.75, 0))
+    }
+
+    line((i + 1.5, 1.5), (i + 2.25, 1.5), (i + 2.25, 2.25))
+    content((i + 2.25, 2.5), $Q_#(i / 3)$)
+    line((i - 0.375, 1.5), (i - 0.375, 1), (i, 1))
+    content((i - 0.375, 1.8), "1")
+  }
+
+  line((-3 + 2.25, -0.5), (-3 + 3.75, -0.5), (-3 + 3.75, 0))
+  content((-1.2, -0.5), $C l k$)
+})
+
+A string of $n$ F-Fs can have $2^n$ states.
+
+Counters are used for
+- Counting.
+- Producing a delay of a particular duration.
+- Generating sequences.
+- Dividing frequencies by 2.
+
+A ripple counter is not a synchronous device as the clock to the next stage comes from the previous stage, in a true synchornous device, all the clock input to the flip flops come from the clock.
+
+- Output does not change synchronously - hard to know when the output is actually valid.
+- Propagation delay bulids up, limiting the maximum clock speed before *miscounting* occurs. Where $Q_0$ changes to the next state before $Q_2$ manages to change to the current state.
+
+=== BCD Counters
+
+To count a number that is not a power of 2 (e.g. 10), we need
+- An F-F with a clear/reset signal.
+- An AND gate to detect the count of 10 and use its output to reset the F-F.
