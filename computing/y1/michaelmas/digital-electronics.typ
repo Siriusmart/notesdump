@@ -1303,3 +1303,57 @@ A ripple counter is not a synchronous device as the clock to the next stage come
 To count a number that is not a power of 2 (e.g. 10), we need
 - An F-F with a clear/reset signal.
 - An AND gate to detect the count of 10 and use its output to reset the F-F.
+
+#line(length: 100%)
+
+== Synchronous Counters
+
+We can identify a synchronous design if all F-F clock inputs are connected to the clock signal, so they all change at the same time.
+
+The *excitation table* shows the input required for a particular transition. Note that $D$ is the input we want to create, and $Q'$ is caused by $D$.
+
+#table(
+  columns: (auto, auto, auto),
+  align: center,
+  table.header([*$Q_2 Q_1 Q_0$*], [*$Q_2' Q_1' Q_0'$*], [*$D_2 D_1 D_0$*]),
+  `000`, `001`, `001`,
+  `001`, `010`, `010`,
+  `010`, `011`, `011`,
+  `011`, `100`, `100`,
+  `100`, `101`, `101`,
+  `101`, `110`, `110`,
+  `110`, `111`, `111`,
+  `111`, `000`, `000`,
+)
+
+By inspection, we can see that $D_0 = overline(Q_0)$ and $D_1 = Q_1 plus.circle Q_0$.
+
+To find out $D_2$, we need to draw a K-map.
+
+#grid(
+  columns: (40%, 50%),
+  grid(
+    gutter: 7pt,
+    columns: (auto, auto),
+    grid.cell([]),
+    grid.cell([*$Q_1 Q_0$*]),
+    grid.cell([*$Q_2$*]),
+    grid.cell([
+      #table(
+        align: center,
+        columns: (auto, auto, auto, auto, auto),
+        [], [*00*], [*01*], [*11*], [*10*],
+        [*0*], [], [], [1], [],
+        [*1*], [1], [1], [], [1]
+      )
+    ])
+  ),
+  [
+    $
+    D_2 &= Q_2 dot overline(Q_1) + Q_2 dot overline(Q_0) + overline(Q_2) dot Q_1 dot Q_0 \
+    &= Q_2 dot (overline(Q_1) + overline(Q_0)) + overline(Q_2) dot Q_1 dot Q_0
+    $
+  ]
+)
+
+#line(length: 100%)
