@@ -112,6 +112,8 @@ OCaml automatically infers types, but it does *not* implicitly convert types.
 
 Type hints are useful to prevent OCaml from inferring all the wrong types when you make one small mistake.
 
+#line(length: 100%)
+
 == Recursion and Complexity
 
 #definition([
@@ -286,6 +288,8 @@ Some examples in analysing time complexity.
   ]
 )
 
+#line(length: 100%)
+
 == Lists
 
 #definition([
@@ -371,3 +375,122 @@ List.tl
 ```
 
 An `'a` type (read: alpha type) means it can be of any type, but all elements of the list must be the same type.
+
+#line(length: 100%)
+
+== More List Functions
+
+```ml
+let rec append = function
+    | [], ys -> ys
+    | x :: xs, ys -> x :: append xs ys
+(* val append : a' list * a' list -> a' list *)
+```
+
+The match keyword keeps the reference to the original value.
+
+```ml
+let rec append xs ys =
+  match xs, ys with
+    | [], ys -> ys
+    | x :: xs, ys -> x :: append xs ys
+(* val append : a' list -> a' list -> a' list *)
+```
+
+=== Take and Drop
+
+- `take` takes the first `i` items of a list.
+- `drop` returns all the items that are not included in `take`
+
+```ml
+let rec take = function
+  | [], _ => []
+  | x :: xs, i =>
+    if i > 0 then
+      x :: take (xs, i - 1)
+    else
+      []
+;;
+
+let rec drop = function
+  | [], _ -> []
+  | x :: xs, i ->
+    if i > 0 then
+      drop (xs, i - 1)
+    else
+      x :: xs (* we could do this better using a match *)
+;;
+```
+
+In the `drop` function:
+- We advance the pointer as we go through the list.
+- Then just returns the pointer where we stop.
+- No memory is used.
+
+In the `take` function has to construct a list from scratch.
+
+=== Searching
+
+Goal is to find $x$ in a list $[x_1; dots;x_n]$
+#table(
+  columns: (auto, auto, auto),
+  table.header([*Name*], [*Description*], [*Cost*]),
+  [Linear search], [Compare each element], [$O(n)$],
+  [Oredred search], [The list is bisected every time], [$O(log n)$],
+  [Indexed search], [Create an index, e.g. a hash map], [$O(1)$],
+)
+
+=== Equality Test
+
+The polymorphic equality operator `=` to compare integers, bools, floats but not functions.
+
+_Do not use `==`_
+
+=== List Membership
+
+```ml
+let rec member x = function
+  | [] -> false
+  | y :: ys -> x = y || member x ys
+```
+
+The `||` is not a normal function, if the first case evaluates to true, it will not bother to evaluate the 2nd bit.
+
+=== Zip and Unzip
+
+```ml
+let D in E
+```
+- Embeds declaration `D` within expression `E`
+- Useful for performing intermediate computations within a function.
+
+```ml
+let rec zip = function
+  | (x :: xs, y :: ys) ->
+    (x, y) :: zip (xs, ys)
+  | _ -> []
+;;
+
+let rec unzip pairs = function
+  | [] -> []
+  | (x, y) :: pairs ->
+    let xs, ys = unzip pairs in
+    (x :: xs, y :: ys)
+;;
+```
+
+If we redo that in an iterative algorithm.
+
+```ml
+let rec unzipRev pairs = function
+ | [], xs, ys -> xs, ys
+ | (x, y) :: pairs, xs, ys ->
+  unzipRev (pairs, x :: xs, y :: ys)
+```
+
+- In `unzip`, we traverse to the end then build up the list.
+- In `unzipRev` we start building up the list right away.
+
+That's why their order is different.
+
+#line(length: 100%)
