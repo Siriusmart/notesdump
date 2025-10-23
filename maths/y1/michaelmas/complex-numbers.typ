@@ -138,3 +138,105 @@ $
 z = e^((i pi m)/2)
 $
 Which gives 4 solutions according to the fundamental theorem of algebra.
+
+#line(length: 100%)
+
+== DeMoivre's Theorem
+
+Using the exponent form of complex numbers:
+$
+z^n &= exp(i theta)^n \
+&= exp(n i theta) \
+cos n theta + i sin n theta &= (cos theta + i sin theta)^n
+$
+
+=== Complex Conjugate using DeMoivre's
+
+We can also use DeMoivre's theorem to take the complex conjugate of $z$.
+$
+exp(-i theta) = cos theta - i sin theta
+$
+Yielding identities:
+$
+cos theta &= 1/ 2(exp(i theta) + exp(-i theta)) \
+sin theta &= 1/ (2i)(exp(i theta) - exp(-i theta))
+$
+
+We can also express $cos^3 theta$ in terms of $cos 3 theta$ and $cos 3 theta$, or $cos 4 theta$ in terms of $cos ^ 4 theta$ and $cos ^2 theta$.
+
+=== Sum Series
+
+We can work out the sum of trigonometric functions.
+$
+sum^(N - 1)_(N=0) cos k theta = Re[sum^(N - 1)_(N=0) exp(k i theta)]
+$
+
+Then we can use the geometric sum formula.
+
+== Complex Logarithms
+
+#definition([
+  *$ln$* is the inverse of the *$exp$* function.
+  $
+  exp(ln z) = z
+  $
+])
+
+$
+ln z &= ln(|z|exp(i(theta + 2 pi n))) \
+&= ln(|z|) + i(theta + 2 pi n)
+$
+
+The log of a complex number is *multivalued*, there are infinitely many solutions. This is similar to how taking the root of natural nubmers give 2 solutions.
+
+#definition([
+  The *principal value* is the root closest to the $x$-axis.
+])
+
+=== General Power of $z_1^(z_2)$
+
+- Let $z_1 = |z_1|exp(i theta)$
+- Let $z_2 = x + i y$
+$
+z_1 &= exp(z_2 ln z_1) \
+&=exp(z_2 (ln|z_1| + i(theta + 2 pi n))) \
+&=exp((x + i y) (ln|z_1| + i(theta + 2 pi n))) \
+&=exp(x ln|z_1| - y(theta + 2 pi n) + i(y ln|z_1|+x(theta + 2 pi n))) \
+&=(|z_1|^x)/exp(y(theta + 2 pi n))dot exp(i(y ln |z_1| + x(theta + 2 pi n)))
+$
+
+We can substitute any $z_2 in bb(Q)$ to show it is the expected behaviour.
+
+== Applications of Complex Numbers
+
+Used in problems that involve oscillatory/periodic motion.
+
+E.g. a pendulum about the vertical
+$
+x(t) &= a cos omega t + b sin omega t \
+&= Re(A exp i omega t)
+$
+
+The big advantage is that taking derivatives of the exponential function is very easy.
+$
+v(t) &= d / (d x)Re(exp i omega t) \
+&= Re(d / (d x)exp i omega t) \
+$
+
+We can easily fix it to an initial condition to find a particular solution.
+
+== Fundamental Theorem of Algebra (The Sequel)
+
+#definition([
+A polynomial of $n$ degree where $a_i in bb(C)$ has $n$ complex roots (possibly repeated).
+], title: "Theorem")
+
+If $P(z)$ is a function of $n$ degrees, then $P(z) = (z - z_1)Q(z)$ where $Q$ a function of $n-1$ degrees.
+
+We can prove by induction (?) that there is at least one route $(z - z_1)(z - z_2) dots R(z) = 0$.
+
+#line(length: 100%)
+
+#align(center)[
+  `END Complex Numbers`
+]
