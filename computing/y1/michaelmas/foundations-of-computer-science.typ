@@ -494,3 +494,102 @@ let rec unzipRev pairs = function
 That's why their order is different.
 
 #line(length: 100%)
+
+== Sorting
+
+Sorting is a key part of many other algorithms:
+- *Searching* is much easier in a sorted list.
+- *Merging*  is also much easier.
+- *Finding duplicates* is much easier as they would be next to each other in a sorted list.
+- *Inverting tables* (??)
+- *Graphics algorithms*: don't need to check for collision between every object. If the objects are sorted by distance, objects far away don't need to be checked.
+
+=== Time Complexity of Sorting
+
+#definition([
+  In a *comparison sort*, the only way we can sort is by taking 2 times and comparing them: bigger/smaller than or equal.
+])
+
+We are limiting ourselves to comparison sort.
+- There are $n!$ permutations of $n$ elements.
+- Each comparison eliminates half of the permutations $n^(C(n)) = n!$
+- Therefore at best $C(n) gt.eq log n! ~ n log n + 1.44n$
+
+=== Insertion Sort
+```ml
+let rec ins x = function
+  | [] -> [x]
+  | y :: ys ->
+      if x <= y then
+        x :: y :: ys
+      else
+        y :: ins x ys
+;;
+
+let rec insort = function
+  | [] -> []
+  | x :: xs ->
+      ins x (insort xs)
+;;
+```
+
+- The helper function inserts an item to a sorted list, on average the item is inserted to the middle of the list, so $O(n)$.
+- `insort` has cost $O(n^2)$, much worse than $O(n log n)$.
+
+#definition([
+  We can trace a *monomorphic function* with
+  ```ml
+  #trace insort
+  ```
+
+  This prints out the function's arguments and return values.
+], title: "Tracing")
+
+=== Quicksort
+
++ Choose a pivot $a$, e.g. the head of list.
++ *Divide*: Partition the input into 2 sublists.
+  - Those $lt.eq a$
+  - Those $gt a$
++ *Conquer*: recursively sort both sublists.
++ *Combine*: append the two lists together.
+
+Ideally the two lists should be the same length, where we have $O(n log n)$. If a sorted list is used, then the worst case $O(n^2)$. Since real data is often unsorted, we have average case $O(n log n)$.
+
+```ml
+let rec quick = function
+  | [] -> []
+  | x :: xs ->
+      let rec part l r = function
+        | [] -> (quick l) @ (quick r)
+        | y :: ys ->
+            if y <= x then
+              part (y :: l) r ys
+            else
+              part l (y :: r) ys
+      in part [] [] xs
+```
+
+=== Merge Sort
+
+```ml
+let rec merge = function
+  | [], ys -> ys
+  | xs, [] -> xs
+  | x :: xs, y :: ys ->
+      if x < y then
+        x :: merge xs (y :: ys)
+      else
+        y :: merge (x :: xs) ys
+;;
+
+let rec mergesort = function
+  | [] -> []
+  | xs ->
+    let k = (List.length xs) / 2 in
+    let l = take k xs in
+    let r = drop k xs in
+    merge (mergesort l) (mergesort r)
+```
+
+Merge sort has a worst case of $O(n log n)$, but have a space complexity of $O(n log n)$ due to the extra function calling we have to do.
