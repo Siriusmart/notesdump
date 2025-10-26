@@ -628,9 +628,7 @@ If we complement $a$ then set $c_0$ to 1, we have $s = b - a$.
   )
 }
 
-Sometimes, the carry bit may be known before $c_"in"$ is given.
-
-If that is not possible, the main speedup is that carry generation happens in parallel with the adders.
+The fast carry generation has less levels than the ripple adder (think of SOP form, which only has two levels), therefore having less propagation delay.
 - Lot's of gates are used in carry generation.
 - Usually two 4-bit carry generators are used in an 8-bit adder.
 
@@ -1293,7 +1291,7 @@ Counters are used for
 - Generating sequences.
 - Dividing frequencies by 2.
 
-A ripple counter is not a synchronous device as the clock to the next stage comes from the previous stage, in a true synchornous device, all the clock input to the flip flops come from the clock.
+A ripple counter is not a synchronous device as the clock to the next stage comes from the previous stage, in a true synchronous device, all the clock input to the flip flops come from the clock.
 
 - Output does not change synchronously - hard to know when the output is actually valid.
 - Propagation delay bulids up, limiting the maximum clock speed before *miscounting* occurs. Where $Q_0$ changes to the next state before $Q_2$ manages to change to the current state.
@@ -1356,4 +1354,185 @@ To find out $D_2$, we need to draw a K-map.
   ]
 )
 
+The design process for counters that count in any sequence is the same.
+
 #line(length: 100%)
+
+=== Shift Registers
+
+#let dtype = (x, y) => {
+  import cetz.draw : *
+  rect((0 + x, 0 + y), (1.5 + x, 2 + y))
+  line((0.75 +x , -0.7 + y), (0.75 + x, 0 + y))
+  line((-0.5 + x, 1 + y), (x, 1 + y))
+  content((0.25 + x, 1 + y), $D$)
+  content((1.25 + x, 1 + y), $Q$)
+  line((0.6 + x, 0 + y), (0.75 + x, 0.25 + y), (0.9 + x, 0 + y))
+}
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  line((2, 1), (3, 1))
+  line((5, 1), (6, 1))
+  line((-0.5, -0.7), (6.75, -0.7), (6.75, -0.5))
+
+  for x in range(9, step: 3) {
+    line((1.5 + x, 1), (2 + x, 1), (2 + x, 2.5))
+    content((2 + x, 2.7), $Q_#{x / 3}$)
+    dtype(x, 0)
+  }
+
+  content((-0.9, -0.7), $C l k$)
+  content((-0.9, 1), $D_"in"$)
+})
+
+A shift register is a *synchronous machine* because all the F-Fs are connected to the same clock.
+- Serial input, parallel output.
+- The first clock $Q_0$ outputs the value of $D$ at the next clock edge.
+- $Q_1$ output is delayed by 1 clock cycle.
+- $Q_2$ output is delayed by 2 clock cycles.
+
+==== Application
+
+#grid(
+  columns: (auto, auto),
+  [
+    Use it as a *serial data link*.
+    + Parallel data in.
+    + pass through a wire as serial data.
+    + Parallel data out.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    rect((0, 0), (2.5, 1.5))
+    content((1.25, 0.75), [
+      Parallel \
+      to serial
+    ])
+    rect((5, 0), (7.5, 1.5))
+    content((6.25, 0.75), [
+      Serial \
+      to parallel
+    ])
+    line((2.5, 0.75), (5, 0.75))
+
+    content((0.75, 2.75), $Q_0$)
+    content((1.25, 2.75), $Q_1$)
+    content((1.75, 2.75), $Q_2$)
+    line((0.75, 1.5), (0.75, 2.5))
+    line((1.25, 1.5), (1.25, 2.5))
+    line((1.75, 1.5), (1.75, 2.5))
+
+    content((5.75, 2.75), $Q_0$)
+    content((6.25, 2.75), $Q_1$)
+    content((6.75, 2.75), $Q_2$)
+    line((5.75, 1.5), (5.75, 2.5))
+    line((6.25, 1.5), (6.25, 2.5))
+    line((6.75, 1.5), (6.75, 2.5))
+
+    line((-1, -1), (1.25, -1), (1.25, 0))
+    line((-1, -1), (6.25, -1), (6.25, 0))
+    content((-1.2, -0.7), $C l k$)
+  })
+)
+
+== System Timing
+
+#definition([
+  - The *clock period* $T_c$ is the time between rising clock edges.
+  - The *clock frequency* $f_c = 1 slash T_c$.
+], title: "Definitions")
+
+=== Setup Time Constraint
+
+The correct operation of a D-type F-F requires
+- Minimum *setup time* $T_(s u)$ before the edge.
+- Minimum *hold time* $T_h$ after the edge
+- Output changes in *propagation delay* $T_(p c)$ after the clock.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  dtype(0, 0)
+  dtype(6, 0)
+
+  rect((2.5, 0.25), (5, 1.75))
+  line((1.5, 1), (2.5, 1))
+  line((7.5, 1), (8, 1))
+  line((5, 1), (6, 1))
+  content((2, 1.3), $Q_0$)
+  content((5.5, 1.3), $D_1$)
+  content((3.75, 1), [Logic])
+  line((-0.5, -0.7), (6.75, -0.7), (6.75, 0))
+})
+
+To satisfy the setup time for the 2nd F-F $D_1$ must settle before $t_(s u)$ before the next clock. Giving the *minimum setup period*.
+$
+T_c gt.eq t_(p c) + t_(p d) + t_(s u)
+$
+
+=== Hold Time Constraint
+
+For the 2nd F-F to output correctly, $D_1$ must hold (not update) for a minimum of $t_"hold"$ after clock.
+$
+min(t_(p c) + t_(p d)) gt.eq t_"hold"
+$
+- We would expect 2 F-Fs to cascade with no combinational logic in between, so
+$
+min(t_(p c)) gt.eq t_"hold"
+$
+- Often F-F are designed with $t_"hold" = 0$.
+
+Hold time violations cannot be fixed by adjusting clock period and is hard to fix.
+
+#definition(title: "Note", [
+  - Setup time constrain is concerned with the *maximum propagation delay*.\
+    (time after clock edge required to guarantee stable output)
+  - Hold time constraint concerned with the *minimum propagation delay*.\
+    (time after clock edge which output is guaranteed to not change)
+])
+
+=== Clock Skew
+
+- Previously we assumed all clock signals reach all the F-Fs the same time.
+- Skew is caused by the differences in the length of physical lengths from the clock to the flip-flops.
+This increases the *maximum propagation delay* possible.
+$
+T_c gt.eq t_(p c) + t_(p d) + t_(s u) + t_"skew"
+$
+- Skew decreases the maximum propagation delay allowed $t_(p c) lt.eq T_c - (t_(p c) + t_(s u) + t_"skew"$
+- But makes the hold time constraint looser $min(t_"skew" + t_(p c) + t_(p d)) gt.eq t_"hold"$
+
+== Meta Stability
+
+It is not always possible to control when an input to an F-F changes (e.g. user inputs). If the *dynamic requirements* are violated:
+- This causes output $Q$ to be *undefined* (between 0V and $V_(D D)$).
+- $Q$ will remain in a *metastable state* (undefined) until it resolves to a stable valid state.
+
+The resolution time is unbounded, the distribution of resolution time is given by
+$
+P(t_"res" > t) = T_0/T_c exp(-t/tau)
+$
+Where $T_0$ and $tau$ are the characteristics of the F-F.
+
+So the longer we wait, the less likely the F-F is still in the metastable state.
+
+=== Synchroniser
+
+A synchroniser is made by cascading an extra F-F after the first F-F.
++ The probability of each F-F resolves to a valid level $t_(s u)$ before the next clock edge is
+  $
+  P_"fail" = P(t_"res" > T_c - t_(s u)) = T_0/T_c exp(-(T_c - t_(s u))/tau)
+  $
++ For $n$ cascaded F-Fs to resolve to a metastable state, the probability is $(P_"fail")^n$.
+
+=== Mean Time Between Failures
+
+If input $D$ changes $N$ times per second, the probability of failure is $N P_"fail" slash s$.
+
+System reliability is measured in mean time between failures.
+$
+M T B F = 1/(N P_"fail" slash s) = (T_c exp(-(T_c - t_(s u))/tau))/(N T_0)
+$
