@@ -1519,6 +1519,10 @@ Where $T_0$ and $tau$ are the characteristics of the F-F.
 
 So the longer we wait, the less likely the F-F is still in the metastable state.
 
+#definition(title: "Note", [
+  $P_"fail"$ can present *mean failures per second* and can go over 100.
+])
+
 === Synchroniser
 
 A synchroniser is made by cascading an extra F-F after the first F-F.

@@ -410,7 +410,6 @@ let rec take = function
       x :: take (xs, i - 1)
     else
       []
-;;
 
 let rec drop = function
   | [], _ -> []
@@ -419,7 +418,6 @@ let rec drop = function
       drop (xs, i - 1)
     else
       x :: xs (* we could do this better using a match *)
-;;
 ```
 
 In the `drop` function:
@@ -469,14 +467,12 @@ let rec zip = function
   | (x :: xs, y :: ys) ->
     (x, y) :: zip (xs, ys)
   | _ -> []
-;;
 
 let rec unzip pairs = function
   | [] -> []
   | (x, y) :: pairs ->
     let xs, ys = unzip pairs in
     (x :: xs, y :: ys)
-;;
 ```
 
 If we redo that in an iterative algorithm.
@@ -524,13 +520,11 @@ let rec ins x = function
         x :: y :: ys
       else
         y :: ins x ys
-;;
 
 let rec insort = function
   | [] -> []
   | x :: xs ->
       ins x (insort xs)
-;;
 ```
 
 - The helper function inserts an item to a sorted list, on average the item is inserted to the middle of the list, so $O(n)$.
@@ -581,7 +575,6 @@ let rec merge = function
         x :: merge xs (y :: ys)
       else
         y :: merge (x :: xs) ys
-;;
 
 let rec mergesort = function
   | [] -> []
@@ -593,3 +586,144 @@ let rec mergesort = function
 ```
 
 Merge sort has a worst case of $O(n log n)$, but have a space complexity of $O(n log n)$ due to the extra function calling we have to do.
+
+#line(length: 100%)
+
+== Datatypes and Trees
+
+Using custom data types improves abstraction of data away from the details of representation.
+- We can pack values into a tuple, but we can easily create *invalid values*.
+- We want to create abstraction that is impossible to make mistakes like that.
+
+```ml
+let wheels = function
+  | "bike" -> 2
+  | "motorcar" -> 2
+  | "car" -> 4
+  | "lorry" -> 4
+```
+
+We want to make *illegal state* unrepresentable: a program with invalid states is rejected at compile time.
+
+=== Enumeration Types
+
+```ml
+type vehicle =
+  | Bike
+  | Motorbike
+  | Car
+  | Lorry
+```
+
+Instead of representing any string, it can only contain the 4 constants defined.
+- The constants are the *constructors* of the `vehicle` type.
+- This is more *memory efficient* than using strings.
+- Adding new vehicle types is straightforward.
+
+Even though the num is still represented as integers internally, we cannot compare it with any other data types. We have created a type that is _disjoint from any other types_.
+
+=== Generalisation
+
+Data can be store alongside each variant.
+
+```ml
+type vehicle =
+  | Bike
+  | Motorbike of int
+  | Car of bool
+  | Lorry of int
+
+let b = Motorbike 123
+```
+
+The `Motorbike` constructor has type `int -> vehicle`.
+
+=== Pattern Matching
+
+```ml
+let wheels = function
+  | Bike -> 2
+  | Motorbike _ -> 2
+  | Car true -> 3
+  | Car false -> 4
+  | Lorry w -> w
+```
+
+=== Polymorphic Types
+
+Types can have type parameters.
+
+```ml
+type 'a option =
+  | None
+  | Some of 'a
+
+type ('a, 'b) result =
+  | Ok of 'a
+  | Error of 'b
+```
+
+=== Exceptions
+
+#definition([
+  An exception is raised when something we weren't expecting happened.
+])
+
+- An exception is handled by doing an alternative computation.
+- If not handled, the exception will go up to the top of the program and it will crash.
+
+Note the alternative expression must return the same type as the original.
+
+```ml
+exception Fail
+exception NoChange of int
+
+raise Fail
+raise NoChange 123
+```
+
+- `Fail` and `NoChange` are constructors for the `exc` type. They have type `exc` and `int -> exc` respectively.
+- Since exceptions are values, we can pattern match on them.
+
+```ml
+try
+  (* do stuff *)
+with
+  | NoChange -> (* alternative computation *)
+```
+
+`raise` dynamically jumps to the nearest `try/with` handler that mathches the exception, it is can be used to jump to another part of the code.
+
+=== Recursive Datatypes
+
+`list` is built into the language because the list syntax is helpful, but underneath it is just using another data type.
+```ml
+type 'a list =
+  | Nil
+  | Cons of 'a * 'a list
+```
+
+Types are recursive by default, because we often want our types to be recursive. In fact, we need to use `nonrec` to disable this behaviour specifically.
+
+=== Binary Tree
+
+If the list has 2 tails, we have a binary tree.
+
+```ml
+type 'a tree =
+  | Lf
+  | Br of 'a * 'a tree * 'a tree
+```
+
+Basic functions on trees includes:
+```ml
+let rec count = function
+  | Lf -> 0
+  | Br (_, l, r) -> 1 + count l + count r
+
+let rec depth = function
+  | Lf -> 0
+  | Br (_, l, r) -> 1 + max (depth l) (depth r)
+```
+
+#line(length: 100%)

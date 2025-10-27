@@ -198,7 +198,7 @@ The log of a complex number is *multivalued*, there are infinitely many solution
 - Let $z_1 = |z_1|exp(i theta)$
 - Let $z_2 = x + i y$
 $
-z_1 &= exp(z_2 ln z_1) \
+z_1^(z_2) &= exp(z_2 ln z_1) \
 &=exp(z_2 (ln|z_1| + i(theta + 2 pi n))) \
 &=exp((x + i y) (ln|z_1| + i(theta + 2 pi n))) \
 &=exp(x ln|z_1| - y(theta + 2 pi n) + i(y ln|z_1|+x(theta + 2 pi n))) \
