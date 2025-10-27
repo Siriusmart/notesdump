@@ -1540,3 +1540,225 @@ System reliability is measured in mean time between failures.
 $
 M T B F = 1/(N P_"fail" slash s) = (T_c exp(-(T_c - t_(s u))/tau))/(N T_0)
 $
+
+#line(length: 100%)
+
+== Finite State Machines
+
+#definition(title: "Definitions", [
+  #table(
+    columns: (auto, auto),
+    table.header([*Keyword*], [*Meaning*]),
+    [Finite state machine], [A deterministic circuit that produces outputs which depends on its internal state and external outputs.],
+    [State], [A set of internal memorised values.],
+    [Input], [External stimuli to the FSM.],
+    [Output], [Results of the FSM.]
+  )
+])
+
+#grid(
+    columns: (auto, auto),
+    gutter: 20pt,
+    [
+      Moore machine's output only depends on the state. The 2nd combinational logic is *optional*.
+    ],
+    [
+      Mealy machine also additionally takes the input to generate an output directly.
+    ],
+    cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (1.5, 1.5))
+      content((0.75, 0.75), [Comb.\ logic])
+      rect((2.3, 0), (3.5, 1.5))
+      content((2.5, 0.75), $D$)
+      content((3.3, 0.75), $Q$)
+      line((1.5, 0.75), (2.3, 0.75))
+      line((3.5, 0.75), (4.3, 0.75))
+      rect((4.3, 0), (5.8, 1.5))
+      content((5.05, 0.75), [Comb.\ logic])
+
+      line((0, 0.75), (-0.7, 0.75))
+      line((5.8, 0.75), (6.5, 0.75))
+      line((2.75, 0), (2.9, 0.2), (3.05, 0))
+
+      line((3.9, 0.75), (3.9, 2), (-0.5, 2), (-0.5, 1), (0, 1))
+      line((-0.7, -1), (2.9, -1), (2.9, 0))
+    }),
+    cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (1.5, 1.5))
+      content((0.75, 0.75), [Comb.\ logic])
+      rect((2.3, 0), (3.5, 1.5))
+      content((2.5, 0.75), $D$)
+      content((3.3, 0.75), $Q$)
+      line((1.5, 0.75), (2.3, 0.75))
+      line((3.5, 0.75), (4.3, 0.75))
+      rect((4.3, 0), (5.8, 1.5))
+      content((5.05, 0.75), [Comb.\ logic])
+
+      line((0, 0.75), (-0.7, 0.75))
+      line((5.8, 0.75), (6.5, 0.75))
+      line((2.75, 0), (2.9, 0.2), (3.05, 0))
+
+      line((3.9, 0.75), (3.9, 2), (-0.5, 2), (-0.5, 1), (0, 1))
+      line((-0.7, -1), (2.9, -1), (2.9, 0))
+
+      line((-0.2, 0.75), (-0.2, -0.5), (3.9, -0.5), (3.9, 0.5), (4.3, 0.5))
+    }),
+    [
+      The Moore machine is clocked and relatively predictable. Although the combinational logic may have a glitch.
+    ],
+    [
+      We know inputs are generally not synchronised, so the combinational logic can change at any time.
+    ],
+    [
+      Only input shown on transition arcs, next state is given by current state and current input.
+    ],
+    [
+      Inputs and outputs shown on transition arcs, because the output is determined by current input and current state.
+    ]
+)
+
+=== Example: Traffic Lights
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 50pt,
+  cetz.canvas({
+    import cetz.draw : *
+
+    let light((x, y), r, a, g) = {
+      rect((x, y), (x + 1.2, y + 2.4))
+
+      if r {
+        circle((x + 0.6, y + 1.9), radius: 8pt, fill: red)
+      } else {
+        circle((x + 0.6, y + 1.9), radius: 8pt, stroke: red)
+      }
+
+      if a {
+        circle((x + 0.6, y + 1.2), radius: 8pt, fill: orange)
+      } else {
+        circle((x + 0.6, y + 1.2), radius: 8pt, stroke: orange)
+      }
+
+      if g {
+        circle((x + 0.6, y + 0.5), radius: 8pt, fill: green)
+      } else {
+        circle((x + 0.6, y + 0.5), radius: 8pt, stroke: green)
+      }
+    }
+
+    light((0, 0), true, false, false)
+    light((3, 0), true, true, false)
+    light((6, 0), false, false, true)
+    light((9, 0), false, true, false)
+
+    line((1.2, 1.25), (3, 1.25), mark: (end: ">"))
+    line((4.2, 1.25), (6, 1.25), mark: (end: ">"))
+    line((7.2, 1.25), (9, 1.25), mark: (end: ">"))
+    line((9.6, 0), (9.6, -1), (0.6, -1), (0.6, 0), mark: (end: ">"))
+  }),
+  table(
+    columns: (auto, auto),
+    table.header($R A G$, $R'A'G'$),
+    `100`, `110`,
+    `110`, `001`,
+    `001`, `010`,
+    `010`, `100`
+  )
+)
+
+4 states, so minimum 2 F-Fs required, but if we have 3 F-Fs we don't need any additional combinational logic, we only use 4 out of 8 possible states.
+
+We can use K-maps to find the expressions for $R'$, $A'$ and $G'$.
+
+=== Initial State
+
+The FSM can be powered up in any of the unused state. This may cause the FSM to be looping in an arbitrary sequence of unintended cases. We can solve that by
++ Checking if the FSM eventually enter a known state from the unused states.
++ If not, we can insert an unused state to the state transition transition table, so the next state is a used state.
+
+== State Assignment
+
+State assignment is nontrivial, and depends on what we are trying to optimise:
+- Complexity (e.g. no. of chip used, wiring complexity)
+- Speed
+
+If we have $n$ states, we need at least $log_2 n$ F-Fs (a.k.a. bits) to encode the states.
+
+=== Sequential State Assignment
+
++ Assign states in increasing natural binary count.
++ Write down the state transition table using $log_2 n$ gates.
++ Determine the next state logic and the output logit.
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 50pt,
+  table(
+    columns: (auto, auto),
+    table.header($c b a$, $c' b' a'$),
+    `000`, `001`,
+    `001`, `010`,
+    `010`, `011`,
+    `011`, `100`,
+    `100`, `000`
+  ),
+  $
+  'a &= overline(a) \
+  'b &= a plus.circle b \
+  'c &= a dot b
+  $
+)
+
+=== Sliding State Assignment
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 50pt,
+  table(
+    columns: (auto, auto),
+    table.header($c b a$, $c' b' a'$),
+    `000`, `001`,
+    `001`, `011`,
+    `011`, `110`,
+    `110`, `100`,
+    `100`, `000`
+  ),
+  $
+  'a &= overline(b) dot overline(c) \
+  'b &= a \
+  'c &= b
+  $
+)
+
+Note the simpler logic, but more unusable states.
+
+=== Shift Register Assignment
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 50pt,
+  table(
+    columns: (auto, auto),
+    table.header($e d c b a$, $e' d' c' b' a'$),
+    `00011`, `00110`,
+    `00110`, `01100`,
+    `01100`, `11000`,
+    `11000`, `10001`,
+  ),
+  $
+  'a &= e \
+  'b &= a \
+  'c &= b \
+  'd &= c \
+  'e &= d \
+  $
+)
+
+Extremely simple logic, but a lot of unusable states.
+
+#line(length: 100%)
