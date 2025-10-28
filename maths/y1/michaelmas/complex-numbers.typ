@@ -1,3 +1,14 @@
+#set page(
+  numbering: "1",
+  supplement: [p.],
+  number-align: right,
+  header: [
+    #set text(8pt)
+    #smallcaps[Mathematics Lecture Notes]
+    #h(1fr) _Complex Numbers_
+  ],
+)
+
 #let definition(title: "Definition", body) = {
   block(
     fill: luma(230),
