@@ -297,3 +297,196 @@ One-to-one cardinality doesn't mean one-to-one correspondence: not all elements 
 - We represent the relation with an _IS A_ relation (upside down triangle in diagram).
 
 #line(length: 100%)
+
+== The Relational Model
+
+Before the relational model, you need to know about the data's low level representation to write a database application.
+- We give the user a model of data and language for manipulating the data that is independent of the implementation details.
+- The model is based on mathematical relations.
+
+=== Mathematical Relations
+
+#definition(title: "Definitions", [
+  - The *cartesian product* is the set of all possible pairs.
+    $
+    S times T = { (s, t) | s in S, t in T }
+    $
+  - A *binary relation* of $S times T$ is any set $R$ with
+    $
+    R subset.eq S times T
+    $
+  - $R$ is a *binary relation*.
+  - $S$ and $T$ are referred to as *domains*.
+])
+
+We are interested in finite relations $R$ that are explicitly stored in a database, which _does not include_ infinite relations like the modulus. (e.g. $6 mod 5 = 1$)
+
+=== N-ary Relations
+
+If we have $n$ domains, then $n$-ary relation $R$ is the set
+$
+R subset.eq S_1 times S_2 times dots.c times S_n = { (s_1, s_2, dots, s_n) | s_1 in S_1, s_2 in S_2, dots, s_n in S_n }
+$
+
+#definition([
+  *Tabular presentation* of a relation is where each tuple has a column number.
+  #table(
+    columns: (auto, auto, auto, auto),
+    table.header([*1*], [*2*], [*$dots$*], [*$n$*]),
+    $a_1$, $b_1$, $dots$, $x_1$,
+    $a_2$, $b_2$, $dots$, $x_2$,
+    $a_3$, $b_3$, $dots$, $x_3$,
+    $a_4$, $b_4$, $dots$, $x_4$,
+  )
+])
+
+=== Named Columns
+
+Because referring to tuples by column number is annoying.
+- Associate an attribute name $A_i$ with each domain in $S_i$.
+- Use records instead of tuples.
+
+#definition([
+  A *database relation* is the finite set
+  $
+  R subset.eq {{(A_1, s_1), (A_2, s_2), dots, (A_n, s_n)} | s_i in S_i}
+  $
+])
+
+We specify $R$'s schema as $R(A_1: S_1, A_2: S_2, dots A_n: S_n)$.
+
+=== Example: Students
+
+Using the schema _Students(name: string, sid: string, age: integer)_:
+```py
+Students = {
+  { (name, "sirius"), (sid: "12345"), (age: 19) }
+}
+```
+
+== Query Language
+
+- The input of a query language is a collection of relatin instances $R_1, R_2, dots, R_k$.
+- The output is a single relational instance $Q(R_1, R_2, dots, R_k)$.
+
+We want to create a high level query language $Q$ that is independent of the data, there are many ways to do that.
+
+=== The Relational Algebra Abstract Syntax
+
+It is generally a tree structure
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 30pt,
+  $
+  Q &::= \
+  &| R wide wide & "base relation" \
+  &| sigma_p(Q) & "selection" \
+  &| pi_x(Q) & "projection" \
+  &| Q times Q & "product" \
+  &| Q - Q & "difference" \
+  &| Q union Q & "union" \
+  &| Q inter Q & "intersection" \
+  &| rho_M(Q) & "rename"
+  $,
+  [
+    - $p: x mapsto "bool"$ is a boolaen predicate.
+    - $X = { A_1, A_2, dots }$ is a vector (a set of attributes).
+    - $M = { A_1 mapsto B_1, A_2 mapsto B_2, dots }$ is a list of mappings that takes in one attribute name, and output another attribute name.
+
+    #definition([
+      $Q$ is *well formed* if all attribute names of the result are distinct.
+    ])
+    - $Q_1 times Q_2$ requires the subqueries to share no column names.
+    - $Q_1 union Q_2$ requires the subqueries to share all column names.
+  ]
+)
+
+=== Mapping RA to SQL
+
+RA is based directly on the underlying set theory.
+- Formal semantics/specification works by mapping the query language back to set theory.
+
+=== Operators
+
+#table(
+  columns: (auto, auto, auto),
+  table.header([*RA*], [*SQL*], [*Notes*]),
+  $sigma_(A > 12)(R)$,
+  ```sql
+  SELECT DISTINCT *
+  FROM R
+  WHERE R.A > 12
+  ```,
+  [-],
+  $pi_(B,C)(R)$,
+  ```sql
+  SELECT DISTINCT B, C
+  FROM R
+  ```,
+  [-],
+  $rho_({B mapsto E, D mapsto F})(R)$,
+  ```sql
+  SELECT A, B as E, C, D as F
+  FROM R
+  ```,
+  [
+    If we want to swap 2 rows, we will need to rename them one at a time.
+  ],
+  $R union S$,
+  ```sql
+  (SELECT * FROM R) UNION
+  (SELECT * FROM S)
+  ```,
+  [
+    $R$ and $S$ must have the same schema.
+  ],
+  $R inter S$,
+  ```sql
+  (SELECT * FROM R) INTERSECT
+  (SELECT * FROM S)
+  ```,
+  [],
+  $R - S$,
+  ```sql
+  (SELECT * FROM R) EXCEPT
+  (SELECT * FROM S)
+  ```,
+  [
+    In set theory, $R - S = R inter (-S)$, but this doesn't make sense on databases, as $-S$ would mean everything that is not in $S$.
+  ],
+  $R times S$,
+  ```sql
+  SELECT A, B, C, D
+  FROM R
+  CROSS JOIN S
+  ```,
+  [
+    In set theory, the cartesian product is a set of tuples. In SQL, that tuple is flattened.
+  ]
+)
+
+#definition(title: "Note", [
+  The *`DISTINCT`* keyword removes duplicates: each $A, B, C, D$ might be unique, but $B, C$ may be not. Not being distinct is fine in SQL but not fine in set theory as a set contains no duplicates.
+])
+
+=== The Natural Join
+
+If we ignore domain types and write a relation schema as $R(A)$, where $A={A_1, A_2, dots}$.
+- $R(A, B) = R(A union B)$ assumes $A inter B = emptyset$
+- $u.[A] = v.[A]$ means $u.A_1 = v.A_1 and u.A_2 = v.A_2 and dots$.
+  - For the fields specified, the two records completely agree with each other.
+
+For $R(A, B)$ and $S(B, C)$, define the natural join $R join S$.
+$
+R join S = { space t | (exists u in R, v in S) space u.[B] = v.[B], space t = u.[A] union u.[B] union v.[C] space}
+$
+
+```sql
+SELECT *
+FROM R
+NATURAL JOIN S
+```
+
+- If `NULL` values exists, then equality gets more complicated (how?), there are further variations of natural joins (left/right/inner/outer).
+- If we want to use a custom predicate, use `WHERE` instead of `NATURAL`.
