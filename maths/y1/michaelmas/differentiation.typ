@@ -52,7 +52,7 @@ H(x) = cases(
 $
 
 Consider a graph of a normal distribution so the area under the graph is 1.
-- The Heaviside step function is the ingeral of the function from $- infinity$ to $x$ when $sigma -> 0$ (standard deviation) so the peak becomes infinitely tall.
+- The Heaviside step function is the ingeral of the function from $- infinity$ to $x$ when standard deviation $sigma -> 0$ so the peak becomes infinitely tall.
 - So we have $H'(x)=0$ everywhere but
 
 $
