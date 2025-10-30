@@ -1,4 +1,6 @@
-#let definition(title: "Definition", body) = {
+#import "@preview/cetz:0.4.2"
+
+ #let definition(title: "Definition", body) = {
   block(
     fill: luma(230),
     inset: 8pt,
@@ -724,6 +726,139 @@ let rec count = function
 let rec depth = function
   | Lf -> 0
   | Br (_, l, r) -> 1 + max (depth l) (depth r)
+```
+
+#line(length: 100%)
+
+=== Option or Exception?
+
+Using the option type for fallible functions instead of using exceptions
+- Pros: the detail that it can fail is included in the type signature of the function.
+- Cons: if the exception is very rare, it is annoying to have a deeply nested match structure.
+
+== Dictionaries
+
+#definition([
+  *Dictionary* attaches values to identities (keys).
+])
+
+#table(
+  columns: (auto, auto),
+  table.header([*Operation*], [*Description*]),
+  `lookup`, [Find an item in the dictionary.],
+  `update/insert`, [Replace/store an item in the dictionary.],
+  `delete`, [Remove an item from the dictionary.],
+  `empty`, [Creates the null dictionary with no keys.]
+)
+
+=== Implementation with Association List
+
+```ml
+exception Missing
+
+let rec lookup a = function
+  | [] -> raise Missing
+  | (k, v) :: ps when x = a -> v
+  | _ :: ps -> lookup a ps
+
+let rec update l k v = (k, v) :: l
+```
+
+- `lookup` is $O(n)$ because we have to go through each entry to find the key.
+- `update` is $O(1)$ as we are only shadowing the previous value.
+
+#definition(title: "Note", [
+  If the `remove` function only removes the first match in the list, it will uncover the previous value.
+
+  The old version of the association list still exist, we can look at it if we have a pointer to that list. This is known as a *persistent data structure* as we are not modifying the original data structure.
+])
+
+=== Implementation with Binary Search Tree
+
+- If the tree if balanced then lookup is $O(log n)$.
+- If unbalanced then lookup can be $O(n)$.
+
+```ml
+let rect lookup a = function
+  | Lf -> raise Missing
+  | Br ((k, v), l, r) when k = a -> v
+  | Br ((k, v), l, r) when k < a -> lookup a l
+  | Br ((k, v), l, r) -> lookup a r
+
+let rect update a b = function
+  | Lf -> Br ((a, b), Lf, Lf)
+  | Br ((k, v), l, r) when k = a -> Br ((a, b), l, r)
+  | Br ((k, v), l, r) when k < a -> update a l
+  | Br ((k, v), l, r) -> update a r
+```
+
+Now removing a node does not uncover the previous value. If we have a pointer to the old tree, we can still see previous values in the dictionary.
+
+=== Tree Traversal
+
+#definition([
+  The goal of *tree traversal* is to visit every node.
+])
+- Pre-order: visits the label first.
+  - Gives a way to copy the elements of a tree.
+  - Conversely post-order is a good way to deconstruct the tree.
+- In-order: visits the label midway.
+  - Using it on a binary search tree is know as *treesort*.
+- Pos-order: visits the label last.
+  - Linearise an *expression tree* into RPN.
+
+The other possibilities are breadth-first and depth-first traversal, but they are quite hard to implement as they are not recursive algorithms.
+
+== Functional Arrays
+
+Arrays update in-place, they are *imparative* and *mutable* data strcutures.
+
+We want to keep the core of the system mutation free, so it is easier to analyse. E.g.
+- It is much easier for a multi-core system to work on the same piece of immutable data.
+- But they are less efficient than e.g. quicksort which sorts in-place.
+
+=== Implementation
+
+Functional arrays store values in a *balanced tree*, so access time to each element is $O(log n)$.
+
+Say we want to access the node with index 12 (`1100`), we read the binary digits from righ to left.
++ `0`, so go to the left subtree.
++ `0`, so go to the left subtree.
++ `1`, so go to the right subtree.
++ `1` is the only digit remaining, the node we are currently at is the node we are searching for.
+
+#align(center,
+  cetz.canvas({
+    import cetz.tree
+    import cetz.draw : *
+
+    tree.tree(
+      grow: 0.5,
+      spread: 0.5,
+      draw-node: (node, ..) => {
+        circle((), radius: .35, fill: white, stroke: blue)
+        content((), text(black, [#node.content]))
+      },
+      (1, (2, (4, 8, 12), (6, 10, 14)), (3, (5, 9, 13), (7, 11, 15))),
+    )
+  })
+)
+
+Note the numbers represents the index of the node, not its content.
+```ml
+exception Subscript (* index out of bounds *)
+let rec lookup i = function
+  | Lf -> raise Subscript
+  | Br (v, l, r) when i = 1 -> v
+  | Br (v, l, r) when i mod 2 = 1 -> lookup (i / 2) r
+  | Br (v, l, r) -> lookup (i / 2) l
+
+let rec update i v = function
+  | Lf when i = 1 -> Br (v, Lf, Lf)
+  | Lf -> raise Subscript
+  | Br (_, l, r) when i = 1 -> Br (v, l, r)
+  | Br (_, l, r) when i mod 2 = 1 -> update (i / 2) v r
+  | Br (_, l, r) -> update (i / 2) v l
 ```
 
 #line(length: 100%)
