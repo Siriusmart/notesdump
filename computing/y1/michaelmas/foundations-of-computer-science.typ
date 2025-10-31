@@ -862,3 +862,95 @@ let rec update i v = function
 ```
 
 #line(length: 100%)
+
+== Function Currying
+
+=== Function as Values
+
+Functions can be
+- Passed as arugments into other functions
+- Returned as results
+- Put into lists, trees, etc
+
+They cannot be tested for equality, it is in general really difficult to tell if two functions are equal.
+
+=== Anonymous Functions
+
+The `fun` keyword is a function that cannot use pattern matching.
+```ml
+(fun n -> n * 2) 17
+```
+
+We can assign functions to variables.
+```ml
+let double = fun n -> n * 2
+(* is the same as let double n = n * 2 *)
+```
+
+The `function` keyword is a function that can be used for pattern matching.
+```ml
+(function
+  | [] -> 0
+  | x :: _ -> x)
+```
+
+=== Curried Functions
+
+A function only have one argument, to take more arguments, we can either:
+
+- Use a tuple
+- Have a function that takes an argument, and return another function as result.
+
+```ml
+let add = (fun a -> (fun b -> a + b))
+(* val add : int -> int -> int *)
+```
+
+The `->` operator is right associative, so the type is `int -> (int -> int)`.
+
+#definition([
+  A *curried function* is a function that returns another function as a result.
+
+  A function with multiple arguments is the shorthand syntax for a curried function.
+])
+
+When we partially apply functions, we turn a generic function into a more specific one.
+
+== Higher Order Functions
+
+#definition([
+  A *higher order function* is one that manipulates functions: takes a function as input or outputs a function.
+])
+
+=== Map
+
+The `map` function applies `f` to all elements in the list.
+
+```ml
+let rec map f = function
+  | [] -> []
+  | x :: xs -> f x :: map f xs
+```
+
+=== List Functions for Predicates
+
+#definition([
+  A *predicate* is a boolean valued function.
+])
+
+```ml
+let rec exists p = function
+  | [] -> false
+  | x :: xs -> (p x) || exists p xs
+
+let rec all p = function
+  | [] -> true
+  | x :: xs -> (p x) && exists p xs
+
+let rec filter p = function
+  | [] -> []
+  | x :: xs when p x -> (p x) :: filter p xs
+  | x :: xs -> filter p xs
+```
+
+#line(length: 100%)
