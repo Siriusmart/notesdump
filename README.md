@@ -16,3 +16,4 @@
 - [Complex Numbers](./maths/y1/michaelmas/complex-numbers.pdf)
 - [Hyperbolic Functions](./maths/y1/michaelmas/hyperbolic-functions.pdf)
 - [Differentiation](./maths/y1/michaelmas/differentiation.pdf)
+- [Analysis](./maths/y1/michaelmas/analysis.pdf)

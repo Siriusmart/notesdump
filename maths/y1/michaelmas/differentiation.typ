@@ -158,3 +158,62 @@ $
 Which can be proved by induction.
 
 #line(length: 100%)
+
+== Graph Sketching
+
+We want to study the derivative because we figure out the properties of a curve.
+
+#definition([
+  A *stationary point* is where the derivative is zero.
+])
+
+A stationary point can be a maximum, minimum, or an inflection point.
+- If $y'' > 0$, then it is a local minimum.
+- If $y'' < 0$, then it is a local maximum.
+- If $y'' = 0$, then it can be a maximum or negative, or an inflection point.
+
+Consider the Taylor series of the function, the only term that matters is the lowest power term.
+- If the first nonzero $y^(n)(x)$ has $n$ odd then the stationary point is a point of inflection.
+- If the first nonzero $y^(n)(x)$ has $n$ even and positive then the stationary point is a local minimum.
+- If the first nonzero $y^(n)(x)$ has $n$ even and negative then the stationary point is a local maximum.
+
+=== Points of Inflection
+
+Points of inflection does not have to be stationary points.
+- The second derivative has meaning of curvature.
+- If the curvature changes sign, then it has to be zero at that point.
+
+When sketching a graph, we want to find
+- The $x$ and $y$ intercept: what are the zeros of the function.
+- If the function is symmetric.
+- The asymptotic behaviour.
+- Stationary points and curvature.
+
+=== The Exponential Function
+
+#definition([
+  The *exponential function* is the only function that is equal to its derivative.
+])
+
+- $e^x$ goes to infinity faster than any power of $x$.
+  $
+  lim_(x -> infinity)e^x/x^m = infinity
+  $
+- Conversely, $e^(-x)$ goes to 0 faster than any powers of $m$, reguardless of $m$.
+
+This is a case of *superpolynomial scaling*.
+
+=== The Logarithm
+
+#definition([
+  The *logarithm function* is the inverse of the exponential function.
+])
+
+Because the exponential function grows faster than any polynomial, $log$ grows slower than any polynomial.
+$
+lim_{x -> infinity} (ln x)/x^m = 0
+$
+Independent of $m$.
+
+#line(length: 100%)
+#align(center, `END Differentiation`)
