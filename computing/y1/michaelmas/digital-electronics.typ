@@ -1,4 +1,5 @@
 #import "@preview/cetz:0.4.2"
+#import "@preview/zap:0.4.0"
 
 #let definition(title: "Definition", body) = {
   block(
@@ -2091,3 +2092,313 @@ This is *intrinsic semiconductor*, which is just pure silicon.
   - *Kirchhoff's current law*: the sum of currents entering a junction is zero.
   - *Kirchhoff's voltage law*: in any closed loop of an electric circui, the sum of all voltages in that loop is zero.
 ])
+
+#line(length: 100%)
+
+=== The Potential Divider
+
+#grid(
+  columns: (50%, auto),
+  [
+    The potential difference between $V_"out"$ and 0V is
+    $
+    V_"out" = (V R_1)/(R_1 + R_2)
+    $
+    This only applies to components with a linear I-V characteristic.
+  ],
+  zap.circuit({
+    import zap : *
+    import cetz.draw : *
+
+    vsource("v1", (0, 0), (0, 5), label: (content: $V$))
+    resistor("r1", (2, 0), (2, 2.5))
+    resistor("r2", (2, 2.5), (2, 5))
+    wire((0, 5), (2, 5))
+    wire((0, 0), (3, 0))
+    wire((2, 2.5), (3, 2.5))
+    content((3.4, 2.5), $V_"out"$)
+    content((3.4, 0), "0V")
+    content((2.8, 1.25), $R_2$)
+    content((2.8, 3.75), $R_1$)
+  })
+)
+
+== Transistors and Gates
+
+=== P-N Junction
+
+*Diffusion* occures when you stick a p-type and n-type semiconductor together.
+- The free electrons in the n-type diffuses to the p-type.
+- At the region near the boundary, the n-type is positively charged, p-type is negatively charged.
+- The diffusion stops when no more electrons can pass through the boundary due to repulsion.
+  #cetz.canvas({
+    import cetz.draw : *
+
+    rect((0, 0), (2, 2))
+    rect((2, 0), (3, 2))
+    rect((3, 0), (4, 2))
+    rect((4, 0), (6, 2))
+    content((2.5, 1), "-ve")
+    content((3.5, 1), "+ve")
+    content((5, 1), align(center, [n-type \ (electrons)]))
+    content((1, 1), align(center, [p-type \ (holes)]))
+
+    line((-1, 1), (0, 1))
+    line((6, 1), (7, 1))
+    content((-0.5, 0.7), "-ve")
+    content((6.5, 0.7), "+ve")
+  })
+
+==== Bias in P-N Junction
+
+When connected to a battery with a *reversed bias*.
+- The free electrons are attracted to the negative terminal, similar for the hole.
+- This makes the *depletion region* even larger, no current flows because the junction is blocked.
+
+When connected with a *forward bias*, the depletion region is reduced so current flows.
+
+#definition([
+  A single P-N junction is called a *diode*.
+])
+
+=== N-Channel MOSFET
+
+#grid(
+  columns: (70%, auto),
+  [
+    The current flows from drain to source, the flow of current is controlled by the voltage on the gate.
+    - If there is no voltage on the gate, no current flows.
+  ],
+  zap.circuit({
+    import zap : *
+    import cetz.draw : *
+
+    nmos("id", (0,0))
+    wire("id.g", (rel: (-1, 0)))
+    wire("id.d", (rel: (0, 1)))
+    wire("id.s", (rel: (0, -1)))
+
+    content((-1.8, -0.3), "Gate")
+    content((0.7, 1.4), "Drain")
+    content((0.7, -1.3), "Source")
+  })
+)
+
+#grid(
+  columns: (auto, auto, auto),
+  column-gutter: 20pt,
+  [
+    When the transistor is off, the diodes are reverse biased, so no current flows.
+
+    When gate is given a positive voltage, it attracts electrons towards it. The p-type becomes *inverted*, creating a channel for current to flow through.
+
+    #definition(title: "Note", [
+      The gate is insulated from the transistors (black = insulator).
+    ])
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (1.5, 4))
+      rect((0, 0.2), (-0.2, 1.2), fill: black)
+      rect((0, 3.8), (-0.2, 2.8), fill: black)
+      rect((0, 1.5), (-0.2, 2.5), fill: black)
+
+      line((-1, 1.35), (0, 1.35))
+      content((-1.3, 1.35), "0V")
+      line((-1, 2.65), (0, 2.65))
+      content((-1.5, 2.65), $+V_D$)
+      line((-1, 2), (-0.2, 2))
+      content((-1.3, 2), "0V")
+      line((-1, -0.5), (0.75, -0.5), (0.75, 0))
+      content((-1.3, -0.5), "0V")
+
+      rect((0, 1), (0.5, 1.7), fill: gray)
+      rect((0, 3), (0.5, 2.3), fill: gray)
+      content((0.25, 2.65), "n")
+      content((0.25, 1.35), "n")
+      content((1.1, 2), "p")
+    })
+    #align(center, "Off")
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 1.7), (0.2, 2.3), fill: gray, stroke: none)
+
+      rect((0, 0), (1.5, 4))
+      rect((0, 0.2), (-0.2, 1.2), fill: black)
+      rect((0, 3.8), (-0.2, 2.8), fill: black)
+      rect((0, 1.5), (-0.2, 2.5), fill: black)
+
+      line((-1, 1.35), (0, 1.35))
+      content((-1.3, 1.35), "0V")
+      line((-1, 2.65), (0, 2.65))
+      content((-1.5, 2.65), $+V_D$)
+      line((-1, 2), (-0.2, 2))
+      content((-1.5, 2), $+V_G$)
+      line((-1, -0.5), (0.75, -0.5), (0.75, 0))
+      content((-1.3, -0.5), "0V")
+
+      rect((0, 1), (0.5, 1.7), fill: gray)
+      rect((0, 3), (0.5, 2.3), fill: gray)
+      content((0.25, 2.65), "n")
+      content((0.25, 1.35), "n")
+      content((1.1, 2), "p")
+    })
+    #align(center, "On")
+  ]
+)
+
+The G volatage $V_G$ required is known as the *threashold voltage* (typically 0.3 - 0.7V).
+
+#definition(title: "I-V Characteristics of an N-MOSFET", [
+  - Increasing drain voltage increases the current, but has little effect past a certain voltage.
+  - Increasing gate voltage increases the current linearly, but only beyond the threashold voltage.
+])
+
+
+==== P-Channel MOSFET
+
+#grid(
+  columns: (auto, auto, auto),
+  column-gutter: 20pt,
+  [
+    These are the diagrams for a p-type MOSFET, they do exactly what you think they do.
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (1.5, 4), fill: gray)
+      rect((0, 0.2), (-0.2, 1.2), fill: black)
+      rect((0, 3.8), (-0.2, 2.8), fill: black)
+      rect((0, 1.5), (-0.2, 2.5), fill: black)
+
+      line((-1, 1.35), (0, 1.35))
+      content((-1.5, 1.35), $+V_S$)
+      line((-1, 2.65), (0, 2.65))
+      content((-1.3, 2.65), "0V")
+      line((-1, 2), (-0.2, 2))
+      content((-1.5, 2), $+V_G$)
+      line((-1, -0.5), (0.75, -0.5), (0.75, 0))
+      content((-1.5, -0.5), $+V_S$)
+
+      rect((0, 1), (0.5, 1.7), fill: white)
+      rect((0, 3), (0.5, 2.3), fill: white)
+      content((0.25, 2.65), "p")
+      content((0.25, 1.35), "p")
+      content((1.1, 2), "n")
+    })
+    #align(center, "Off")
+  ],
+  [
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (1.5, 4), fill: gray)
+      rect((0, 0.2), (-0.2, 1.2), fill: black)
+      rect((0, 3.8), (-0.2, 2.8), fill: black)
+      rect((0, 1.5), (-0.2, 2.5), fill: black)
+
+      rect((0, 1.7), (0.2, 2.3), fill: white, stroke: none)
+
+      line((-1, 1.35), (0, 1.35))
+      content((-1.5, 1.35), $+V_S$)
+      line((-1, 2.65), (0, 2.65))
+      content((-1.3, 2.65), "0V")
+      line((-1, 2), (-0.2, 2))
+      content((-1.3, 2), "0V")
+      line((-1, -0.5), (0.75, -0.5), (0.75, 0))
+      content((-1.5, -0.5), $+V_S$)
+
+      rect((0, 1), (0.5, 1.7), fill: white)
+      rect((0, 3), (0.5, 2.3), fill: white)
+      content((0.25, 2.65), "p")
+      content((0.25, 1.35), "p")
+      content((1.1, 2), "n")
+    })
+    #align(center, "On")
+  ]
+)
+
+=== N-MOS Inverter
+
+We can replace a resistor in the potential divider with an N-MOSFET.
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 6pt,
+  [
+    Increasing $V_"in"$ causes $V_"out"$ to drop: as $V_"in"$ increases from 0V to 10V, $V_"out"$ smoothly decreases from 10V to 0V.
+
+    - This is not the ideal _binary_ characteristic we want for an inverter.
+    - But we can achieve binary action by specifying allowed voltages.
+
+    There are also other issues
+    #table(
+      columns: (auto, auto),
+      table.header([*Issue*], [*Cause*]),
+      [Very slow transition], [The $V_"out"$ and 0V wires acted as capacitors, increasing the rise time of the output signal.],
+      [Power consumption], [Current passes through $R_1$ when it is on, the power dissipated is $P=I V$.]
+    )
+  ],
+  zap.circuit({
+    import zap : *
+    import cetz.draw : *
+
+    vsource("v1", (0, 0), (0, 5), label: (content: $V$))
+    nmos("mos", (2, 1))
+    wire("mos.s", (rel: (0,-0.475)))
+    wire("mos.d", (rel: (0,1)))
+    wire("mos.g", (rel: (-2, 0)))
+    content((-1, 0.8), $V_"in"$)
+    resistor("r2", (2, 2.5), (2, 5))
+    wire((0, 5), (2, 5))
+    wire((0, 0), (3, 0))
+    wire((2, 2.5), (3, 2.5))
+    content((3.4, 2.5), $V_"out"$)
+    content((3.4, 0), "0V")
+    content((2.8, 1.25), $R_2$)
+    content((2.8, 3.75), $R_1$)
+  })
+)
+
+=== CMOS Inverter
+
+#grid(
+  columns: (auto, auto),
+  [
+    The CMOS inverter has a much sharper graph than the N-MOS inverter.
+    - In the CMOS inverter, only one transistor is on at a time.
+    - If the input is not changing, no current is flowing, so there is no power dissipation.
+
+    The only time current flows is when switching where both transistors are momentarily on. Once they finished switching, the power dissipated will
+    go back to zero.
+  ],
+  zap.circuit({
+    import zap : *
+    import cetz.draw : *
+
+    nmos("nmos", (0, 0))
+    pmos("pmos", (0, 3), scale: (1, -1))
+
+    content((0.8, 0), "n-MOS")
+    content((0.8, 3), "p-MOS")
+
+    wire("pmos.d", "nmos.d")
+    wire("pmos.g", (rel: (-1, 0)), (rel: (-1, 0), to: "nmos.g"), "nmos.g")
+    wire((-2.2, 1.5), (-3.5, 1.5))
+    content((-3.9, 1.5), $V_"in"$)
+
+    wire("pmos.s", (rel: (0, 1)), (rel: (4, 0)))
+    wire("nmos.s", (rel: (0, -1)), (rel: (4, 0)))
+    vsource("v1", (rel: (4, -1), to: "nmos.s"), (rel: (4, 1), to: "pmos.s"), label: (content: $V arrow.t$))
+
+    wire((0, 1.5), (1, 1.5))
+    content((1.5, 1.5), $V_"out"$)
+  })
+)
+
