@@ -954,3 +954,92 @@ let rec filter p = function
 ```
 
 #line(length: 100%)
+
+The type of an OCaml function is the most generic type it can be.
+
+#definition([
+  `a || b` is is syntactic sugar for
+  ```ml
+  if a then true
+  else b
+  ```
+])
+
+== Data Streams
+
+Most programs we use are in a *perception-action* loop.
+- *Sequential programs* do a finite sequence of tasks, e.g. searching in a list.
+- *Reactive programs* go into some never ending control loop.
+
+=== Lazy Lists
+
+Lazy lists are lists with possibly infinitely length.
+- We cannot store lists with infinite length on computer.
+- Instead we have a short data structure that compute items on demand.
+
+In OCaml we can delay the evaluation of the tail of the list.
+
+#definition([
+  The *unit type* has only one possible value `()`, it behaves like a tuple.
+])
+
+- It is used to delay the evaluation of a *constant function*, the value of the function is not evaluated until the aruments are provided.
+- It is also used as the return type of commands (functions with only side effects).
+
+```ml
+type 'a seq =
+  | Nil
+  | Cons of 'a * (unit -> 'a seq)
+
+let head = function
+  | Cons (x, _) -> x
+  | Nil -> raise (Failure "head")
+
+let tail = function
+  | Cons (_, xf) -> xf ()
+  | Nil -> raise (Failure "tail")
+```
+
+To create an infinite sequence starting from $k$
+```ml
+let rec from k = Cons (k, fun () -> from (k + 1))
+```
+
+=== Operations on Sequences
+
+```ml
+(* take first n elements of a sequence *)
+let rec get n s =
+  if n = 0 then []
+  else match s with
+  | Nil -> []
+  | Cons (x, xf) -> x :: get (n - 1) (xf ())
+
+(* join 2 sequences, this has no effect if xq is infinite *)
+let rec append xq yq =
+  match xq with
+  | Nil -> yq
+  | Cons (x, xf) -> x :: append (xf ()) yq
+
+(* interleaving 2 sequences *)
+let rec interleave xq yq =
+  match xq with
+  | Nil -> yq
+  | Cons (x, xf) ->
+      Cons (x, fun () -> interleave yq (xf ()))
+```
+
+=== Higher Order Functions on Sequences
+
+```ml
+(* if something doesn't satisfies the predicate *)
+(* continue until something satisfies the predicate *)
+let rec filter p = function
+  | Nil -> Nil
+  | Cons (x, xf) when p x -> Cons (x, fun () -> filter p (xf()))
+  | Cons (x, xf) -> filter p (xf())
+
+(* returns x, f(x), f(f(x)), f(f(f(x))), ... *)
+let rec iterates f x =
+  Cons (x, fun () -> iterates f (f x))
+```
