@@ -60,14 +60,14 @@ We can prove a function has a limit iff this has a value.
 
 === One-Sided Limits
 $
-lim_(x -> x_0) f(x) = L arrow.l.r.double.long (forall epsilon > 0)(exists delta > 0) space 0 < x - x_a < delta arrow.double.long |f(x) - L| < epsilon
+lim_(x -> x_0) f(x) = L "iff" (forall epsilon > 0)(exists delta > 0) space 0 < x - x_a < delta arrow.double.long |f(x) - L| < epsilon
 $
 
 === Limits at Infinity
 
 If we define a box that have finite height and extend to infinity, check if the function is still in the box.
 $
-lim_(x -> infinity) f(x) = L arrow.l.r.double.long (forall epsilon > 0)(exists X < infinity) space x > X arrow.double.long |f(x) - L|<epsilon
+lim_(x -> infinity) f(x) = L "iff" (forall epsilon > 0)(exists X < infinity) space x > X arrow.double.long |f(x) - L|<epsilon
 $
 == Algebra of Limits
 
@@ -91,3 +91,24 @@ $
 - $f'(0)$ and $g'(x)$ not equal to 0 in the open interval and exists.
 
 The way to understand this is with the Taylor series.
+
+#line(length: 100%)
+
+=, $f(x)$ behaves similar as $g(x)$.
+
+== Continuity
+
+Intuitive definition: $f(x)$ is continuous if a small change in $x$ produces a small change in $f(x)$.
+
+#definition([
+  $f(x)$ is continuous at $x=a$ iff
+  - $f(a)$ exists and
+  - $lim_(x -> a) f(x) = f(a)$
+  $
+  (forall epsilon > 0)(exists delta > 0) space 0 < |x - a|<delta arrow.r.double.long |f(x) - f(a)| < epsilon
+  $
+])
+
+#line(length: 100%)
+
+#align(center, `END Elementary Analysis`)

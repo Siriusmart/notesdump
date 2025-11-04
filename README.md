@@ -17,3 +17,4 @@
 - [Hyperbolic Functions](./maths/y1/michaelmas/hyperbolic-functions.pdf)
 - [Differentiation](./maths/y1/michaelmas/differentiation.pdf)
 - [Analysis](./maths/y1/michaelmas/analysis.pdf)
+- [Infinite series](./maths/y1/michaelmas/infinite-series.pdf)

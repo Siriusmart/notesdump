@@ -4,3 +4,4 @@
 - [Hyperbolic functions](./y1/michaelmas/hyperbolic-functions.typ)
 - [Differentiation](./y1/michaelmas/differentiation.typ)
 - [Analysis](./y1/michaelmas/analysis.typ)
+- [Infinite series](./y1/michaelmas/infinite-series.typ)
