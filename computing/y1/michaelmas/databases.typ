@@ -490,3 +490,96 @@ NATURAL JOIN S
 
 - If `NULL` values exists, then equality gets more complicated (how?), there are further variations of natural joins (left/right/inner/outer).
 - If we want to use a custom predicate, use `WHERE` instead of `NATURAL`.
+
+#line(length: 100%)
+
+== Relational Data Model
+
+How do we store data in a table?
+
+=== Data Redundancy
+
+One approach is to store everything in one big table.
+
+A big table is a redundant data representation, and redundancy can lead to inconsistencies. (Example: movies database)
+- We should be able to insert a person without knowing his role in a film.
+- If we delete all films about a director, we lose information about the director.
+- If a director's name is mispelled, we need to update it for all films.
+
+#definition(title: "Rule", [
+  Rule for removing *data redundancy*: store one fact in one place.
+])
+
+It also cause performance issues:
+- To maintain consistency for every user, a simple transaction involves many things to do.
+- Many records have to be locked to maintain atomicity, so it is less concurrent than it could be.
+
+Breaking down tables reduces redundancy, but we will need to do joins which is expensive.
+- The naive implementation requires doing a cartesian product, which has quadratic time.
+- Actual database implementations uses heuristics to reduce time complexity.
+
+#definition(title: "Rule", [
+  The record should semantically depend on the key.
+
+  E.g. timestamp of birth should not be used as the key for a person, as a person's name does not depend on the timestamp.
+])
+
+An *all key table* is needed to store a many-to-many relation.
+
+=== Relational Keys
+
+#definition([
+  A *relational key* is a unique handle on a record.
+])
+
+Let $R(X)$ is a relational schema and $Z subset.eq X$. If for any record $u$ and $v$:
+$
+u[Z] = v[Z] arrow.double.long u[X] = v[X]
+$
+Then $Z$ is a *superkey* of $R$.
+
+If no proper subset of $Z$ is a key for $R$, then $Z$ is a *key* for $R$. Then for $R(Z union Y)$, we write
+$
+R(underline(Z), Y)
+$
+
+=== Foreign Key
+
+Suppose we have $R(Z, Y)$, let $S(W)$ be a relational schema where $Z subset.eq W$. We say $Z$ represents a foreign key in $S$ for $R$ if for any instance
+$
+pi_Z (S) subset.eq pi_Z (R)
+$
+Think of the foreign key as a pointer.
+
+A foreign key is denoted with an overline.
+
+#definition([
+  A database has *referential integrity* when all foreign key constrains are satisfied.
+])
+
+=== Simplifying Relations
+
+We can combine tables together using *type tags* to reduce the number of tables.
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 30%,
+  [
+    ==== Before
+    $
+    R(underline(X\, Z), U) \
+    Q(underline(X\, Z), V)
+    $
+  ],
+  [
+    ==== After
+    $
+    R Q (underline(X\, Z\, "type"), U, V)
+    $
+    Where $"type" = {u, v}$.
+  ]
+)
+
+Notice all attributes are still semantically dependent on the key.
+- Advantage: one less table, so less joins needed.
+- Disadvantage: if a record does not have a relation, then the field storing the attribute will be `NULL`.
