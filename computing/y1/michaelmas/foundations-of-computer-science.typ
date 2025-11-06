@@ -1043,3 +1043,99 @@ let rec filter p = function
 let rec iterates f x =
   Cons (x, fun () -> iterates f (f x))
 ```
+
+#line(length: 100%)
+
+Note that function application is left associative, whereas type arrows (->) are right associate.
+
+== Queues, Stacks and Tree Traversal
+
+The pre/in/post-order tree traversals are variants of a depth-first traversal.
+
+=== Queues
+
+A queue is an FIFO structure with these function
+#table(
+  columns: (auto, auto),
+  table.header([*Function*], [*Description*]),
+  [qempty], [Creates an empty list],
+  [qnull], [Checks of an empty list],
+  [qhd], [Returns head],
+  [deq], [Returns tail],
+  [enq], [Add item to back of queue]
+)
+
+Suppose we have a pair of lists: the first one stores items in order, the other in reverse order.
+$
+"queue"([x_1; x_2;dots.c;x_m], [y_1; y_2;dots.c;y_m])
+$
+- deq remove items from the front of the first list.
+- enq add items to the front of the rear list.
+If the front list is empty, reverse the rear and move to front.
+
+For a queue of length $n$
+- There are $n$ enq and $n$ deq operations, cost $2n$
+- 1 reverse list operation, cost $n$.
+So the *amortised time* per operation is $O(1)$, note the operations are not spread out evenly.
+```ml
+type 'a queue =
+  | Q of 'a list * 'a list
+
+let norm = function
+  | Q ([], tls) -> Q (List.rev tls, [])
+  | q -> q
+```
+
+The norm function normalises the queue so it satisfies the property: if the front list is empty, the tail list is also empty.
+
+```ml
+exception Empty
+
+let enq a = function
+  | Q (xs, ys) -> Q (xs, x :: ys)
+
+let deq = function
+  | Q ([], _) -> raise Empty
+  | Q (x :: xs, ys) -> norm (Q (xs, ys))
+```
+
+We create a data type of queue instead of just letting the user pass in a tuble pair
+- So we can constraint what the lists can be (we require the list to have certain properties)
+- This property is not reflected on teh type signature.
+
+=== Breadth-first Traversal
+
+```ml
+let rec breadth q =
+  if qnull q then []
+  else
+    match qhd q with
+    | Lf -> breadth (deq q)
+    | Br (x, l, r) -> x :: breadth (enq (enq (deq q) l) r)
+```
+
+Breadth-first search examines $1+b+b^2+dots.c+b^d$ nodes, which is in $O(b^d)$.
+
+Breadth-first search is not suitable for infinite trees as it stores parts of the tree in memory.
+
+=== Depth-first Iterative Deepening
+
+Iterative deepening peforms repeated depth-first search with increasing depth bounds.
++ Searches to depth 1
++ Discard the previous search, and searches to depth 2.
++ Repeats until found.
+
+The time needed for iterative deepening is only $b/(b-1)$ times of breadth-first search.
+
+=== Best-first Search
+
+Similar to breadth-first search, but uses a priority queue where items are ranked using a heuristic to approximate the distance of a node to the solution.
+
+#table(
+  columns: (auto, auto, auto, auto),
+  table.header([*Algorithm*], [*Data structure used*], [*Time complexity*], [*Space complexity*]),
+  [Depth-first], [(Call) stack], $O(b^d)$, $O(d)$,
+  [Breadth-first], [Queue], $O(b^d)$, $O(b^d)$,
+  [Iterative deepening], [(Call) stack], $O(b^d)$, $O(d)$,
+  [Best-first], [Priority queue], [Depends], [Depends]
+)
