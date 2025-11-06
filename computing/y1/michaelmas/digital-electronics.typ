@@ -2402,3 +2402,179 @@ We can replace a resistor in the potential divider with an N-MOSFET.
   })
 )
 
+#line(length: 100%)
+
+For both $n$ and $p$-type MOS transistors, if $V_(G S) = 0$, then the transistor is off. But for $n$-type, the drain voltage $>$ source voltage. This is reversed for $p$-type.
+
+#set scale(reflow: true)
+
+#grid(
+  columns: (auto, auto),
+  column-gutter: 40pt,
+  [
+  === CMOS NOR Gate
+    #scale(85%,
+      zap.circuit({
+        import zap : *
+        import cetz.draw : *
+
+        line((0, 10), (8, 10))
+        line((0, 2), (8, 2))
+
+        nmos("t1", (3, 4))
+        nmos("t2", (7, 4))
+        pmos("t3", (7, 8.8), scale: (1, -1))
+        pmos("t4", (7, 6.5), scale: (1, -1))
+
+        wire("t1.s", (rel: (0, -1.475)))
+        wire("t1.g", (rel: (-1, 0)), (rel: (-5, 0), to: "t4.g"), "t4.g")
+        wire("t2.s", (rel: (0, -1.475)))
+        wire("t2.g", (rel: (-1, 0)), (rel: (-1, 0), to: "t3.g"), "t3.g")
+        wire("t2.d", "t4.d")
+        wire("t4.s", "t3.d")
+        wire("t3.s", (rel: (0, 0.68)))
+
+        wire("t1.d", (rel: (1.5, 0)), (rel: (0, -0.2)), (rel: (0.6, 0)), (rel: (0, 0.8)), (rel: (3, 0)))
+        content((8.5, 5.2), $V_"out"$)
+
+        content((-0.3, 5.5), $V_A$)
+        wire((0, 5.5), (0.8, 5.5))
+
+        content((3.7, 6), $V_B$)
+        wire((4, 6), (4.8, 6))
+
+        circle((7, 5.13), radius: 0.05, fill: black)
+        content((0.2, 1.7), "0V")
+        content((0.2, 10.3), $V_(s s)$)
+      })
+    )
+  ],
+  [
+  === CMOS NAND Gate
+    #scale(85%,
+      zap.circuit({
+        import zap : *
+        import cetz.draw : *
+
+        line((0, 10), (8, 10))
+        line((0, 2), (8, 2))
+
+        pmos("t1", (3, 8.5), scale: (1, -1))
+        pmos("t2", (7, 8.5), scale: (1, -1))
+        nmos("t3", (7, 6))
+        nmos("t4", (7, 4))
+
+        wire("t1.s", (rel: (0, 0.975)))
+        wire("t1.g", (rel: (-1, 0)), (rel: (-5, 0), to: "t4.g"), "t4.g")
+        wire("t2.s", (rel: (0, 0.975)))
+        wire("t2.g", (rel: (-1, 0)), (rel: (-1, 0), to: "t3.g"), "t3.g")
+        wire("t2.d", "t3.d")
+        wire("t3.s", "t4.d")
+        wire("t4.s", (rel: (0, -1.47)))
+
+        wire("t1.d", (rel: (1.5, 0)), (rel: (0, 0.2)), (rel: (0.6, 0)), (rel: (0, -0.8)), (rel: (3, 0)))
+        content((8.5, 7.3), $V_"out"$)
+
+        content((-0.3, 6), $V_A$)
+        wire((0, 6), (0.8, 6))
+
+        content((3.7, 7), $V_B$)
+        wire((4, 7), (4.8, 7))
+
+        circle((7, 7.37), radius: 0.05, fill: black)
+        content((0.2, 1.7), "0V")
+        content((0.2, 10.3), $V_(s s)$)
+      })
+    )
+  ]
+)
+
+=== Logic Families
+
+A logic family has the same accepted voltage levels and gate current handling capabilities. It is recommended to use parts from the same logic family.
+
+#table(
+  columns: (auto, auto),
+  table.header([*Family*], [*Description*]),
+  [NMOS], [Compact, cheap but slow and obsolete.],
+  [CMOS], [Older families are slow, but the new ones are faster.],
+  [TTL], [Uses bipolar transistors, again the new ones are faster.],
+  [ECL], [High speed but high power consumption.]
+)
+
+=== Noise Tolerance
+
+The noise tolerance is quantified in terms of the noise margin.
+$
+"logic 0 noise margin" &= V_(I L) - V_(O L) \
+"logic 1 noise margin" &= V_(I H) - V_(O H)
+$
+
+$V_(O L)$ is the highest output voltage that is a low, and $V_(I L)$ the highest input voltage interpreted as low.
+
+In hardware labs, the logic 0 and 1 noise margin from the 7400s series is 1.25V.
+
+= Introductory Processor Architecture
+
+A very simple computer has a processor and a memory.
+- The CPU issue addresses on the address bus.
+- The data bus conveys items between the CPU and the memory.
+
+#definition([
+  A *computer architecture* is defined by its instruction set and architectural state.
+])
+
+Based on current architectural state, the processor executes a particlar instruction with a particular set of data to produce a new architectural state.
+
+#definition([
+  *Microarchitecture* is how the architecture is implemented in hardware.
+  - *Data paths* operates on words of data (e.g. registers and multiplexers).
+  - *Instruction decoder* receives the current instruction from data path, and tells the data path how to execute the instruction.
+])
+
+== Single Cycle Processor
+
+A single cycle processor executes one instruction every clock cycle.
+
+=== Fetch
+
++ The PC issues sequentially increasing addresses for the instruction.
++ The instruction is sent to the instruction decoder via the data path.
++ The PC is then incremented by 1.
+
+Including a MUX allows the PC value to change to an arbitrary value, this allows branching. The ALU has a flag output that is set to 1 if a condition is true. This is used for conditional branching.
+
+#definition([
+  There is a diagram of a branching computer in lecture handouts, it has an ALU and data memory. I am too lazy to draw it out.
+])
+
+== Multicycle Processor
+
+- A clock cycle in a single cycle processor needs to be longer than the slowest instruction.
+- In a multicycle processor, an instruction is broken into multiple steps, more complicated instructions take multiple clock cycles to complete.
+  - A single adder can be used for different purposes.
+  - Only one memory is needed for both instruction and data.
+
+To achieve this, extra registers are needed to hold intermediate results, the registers have propagation delay, so unless the time difference is large, instructions are not broken down.
+
+The controller also needs an FSM to produce different output at each step.
+
+== Pipelined Processor
+
+Pipelining is a type of *temporal parallelism*: it speeds up processing without duplicating hardware.
+- Divide a single processor cycle into 5 parallel stages:
+  + Fetch
+  + Decode
+  + Execute (ALU)
+  + Memory R/W
+  + Register write
+- These 5 stages can happen in parallel.
+
+Note the clock cycle has to be slower than the slowest stage to keep the stages synchronised. So for a single instruction, a pipelined processor is slower than a single cycle processor. It also includes more propagation delay from storing values in registers at each stage.
+
+#table(
+  columns: (auto, auto),
+  table.header([*Type of hazard*], [*Description*]),
+  [Data hazard], [An instruction reads a register before it is written back.],
+  [Control hazard], [The decision for which instruction to fetch is note made at the fetch stage.]
+)
