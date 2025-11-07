@@ -9,6 +9,8 @@
 - [Databases](./computing/y1/michaelmas/databases.pdf)
 - [Digital Electronics](./computing/y1/michaelmas/digital-electronics.pdf)
 - [Foundations of Computer Science](./computing/y1/michaelmas/foundations-of-computer-science.pdf)
+- [Introduction to Graphics](./computing/y1/michaelmas/introduction-to-graphics.pdf)
+- [Discrete Mathematics](./computing/y1/michaelmas/discrete-mathematics.pdf)
 
 # Maths
 ## Year 1
