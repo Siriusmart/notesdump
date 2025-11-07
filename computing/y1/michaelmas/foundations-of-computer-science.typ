@@ -1139,3 +1139,108 @@ Similar to breadth-first search, but uses a priority queue where items are ranke
   [Iterative deepening], [(Call) stack], $O(b^d)$, $O(d)$,
   [Best-first], [Priority queue], [Depends], [Depends]
 )
+
+#line(length: 100%)
+
+== Procedural Programming
+
+- In functional programming, the output of a *pure function* depends only on its argument,
+  so it is easier to prove its result, but it useless because it cannot interact with the environment.
+- *Procedural programs* can change the machine state.
+
+=== References
+
+#definition([
+  *References* are storage locations that can be created, inspected and updated.
+])
+
+```ml
+ref;; (* 'a -> 'a ref *)
+( ! );; (* 'a ref -> 'a *)
+( := );; (* 'a ref -> 'a -> unit *)
+```
+
+We write `p` for the address of `p`.
+
+```ml
+let (p: int ref) = ref 1 (* constructor for p *)
+
+if !p = 1 then (* returns the value of p *)
+  4
+else
+  5
+
+p := 5 (* assigns a new value to p *)
+```
+
+==== Persistent References
+
+We can use function currying to get persistent references.
+
+```ml
+let createAccount v =
+  let amount = ref v
+  in let change dv =
+    amount := !amount + dv;
+    !amount
+
+let updateAmt = createAccount 10
+updateAmt 5 (* 15 *)
+updateAmt 5 (* 20 *)
+```
+
+=== Commands
+
+#definition([
+  *Commands* are functions with side effects.
+])
+
+- E.g. writing to files, updating references.
+- They often returns the unit type.
+
+Pure functions can be carried out in any order and returns the same result. In procedural programming, we need to specify the sequence of commands.
+
+$C_1 ; C_2 ; C_3$ the semicolon is a *separator* that separates commands, it is syntactical sugar for
+```ml
+let () = c1
+in let () = c2
+in c3
+```
+
+=== While Loops
+
+```ml
+while condition do
+  commands
+done
+```
+
+It is harder to reason about procedural programs because we cannot use reduction, since the result also depends on the state of the function.
+
+=== Arrays
+
+An array is like a list of references.
+
+```ml
+let (a1: int array) = [|1; 2; 3|]
+let (a2: char array) = Array.make 3 'a'
+
+a1.(1) (* shorthand for Array.get : 'a array -> int -> 'a *)
+a1.(1) <- 123 (* shorthand for Array.set : 'a array -> int -> 'a -> unit *)
+```
+
+=== Mutable Lists
+
+```ml
+type 'a mlist = 
+  | Nil
+  | Cons of 'a * ('a mlist ref)
+
+exception Empty
+
+let rec extend xs ys =
+  match xs with
+  | Nil -> raise Empty
+  | Cons (_, next) when !next = Nil -> next := ys
+  | Cons (_, next) -> extend !next ys
+```

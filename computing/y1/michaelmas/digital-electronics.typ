@@ -2578,3 +2578,7 @@ Note the clock cycle has to be slower than the slowest stage to keep the stages 
   [Data hazard], [An instruction reads a register before it is written back.],
   [Control hazard], [The decision for which instruction to fetch is note made at the fetch stage.]
 )
+
+#line(length: 100%)
+
+#align(center, `END Digital Electronics`)
