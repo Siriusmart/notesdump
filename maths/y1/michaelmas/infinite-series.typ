@@ -188,3 +188,90 @@ f'(x) approx f'(a) + (x - a) f''(a) + (x - a)^2/2!f'''(a) +(x-a)^3/3!f''''(a) + 
 $
 
 Since the factorial function grows faster than any polynomial, we know that $n!$ grows faster than $(x-a)^n$ so the series converges for a lot of approximations.
+
+#line(length: 100%)
+
+=== Taylor's Theorem
+
+An exact result can be written by including a *remainder term* $R_(n+1)$.
+$
+f(a+h) = f(a) + h f'(a) + cdots + h^n/n! f^((n))(a)+R_(n+1)
+$
+
+*Taylor's Theorem* states if $f$ is $n+1$ times differentiable, there exists a $zeta : a < zeta < a + h$ such that
+$
+R_(n+1)=h^(n+1)/(n+1)!f^((n+1))(zeta)
+$
+
+==== Proof
+
+$
+int^x_a f'(t) d t &= f(x) - f(a) "by fundamental theorem of calculus" \
+f(x) &= f(a) + int^x_a f'(t) d t \
+&= f(a) + [(t - x)f'(t)]^x_a - int^x_a (t - x)f''(x) d t "integrate by parts" \
+&= f(a) + (x - a)f'(a) + int^x_a (t - x)f''(x) d t
+$
+
+Integrate by parts repeatedly to find
+$
+f(x) &= f(a) + (x-a)f'(a) + cdots + (x-a)^n/n! f^((n))(a)+int^x_a (t-x)^n/n!f^((n+1))(t)d t \ 
+R_(n+1) &= int^x_a (t-x)^n/n! f^((n+1))(t) d t \
+&= (x - a)^(n+1)/(n+1)! f^((n+1))(zeta) "where" a <= zeta <= x "by mean value theorem"
+$
+
+$
+lim_(n to infty) R_(n+1) = 0 imp "Taylor series for " f(x) "converges"
+$
+
+By choosing the $zeta$ that would give the largest error, we can calculate the worst case error for an approximation.
+
+#note([
+  If $f(x)$ is infinitely differentiable, then we can represent $f$
+  exactly as an infinite *power series*.
+])
+
+We could also prove that two functions are the same if they have the same Taylor series.
+
+=== Common Series Expansions
+
+A lot of these expansion can be proved using the expansion for $e^x$.
+
+#grid2(10pt,
+  tab2(
+    [Function], [Taylor series],
+    $
+    e^x
+    $, $
+    sum_(n=0) x^n/n!
+    $,
+    $cosh x$,
+    $
+    sum_(n=0)x^(2n)/((2n)!)
+    $,
+    $cos x$,
+    $
+    sum_(n=0)(-1)^(n)x^(2n)/((2n)!)
+    $,
+  ),
+  tab2(
+    [Function], [Taylor series],
+    $ln (1+x)$, $
+    sum_(n=1) (-1)^(n+1)x^n/n
+    $,
+    $sinh x$,
+    $
+    sum_(n=0)x^(2n + 1)/((2n + 1i)!)
+    $,
+    $sin x$,
+    $
+    sum_(n=0)(-1)^(n)x^(2n + 1)/((2n + 1i)!)
+    $,
+  )
+)
+
+It makes sense that the Taylor series of an even function only have even powered terms, and
+an odd function only have odd powered terms.
+
+The series expansion for _tanh_ has a radius of convergence of $|x| < pi/2$, this makes sense because
+- Polynomials cannot capture the flat asymptote.
+- _tan_ is only continuous over $(-pi/2, pi/2)$.
