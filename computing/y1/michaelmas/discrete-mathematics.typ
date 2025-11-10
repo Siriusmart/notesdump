@@ -1,4 +1,3 @@
-#import "@local/discmaths:0.1.0" : *
 #import "@local/lecture:0.1.0" : *
 
 #set page(
@@ -80,3 +79,78 @@ Some theorems are in form $P iff Q$, to prove it
 - Prove $Q imp P$
 
 #line(length: 100%)
+
+== Universal Quantifications
+
+#def([
+  $Fa(x)px$ means: for all individuals $x$ of the universe of the discourse, the property $px$ holds.
+])
+
+*Universal instantiation* allows any $a$ to be plugged in to $Fa(x)px$ and conclude that $P(a)$ is true.
+
+#let uniQ = newproof("Statement involving universal quantification")
+#let uniQ = addgoal(uniQ, $Fa(x) px$)
+#showproof(uniQ)
+
+We can rewrite as
+#let uniQ = addgoal(uniQ, $px$)
+#let uniQ = rmproof(uniQ, "g1")
+#let uniQ = addassume(uniQ, [$x$ stands for an arbitrary individual.])
+#showproof(uniQ)
+
+=== Divisibility and Congruence
+
+#def([
+  Let $d$ and $n$ be integers. If $d$ divides $n$, we write $d | n$.
+  $
+  Ex(k) n = k dot d iff d | n
+  $
+])
+
+#def([
+  For integers $a$ and $b$, and positive integer $m$.
+  $
+  cong(a,b,m) iff m | (a - b)
+  $
+])
+
+We can prove that
+- If $n$ is odd, then $cong(n, 1, 2)$
+- If $n$ is even, then $cong(n, 0, 2)$
+
+==== Example: Congruence Result
+
+Let $m$ and $n$ be positive integers, and $a$ and $b$ be arbitrary integers.
+
+We want to prove the statement $Fa(n)$
+
+#let mulcong = newproof("Multiplied Congruence")
+#let mulcong = addassume(mulcong, $m, n, a, b in bb(Z)$, $a, b > 0$)
+#let mulcong = addgoal(mulcong, $Fa(n) cong(a, b, m) imp cong(n a, n b, n m)$)
+#showproof(mulcong)
+
+Rewriting the target
+
+#let mulcong = rmproof(mulcong, "g1")
+#let mulcong = addassume(mulcong, $cong(a, b, m)$)
+#let mulcong = addgoal(mulcong, $cong(n a, n b, n m)$)
+#showproof(mulcong)
+
+Then rewrite A3
+$
+& imp cong(a, b, m) \
+& imp Ex(k) (a-b) = k dot m \
+& imp Ex(k) n(a-b) = k dot m dot n \
+& imp cong(n a, n b, n m)
+$
+Which is the goal.
+
+To prove $Fa(n)(n a, n b, n m) imp cong(a, b, m)$, plug $n = 1$ and we have the goal.
+
+== Equality
+
+#def([
+  The axioms for *equality* are
+  - $Fa(x) x = x$
+  - $Fa(x\, y) (x = y) imp (P(x) iff P(y))$
+])

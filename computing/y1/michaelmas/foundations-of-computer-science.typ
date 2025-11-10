@@ -1244,3 +1244,18 @@ let rec extend xs ys =
   | Cons (_, next) when !next = Nil -> next := ys
   | Cons (_, next) -> extend !next ys
 ```
+
+#line(length: 100%)
+
+OCaml handles the following execution consideration for us.
+- Fast foreign functions (using C functions to interface with the operating system)
+- Static linking (linking to other prewritten code)
+- Garbage collection
+- Fast native code
+- Multiarchitecture
+- Portable bytecode (OCaml can compile to OCaml bytecode)
+- Exceptions (the runtime needs to support this)
+- Effects (resumable excepitons: after an exception is handle, control is passed back to the function that raised the exception.)
+
+#line(length: 100%)
+#align(center, `END Foundations of Computer Science`)
