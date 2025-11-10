@@ -1229,6 +1229,12 @@ a1.(1) (* shorthand for Array.get : 'a array -> int -> 'a *)
 a1.(1) <- 123 (* shorthand for Array.set : 'a array -> int -> 'a -> unit *)
 ```
 
+The other array function includes
+```ml
+Array.make 3 'a' (* [| 'a', 'a', 'a' |] *)
+Array.init 5 (fun i -> i * 10) (* [| 0, 10, 20, 30, 40 |] *)
+```
+
 === Mutable Lists
 
 ```ml
