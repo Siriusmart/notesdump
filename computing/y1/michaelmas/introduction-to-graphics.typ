@@ -1,4 +1,5 @@
 #import "@preview/cetz:0.4.2"
+#import "@local/lecture:0.1.0" : *
 
 #set page(
   numbering: "1",
@@ -36,7 +37,7 @@ Computer graphics includes:
 
 == Image as a 2D Array
 
-From a discrete perspecitive, an image is a *2D array of pixels*. The memory is not two-dimensional, how do we store it in memory?
+From a discrete perspecitive, an image is a *2D array of pixels*. The memory is not two-dimensional, how do we store it in memory? (how to linearise an image?)
 
 #grid(
   columns: (45%, auto),
@@ -101,6 +102,8 @@ From a discrete perspecitive, an image is a *2D array of pixels*. The memory is 
     })
   ]
 )
+
+CRT TVs draw images from top to bottom, which is why most APIs represent images in row major.
 
 === RGB Representations
 
@@ -233,3 +236,183 @@ $
 To find an intersection with a polygon
 + Find intersections with the plane
 + Check whether the point is inside the polygon, which is just 2D geometry.
+
+#hr
+
+In the real word, the rays comes from the object
+- It is computationally inefficient as a lot of the rays don't hit the eye.
+- It can be mathematically proven that the result is the same regardless if you trace from the source to the eye or the other way round.
+
+== 3D Object Intersection 
+
+=== Sphere
+
+- Ray: $bold(r) = bold(o) + s bold(hat(d))$
+- Sphere: $(bold(r) - bold(c))^2 = r^2$
+
+$
+(bold(o) - s bold(hat(d)) - bold(c))^2 - r^2 &= 0 \
+bold(hat(d))^2 s^2-2s bold(hat(d)) dot (bold(o) - bold(c)) - r^2 &= 0
+$
+
+This is the quadratic equation, solve for $s$.
+- If there are 2 real solutions, then cloose the closer intersection.
+- If there are 0 real solutions, then there is no intersection.
+
+You can also find intersections with a cylinder, cone and torus, it's easier if the objet is *axis aligned*.
+
+== Shading
+
++ Calculate the normal to the object at intersection.
++ Continue to look for a light source.
+  - If the reflected ray intersect with another object, then the surface is not illuminated by the source. This is called a *shadow ray*.
++ If a surface is reflective, spawn a new ray to find the pixel's colour given by reflection.
+
+#grid(
+  columns: (40%, auto),
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (5, 0))
+    line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
+    content((0.8, 1), $bold(hat(v))$)
+    line((2.5, 0), (4, 1), stroke: red, mark: (end: ">"))
+    content((2.5, 2.2), $bold(N)$)
+    line((2.5, 2), (2.5, 0), mark: (start: ">"))
+    content((4.2, 1), $bold(hat(r))$)
+  }),
+  $
+  bold(hat(v)) dot bold(N) &= - bold(hat(r)) dot bold(N) \
+  bold(hat(r)) &= -bold(hat(v)) + 2 bold(N) (bold(hat(v)) dot bold(N))
+  $
+)
+
+If we have a material that is both reflective and transparent, e.g. glass, then light will be refracted.
+- 80% colour comes from reflection.
+- 20% colour comes from refraction.
+
+=== Types of Reflection
++ *Perfect reflection* as shown above.
++ *Imperfect specular reflection* (where the surface is not perfectly flat)
+  #cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (5, 0))
+    line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
+    content((0.8, 1), $bold(hat(v))$)
+    line((2.5, 0), (3.75, 1.3), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (4, 1), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (4.1, 0.7), stroke: red, mark: (end: ">"))
+    content((2.5, 2.2), $bold(N)$)
+    line((2.5, 2), (2.5, 0), mark: (start: ">"))
+    content((4.2, 1), $bold(hat(r))$)
+  })
++ *Diffuse reflection* (where the structure is so complex light scatters in random direction)
+  #cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (5, 0))
+    line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
+    content((0.8, 1), $bold(hat(v))$)
+    line((2.5, 0), (2.67, 0.9), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (2.9, 0.85), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (3.13, 0.7), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (3.25, 0.5), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (3.35, 0.3), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (3.4, 0.1), stroke: red, mark: (end: ">"))
+
+    line((2.5, 0), (2.33, 0.9), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (2.1, 0.85), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (1.87, 0.7), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (1.75, 0.5), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (1.65, 0.3), stroke: red, mark: (end: ">"))
+    line((2.5, 0), (1.6, 0.1), stroke: red, mark: (end: ">"))
+    content((2.5, 2.2), $bold(N)$)
+    line((2.5, 2), (2.5, 0), mark: (start: ">"))
+    content((3.5, 0.6), $bold(hat(r))$)
+  })
+
+E.g. *plastic* has specular reflection on the light's colour, and diffuse reflection on the plastic's colour. Different wavelengths of light may reflect/scatter differently.
+
+=== Phong's Imperfection Model
+
+#defstable(
+  $bold(hat(L))$, [Normalised vector in direction of light source.],
+  $bold(hat(N))$, [Normalised vector in direction of light source.],
+  $I_l$, [ The intensity of light source. ],
+  $k_d$, [ The proportion of light diffusely reflected by the surface.],
+  $I$, [ The intensity of the light being reflected. ]
+)
+
+#grid(
+  columns: (auto, auto),
+  [
+    $
+    I &= I_l k_s cos^n alpha
+    &= I_l k_s (bold(hat(R)) dot bold(hat(V))) ^n
+    $
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (5, 0))
+    content((0.8, 1), $bold(hat(L))$)
+    line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
+    content((2.5, 2.2), $bold(N)$)
+    line((2.5, 2), (2.5, 0), mark: (start: ">"))
+    arc((2.5, 0.5), start: 90deg, stop: 15deg, radius: 0.5, stroke: red)
+    arc((2.5, 0.5), start: 90deg, stop: 145deg, radius: 0.5)
+    arc((2.5, 0.5), start: 90deg, stop: 35deg, radius: 0.5)
+
+    line((2.5, 0), (4, 1), stroke: purple, mark: (end: ">"))
+    line((2.5, 0), (4.2, 0.5), stroke: red, mark: (end: ">"))
+
+    content((2.2, 0.8), $theta$)
+    content((2.8, 0.8), $theta$)
+    content((3.5, 0.53), $alpha$)
+
+    content((4.2, 1), $bold(hat(R))$)
+    content((4.4, 0.5), $bold(hat(V))$)
+  })
+)
+
+$n$ determines how spread out the reflected light is - it is the *roughness factor*.
+
+=== Overall Shading Equation
+$
+I = I_a k_a + sum_i I_i k_d bold(hat(L) dot bold(hat(N))) + sum_i I_i k_d bold(hat(L) dot bold(hat(N)))
+$
+
+The $I_a k_a$ term gives the *ambient* shading. The next two terms gives the diffuse and specularity.
+
+== Sampling
+
+So far we assume each ray passes through the centre of a pixel. This can lead to
+- Jagged edges.
+- Small objects being missed.
+- Thin objects being split into pieces.
+
+=== Antialiasing
+
+#def([
+  Artifacts are also known as *aliasing*.
+])
+
+- *Single point sampling* just samples the point at the centre.
+- *Super sampling* samples points in a regular grid/gaussian pattern.
+  - *Random sampling* sample random points in the pixel, as our eyes are less sensitive to noise than artifact.
+  - *Poisson disc sampling* reject rays less than distance $epsilon$ from each other, but it takes $n^2$ comparisons to check for disc overlaps.
+  - *Jitter sampling* is a type of stratified sampling: take a random grid, then random sample in each grid.
+- *Adaptive super sampling* samples the four corners:
+  - If the variance is high, do a super sample.
+  - Otherwise, don't sample the pixel.
+
+=== _Why take multiple samples per pixel?_
+
+Many effects can be achieved by distributing multiple samples over some range (*distributed ray sampling*)
+- Distribute samples over a pixel - used for antialiasing.
+- Distribute rays going through the light source - soft shadows.
+- Distribute camera position - depth of field effects.
+- Distribute sampling in time - motion blur.
+
+#hr
