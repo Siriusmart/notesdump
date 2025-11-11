@@ -1,5 +1,3 @@
-#import "@local/discmaths:0.1.0" : *
-#import "@local/contmaths:0.1.0" : *
 #import "@local/lecture:0.1.0" : *
 
 #let definition(title: "Definition", body) = {
@@ -275,3 +273,107 @@ an odd function only have odd powered terms.
 The series expansion for _tanh_ has a radius of convergence of $|x| < pi/2$, this makes sense because
 - Polynomials cannot capture the flat asymptote.
 - _tan_ is only continuous over $(-pi/2, pi/2)$.
+
+#hr
+
+== Binomial Expansion
+
+Consider $f(x) = (1+x)^n$
+$
+f'(x) &= n(1+x)^(n-1) \
+f''(x) &= n(n-1)(1+x)^(n-2) \
+f'''(x) &= n(n-1)(n-2)(1+x)^(n-3) \
+& vdots
+$
+
+So we have
+$
+(1 + x)^n = 1 + n x + n(n-1)/2 x^2! + (n(n-1)(n-2))/3! x^3+ cdots
+$
+
+Which is the *binomial theorem*, when $n$ is a positive integer, it agrees with the binomial expansion.
+
+We can show that the series is absolutely convergent for $|x| < 1$ by the ratio test.
+
+== Stationary points with Taylor Series
+
+If $f$ is stationary at $x=a$, and suppose $f''(a) != 0$.
+$
+f(x) &= f(a) + x f'(a) + x^2/2 f''(a) + cdots \
+f(x) - f(a) & approx x^2/2 f''(a)
+$
+
+Now we know why if $f''(a) > 0$ then $f$ has a minimum at $x=a$, if $f''(a) < 0$ then $f$ has a maximum at $x = a$.
+
+If the first $n-1$ derivatives of $f(x) - f(a)$ are *vanishing*, then the function will behave like the first nonvanishing (the $n$th) term. This is where the idea of *l'Hopital's rule* comes from.
+$
+f(x) - f(a) approx (x-a)^n/n! f^((n))(a)
+$
+
+- If $n$ is even then $x=a$ is either a local maximum or minimum for $f$, as $x<a$ and $x>a$ are both either less than or greater than $f$ at $x=a$.
+- If $n$ is odd then $x=a$ is a point of inflection for $f$.
+
+=== Approximating Functions with Taylor Series
+
+Functions can be approximated by replacing them with their Taylor series, for example.
+$
+(log (1+x))/(1-x) &= log(1+x) dot (1-x)^(-1) \
+&= (x - x^2/2 + x^3/3 - cdots) dot (1 + x + x^2 + cdots) \
+&= x + x^2/2 + (5x^3)/6 + cdots
+$
+
+== Newton-Rapson Method
+
+This is an efficient way of finding roots of a function.
+
+The first order approximation of a function at $x = a$ is, we want to find $f(x) = 0$.
+$
+f(x) &approx f(a) + (x - a)f'(a) \
+$
+
+We want to find $f(x) = 0$.
+$
+0 &approx f(a) + (x - a)f'(a) \
+&=(f(a))/(f'(a)) + x - a \
+x &= a- (f(a))/(f'(a))
+$
+
+So if we define the sequence
+$
+x_(n+1) = x_n - f(x_n)/(f'(x_n))
+$
+
+This turns out to converge really quickly.
+
+=== Estimating Error
+
+Write a recursive relation that gives the error term $epsilon_n$, so we can find how quickly it converges.
+
+Let $x^*$ be the exact solution where $f(x^*) = 0$.
+
+$
+f(x) approx f(x^*) + (x - x^*) f'(x^*) + 1 / 2 (x - x^*)^2 f''(x^*)
+$
+
+If $f$ is linear, thne we find $x^*$ in one step. Otherwise, define error $epsilon_n = x_n - x^*$.
+
+$
+f'(x) &= f'(x^*) + (x - x ^*) f''(x^*) + O(x^3) \
+epsilon_(n+1) &= x_(n+1) - x^* \
+&=(x_n - f(x_n)/(f'(x_n))) - x^* \
+&=x_n - x^* - (f(x^*) + epsilon_n f'(x^*) + 1/2 (epsilon_n)^2 f''(x^*))/(f'(x^*) + epsilon_m f''(x^*)) \
+&=epsilon_n - (epsilon_n f'(x^*) + 1/2 (epsilon_n)^2 f''(x^*))/(f'(x^*) + epsilon_n f''(x^*))
+$
+
+Assuming we are close, how much closer will we get for the next step?
+
+For very small $epsilon$
+$
+epsilon_(n+1) &= -(1/2(epsilon_n)^2 f''(x^*))/(f'(x^*)) + O((epsilon_n)^2)
+$
+
+So the first term will be a quadratic term in $epsilon_n$ - the error will be squared for each term.
+
+#hr
+
+#align(center, `END Infinite Series`)
