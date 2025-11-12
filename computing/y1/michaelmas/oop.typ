@@ -65,7 +65,7 @@ Bytecode is slower than native code, but compared to interpreted code:
 
 === The JIT
 
-JVM uses a *JIT* which profiles your code. If it sees a code running over and over again, it compiles it to machine code. So Java programs become faster the loger you run them.
+JVM uses a *JIT* which profiles your code. If it sees a code running over and over again, it compiles it to machine code. So Java programs become faster the longer you run them.
 
 It is used for backend: servers are long running programs that the JVM can learn and optimise.
 
