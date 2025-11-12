@@ -1,4 +1,6 @@
 #import "@preview/cetz:0.4.2"
+#import "@local/lecture:0.1.0" : *
+#import "@preview/fletcher:0.5.8" as fletcher : *
 
 #set page(
   numbering: "1",
@@ -583,3 +585,129 @@ We can combine tables together using *type tags* to reduce the number of tables.
 Notice all attributes are still semantically dependent on the key.
 - Advantage: one less table, so less joins needed.
 - Disadvantage: if a record does not have a relation, then the field storing the attribute will be `NULL`.
+
+#hr
+
+== Transactions
+
+#def([
+  A *transaction* on a DB is a series of queries or changes that externally appears to be atomic.
+])
+
+External transactions (i.e. side effects such as sending SMS messages) are not atomic.
+
+=== Aborting
+
+Some DBs allows aborting a transaction before committing.
+
+#grid(
+  columns: (36%, auto),
+  [
+    This ensures all actions in the commit are undone and invisible externally.
+
+    In *optimisic locking* (a type of non-locking concurrency), transaction can abort and the client will be forced to restart the transaction.
+  ],
+  diagram(
+    node-stroke: 1pt,
+    node((0,0), [Start]),
+    edge("-|>"),
+    node((0, 1), `th := transaction_start()`),
+    edge("r,d,d,d,d,d", "-|>"),
+    node((1, 6), [Transaction aborted]),
+    edge((0, 1), (0, 2), "-|>"),
+    node((0, 2), `ar := SELECT ...`),
+    edge("-|>"),
+    node((0, 3), `br := SELECT ...`),
+    edge("-|>"),
+    node((0, 4), `UPDATE A ...`),
+    edge("-|>"),
+    node((0, 5), `rc := transaction_commit(th)`),
+    edge("-|>"),
+    node((0, 6), [Transaction complete]),
+    edge((0, 2), "r", "-|>"),
+    edge((0, 3), "r", "-|>"),
+    edge((0, 4), "r", "-|>"),
+  )
+)
+
+=== ACID
+
+#defstable(
+  [Atomicity], [All changes are performed as if they are a single operation.],
+  [Consistency], [Every transaction leaves the DB in a consistent state.],
+  [Isolation], [Intermediate state is invisible to other transactions, transactions appear *serialised*.],
+  [Durability], [Once a transaction is complete, changes to data persists even in a system failure.]
+)
+
+=== BASE
+
+NoSQL DBs often have a weakened form of ACID.
+
+#defstable(
+  [Basically Available], [As oppose to highly available (may reject queries?)],
+  [Soft state], [???],
+  [Eventual consistency], [If everyone stops updating it, everyone will see the same view.]
+)
+
+So it is not very good when a lot of people are writing to the DB simultaneously.
+
+=== Locks
+
+#def([
+  A *lock* is a special type of hardware/software primitive that provides _mutual exclusion_.
+])
+
+- Resource are locked for exclusive access by one transaction and released after use.
+- Other contendents will have to wait, delaying their completion. This *degrades throughput*.
+
+== Redundancy
+
+#def([
+  If a data can be deleted then reconstructed by data in other parts of the DB, then it is *redundant*.
+])
+
+- If there is redundancy in a database, then all those values have to be locked while updating.
+- Otherwise they may disagree with each other.
+Again degrading throughput.
+
+
+#defstable(
+  [Lookup cost], [The time spent searching/matching the appropriate records.],
+  [Data movement cost],[The time spent sending query and receiving results.]
+)
+
+=== Normal Form Representation
+
+#defs([
+  - A *closure* iterates until there are no more changes.
+  - A unique *normal form* for an information can be defined.
+  To find the normal form, apply information-preserving rewrites until closure.
+])
+
+A *normalised database* has little or no redundant data: all values in records depends only on the primary key.
+
+== Specialised Database
+
+#grid(
+  columns: (auto, auto),
+  gutter: 10pt,
+  column-gutter: 5pt,
+  [Low redundancy $imp$], [ Good update throughput \ (few locks needed)],
+  [High redundancy $imp$], [ Good query throughput \ (fewer pointers needed to follow to reach the value)],
+)
+
+Amount of redundancy can speedup read-oriented or write-oriented transactions in expense to slow down the other.
+
+The write-oriented DB can *copy snapshots* to a denormalised, read-oriented DB for fast access.
+Puting a copy of the DB closer to the user reduces data movement cost.
+
+- *Embedded databases* are created by extracing parts of the main DB that will never change, and store it on a device for local access.
+- *Online analytical processing* (OLAP) supports write-only/ledger style updates, usedin data warehouses.
+- *Online transaction processing* (OLTP) supports a mix of read and write queries.
+- *ETL* extracts from OLTP, transforms the data, then loads it to OLAP.
+
+=== Update History
+
+The update history of a field can be stored by adding a time dimension for each field.
+
+#hr

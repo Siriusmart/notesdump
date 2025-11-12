@@ -380,10 +380,10 @@ $n$ determines how spread out the reflected light is - it is the *roughness fact
 
 === Overall Shading Equation
 $
-I = I_a k_a + sum_i I_i k_d bold(hat(L) dot bold(hat(N))) + sum_i I_i k_d bold(hat(L) dot bold(hat(N)))
+I = I_a k_d + sum_i I_i k_d bold(hat(L) dot bold(hat(N))) + sum_i I_i k_s (bold(hat(R)) dot bold(hat(V)))^n
 $
 
-The $I_a k_a$ term gives the *ambient* shading. The next two terms gives the diffuse and specularity.
+The $I_a k_d$ term gives the *ambient* shading. The next two terms gives the diffuse and specularity.
 
 == Sampling
 
