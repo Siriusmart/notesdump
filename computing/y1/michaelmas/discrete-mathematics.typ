@@ -154,3 +154,63 @@ To prove $Fa(n)(n a, n b, n m) imp cong(a, b, m)$, plug $n = 1$ and we have the 
   - $Fa(x) x = x$
   - $Fa(x\, y) (x = y) imp (P(x) iff P(y))$
 ])
+
+#hr
+
+== Conjunction
+
+To prove a conjunction $P and Q$, we need to prove both $P$ and $Q$.
+
+#def($
+(P iff Q) iff (P imp Q and Q imp P)
+$)
+
+=== Example: $Fa(n) (6 | n iff 3 | n and 2 | n)$
+
+Let $n$ be an arbitrary value.
+$
+6 | n &iff Ex(i) n = 6i \
+&iff Ex(i) n = 2 dot 3 dot i \
+&imp Ex(j, k) n = 2j and n = 3k \
+&iff 2 | n and 3 | n
+$
+
+And the reverse direction
+$
+2 | n and 3 | n &iff Ex(i, j) n = 2i and n = 3j \
+&iff Ex(i, j) 3n = 6i and 2n = 6j \
+&iff Ex(i, j) n = 6(i - j) \
+&imp Ex(k) n = 6k \
+&iff 6 | n
+$
+
+== Existential Quantifier
+
+#def([
+  $Ex(x) P(x):$ there exists an individual $x$ in the universe of the discourse which #px holds.
+])
+
+=== Proving an Existential Quantifier
+
+Find a witness $w$ so $P(w)$ is true.
+
+Target: $Fa(n) Ex(i, j) 4n = i^2 - j^2$
+
+- Let $i = n + 1$
+- Let $j = n - 1$
+
+It is true that $4n = i^2 - j^2$.
+
+=== Using an Existential Quantifier
+
+Introduce a variable $w$ and assume $P(w)$ to be true.
+
+== Unique Existence
+
+#def($
+Ex(!x) P(x) iff (Ex(x) P(x) and (Fa(y, z) P(y) and P(z) imp y = z))
+$)
+
+To prove $Fa(x)Ex(!y) P(x, y)$
++ Find a *unique* witness $w$ so that $P(w, f(w))$ is true.
++ Show that $Fa(x) P(x, y) imp y = f(x)$
