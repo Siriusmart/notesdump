@@ -5,3 +5,4 @@
 - [Differentiation](./y1/michaelmas/differentiation.typ)
 - [Analysis](./y1/michaelmas/analysis.typ)
 - [Infinite series](./y1/michaelmas/infinite-series.typ)
+- [Integration](./y1/michaelmas/integration.typ)
