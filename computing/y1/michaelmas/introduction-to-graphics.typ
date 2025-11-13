@@ -407,12 +407,190 @@ So far we assume each ray passes through the centre of a pixel. This can lead to
   - If the variance is high, do a super sample.
   - Otherwise, don't sample the pixel.
 
-=== _Why take multiple samples per pixel?_
-
-Many effects can be achieved by distributing multiple samples over some range (*distributed ray sampling*)
-- Distribute samples over a pixel - used for antialiasing.
-- Distribute rays going through the light source - soft shadows.
-- Distribute camera position - depth of field effects.
-- Distribute sampling in time - motion blur.
-
 #hr
+
+=== Distributed Sampling
+
+- *Super sampling* - distributing samples in a pixel $imp$ *antialiasing*.
+- *Area light* - distributing light on a plane $imp$ *soft shadows*.
+  #grid(
+    columns: (45%, auto),
+    column-gutter: 30pt,
+    cetz.canvas({
+      import cetz.draw : *
+
+      arc((0, 0), start: 180deg, stop: 90deg, radius: 2)
+      line((-2, 1), (0.2, 1), mark: (end: ">"))
+      line((0.2, 1.2), (1, 4), mark: (end: ">"))
+      circle((1.03, 4.1), radius: 2pt, stroke: blue)
+      content((2.1, 4.1), "point light")
+    }),
+    cetz.canvas({
+      import cetz.draw : *
+
+      arc((0, 0), start: 180deg, stop: 90deg, radius: 2)
+      line((-2, 1), (0.2, 1), mark: (end: ">"))
+      line((0.2, 1.2), (0.7, 4), mark: (end: ">"))
+      line((0.2, 1.2), (1, 4), mark: (end: ">"))
+      line((0.2, 1.2), (1.3, 4), mark: (end: ">"))
+      line((0.5, 4.1), (1.5, 4.1), stroke: blue)
+      content((2.4, 4.1), "area light")
+    })
+  )
+- *Camera as an area* - distribute the camera position $imp$ *depth of field* effects.
+  #grid(
+    columns: (45%, auto),
+    column-gutter: 30pt,
+    cetz.canvas({
+      import cetz.draw : *
+
+      arc((0, 0), start: 180deg, stop: 60deg, radius: 2)
+      line((-2, 1), (0.2, 1), mark: (end: ">"))
+      line((-2.02, 1.1), (1.7, 2.8), mark: (end: ">"))
+      circle((2.2, 3), radius: 10pt)
+      circle((-2.2, 1), radius: 2pt, stroke: red)
+      content((-1.8, 0.2), "point camera")
+    }),
+    cetz.canvas({
+      import cetz.draw : *
+
+      line((0.2, 0), (0.2, 3), stroke: gray)
+
+      arc((0, 0), start: 180deg, stop: 60deg, radius: 2)
+      line((-2, 1), (0.2, 1), mark: (end: ">"))
+      line((-2, 1.3), (-0.1, 1))
+      line((-2, 0.7), (-0.1, 1))
+      line((-2.02, 1.1), (1.7, 2.8), mark: (end: ">"))
+      line((-2.02, 1.4), (1.8, 2.6), mark: (end: ">"))
+      line((-2.02, 0.8), (1.6, 3.0), mark: (end: ">"))
+      circle((2.2, 3), radius: 10pt)
+      line((-2.2, 0.6), (-2.2, 1.4), stroke: red)
+      content((-1.8, 0.2), "area camera")
+
+      line((-2.1, 3), (-0.1, 3), mark: (end: ">", start: ">"))
+      content((-1.1, 2.5), "focal length")
+    })
+  )
+
+And distributing simpling through time creates *motion blur*.
+== Rasterisation
+
+Ray tracing gives very high quality results, but is computationally expensive.
+
+*Real-time applications* use rasterisation:
++ Model surfaces as polyhedrons.
++ Apply transformations to project the plane on screen.
++ Fill pixels with colours of the nearest visible polygon.
+
+Most modern games use 90% rasterisation combined with 10% ray tracing.
+
+#def([
+  *Polyhedral surfaces* are made of connected polygons surfaces.
+])
+
+We can approximate curved surfaces with polygons - the triangle is the simplest polygon as it vertices must be planar. GPUs are optimised to draw triangles.
+
+We can split a polygon surface to triangles.
+
+#align(center,
+  cetz.canvas({
+    import cetz.draw : *
+
+    let f(x, y) = {
+      line((0 + x, 0 + y), (1 + x, 0.5 + y), (1.7 + x, -0.2 + y), (0.8 + x, -0.8 + y), (0 + x, 0 + y))
+
+      circle((0 + x, 0 + y), radius: 2pt, fill: white)
+      circle((1 + x, 0.5 + y), radius: 2pt, fill: white)
+      circle((1.7 + x, -0.2 + y), radius: 2pt, fill: white)
+      circle((0.8 + x, -0.8 + y), radius: 2pt, fill: white)
+    }
+
+    line((2, -0.1), (3.7, -0.1), mark: (end: ">"))
+
+    line((5, 0.5), (4.8, -0.8))
+
+    f(0, 0)
+    f(4, 0)
+  })
+)
+
+- *Postscript*: 2D transformations.
+- *OpenGL*: 3D transformations.
+
+== Transformations as Matrices
+
+#tab2(
+  [Transformation], [Matrix],
+  [Scale by factor $m$],
+  $
+  mat(m, 0; 0, m;)
+  $,
+  [Rotate by angle $theta$],
+  $
+  mat(cos theta, -sin theta; sin theta, cos theta)
+  $,
+  [Shear parallel to $x$ by factor $a$],
+  $
+  mat(1, a; 0, 1)
+  $
+)
+
+=== Homogenous Coordinates
+
+We could not represent transformation as matricies, unless we define the homogenous coordinates.
+$
+(italic("homogenous")) &= (italic("conventional")) \
+(x, y, w) &= (x / w, y / w)
+$
+
+There is an infinite number of homogenous coordinates that maps to the same point.
+
+#tab2(
+  [Transformation], [Matrix],
+  [Scale by factor $m$],
+  $
+  mat(m, 0, 0; 0, m, 0; 0, 0, 1)
+  $,
+  [Translate by $(x, y)$],
+  $
+  mat(1, 0, x; 0, 1, y; 0, 0, 1)
+  $
+)
+
+Multiple transformations can be concatenated to make a more efficient transformation.
+
+Note that in general, transformations are *not commutative*.
+
+=== Scale/Rotation About a Point
+
+To scale by factor of $m$ about point $(x_0, y_0)$
++ Translate by $(-x_0, -y_0)$
++ Scale by factor of $m$
++ Translate by $(x_0, y_0)$
+
+Similar for rotation.
+
+=== 3D Homogenous Coordinates
+
+It is a simple extension of the 2D homogenous coordinates.
+$
+(x, y, z, w) to (x/w, y/w, z/w)
+$
+
+=== Example: Placing a Cylinder in 3D Space
+
+The program defines a cylinder as one with radius 1, height 2, oriented in direction of $(0, 0, 1)$, and centred at origin. We need to apply transformations to get it to the correct place.
+
+We usually do in order
++ Scale
++ Rotate
++ Translate
+So each step does not interfere with the previous steps. (what's the word for that?)
+
+Rotation is the only nontrivial step, it is easier to do it in reverse order
++ Find the rotation $R_1$ about the $y$ axis so the desired shape is oriented in direction $(0, y, z)$
++ Find the rotation $R_2$ about the $x$ axis so the desired shape is oriented in direction $(0, 0, 1)$
+
+$
+"The combined transformation" = T times (R_1)^(-1) times (R_2)^(-1) times S
+$
