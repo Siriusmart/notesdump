@@ -80,7 +80,8 @@ Some theorems are in form $P iff Q$, to prove it
 
 #line(length: 100%)
 
-== Universal Quantifications
+== Quantifiers
+=== Universal Quantifications
 
 #def([
   $Fa(x)px$ means: for all individuals $x$ of the universe of the discourse, the property $px$ holds.
@@ -98,7 +99,7 @@ We can rewrite as
 #let uniQ = addassume(uniQ, [$x$ stands for an arbitrary individual.])
 #showproof(uniQ)
 
-=== Divisibility and Congruence
+==== Divisibility and Congruence
 
 #def([
   Let $d$ and $n$ be integers. If $d$ divides $n$, we write $d | n$.
@@ -118,7 +119,7 @@ We can prove that
 - If $n$ is odd, then $cong(n, 1, 2)$
 - If $n$ is even, then $cong(n, 0, 2)$
 
-==== Example: Congruence Result
+===== Example: Congruence Result
 
 Let $m$ and $n$ be positive integers, and $a$ and $b$ be arbitrary integers.
 
@@ -147,7 +148,7 @@ Which is the goal.
 
 To prove $Fa(n)(n a, n b, n m) imp cong(a, b, m)$, plug $n = 1$ and we have the goal.
 
-== Equality
+=== Equality
 
 #def([
   The axioms for *equality* are
@@ -157,7 +158,7 @@ To prove $Fa(n)(n a, n b, n m) imp cong(a, b, m)$, plug $n = 1$ and we have the 
 
 #hr
 
-== Conjunction
+=== Conjunction
 
 To prove a conjunction $P and Q$, we need to prove both $P$ and $Q$.
 
@@ -165,7 +166,7 @@ To prove a conjunction $P and Q$, we need to prove both $P$ and $Q$.
 (P iff Q) iff (P imp Q and Q imp P)
 $)
 
-=== Example: $Fa(n) (6 | n iff 3 | n and 2 | n)$
+==== Example: $Fa(n) (6 | n iff 3 | n and 2 | n)$
 
 Let $n$ be an arbitrary value.
 $
@@ -184,13 +185,13 @@ $
 &iff 6 | n
 $
 
-== Existential Quantifier
+=== Existential Quantifier
 
 #def([
   $Ex(x) P(x):$ there exists an individual $x$ in the universe of the discourse which #px holds.
 ])
 
-=== Proving an Existential Quantifier
+==== Proving an Existential Quantifier
 
 Find a witness $w$ so $P(w)$ is true.
 
@@ -201,11 +202,11 @@ Target: $Fa(n) Ex(i, j) 4n = i^2 - j^2$
 
 It is true that $4n = i^2 - j^2$.
 
-=== Using an Existential Quantifier
+==== Using an Existential Quantifier
 
 Introduce a variable $w$ and assume $P(w)$ to be true.
 
-== Unique Existence
+=== Unique Existence
 
 #def($
 Ex(!x) P(x) iff (Ex(x) P(x) and (Fa(y, z) P(y) and P(z) imp y = z))
@@ -214,3 +215,118 @@ $)
 To prove $Fa(x)Ex(!y) P(x, y)$
 + Find a *unique* witness $w$ so that $P(w, f(w))$ is true.
 + Show that $Fa(x) P(x, y) imp y = f(x)$
+
+#hr
+
+=== Disjunction
+
+$P or Q$ can be proved by showing $P$ or $Q$.
+
+To use disjunction, e.g. $P_1 or P_2 imp Q$, we need to show $P_1 imp Q and P_2 imp Q$.
+
+== Proving Fermat's Little Theorem
+
+=== Step 1: Lemma 1 for Fermat's Little Theorem
+
+Required to prove:
+$
+Fa(m, n in bb(N)) m = 0 or m = n imp cong(vec(n, m), 1, n)
+$
+
+#let flittle1 = newproof("Lemma 1 for Fermat's Little Theorem")
+#let flittle1 = addassume(flittle1, $m, n in bb(Z)$, $m = 0 or m = n$)
+#let flittle1 = addgoal(flittle1, $cong(vec(n, m), 1, n)$)
+
+#showproof(flittle1)
+
+$
+m = 0 &imp vec(n, 0) = 1 &imp cong(vec(n, m), 1, p) \
+m = n &imp vec(n, n) = 1 &imp cong(vec(n, m), 1, p)
+$
+
+Therefore proved.
+
+=== Step 2: Lemma 2 for Fermat's Little Theorem
+
+#lemma("Euclid's Lemma", [
+  This is provided without proof. If $p$ is prime
+  $
+  p | (a dot b) imp p | a or p | b
+  $
+])
+
+Required to prove:
+$
+Fa(p, m in bb(N)) p "is prime" and 0 < m < p imp cong(vec(p, m), 0, p)
+$
+
+#let flittle2 = newproof("Lemma 2 for Fermat's Little Theorem")
+#let flittle2 = addassume(flittle2, $p, m in bb(N)$, $p "is prime"$, $0 < m < p$)
+#let flittle2 = addgoal(flittle2, $cong(vec(p, m), 0, p)$)
+
+#showproof(flittle2)
+
+$
+vec(p, m) &= p!/(m!(p - m)!) \
+"since none of" m,m-1,&... "or" p-m, p-m-1,... "divides" p\
+&= p ((p-1)!/(m!(p-m)!)) \
+"where" &(p-1)!/(m!(p-m)!) "is an integer"
+$
+Therefore $cong(vec(p, m), 0, p)$.
+
+#note([
+  This is a pretty bad proof, especially we haven't define prime numbers yet.
+])
+
+=== Step 3: Freshman's Dream
+
+#theorem("Binomial Theorem", $
+(m+n)^p = sum^p_(k=0)vec(p, k)m^(p-k)n^p
+$)
+
+#def(title: "Properites of Congruence", [
+  If $cong(a,b,m) and cong(x,y,m)$, then
+  - $cong(a+x,b+y,m)$
+  - $cong(i a,i b,m)$ where $i$ is an integer
+])
+
+Required to prove:
+$
+Fa(p "is prime") cong((m+n)^p, m^p + n^p, p)
+$
+
+#let freshman = newproof("Freshman's Dream")
+#let freshman = addassume(freshman, $p "is prime"$)
+#let freshman = addgoal(freshman, $cong((m + n)^p, m^p+n^p, p)$)
+#showproof(freshman)
+
+By bimonial theorem
+$
+(m+n)^p &= sum^p_(k=0)vec(p, k)m^(p-k)n^p \
+&=m^p + n^p quad "cancel terms using lemma 2"
+$
+
+Therefore $cong((m+n)^p, m^p + n^p, p)$
+
+=== Step 4: Dropout Lemma
+
+When $n = 1$ for Freshman's dream.
+$
+cong((m + 1)^p, m^p + 1, p)
+$
+
+=== Step 5: Many Dropout Lemma
+$
+(m + i)^p &= (m + underbrace(1 + 1 + ... + 1, i "times"))^p \
+&= (m + underbrace(1 + 1 + ... + 1, i - 1 "times"))^p + 1 \
+&= m^p + i quad "after applying dropout lemma" i "times"
+$
+
+So $cong((m+i)^p, m^p + i, p)$.
+
+=== Step 6: Fermat's Little Theorem, Cause 1
+
+When $m = 0$ for many dropout lemma.
+$
+Fa(p "is prime") cong(i^p, i, m)
+$
