@@ -225,12 +225,12 @@ Raytracing can easily handle reflection, refraction, shadows and motion blur, bu
 
 $
 "ray": & bold(r) = bold(o) + s bold(d) \
-"plane": & bold(r) dot.c bold(n) + d = 0 \
+"plane": & bold(r) dot.c bold(n) + a = 0 \
 $
 
 After solving
 $
-s = -(d + bold(n) dot.c bold(o))/(bold(n) dot.c bold(d))
+s = -(a + bold(n) dot.c bold(o))/(bold(n) dot.c bold(d))
 $
 
 To find an intersection with a polygon
@@ -338,7 +338,7 @@ E.g. *plastic* has specular reflection on the light's colour, and diffuse reflec
 
 #defstable(
   $bold(hat(L))$, [Normalised vector in direction of light source.],
-  $bold(hat(N))$, [Normalised vector in direction of light source.],
+  $bold(hat(N))$, [Normal vector of the plane.],
   $I_l$, [ The intensity of light source. ],
   $k_d$, [ The proportion of light diffusely reflected by the surface.],
   $I$, [ The intensity of the light being reflected. ]
@@ -349,14 +349,14 @@ E.g. *plastic* has specular reflection on the light's colour, and diffuse reflec
   [
     $
     I &= I_l k_s cos^n alpha
-    &= I_l k_s (bold(hat(R)) dot bold(hat(V))) ^n
+    &= I_l k_s (bold(hat(R)) dot bold(hat(L))) ^n
     $
   ],
   cetz.canvas({
     import cetz.draw : *
 
     line((0, 0), (5, 0))
-    content((0.8, 1), $bold(hat(L))$)
+    content((0.8, 1), $bold(hat(V))$)
     line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
     content((2.5, 2.2), $bold(N)$)
     line((2.5, 2), (2.5, 0), mark: (start: ">"))
@@ -372,7 +372,7 @@ E.g. *plastic* has specular reflection on the light's colour, and diffuse reflec
     content((3.5, 0.53), $alpha$)
 
     content((4.2, 1), $bold(hat(R))$)
-    content((4.4, 0.5), $bold(hat(V))$)
+    content((4.4, 0.5), $bold(hat(L))$)
   })
 )
 
@@ -380,7 +380,7 @@ $n$ determines how spread out the reflected light is - it is the *roughness fact
 
 === Overall Shading Equation
 $
-I = I_a k_d + sum_i I_i k_d bold(hat(L) dot bold(hat(N))) + sum_i I_i k_s (bold(hat(R)) dot bold(hat(V)))^n
+I = I_a k_d + sum_i I_i k_d bold(hat(V) dot bold(hat(N))) + sum_i I_i k_s (bold(hat(R)) dot bold(hat(L)))^n
 $
 
 The $I_a k_d$ term gives the *ambient* shading. The next two terms gives the diffuse and specularity.
