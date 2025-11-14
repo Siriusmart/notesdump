@@ -472,7 +472,7 @@ So far we assume each ray passes through the centre of a pixel. This can lead to
     })
   )
 
-And distributing simpling through time creates *motion blur*.
+And distributing sampling through time creates *motion blur*.
 == Rasterisation
 
 Ray tracing gives very high quality results, but is computationally expensive.
