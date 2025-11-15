@@ -174,3 +174,95 @@ $
 Once you write down these partial fractions, it is easy to integrate the terms.
 
 #hr
+
+=== Cover-up Rule
+
+$
+f(x) &= (a_0+a_1 x+a_2 x^2 + cdots)/((x-r_0)(x-r_1)(x-r_2) dot cdots) \
+&=b_0/(x-r_0) + b_1/(x-r_1) + b_2/(x-r_2) + cdots \
+b_0 + (x-r_0)(b_1/(x-r_1)+b_2/(x-r_2)+cdots) &= (a_0+a_1 x+a_2 x^2 + cdots)/((x-r_1)(x-r_2) dot cdots)
+$
+
+Substitute $x=r_0$ to get
+$
+b_0 = (a_0+a_1 x+a_2 x^2 + cdots)/((x-r_1)(x-r_2) dot cdots)
+$
+
+#note([
+  When there is a repeated root, the cover-up method only gives the coefficient of higest power.
+])
+
+== Substitution
+
+Substitution simplifies an integral by changing variables. Take example
+$
+int 1/(1+x^2) dx
+$
+
+Let $x = tan u$, then $dx = sec^2 u space du$.
+- We are saying that making a small test in $dx$ is the same as making a small step in $sec^2 u space du$.
+- Look at the graph of $tan x$ and this does make sense.
+
+$
+&= int 1/(1+tan^2 x) sec^2 x space dx \
+&= u + C \
+&= arctan x + C
+$
+
+=== Half-angle Formula
+
+Using the substitution $tan(x/2) = t$, we can show
+$
+sin x &= (2t)/(1+t^2) \
+cos x &= (1-t^2)/(1+t^2) \
+tan x &= (2t) /(1-t^2)
+$
+
+=== Common Substitutions
+
+#tab2(
+  [Denominator], [Substitution],
+  $a^2+x^2$, $x=a tan theta$,
+  $sqrt(a^2 - x^2)$, $x = a cos theta "or "x = a sin theta$,
+  $sqrt(x^2 - a^2)$, $x = a cosh^2 theta$,
+  $sqrt(x^2 + a^2)$, $x = a sinh^2 theta$,
+  $a^2 - x^2$, [
+    $x = a tanh^2 theta$ if $|x| < |a|$ #br
+    $x = a cosh^2 theta$ if $|x| > |a|$
+  ]
+)
+
+Use completing the square to deal with general quadratic denominators.
+
+=== Integration by Parts
+
+From the product rule.
+$
+d/dx (f g) &= f dg/dx + df/dx g \
+f dg/dx &=d/dx (f g) - df/dx g \
+int f dg/dx dx &= f g - int df/dx g space dx
+$
+
+=== Integration with Complex Numbers
+
+The integral of complex valued functions has the same rules as integrate with real valued function.
+$
+int Re(f) space dx = Re(int f(x) space dx)
+$
+
+=== Odd and Even Functions
+
+#defs(
+  [
+    - $f(x) = f(-x) iff "even function"$
+    - $f(x) = -f(-x) iff "odd function"$
+  ]
+)
+
+Using the area interpretation of an integral, we have
+$
+int^a_(-a) f(x) space dx &= 0 &"if" f "is odd" \
+int^a_(-a) f(x) space dx &= 2 int^a_0 f(x) space dx quad & "if" f "is even"
+$
+
+#hr
