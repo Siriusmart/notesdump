@@ -273,3 +273,86 @@ public record Vec2D(int x, int y) {}
 Immutable classes are everywhere in the JDK: `Integer`, `String`, `LocalDate`, `Optional`, etc.
 
 #hr
+
+== Data Representation
+
+=== Primitive and Reference Types
+
+#defs([
+  - A *primitive value* is a chunk of memory that holds the value of the variable.
+  - *Objects* are referred to by reference - the variable links to a separate chunk of memory.
+])
+
+#grid2(
+  [
+    Changes to the block of memory being pointed to willl reflect in both reference variables.
+
+    #note([
+      An array is a reference type.
+    ])
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    rect((0, 0), (3, 2));
+    content((1.5, 1), "Object")
+
+    rect((-3, 1.2), (-1.5, 1.7))
+    content((-2.25, 1.45), "0x123")
+    line((-1.5, 1.45), (0, 1.45), mark: (end: ">"))
+    content((-3.4, 1.45), $a$)
+
+    rect((-3, 0.8), (-1.5, 0.3))
+    content((-2.25, 0.55), "0x123")
+    line((-1.5, 0.55), (0, 0.55), mark: (end: ">"))
+    content((-3.4, 0.55), $b$)
+  })
+)
+
+=== String Optimisation
+
+A string is immutable and stored in a read-only part of memory. Variables assigned the same string content will have the same reference address from optimisation.
+
+=== The Call Stack
+
+A function puts 3 things on the *call stack* when called.
+- Local variables created by the function.
+- Memory address to jump to when complete (return address).
+- A copy of the arguments passed to it.
+
+They are held in the function's *stack frame* in the call stack.
+
+#def([
+  A *stack* is a FIFO data structure.
+])
+
+*Local variables* are deleted when a stack frame is popped. Static variables have global scope.
+
+#note([
+  There is no tail call optimisation in Java.
+])
+
+=== The Heap
+
+We cannot resize variables in the stack: that would require moving everything above it on the stack.
+*The heap* is more flexible, there are gaps between objects in the heap.
+
+- Primitives and references cannot change size, so they go on the stack.
+- Everything else goes on the heap.
+
+=== Pointers and References
+
+#def([
+  A *pointer* is a chunk of memory that holds an address to another memory.
+])
+
+#tab2(
+  [Pointers], [References],
+  [Can be treated like numbers, can do arithmetic with it.], [References are restricted pointers.],
+  [Gives us raw memory access (which could be dangerous).], [],
+  [No way to test if a pointer is valid.], [References can be tested.],
+)
+
+C, C++ Supports both references and pointers, ML and Java only allow references.
+
+#hr
