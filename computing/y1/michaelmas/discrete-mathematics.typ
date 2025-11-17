@@ -330,3 +330,77 @@ When $m = 0$ for many dropout lemma.
 $
 Fa(p "is prime") cong(i^p, i, m)
 $
+
+#prop($
+Fa(i in bb(N) "not a multiple of" p) space cong(i dot i^(p-2), 1, p)
+$)
+
+#def([
+  $i^(p-2)$ is the reciprocal moduluo of $p$.
+])
+
+== Logical Equivalents
+
+$
+not (P imp Q) &iff P and not Q \
+not (P iff Q) &iff (P iff not Q) quad "how tf is this true?" \
+not(Fa(x) px) &iff Ex(x) not px \
+not(P and Q) &iff (not P) or (not Q) \
+not(Ex(x) px) &iff Fa(x) not px \
+not (P or Q) &iff not P and not Q \
+not (not P) &iff P
+$
+
+#def($
+not P &iff (P imp "false") \
+"false" &iff "some absurd statement"
+$)
+
+=== Prove by Contradiction
+
+Instead of showing $P$, show $not P imp "false"$.
+$
+(not P imp "false") iff not (not P) iff P
+$
+
+=== Prove by Contrapositive
+
+Required to prove:
+$
+(not Q imp not P) iff (P imp Q)
+$
+
+#let contrapos = newproof("Contrapositive")
+#let contrapos = addassume(contrapos, $not Q imp not P$, $P$)
+#let contrapos = addgoal(contrapos, $Q$)
+
+#showproof(contrapos)
+
+Suppose A3: $not Q$. #linebreak()
+A4. $not P$ by A1 and A3. #linebreak()
+A5. false by A2 and A4.
+
+This is a contradiction, therefore $Q$ must be true.
+
+== Numbers
+
+Natural numbers are constructed from zero by the successor relation.
+```ml
+type N =
+  | zero
+  | succ of N
+```
+
+#def([
+  A *monoid* is an algebraic structure with
+  - A neutral element $e$
+  - A binary operation $dot$
+
+  === Monoid Laws
+  - Neutral element $e dot x = x = x dot e$
+  - Associative $(x dot y) dot z = x dot (y dot z)$
+])
+
+A monoid is *commutative* if $x dot y = y dot x$.
+
+*Addition* $(bb(N), 0, +)$ and *multiplication* $(bb(N), 1, times)$ satisfies monoid laws and commutative laws.
