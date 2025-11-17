@@ -234,7 +234,7 @@ We could also prove that two functions are the same if they have the same Taylor
 
 A lot of these expansion can be proved using the expansion for $e^x$.
 
-#grid2(10pt,
+#grid2(width: 10pt,
   tab2(
     [Function], [Taylor series],
     $
@@ -288,7 +288,7 @@ $
 
 So we have
 $
-(1 + x)^n = 1 + n x + n(n-1)/2 x^2! + (n(n-1)(n-2))/3! x^3+ cdots
+(1 + x)^n = 1 + n x + n(n-1)/2! x^2 + (n(n-1)(n-2))/3! x^3+ cdots
 $
 
 Which is the *binomial theorem*, when $n$ is a positive integer, it agrees with the binomial expansion.
