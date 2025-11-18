@@ -131,10 +131,10 @@ Using results from inverse hyperbolic functions.
   columns: (45%, 40%),
   column-gutter: 20pt,
   $
-  int 1 / sqrt(a^2 - x^2) dx &= arcosh (x/a) + C \
+  int 1 / sqrt(x^2 - a^2) dx &= arcosh (x/a) + C \
   $,
   $
-  int 1 / sqrt(a^2 + x^2) dx &= arsinh (x/a) + C
+  int 1 / sqrt(x^2 + a^2) dx &= arsinh (x/a) + C
   $
 )
 
