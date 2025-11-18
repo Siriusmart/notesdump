@@ -356,7 +356,7 @@ E.g. *plastic* has specular reflection on the light's colour, and diffuse reflec
     import cetz.draw : *
 
     line((0, 0), (5, 0))
-    content((0.8, 1), $bold(hat(V))$)
+    content((0.8, 1), $bold(hat(L))$)
     line((2.5, 0), (1, 1), stroke: blue, mark: (end: ">"))
     content((2.5, 2.2), $bold(N)$)
     line((2.5, 2), (2.5, 0), mark: (start: ">"))
@@ -372,7 +372,7 @@ E.g. *plastic* has specular reflection on the light's colour, and diffuse reflec
     content((3.5, 0.53), $alpha$)
 
     content((4.2, 1), $bold(hat(R))$)
-    content((4.4, 0.5), $bold(hat(L))$)
+    content((4.4, 0.5), $bold(hat(V))$)
   })
 )
 
@@ -380,7 +380,7 @@ $n$ determines how spread out the reflected light is - it is the *roughness fact
 
 === Overall Shading Equation
 $
-I = I_a k_d + sum_i I_i k_d bold(hat(V) dot bold(hat(N))) + sum_i I_i k_s (bold(hat(R)) dot bold(hat(L)))^n
+I = I_a k_d + sum_i I_i k_d bold(hat(L) dot bold(hat(N))) + sum_i I_i k_s (bold(hat(R)) dot bold(hat(V)))^n
 $
 
 The $I_a k_d$ term gives the *ambient* shading. The next two terms gives the diffuse and specularity.
@@ -594,3 +594,179 @@ Rotation is the only nontrivial step, it is easier to do it in reverse order
 $
 "The combined transformation" = T times (R_1)^(-1) times (R_2)^(-1) times S
 $
+
+#hr
+
+With transformations an object can be modelled once, and multiple instances can be placed.
+
+== 2D Projection
+
+#tab2(
+  [Parallel projection], [Perspective projection],
+  [Used in CAD.], [Thing's get smaller as they get further away.],
+  [Less realistic.], [More realistic.]
+)
+
+=== Project to Viewing Plane
+#cetz.canvas({
+  import cetz.draw : *
+
+  line((0, 0), (8, 3), stroke: red)
+  line((8, 3), (8, 0), stroke: black)
+  line((0, 0), (10, 0), stroke: gray)
+  line((4, -1), (4, 2.5))
+
+  content((8.2, 3.4), $(x, y, z)$)
+  content((5, 1.2), $(x', y', d)$)
+  content((8.6, -0.3), "Object")
+  content((5.3, -0.3), "Viewing plane")
+
+  circle((8, 3), radius: 3pt, fill: black)
+  circle((4, 1.5), radius: 3pt, fill: black)
+})
+
+By similar triangles.
+$
+x' &= x d/z \
+y' &= y d/z \
+$
+
+The furthere things are the smaller they look, because it is divided by larger $z$.
+
+We also want $z' = 1 slash z$ to use in the z-buffer algorithm.
+
+$
+vec(x', y', z', w') = mat(1,0,0,0;0,1,0,0;0,0,0,1 slash d;0,0,1 slash d, 0) vec(x, y, z, 1) = vec(x, y, 1 slash d, z slash d)
+$
+
+Which gives conventional coordinates $(x dot d slash z, y dot d slash z, 1 slash z)$.
+
+=== Viewing Coordinates
+
+Instead of projecting all objects to an arbitrary plane, it is easier to transform all aobjects to a viewing coordinates system.
+
+#note([
+  OpenGL uses *right-handed coordinates*, which we will be using. (also note $y$ is up)
+])
+
+We want to place the camera
+- Centred at $c$
+- Directed at $l$
+- Up in direction of $bold(u)$
+
+#grid2(width: 40%,
+  [
+    $
+    bold(hat(v)) &= (l - c)/(|l-c|) \
+    bold(hat(r)) &= (bold(u) times bold(hat(v))) / (|bold(u) times bold(hat(v))|) \
+    bold(hat(u)) &= bold(hat(v)) times bold(hat(r))
+    $
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (5, -1))
+    circle((), radius: 3pt, fill: black)
+    content((5.4, -1), $l$)
+    line((0, 0), (-2, -0.5), mark: (end: ">"))
+    line((0, 0), (0.2, 2.3), mark: (end: ">"))
+
+    line((0.02, 0.3), (0.3, 0.25), (0.27, -0.05))
+    line((0.02, 0.295), (-0.23, 0.23), (-0.25, -0.06))
+    line((0.27, -0.05), (0, -0.1), (-0.25, -0.06))
+
+    content((0.5, 0.2), $c$)
+    content((1.5,  0), $bold(hat(v))$)
+    content((0.4, 1.2), $bold(hat(u))$)
+    content((-1, 0), $bold(hat(r))$)
+  })
+)
+
+We need to use this formula as $bold(u)$ is given by the user, we cannot be sure that $bold(u) perp bold(hat(v))$.
+
+=== Transformaing Normal Vectors
+
+Transformation by non-orthogonal matrix does not preserve angle, this breaks normals.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  line((0, 0), (0, 1.5), (3, 0), (0, 0))
+  line((0, 1.5), (2.5, 0.25), mark: (end: ">", fill: black))
+  line((1.5, 0.75), (2, 1.75), mark: (end: ">"))
+  content((2, 2), $bold(N)$)
+  content((2.5, 0.7), $bold(T)$)
+
+  line((3.5, 0.75), (5, 0.75), mark: (end: ">"))
+
+  line((6, -1), (6, 2.5), (9, -1), (6, -1))
+  line((7.5, 0.75), (8, 1.75), mark: (end: ">"))
+  line((7.5, 0.75), (8.5,-0.4), mark: (end: ">", fill: black))
+  content((8, 2), $bold(N)'$)
+  content((8.5, 0.2), $bold(T)$)
+})
+
+We want $bold(N) dot bold(T) = 0$ after transformation $M$. Then we need to transform $bold(N)$ by matrix $G$.
+$
+T' &= M T \
+N' &= G N
+$
+
+For two vectors $A$ and $B$, $A dot B = A^T B$ in matrix multiplication.
+
+#note(
+  [
+    Let $A$ and $B$ be matrices, and $M^T$ the transpose operator.
+    $
+    (A B)^T = B^T A^T
+    $
+    (Why?)
+  ]
+)
+
+$
+(G N) dot (M T) &= (G N)^T (M T) \
+N^T G^T M T &= 0
+$
+
+Because $N^T T = 0$, then $G^T M = I$, and $G = (M^(-1))^T$.
+
+The overall process to display an object on screen.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  rect((-1, -0.5), (3, 1.5))
+  content((1, 0.5), [*Object coordinates* #br Defines the object])
+
+  line((3, 0.5), (6, 0.5), mark: (end: ">"))
+  content((4.5, 0.8), "Model matrix")
+
+  rect((6, -0.5), (10, 1.5))
+  content((8, 0.5), [*World coordinates* #br Positions the object])
+
+  line((8, -0.5), (8, -2.5), mark: (end: ">"))
+  content((9.2, -1.5), "View matrix")
+
+  rect((6, -2.5), (10, -4.5))
+  content((8, -3.5), [*Viewing coordinates* #br Normalise the camera])
+
+  line((6, -3.5), (3, -3.5), mark: (end: ">"))
+  content((4.5, 0.8 - 4), "Projection")
+
+  rect((-1, -2.5), (3, -4.5))
+  content((1, -3.5), [*2D screen #br coordinates*])
+})
+
+== Scene Graph
+
+To attach object $B$ to object $A$.
++ Apply scale to $A$.
++ Apply scale, rotation and translation to move $B$ to where it will attach to $A$.
++ Apply rotation and translation to both $A$ and $B$.
+
+To attach object $C$ to $B$, add extra steps between 1 and 2 to attach it to $B$, all other transformations applied to $B$ should also be applied to $C$.
+
+We can build a *scene graph* by attachments, traversing the scene graph draws the scene.
+
+#hr
