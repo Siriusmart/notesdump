@@ -644,8 +644,8 @@ Some DBs allows aborting a transaction before committing.
 NoSQL DBs often have a weakened form of ACID.
 
 #defstable(
-  [Basically Available], [As oppose to highly available (may reject queries?)],
-  [Soft state], [???],
+  [Basically Available], [Availability over consistency.],
+  [Soft state], [Reads may give different values as data may change at any time (as opposed to only at the end of a transaction.)],
   [Eventual consistency], [If everyone stops updating it, everyone will see the same view.]
 )
 
@@ -709,5 +709,126 @@ Puting a copy of the DB closer to the user reduces data movement cost.
 === Update History
 
 The update history of a field can be stored by adding a time dimension for each field.
+
+#hr
+
+== Semi-structured Data
+
+A book written in English has some structure, e.g. chapters, figures. They will need to be indexed for easy retrieval.
+
+#tab2(
+  [Relational database], [Document oriented database],
+  [Text stored in native form.], [Paragraphs stored in native form.],
+  [Indexes in tables with strict schema.], [Content can be *shredded* to many bits.]
+)
+
+#note([
+  Traditionally this is done using simple keyword analysis/advance NLP analysis. More recently *LLMs* are used to index content.
+])
+
+=== Associative Store (Key Value Store)
+
+Values are stored as *blobs*.
+- Massive and unintepretable sequence of bytes, e.g. strings.
+- The data is *opaque* and the DB does not know what is being stored.
+Associative store can use ACID or BASE depending on implementation.
+
+#def([
+  *Sharding*: data is stored over multiple machines.
+])
+
+- When one machine fails, the data is still available.
+- Provides load balancing.
+
+=== Serialisation of Data
+
+#def([
+  *Serialisation* converts a data structure/semi-structured document into a sequence of bytes, so it can be transmitted or stored in secondary storage, etc.
+])
+
+#tab2(
+  [Encoding format], [Description],
+  [JSON], [Originally designed to serialising data structure.],
+  [XML], [For serialising data, but also used as markup languages.],
+  [CSV], [Represents *2D data*, used to transfer data between two DBs.]
+)
+
+Few more quirks of XML:
+- All data is contained in one document, which can contain text, or atomic values.
+- An *XML schema* specifies the elements that need to exist, allowable attributes, occurances counts, etc.
+
+=== Document Oriented Database
+
+#def([
+  A *document oriented database* stores data as semi-structured objects, but there are some structure within the blobs.
+])
+
+#note([
+  Document oriented databases are also called *aggregate oriented databases*.
+])
+
+A denormalised schema allows us to pull much more data with one query (fields that don't depend on the key can still be in the document). This reduces data movement cost.
+
+==== Key Nestings
+
+To have fast retrieval of data, we may precompute and store multiple key nestings.
+
+#grid2(
+  [
+    `A` on top of tree.
+    ```json
+    [
+      {
+        "A": "a1",
+        "R": [{ "B": "b1" }, { "B": "b2" }]
+      },
+      {
+        "A": "a2",
+        "R": [{ "B": "b3" }, { "B": "b4" }]
+      },
+    ]
+    ```
+  ],
+  [
+    `B` on top of tree.
+    ```json
+    [
+      {
+        "B": "b1",
+        "R": [{ "A": "a1" }]
+      },
+      {
+        "B": "b2",
+        "R": [{ "A": "a1" }]
+      },
+      {
+        "B": "b3",
+        "R": [{ "A": "a2" }]
+      },
+      {
+        "B": "b4",
+        "R": [{ "A": "a2" }]
+      },
+    ]
+    ```
+  ]
+)
+
+In this case storing replicates of the same data can make searching faster with key `A` and `B`. 
+
+=== The NoSQL Movement
+
+The NoSQL movement
+- Don't like types
+- Likes horizontal scaling - adding more machines instead of upgrading a single machine. This is usually cheaper and uses less power.
+
+But types can be useful.
+
+```ml
+type velocity_t = branded float
+type distance_t = branded float
+```
+
+Now there are two types, `[velocity_t] + [distance_t]` will give a type error, which is helpful.
 
 #hr
