@@ -266,3 +266,123 @@ int^a_(-a) f(x) space dx &= 2 int^a_0 f(x) space dx quad & "if" f "is even"
 $
 
 #hr
+
+
+=== Reduction Formulae
+
+We could sometimes write an integral as a recurrence relation.
+$
+I_(2n) &= int^(pi/2)_0 sin^(2n) x space dx \
+&=[sin^(2n-1)x dot (-cos x)]^(pi/2)_0 + int^(pi/2)_0 (2n-1)sin^(2n-2)x cos^2 x space dx \
+&=(2n - 1)int^(pi/2)_0 sin^(2n-2)x (1 - sin^2 x) dx \
+&=(2n - 1)(I_(2n-n) - I_(2n)) \
+I_(2n) &= (2n - 1)/(2n)I_(2n-2) \
+$
+$
+I_(2n)&=((2n-1)!!)/(2n!!)I_0
+&=((2n-1)!!)/(2n!!) pi/2
+$
+
+#def([
+  *Double factorials* $n!!$ multiplies only the even or odd terms less than or equal to $n$.
+  $
+  n!! = n(n-2)(n-4)cdots
+  $
+])
+
+== Differentiation of Integrals
+
+When we want to differentiate an integral where
+- Boundaries depends on $q$, or
+- The function depends on $q$.
+Such as
+$
+I(q) = int^b(q)_a(q) f(x, q) dx
+$
+
+Since there are 3 objects that depends on $q$ : $a(q), b(q)$ and $f(x, q)$, so $I'(q)$ have at least 3 terms.
+
+$
+(d I)/(d q) = underbrace(int^b(q)_a(q) (partial)/(partial q) f(x, q) dx, "area gained" #br "from curve changing") + underbrace(f(b(q), q) (d b)/(d q), "area gained from" br b(q) "increasing") - underbrace(f(a(q), q)(d a)/(d q), "area lost from" br a(q) "increasing")
+$
+
+=== Partial Differentiation
+
+Let $h(x, y)$, by treating $y$ as a constant
+$
+(partial h)/(partial x) = (h(x+delta x,y)-h(x,y))/(delta x)
+$
+
+We also define $(partial h)/(partial y)$, because there's no reason for the two derivatives to be related.
+
+=== Chain Rule
+
+Let $tilde(h)(s) = h(x(s), y(s))$, the change in $tilde(h)$ will be the combined effect of change in $x$ and $y$.
+$
+delta h = (partial h)/(partial x) delta x + (partial h)/(partial y) delta y
+$
+And we know
+$
+delta x = dx/(d s) delta s quad quad quad delta y = dy/(d s) delta s
+$
+
+The chain rule allows us to take the derivative without expanding out all terms.
+$
+(d h)/(d s) = (partial h)/(partial x) dx/(d s) + (partial h)/(partial y) dy/(d s)
+$
+
+=== Example: Gamma Function
+
+$
+int^infty_0 x^n e^(-x) space dx
+$
+
+Let $I(a) = int^infty_0 e^(-alpha x) dx = 1/a$
+
+#grid2(width: 50%,
+  $
+  (d I)/(d alpha) &= int^infty_0 (partial)/(partial alpha) e^(-alpha x) dx \ 
+  &=int^infty_0-x e^(-alpha x) dx \
+  &= -1/alpha^2
+  $,
+  $
+  (d^2 I)/(d alpha ^2) &= int^infty_0 (partial)/(partial alpha) (-x e^(-alpha x)) dx \
+  &= int^infty_0 (partial)/(partial alpha)(x^2 e^(-alpha x)) dx \ 
+  &= 2/alpha^3
+  $
+)
+
+Therefore $int^infty_0 x^n e^(-alpha x) dx = n! slash alpha^n$. Set $alpha = 1$ to get the factorial function.
+$
+Gamma(n) = int^infty_0 x^(n-1)e^(-alpha x) dx = (n - 1)!
+$
+
+=== Example: Stirling's Approximation
+
+Use integrals to approximate summation.
+$
+ln n! = sum_(k=1)^n ln k
+$
+If $k leq x leq k + 1$, then $ln k leq ln x leq ln(k+1)$.
+$
+sum_(k=1)^n ln k leq int^n_1 ln x space dx &leq sum_(k=1)^(n-1) ln(k+1) \
+&= sum^n_(k=1) ln k \
+&leq int^(n+1)_1 ln x space dx
+$
+
+Boundnig $sum^n_(k=1) ln k$ with the two integrals.
+$
+n ln n - n + 1 leq ln n! leq (n+1)ln(n+1) - (n+1) + 1
+$
+
+Taking the leading terms of the expressions
+$
+ln n! approx n ln n - n
+$
+#grid(
+  $
+  "We can show the fractional error" (ln n! - n ln n - n) / (n!) = O(1/n) "as" n to infty.
+  $
+)
+
+#hr

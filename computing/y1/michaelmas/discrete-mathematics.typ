@@ -84,17 +84,17 @@ Some theorems are in form $P iff Q$, to prove it
 === Universal Quantifications
 
 #def([
-  $Fa(x)px$ means: for all individuals $x$ of the universe of the discourse, the property $px$ holds.
+  $Fa(x)Px$ means: for all individuals $x$ of the universe of the discourse, the property $Px$ holds.
 ])
 
-*Universal instantiation* allows any $a$ to be plugged in to $Fa(x)px$ and conclude that $P(a)$ is true.
+*Universal instantiation* allows any $a$ to be plugged in to $Fa(x)Px$ and conclude that $P(a)$ is true.
 
 #let uniQ = newproof("Statement involving universal quantification")
-#let uniQ = addgoal(uniQ, $Fa(x) px$)
+#let uniQ = addgoal(uniQ, $Fa(x) Px$)
 #showproof(uniQ)
 
 We can rewrite as
-#let uniQ = addgoal(uniQ, $px$)
+#let uniQ = addgoal(uniQ, $Px$)
 #let uniQ = rmproof(uniQ, "g1")
 #let uniQ = addassume(uniQ, [$x$ stands for an arbitrary individual.])
 #showproof(uniQ)
@@ -188,7 +188,7 @@ $
 === Existential Quantifier
 
 #def([
-  $Ex(x) P(x):$ there exists an individual $x$ in the universe of the discourse which #px holds.
+  $Ex(x) P(x):$ there exists an individual $x$ in the universe of the discourse which #Px holds.
 ])
 
 ==== Proving an Existential Quantifier
@@ -344,9 +344,9 @@ $)
 $
 not (P imp Q) &iff P and not Q \
 not (P iff Q) &iff (P iff not Q) quad "how tf is this true?" \
-not(Fa(x) px) &iff Ex(x) not px \
+not(Fa(x) Px) &iff Ex(x) not Px \
 not(P and Q) &iff (not P) or (not Q) \
-not(Ex(x) px) &iff Fa(x) not px \
+not(Ex(x) Px) &iff Fa(x) not Px \
 not (P or Q) &iff not P and not Q \
 not (not P) &iff P
 $
