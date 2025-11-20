@@ -758,7 +758,7 @@ The overall process to display an object on screen.
   content((1, -3.5), [*2D screen #br coordinates*])
 })
 
-== Scene Graph
+=== Scene Graph
 
 To attach object $B$ to object $A$.
 + Apply scale to $A$.
@@ -768,5 +768,111 @@ To attach object $B$ to object $A$.
 To attach object $C$ to $B$, add extra steps between 1 and 2 to attach it to $B$, all other transformations applied to $B$ should also be applied to $C$.
 
 We can build a *scene graph* by attachments, traversing the scene graph draws the scene.
+
+#hr
+
+== Rasterisation Algorithm
+
+The algorithm goes as:
++ Set the model, view, projection (MVP) transforms.
++ For all triangles, transform the vertices with MVP.
++ If the triangle is in *view frustum*, clip triangle to screen boarder.
++ For each *fragment* (pixel in the triangle), interpolate the attributes of the fragment between pixels (e.g. colour and normal).
++ If the fragment is closer to the camera than pixels drawn so far, update the screen pixels with fragment colour.
+
+=== Interpolation
+
+#grid2([
+  *Homogenous barycentric coordinates* are used for interpolating attributes.
+
+  Where $alpha$, $beta$ and $gamma$ are the distances of point $P$ from the line $overline(B C)$, $overline(A C)$  and $overline(A B)$.
+
+  We want this distance to be normalised between 0 and 1, so
+  $
+  alpha = ((P - A) dot arrow(A B))/((C - A) dot arrow(A B))
+  $
+
+  Similar for $beta$ and $gamma$. If $alpha$, $beta$ and $gamma$ are all between 0 and 1, then the point is in the triangle.
+],
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((2.5, 0.8), (3.6, 0.7), stroke: red)
+    line((2.5, 0.8), (1.95, 1.55), stroke: red)
+    line((2.5, 0.8), (2.4, -0.35), stroke: red)
+
+    line((0, 0), (3.8, 3), (3.5, -0.5), (0, 0))
+
+    content((2.25, 0.3), $gamma$)
+    content((2.4, 1.3), $beta$)
+    content((3.05, 1), $alpha$)
+
+    content((-0.3, 0), $A$)
+    content((-0.3, 0.5), $(1,0,0)$)
+    content((4.1, 3), $C$)
+    content((3.1, 3.5), $(alpha, beta, gamma)=(0,0,1)$)
+    content((3.7, -0.5), $B$)
+    content((3.7, -1), $(0,1,0)$)
+  })
+)
+
+#note([
+  We don't need to write this algorithm because it is already included in the GPU.
+])
+
+=== Occlusion
+
+The *z-buffer* algorithm initialises a *colour buffer* and a *depth buffer* (which describes how far objects are away from the camera).
++ Initialise the colour buffer to background colour, the depth buffer to as far as possible.
++ For every fragment in every triangle, calculate $z$ for current fragment (pixel in triangle).
++ If $z < "depth"(x, y)$ and $z > z_"min"$, then set $"depth"(x, y) = z$ and $"colour"(x, y) = "fragment colour"$.
+
+The z-buffer stores distances with finite precision, we store $1 slash z$ instead of $z$ so infinite distance can be easily represented.
+
+#note([
+  *Z-fighting* happens when two planes have the same depth.
+])
+
+== The GPU
+
+#def([
+  The *GPU* is optimised for floating point operations on large arrays of data.
+])
+
+It is optimised for *parallel operations* such as
+- Ray tracing
+- Rasterisation
+- Shading
+- Video encoding
+
+GPUs have thousands of *SIMD processors*, and a much higher memory access speed than the CPU.
+
+=== GPU APIs
+
+#tab2(
+  [OpenGL], [Vulkan],
+  [An older API.], [Has lower overhead than OpenGL.],
+  [A good starting point for doing grapahics.], [Reduces CPU load.],
+  [], [Allows for finer controls.],
+  [], [But very verbose, it is used in performance critical code like game engines.]
+)
+
+There are *general purpose GPU* APIs, as OpenGL and Vulkan are only for graphics.
+- CUDA is only supported by Nvidia.
+- OpenCL is cross platform.
+
+Then there are graphics API that run on the browser:
+- WebGL is a wrapper for OpenGL.
+- WebGPU is a wrapper for Vulkan.
+
+=== OpenGL Programming
+
+We need to write both CPU and GPU code:
++ GL functions create OpenGL objects.
++ Data is copied between CPU and GPU
+
+#def([
+  GPU code are called *shaders*, and are written in *GLSL*.
+])
 
 #hr
