@@ -356,3 +356,109 @@ We cannot resize variables in the stack: that would require moving everything ab
 C, C++ Supports both references and pointers, ML and Java only allow references.
 
 #hr
+
+=== Pass by Value/Reference
+
+- *All Java parameters are pass by value.* These _values_ passed to a function can include references that points to an object in heap.
+- In C, the variables passed to a function can point to a variable from the calling function.
+
+== Inheritance
+
+Inheritance is where a *subclass* inherits state and functionality from a *superclass*.
+- Subclass use the `extend` keyword to inherit from a superclass.
+- The subclass can directly access public and protected members of the superclass.
+
+All Java classes must inherit from some other class, if not specfied it will inherit from `java.lang.Object`.
+```java
+public class MyClass; // will be replaced by the compiler as:
+public class MyClass extends Object;
+```
+
+In a UML diagram, inheritance is an unfilled arrow pointing towards the superclass.
+
+```java
+class A;
+class B extends A;
+class C extends B;
+```
+
+When constructor is not explicitly written for `C`, when creating `C`, we will call:
++ Constructor of `C`
++ Which calls the constructor of `B`
++ Which calls the constructor of `A`
+
+We can explicitly call the constructor of the superclass with `super()`;
+
+=== Type Casting
+
+- *Widening conversion* cast up the tree, e.g. $C to B to A$
+- *Narrowing conversion* is checked at runtime, if the type does not match will cause type errors.
+
+```java
+B b1 = new C()
+B b2 = new B();
+
+C c1 = (C) b1; // ok
+C c2 = (C) b2; // type error
+```
+
+=== Shadowing
+
+If a variable in the subclass has the same name as the superclass, we can specify where the variable comes from.
+```java
+// running in C
+// these are all different variables
+this.x = 10;
+((B) this).x = 20;
+((A) this).x = 30;
+```
+
+#note([
+  This is very ugly, please avoid at all cost.
+])
+
+=== Overriding
+
+#def([
+  *Annotations* are not part of the language, but hints to the compiler so it can perform stricter checks.
+])
+
+Use the `@Override` annotation to make sure it overrides a function from superclass.
+```java
+@Override
+public void myFunc();
+```
+
+#defs([
+  - An *abstract class* forces a subclass to override abstract methods.
+  - An *abstract method* has no implementation.
+])
+
+- In UML, an abstract class has _italic_ name if drawn in computer, { curly braces } if drawn by hand.
+- Interfaces just have the word "interface" in an UML diagarm.
+
+Interface groups classes that implements a set of methods.
+
+=== Inheritance vs Composition
+
+- Inheritance represents an _is-a_ relationship.
+- Composition represents a _has-a_ relationship.
+
+#grid2(
+  [
+    Implementation of a stack with inheritance (inapproprite)
+    ```java
+    class Stack extends Vector;
+    ```
+  ],
+  [
+    A better implementation uses composition.
+    ```java
+    class stack {
+      private Vector internal;
+    }
+    ```
+  ]
+)
+
+#hr
