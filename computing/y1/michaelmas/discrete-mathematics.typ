@@ -1,4 +1,5 @@
 #import "@local/lecture:0.1.0" : *
+#import "@preview/fletcher:0.5.8" as fletcher : *
 
 #set page(
   numbering: "1",
@@ -404,3 +405,151 @@ type N =
 A monoid is *commutative* if $x dot y = y dot x$.
 
 *Addition* $(bb(N), 0, +)$ and *multiplication* $(bb(N), 1, times)$ satisfies monoid laws and commutative laws.
+
+#hr
+
+== Rings
+
+#def([
+  A *semiring* $(bb(N), 0, plus.circle, 1, times.circle)$ is an algebraic structure with
+  - A commutative monoid structure $(bb(N), 0, plus.circle)$
+  - A monoid structure $(bb(N), 1, times.circle)$
+  And satisfies the distributive laws $x times.circle (y plus.circle z) = (x times.circle y) plus.circle (x times.circle z)$.
+
+  A semiring is *commutative* if $times.circle$ is.
+])
+
+=== Cancellation
+
+The additive and multiplicative structures of natural numbers allows for
+- Additive cancellation: $k + m = k + n imp m = n$
+- Multiplicative cancellation: if $k != 0$, then $k times m = k times n imp m = n$
+
+=== Inverses
+
+For a monoid with neutral element $e$ and binary operation $plus.circle$.
+- $x$ admits an inverse on the left if $Ex(l) l plus.circle x = e$
+- $x$ admits an inverse on the right if $Ex(r) x plus.circle r = e$
+- $x$ admits an inverse if $l$ and $r$ both exists.
+
+#prop([
+  If $l$ and $r$ both exists, $l = r$.
+])
+
+$
+e plus.circle r &= r \
+iff (l plus.circle x) plus.circle r &= r \ 
+iff l plus.circle (x plus.circle r) &= r \
+iff l &= r
+$
+
+#defs([
+  - A *group* is a monoid in which every element has an inverse.
+  - An *Abelian group* is a group where the monoid is commutative.
+])
+
+- $x$ admits an additive inverse if $Ex(y) x + y = 0$
+- $x$ admits an multiplicative inverse if $Ex(y) x times y = 1$
+
+The natural numbers can be extended to include all additive inverses to give the set of *integers*.
+
+#defs([
+  - A *ring* is a semiring $(bb(Z), 0, plus.circle, 1, times.circle)$ where $(bb(Z), 0, plus.circle)$ is a group. #br A ring is commutative if $(bb(Z), times.circle, 1)$ is.
+  - A *field* is a commutative ring in which every element besides $0$ has a *reciprocal* (inverse with respect to $times.circle$).
+])
+
+== Division Theorem
+
+Required to prove:
+$
+Fa(m in bb(N), n in bb(N)^+)Ex(!q, !r) (q >= 0) and (0 <= r < m) and (m = q n + r)
+$
+
+We need to prove if $(q, r)$ and $(q', r')$ both satisfies the conditon, then $(q, r)=(q',r')$.
+
+#let divtheorem = newproof("Division theorem")
+#let divtheorem = addassume(divtheorem, $(q >= 0) and (0 <= r < n) and (m = q n + r)$, $(q'>= 0) and (0 <= r' < n) and (m = q' n + r')$)
+#let divtheorem = addgoal(divtheorem, $q = q'$, $r = r'$)
+
+#showproof(divtheorem)
+
+Because $m-r = q n$, similar for $(q', r')$
+$
+m &equiv r space (mod n) \
+m &equiv r' space (mod n)
+$
+We have proved that congruence is transitive
+$
+cong(r, r', n)
+$
+As $0 <= r, r' < n$, therefore $r = r'$. And by cancellation, $q = q'$.
+
+=== Proving the Division Algorithm
+
+#grid2(
+```ml
+let divalg m n =
+  let diviter q r =
+    if r < n then (q, r)
+    else diviter (q + 1, r - n)
+  in diviter 0 m
+```
+)
+
+Required to prove:
++ Partial correcteness #br
+  $Fa(m in bb(N), n in bb(N)^+) "divalg"(m, n) "terminates with" (q_0, r_0) imp (r_0 < n and m = q_0 n + r_0)$
++ Total correctness. #br
+  $Fa(m in bb(N), n in bb(N)^+) "divalg"(m, n) "terminates"$
+
+
+  /*
+#diagram(
+  node((0,0), [Start]),
+  edge("-|>"),
+  node((0, 1), `th := transaction_start()`),
+  edge("r,d,d,d,d,d", "-|>"),
+  node((1, 6), [Transaction aborted]),
+  edge((0, 1), (0, 2), "-|>"),
+  node((0, 2), `ar := SELECT ...`),
+  edge("-|>"),
+  node((0, 3), `br := SELECT ...`),
+  edge("-|>"),
+  node((0, 4), `UPDATE A ...`),
+  edge("-|>"),
+  node((0, 5), `rc := transaction_commit(th)`),
+  edge("-|>"),
+  node((0, 6), [Transaction complete]),
+  edge((0, 2), "r", "-|>"),
+  edge((0, 3), "r", "-|>"),
+  edge((0, 4), "r", "-|>"),
+)
+*/
+
+#grid2(
+  [
+    We can prove partial correctness by induction:
+    - If `divalg` exits then $r_0 < n$
+    - Prove at each point of the computation #br
+      $m = q n + r$
+
+    To prove total correctness:
+    - $m$ decreases in natural number at every step.
+    - $m$ cannot decreate forever (all natural numbers comes from applying the successor function a finite number of times to 0).
+  ],
+  diagram(
+    node((0,0), `divalg m n`),
+    edge("-|>"),
+    node((0, 1), `diviter 0 m`),
+    edge("-|>"),
+    node((1, 1), `(0, m)`),
+    edge((0, 1), "d" ,"-|>"),
+    node((0, 2), `diviter 1 (m - n)`),
+    edge("-|>"),
+    node((1, 2), `(1, m - n)`),
+    edge((0, 2), "d" ,"-|>"),
+    node((0, 3), `...`),
+  )
+)
+
+#hr
