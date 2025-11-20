@@ -332,7 +332,7 @@ $
 Fa(p "is prime") cong(i^p, i, m)
 $
 
-#prop($
+#propos($
 Fa(i in bb(N) "not a multiple of" p) space cong(i dot i^(p-2), 1, p)
 $)
 
@@ -432,7 +432,7 @@ For a monoid with neutral element $e$ and binary operation $plus.circle$.
 - $x$ admits an inverse on the right if $Ex(r) x plus.circle r = e$
 - $x$ admits an inverse if $l$ and $r$ both exists.
 
-#prop([
+#propos([
   If $l$ and $r$ both exists, $l = r$.
 ])
 

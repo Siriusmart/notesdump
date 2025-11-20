@@ -1,4 +1,5 @@
 #import "@local/lecture:0.1.0" : *
+#import "@preview/cetz:0.4.2"
 
 #set page(
   numbering: "1",
@@ -383,6 +384,129 @@ $
   $
   "We can show the fractional error" (ln n! - n ln n - n) / (n!) = O(1/n) "as" n to infty.
   $
+)
+
+#hr
+
+=== Schwarz's Inequality
+
+As we have seen for vectors, $arrow(p) dot arrow(q) = |arrow(p)||arrow(q)| cos theta$.
+$
+&imp (arrow(p) dot arrow(q))^2 leq arrow(p)^(space.thin 2) space arrow(q)^(space.thin 2) \
+&imp (sum_(i) p_i times q_i)^2 leq (sum_i (p_i)^2)(sum_i (q_i)^2) "where" p, q "have components" p_1, p_2, dots
+$
+
+The general proof for vectors more than 2 components:
+$
+&imp Fa(lambda in bb(R)) sum_i^n (lambda p_i + q_i)^2 >= 0 \
+&iff lambda^2(sum_i^n (p_i)^2) + 2lambda (sum_i^n p_i q_i) + (sum_i^n (q_i)^2) >= 0
+$
+This is a quadratic in $lambda$. Since $lambda$ has 0 or 1 root, the discriminant $b <= 4a c$
+$
+4(sum_i^n p_i q_i)^2 &<= 4 (sum_i^n (p_i)^2)(sum_i^n (q_i)^2) \
+(sum_i^n p_i q_i delta s)^2 &<= (sum_i^n (p_i)^2 delta s)(sum_i^n (q_i)^2 delta s) \
+$
+This looks like the Riemann sum, we could write a proof for integrals only, or if we take $n to infty$.
+
+$
+(int^b_a p(x) q(x) dx)^2 &<= (int^b_a p(x)^2dx)(int^b_a q(x)^2 dx)
+$
+
+This is an inequality iff $p(x) prop q(x)$ - the vectors are in the same direction as each other.
+
+== Multiple Integrals
+
+We want to calculate the value under the surface $z=h(x, y)$
+
+Similar to Riemann sums, divide the region into little boxes, the $i$th box has area $delta A_i$.
+$
+V_n &= sum^n_(i=1) h(x_i, y_i) delta A_i \
+V &= int.two_A h(x, y) dA = lim_(n to infty) V_n
+$
+
+=== 2D Regions
+
+For a rectangular region:
+$
+int.two_A h(x, y) dA &= int^(x=b)_(x=a) int^(y=d)_(y=c) h(x, y) space.sixth dy space.sixth dx \
+&= int^(y=d)_(y=c) int^(x=b)_(x=a) h(x, y) space.sixth dx space.sixth dy
+$
+
+From the geometric interpretation of the integrals, the order does not matter.
+
+For a region bounded by $y=f(x)$ below and $y=g(x)$ above.
+$
+V = int^(x=b)_(x=a) int^(y=f(x))_(y=g(x)) h(x, y) space.sixth dy space.sixth dx
+$
+We can change the order at which $x, y$ are if the new integral is easier to evaluate.
+
+If we set $h(x, y) = 1$, then we get the area of the region by
+$
+A = int.two_A dA
+$
+
+=== Separating Integrand
+
+If we can separate $f(x, y)$ as $g(x)h(y)$, where the bounds don't depend on $x$ or $y$ (a rectangle).
+$
+int^b_a int^d_c g(x) h(y) space.sixth dy space.sixth dx = (int^b_a g(x) dx)(int^d_c h(y) dy)
+$
+We can do this because $f(x) dx$ is a constant with respect to $y$, we can take it out using the constant multiple rule.
+$
+int k f(y) dy = k int f(y) dy
+$
+
+=== Polar Coordinates
+
+Many regions have symmetry, it may be easier to write $h(r, theta)$ than $h(x, y)$.
+
+$
+x &= r cos theta \
+y &= r sin theta
+$
+
+#grid2(
+  [
+    For a small change in $r$ and $theta$, a point moves by vector
+    $
+    d/dr vec(x, y) dr&= vec(cos theta, sin theta) dr\
+    d/(d theta) vec(x, y) d theta &= vec(-r sin theta, r cos theta) d theta\
+    $
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (4, 1), (3.7,  1.8), (0, 0))
+    line((3.2, 1.58), (3.48, 0.85))
+    line((3.54, 0.65), (4.1, 0.8), mark: (end: ">"))
+    content((3.8, 0.3), $arrow(d r)$)
+    line((4.2, 1.05), (3.9, 1.9), mark: (end: ">"))
+    content((4.5, 1.5), $arrow(d theta)$)
+
+    arc-through((1, 0.25), (1.01, 0.3), (0.945, 0.45))
+  })
+)
+
+$dA$ is the area spanned by the two vectors. We can find $dA$ using the determinant.
+$
+dA = det mat(cos theta, -r sin theta; sin theta, r cos theta) space.sixth dr space.sixth d theta= r space.sixth dr space.sixth d theta
+$
+So we have
+$
+int.two_A f(r, theta) dA &= int.two_A f(r, theta) space.sixth r space.sixth dr space.sixth d theta
+$
+
+Then multiple integration can continue as normal.
+
+=== Triple Integrals
+
+By finding $dV$ using the matrices technique.
+
+#tab2(
+  [Coordinate system], [$dV$],
+  [Cartesian coordinates], [$dx$ $dy$ $dz$],
+  [Cylindrical polar coordinates], [$r$ $dr$ $d theta$ $dz$],
+  [Spherical polar coordinates], [$r$ $sin theta$ $dr$ $d theta$ $d phi$]
 )
 
 #hr
