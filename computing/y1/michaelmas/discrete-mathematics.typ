@@ -553,3 +553,122 @@ Required to prove:
 )
 
 #hr
+
+=== Integer Modulo
+
+$Fa(m in bb(Z)^+)$ the integer modulo of $m$ is $bb(Z)_m = {0,1,2,dots,m-1}$. And operators
+$
+k +_m l &= rem(k+l,m) \
+k times_m l &= rem(k times l, m)
+$
+
+So $k+_m l "and" k times_m l in bb(Z)_m$
+
+#propos([
+  $Fa(m > 1) (bb(Z)_m, 0, +_m, 1, times_m)$ is a commutative ring.
+])
+
+#propos([
+  Let $m in bb(Z)^+$, then $k in bb(Z)_m$ has reciprocal iff $Ex(i, j in bb(Z)) k times i + m times j = 1$
+])
+
+Assume:
+1. $m in bb(Z)^+$
+2. $k in bb(Z)_m$, meaning $0 <= k < m$
+3. $k "has reciprocal"$, meaning $Ex(l in bb(Z)_m) cong(k times l, 1, m)$
+
+New goal: $Ex(i, j in bb(Z)) k times i + m times j = 1$
+
+$
+& Ex(l, a in bb(Z)_m) k times l - 1 = a times m \
+iff & Ex(l, a in bb(Z)_m) k times l + a times m = 1
+$
+As required.
+
+#def([
+  $r$ is a linear combination of $m, n$ if $Ex(s, t in bb(Z)) s times m + t times n = r$
+])
+
+== Sets
+
+#def([
+  A *set* is a collection of mathematical objects.
+])
+
+$x in A$ if $x$ is an element of $A$.
+
+=== Creating Sets
+
+We can define sets by
+- Listing elements
+- Using set comprehension, e.g. ${x in A | P(x)}$
+
+#def([
+  $A = B$ iff $Fa(x) x in A iff x in B$
+])
+
+If $Px = Qx$, then ${x in A | Px} = {x in A | Qx}$
+
+=== Divisors
+
+- Let $n in nat$, the set of $n$'s divisors $d(n) = {d in nat : d|n}$
+- Let $m,n in nat$, the set of common divisors $cd(n, m) = {d in nat : d|n and d|m}$
+
+#theorem("Key Theorem", [
+  $Fa(m,m' in nat, n in whole) cong(m, m', n) imp cd(m,n) = cd(m',n)$
+])
+
+Assume:
+1. $m,m' in nat$
+2. $n in whole$
+3. $cong(m,m',n)$
+
+Goal: $d in cd(m,n) iff d in cd(m', n)$, or prove the predicates are equal: $d|m and d|n iff d|m' and d|n$
+
+Assume:
+4. $d|m and d|n$
+
+New goal: $d|m'$ (we get rid of $d|n$ because it is trivial)
+
+$
+& Ex(a in whole) m = a times d "by 4 as 5" \
+& Ex(b in whole) n = b times d "by 4 as 6" \
+& Ex(c in whole) m - m' = c times n "by 3 as 7" \
+& Ex(a, b, c in whole) a times d - m' = c times (b times d) "by 5, 6, 7 as 8" \
+& Ex(a, b, c in whole) m' = d times (a - c times b) "by 8 as 9" \
+& Ex(k in whole) m' = d times k "by 9"
+$
+Therefore $d|m'$ as required.
+
+=== Euclid's Algorithm
+
+$
+cd(m,n) = cases(
+  d(n) &"if" n|m ,
+  cd(n, rem(m,n)) quad&"otherwise"
+)
+$
+
+We are making progress here because $rem(m,n) < n$. This can be proved using the key theorem.
+
+To find the GCD, we want the max element.
+$
+gcd(m,n) = cases(
+  n &"if" n | m,
+  gcd(n, rem(m,n)) quad &"otherwise"
+)
+$
+
+Which is Euclid's algorithm.
+
+#propos([
+  $Fa(m,n,a,b in nat) cd(m,n) = d(a) and cd(m,n) = d(b) imp a = b$
+])
+
+#propos([
+  $Fa(m,n,k in nat) cd(m,n) = d(k) "iff" k|m and k|n and Fa(d in nat) d|m and d|n imp d|k$
+
+  In other words, $k$ is the GCD of $m$ and $n$.
+])
+
+#hr
