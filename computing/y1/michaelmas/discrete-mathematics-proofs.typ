@@ -158,6 +158,8 @@ Assume:
   Assume:
   3. $Fa(n in whole^+) cong(n times a, n times b, n times m)$
 
+  New goal: $cong(a, b, m)$
+
   $
   &cong(1 times a, 1 times b, 1 times m) "by (3)" \
   imp&cong(a, b, m)
