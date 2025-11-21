@@ -506,7 +506,7 @@ By finding $dV$ using the matrices technique.
   [Coordinate system], [$dV$],
   [Cartesian coordinates], [$dx$ $dy$ $dz$],
   [Cylindrical polar coordinates], [$r$ $dr$ $d theta$ $dz$],
-  [Spherical polar coordinates], [$r$ $sin theta$ $dr$ $d theta$ $d phi$]
+  [Spherical polar coordinates], [$r^2$ $sin theta$ $dr$ $d theta$ $d phi$]
 )
 
 #hr
