@@ -462,3 +462,118 @@ Interface groups classes that implements a set of methods.
 )
 
 #hr
+
+== Polymorphism
+
+- *Subtyping polymorphism* is where many kinds of objects provide the same method.
+- *Parametric polymorphism* uses generics.
+- *Ad-hoc polymorphism* uses overloading.
+
+#grid2([
+  *Static polymorphism* decides the function to run at runtime.
+  ```java
+  Person p = new Student();
+  p.dance(); // this runs Person::dance()
+  ```
+
+  Java applies dynamic polymorphism on state and static methods.
+],
+[
+  *Dynamic polymorphism* decides at runtime when we know the child's type.
+  ```java
+  Person p = new Student();
+  p.dance(); // this runs Student::dance()
+  ```
+
+  Java applies dynamic polymorphism on methods.
+]
+)
+
+#note([
+  Dynamic polymorphism has a runtime overhead.
+])
+
+Polymorphism allows:
+- Less changes needed to add features.
+- So less likely to make mistakes.
+
+=== Multiple Inheritance
+
+Inheriting from multiple classes causes name clash called the *diamond problem*.
+
+#grid2(
+  [
+    There will be loads of state and method name clashes.
+
+    What should happen if we call `plumbtrician.doJob()`?
+
+    In Java
+    - Classes can have at most 1 direct parent.
+    - But multiple interfaces are allowed: interfaces don't have implementations, it just says the class must provide the methods.
+
+      If the interfaces require the same method that's fine.
+
+      #note([
+        Interfaces can have *default implementations*, so new functions can be added without breaking existing classes (that implements the interface).
+      ])
+    ],
+    cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (2, 1))
+      content((1, 0.5), "Employee")
+
+      rect((0-2, 0-2.5), (2-2, 1-2.5))
+      content((3, -2), "Electrician")
+      rect((0+2, 0-2.5), (2+2, 1-2.5))
+      content((-1, -2), "Plumber")
+
+      rect((0-0.2, 0-5), (2 +0.2, 1-5))
+
+      line((-1, -1.5), (-1, -0.75), (1, -0.75), (1, 0), mark: (end: ">"))
+      line((3, -1.5), (3, -0.75), (1, -0.75), (1, 0), mark: (end: ">"))
+
+      line((1, -4), (1, -3.25), (-1, -3.25), (-1, -2.5), mark: (end: ">"))
+      line((1, -4), (1, -3.25), (3, -3.25), (3, -2.5), mark: (end: ">"))
+
+      content((1, -4.5), "Plumbtrician")
+    })
+  )
+
+=== Method Resolution
+
+When there is a name clash, the resolution priority from highest to lowest is
++ Class methods
++ Interface methods
++ Methods from superclass
+
+To call a default method from an interface, write
+```java
+class MyClass implements InterA, InterB {
+  public void myMethod() {
+    InterA.super.myMethod(); // calls InterA implementation
+    InterB.super.myMethod(); // calls InterB implementation
+  }
+}
+```
+
+== OOP Principles
+
+=== OCP: Open to extension, Close to modification
+- Make classes easy to add new behaviour.
+- But hard to change existing behaviour.
+
+=== LSP: Liskov Substitution Principle
+
+Subtypes must be behaviourally substitute to the parent type without negative side effects.
+
+E.g. code below is not behaviourally substitute for the interface it is implementing.
+```java
+class MyClass implements InterA {
+  public void myMethod() {
+    throw new UnsupportedOperationException("myMethod");
+  }
+}
+```
+
+#hr
