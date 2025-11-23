@@ -1,5 +1,6 @@
 #import "@local/lecture:0.1.0" : *
 #import "@preview/cetz:0.4.2"
+#import "@preview/cetz-plot:0.1.3"
 
 #set page(
   numbering: "1",
@@ -510,3 +511,94 @@ By finding $dV$ using the matrices technique.
 )
 
 #hr
+
+== The Gaussian Integral
+
+#note([
+  $f(x) = e^(x^2)$ gives the normal distribution.
+])
+
+The integral $I_a = int^a_(-a) e^(x^2) dx$ has no close form expression, but we can compute $I_infty$.
+
+#grid2(
+  [
+    Suppose the square has integral $(I_a)^2$
+    $
+    &=(int^a_(-a)e^(-x^2) dx)^2 \
+    &=(int^a_(-a)e^(-x^2) dx)(int^a_(-a)e^(-y^2) dy) \
+    &=int^a_(-a)int^a_(-a) e^(-(x^2+y^2)) dy space.sixth dx
+    $
+
+    Consider the area of the circles, a circle with radius $a$ has integral
+    $
+    J(a) = int^(2 pi)_0 int^a_0 e^(-r^2) r space.sixth dr space.sixth d theta
+    $
+  ],
+  cetz.canvas({
+    import cetz.draw : *;
+
+    circle((0, 0), radius: 1.6 * calc.sqrt(2), fill: gray)
+    rect((-1.6, -1.6), (1.6, 1.6), fill: blue)
+    circle((0, 0), radius: 1.6, fill: white)
+
+    content((0.9, 0.5), $r = a$)
+    content((2.5, 1.9), $r = sqrt(2) a$)
+
+    line((-3.2, 0), (3.2, 0), stroke: 0.5pt, mark: (end: ">"))
+    line((0, -3.2), (0, 3.2), stroke: 0.5pt, mark: (end: ">"))
+  })
+)
+
+By inspection $J(a) < (I_a)^2 < J(sqrt(2) a)$. Let the area between the circles $K(a) = J(sqrt(2) a) - J(a)$
+$
+K(a) <= (pi (sqrt(2) a)^2 - pi a^2) e^(-a^2) = pi a^2 e^(-a^2)
+$
+Which is the area between the circles multiplied by the maximum value of $e^(-a^2)$ in that region.
+
+$because K(a) to 0 "as" a to infty, therefore (I_a)^2 to J(infty) "as" a to infty$.
+$
+(I_a)^2 &= J(infty) \
+&=int^(2 pi)_0 d theta int^a_0 e^(-r^2) r space.sixth dr \
+&= 2pi [-1/2 e^(-r^2)]^infty_0 \
+&= pi \
+I_a &= sqrt(pi)
+$
+
+=== The Error Function
+
+#grid2([
+  $
+  erf(z) = 2 / sqrt(pi) int^z_0 e^(-x^2) dx
+  $
+
+  $erf$ gives the value of the integral when $z eq.not infty$. As $z to infty$, $erf z to 1$.
+
+  The value is normalised between $-1$ and $1$ by the constant $2 slash sqrt(pi)$.
+],
+{
+  let f1(x) = (calc.pow(calc.e, 2 * x) - 1) / (calc.pow(calc.e, 2 * x) + 1)
+
+  set text(size: 10pt)
+
+  cetz.canvas({
+    import cetz.draw: *
+
+    // Set-up a thin axis style
+    set-style(axes: (stroke: .5pt, tick: (stroke: .5pt)),
+    legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%))
+
+    cetz-plot.plot.plot(size: (8, 5),
+    x-tick-step: 2,
+    y-tick-step: 1, y-min: -1.5, y-max: 1.5,
+    legend: "inner-north",
+    {
+      cetz-plot.plot.add(f1, domain: (-3.9, 3.9), label: $ erf x  $,
+      style: (stroke: black))
+    })
+  })
+}
+)
+
+#hr
+
+#align(center, `END Integration`)
