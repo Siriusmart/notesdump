@@ -97,34 +97,35 @@ $Fa(m in whole^+, a, b in whole) cong(a, b, m) iff m|(a-b)$
 
 Goal: $(n "even" iff cong(n, 0, 2)) and (n "odd" iff cong(n, 1, 2))$
 
-#surround([
-  Subgoal: $n "even" iff cong(n, 0, 2)$
+#grid2(
+  surround([
+    Subgoal: $n "even" iff cong(n, 0, 2)$
 
-  Assume:
-  1. $n "even"$
+    Assume:
+    1. $n "even"$
 
-  New goal: $cong(n, 0, 2)$
-  $
-  n "even" &iff Ex(k in whole) n = 2 times k \
-  &iff Ex(k in whole) (n-0) = 2 times k \
-  &iff cong(n, 0, 2)
-  $
-])
+    New goal: $cong(n, 0, 2)$
+    $
+    n "even" &iff Ex(k in whole) n = 2 times k \
+    &iff Ex(k in whole) (n-0) = 2 times k \
+    &iff cong(n, 0, 2)
+    $
+  ]),
+  surround([
+    Subgoal: $n "odd" iff cong(n, 1, 2)$
 
-#surround([
-  Subgoal: $n "odd" iff cong(n, 1, 2)$
+    Assume:
+    1. $n "odd"$
 
-  Assume:
-  1. $n "odd"$
+    New goal: $cong(n, 1, 2)$
 
-  New goal: $cong(n, 1, 2)$
-
-  $
-  n "odd" &iff Ex(k in whole) n = 2 times k + 1 \
-  &iff Ex(k in whole) (n-1) = 2 times k \
-  &iff cong(n, 1, 2)
-  $
-])
+    $
+    n "odd" &iff Ex(k in whole) n = 2 times k + 1 \
+    &iff Ex(k in whole) (n-1) = 2 times k \
+    &iff cong(n, 1, 2)
+    $
+  ])
+)
 
 == Proposition 18
 
@@ -172,3 +173,103 @@ Assume:
   - $Fa(a,b,c) (a=b and b=c) imp a = c$
   - $Fa(a,b,x,y) (a=b and x=y) imp (a+x=b+x=b+y)$
 ])
+
+== Theorem 19
+
+Goal: $Fa(n in whole) 6|n iff 3|n and 2|n$
+
+Assume:
+1. $n in whole$
+
+New goal: $6|n iff 3|n and 2|n$
+
+#surround([
+  Subgoal: $6|n imp 3|n and 2|n$
+
+  Assume:
+  2. $6|n$
+
+  New goal: $3|n and 2|n$
+
+  #grid2(
+    surround([
+      Subgoal: $3|n$
+      $
+      6|n &iff Ex(i in whole) n = 6 times i \
+      &imp Ex(j in whole) n = 3 times j \
+      &iff 3|n
+      $
+    ]),
+    surround([
+      Subgoal: $2|n$
+      $
+      6|n &iff Ex(i in whole) n = 6 times i \
+      &imp Ex(j in whole) n = 2 times j \
+      &iff 2|n
+      $
+    ])
+  )
+])
+
+#surround([
+  Subgoal: $3|n and 2|n imp 6|n$
+
+  Assume:
+  2. $2|n and 3|n$
+
+  New goal: $6|n$
+  $
+  Ex(i in whole) n &= 2 times i \
+  imp Ex(i in whole) 3 times n &= 6 times i "as (3)" \
+  Ex(j in whole) n &= 3 times j \
+  imp Ex(j in whole) 2 times n &= 6 times j "as (4)" \
+  $
+  $
+  imp&Ex(i, j in whole) n = 6 times(i - j) "by (3) and (4)" \
+  imp&Ex(k in whole) n = 6 times k \
+  imp& 6|n
+  $
+])
+
+== Proposition 21
+
+Goal: $Fa(k in whole^+)Ex(i,j in nat) 4 times k = i^2 - j^2$
+
+Assume:
+1. $k in whole^+$
+
+Let $i=k+1, j = k-1$
+$
+i^2 - j^2 &= (k+1)^2 - (k-1)^2 \
+&= 4 times k
+$
+
+== Theorem 23
+
+Goal: $Fa(l,m,n in whole) l|m and m|n imp l|n$
+
+Assume:
+1. $l,m,n in whole$
+2. $l|m and m|n$
+
+New goal: $l|n$
+
+$
+&Ex(i in whole) m = i times l \
+&Ex(j in whole) n = j times m \
+imp&Ex(i,j in whole) n = (j times i) times l \ 
+imp&Ex(k in whole) n = k times l\
+imp&l|n
+$
+
+#def($
+(Ex(!x) Px) iff (Ex(x) Px and (Fa(y, z) P(y) and P(z) imp y = z))
+$)
+
+== Proposition 24
+
+Goal: $Fa(n in whole, m in whole^+) Ex(!z) 0 leq z lt m and cong(n, z, m)$
+
+Assume:
+1. $m in whole^+$
+2. $n in whole$
