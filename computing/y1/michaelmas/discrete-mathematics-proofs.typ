@@ -12,10 +12,10 @@
   ],
 )
 
-== Definition 7
+== Definition 7: odd integer
 $n in bb(N)$ is odd if $Ex(i in bb(N)) n = 2i+1$.
 
-== Proposition 8
+== Proposition 8: product of odd integers is odd
 
 Goal: $Fa(m,n in bb(N)) m "and" n "odd" imp m times n "odd"$
 
@@ -35,7 +35,7 @@ imp & Ex(k in bb(N)) m times n = 2k + 1\
 imp & m times n "odd"
 $
 
-== Definition 9
+== Definition 9: real numbers
 $Fa(x in bb(R))$
 - $Ex(m, n in bb(Z)) x = m slash n iff x "rational"$
 - $not (x "rational") iff x "irrational"$
@@ -45,7 +45,7 @@ $Fa(x in bb(R))$
 - $not (x "negative") iff x "nonnegative"$
 - $x "nonnegative" and x in bb(Z) iff x in bb(N)$
 
-== Proposition 10
+== Proposition 10: rational square root
 Goal: $Fa(x "positive") sqrt(x) "rational" imp x "rational"$
 
 === Proof
@@ -65,7 +65,7 @@ $
   $P and (P imp Q) imp Q$
 ])
 
-== Theorem 11
+== Theorem 11: implication transitivity
 Goal: Let $P_1, P_2, P_3$ be statements, $(P_1 imp P_2 and P_2 imp P_3) imp (P_1 imp P_3)$
 
 === Proof
@@ -85,15 +85,15 @@ $
   $(P iff Q) iff (P imp Q and P oif Q)$
 ])
 
-== Definition 12
+== Definition 12: divisibility
 
 $d|n iff Ex(k in whole) n = k times d$
 
-== Definition 14
+== Definition 14: congruence
 
 $Fa(m in whole^+, a, b in whole) cong(a, b, m) iff m|(a-b)$
 
-== Proposition 16
+== Proposition 16: parity as congruence
 
 Goal: $(n "even" iff cong(n, 0, 2)) and (n "odd" iff cong(n, 1, 2))$
 
@@ -127,7 +127,7 @@ Goal: $(n "even" iff cong(n, 0, 2)) and (n "odd" iff cong(n, 1, 2))$
   ])
 )
 
-== Proposition 18
+== Proposition 18: linearity of congruence
 
 Goal: $Fa(m in whole^+, a, b in whole) cong(a, b, m) iff (Fa(n in whole^+) cong(n times a, n times b, n times m))$
 
@@ -174,7 +174,7 @@ Assume:
   - $Fa(a,b,x,y) (a=b and x=y) imp (a+x=b+x=b+y)$
 ])
 
-== Theorem 19
+== Theorem 19: divisibility of prime products
 
 Goal: $Fa(n in whole) 6|n iff 3|n and 2|n$
 
@@ -231,7 +231,7 @@ New goal: $6|n iff 3|n and 2|n$
   $
 ])
 
-== Proposition 21
+== Proposition 21: difference of squares
 
 Goal: $Fa(k in whole^+)Ex(i,j in nat) 4 times k = i^2 - j^2$
 
@@ -244,7 +244,7 @@ i^2 - j^2 &= (k+1)^2 - (k-1)^2 \
 &= 4 times k
 $
 
-== Theorem 23
+== Theorem 23: divisibility transitivity
 
 Goal: $Fa(l,m,n in whole) l|m and m|n imp l|n$
 
