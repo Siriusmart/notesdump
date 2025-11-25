@@ -10,7 +10,8 @@
 - [Digital Electronics](./computing/y1/michaelmas/digital-electronics.pdf)
 - [Foundations of Computer Science](./computing/y1/michaelmas/foundations-of-computer-science.pdf)
 - [Introduction to Graphics](./computing/y1/michaelmas/introduction-to-graphics.pdf)
-- [Discrete Mathematics](./computing/y1/michaelmas/discrete-mathematics.pdf) ([without words](./computing/y1/michaelmas/discrete-mathematics-proofs.pdf))
+- [Discrete Mathematics (up to date but very disganised)](./computing/y1/michaelmas/discrete-mathematics.pdf)
+- [Discrete Maths Without Words (4 lectures behind in progress but very well structured)](./computing/y1/michaelmas/discrete-mathematics-proofs.pdf)
 - [Object Oriented Programming](./computing/y1/michaelmas/oop.pdf)
 
 # Maths
