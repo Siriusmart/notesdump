@@ -1,4 +1,5 @@
 #import "@preview/cetz:0.4.2"
+#import "@preview/fletcher:0.5.8" : *
 #import "@local/lecture:0.1.0" : *
 
 #set page(
@@ -876,3 +877,320 @@ We need to write both CPU and GPU code:
 ])
 
 #hr
+
+== OpenGL Rendering
+
+The rendering pipeline of OpenGL:
+
+#diagram(
+  node([*Vertex data*], stroke: red),
+  edge("-|>"),
+  node((1, 0), [
+    *Vertex shader* \
+    MPV transforms are \ 
+    computed and applied \
+    to each vertex
+  ], stroke: blue),
+  edge("-|>"),
+  node((2, 0), [
+    *Tesselation control shader* \
+    Tesselation (split surface into more \
+    polygons) - can be conditional to \
+    give close objects more details.
+  ], stroke: blue),
+  edge("-|>"),
+  node((2, 1), [
+    *Geometry shader* \
+    Create new geometry (e.g. fur \ and volumes) do they can be \
+    generated instead of transferred \
+    from the CPU.
+  ], stroke: blue),
+  edge("-|>"),
+  node((1, 1), [
+    *Primitive assembly* \
+    Organise shaders \
+    for rendering\
+    (non programmable)
+  ], stroke: orange),
+  edge("-|>"),
+  node((0, 1), [
+    *Clipping* \
+    (non programmable)
+  ], stroke: orange),
+  edge("-|>"),
+  node((0, 2), [
+    *Rasterisation* \
+    (non programmable)
+  ], stroke: orange),
+  edge("-|>"),
+  node((1, 2), [
+    *Fragment shader* \
+    E.g. phong's \
+    shading algorithm.
+  ], stroke: blue),
+  edge("-|>"),
+  node((2, 2), [
+    *Screen buffer*
+  ], stroke: red),
+)
+
+=== Vertex Data
+
+Vertex are defined as defined by their positions and normals, primitives are defined by vertices.
+
+#grid2([
+  ==== Vertex attributes.
+  #tab3(
+    [Index], [Position], [Normal],
+    [1], [0,0,0],[0,0,-1],
+    [2], [1,0,0],[0,0,-1],
+    [3], [0,1,0],[0,0,-1],
+  )
+], [
+  ==== Primitives (triangles)
+  #tab1(
+    [Indicies],
+    [1,2,3]
+  )
+])
+
+#note([
+  Two primitives with different normals cannot share vertices.
+])
+
+#note([
+  Primitives are *one-sided* by default, it is see through if the normal is in the wrong direciton.
+])
+
+=== GLSL
+
+Shaders are code that runs on the GPU, it is executed for each fragment and vertex.
+
+```glsl
+#version 330 // OpenGL driver version
+in vec3 position;
+in vec3 normal;
+out vec3 frag_normal;
+uniform mat4 mpv_matrix;
+
+void main() {
+  frag_normal = normal;
+  gl_position = mpv_matrix * vec4(position, 1.0); // position is vec3,
+                                                  // MPV is 4x4
+}
+```
+
+=== Aggregate Types
+
+The aggregated types have format `([empty for float]|d|i|u|b)vec(2|3|4)` corresponding to `float`, `double`, `int`, `uint` and `bool` vectors.
+
+#note([
+  Operating on *aggregate types* such as ```glsl vec4``` is almost as fast as opering to a ```glsl float``` due to parallelisation.
+])
+
+Arrays exist:
+```glsl
+float lut[5] = float[5](1.0, 2.0, 3.0, 4.0, 5.0);
+
+for(int i = 0; i < lut.length(); i++) {
+  lut[i] *= 2;
+}
+```
+
+=== Storage Qualifiers
+
+#tab2(
+  [Modifier], [Description],
+  [`const`], [Fixed at compile time.],
+  [`in`], [Input to the shader.],
+  [`out`], [Output of the shader.],
+  [`uniform`], [Parameter passed from application (Java), constant for geometry.],
+  [`buffer`], [GPU memory buffer with R/W access.],
+  [`shared`], [???]
+)
+
+#diagram(
+  node([*Array buffer* for:
+- Normals
+- Vertices], stroke: red),
+  edge("-|>", [
+    ```glsl
+    vec3 position;
+    vec3 normal;
+    ```
+  ]),
+  node((4, 0), [*Vertex shader*], stroke: blue),
+  edge("-|>", [
+    ```glsl
+    vec3 fragment_normal;
+    ```
+  ]),
+  node((4, 2), [*Fragment shader*], stroke: blue),
+  edge("-|>", [
+    ```glsl
+    vec3 fragment_normal;
+    ```
+  ]),
+  node((0, 2), [*Frame buffer*], stroke: red)
+)
+
+#note([
+  *Recursion* is not allowed in GLSL.
+])
+
+=== Flow of GL Applicaiton
+
+#diagram(
+  node((0, 0), [
+    *Initialise OpenGL*
+    - Initialise GL context
+    - Send geometry to GPU
+    - Compile shaders
+  ], stroke: black),
+  edge("-|>"),
+  node((1, 0), [
+    *Setup inputs*
+  ], stroke: black),
+  edge("-|>"),
+  node((2, 0), [
+    *Draw frame*
+    - Clear screen buffer
+    - Apply MVP matrix
+    - Render geometry
+  ], stroke: black),
+  edge((2, 0), (2, 0), "-|>", bend: 130deg),
+  edge("-|>"),
+  node((2, 1), [
+    *Free resources*
+  ], stroke: black),
+)
+
+== Textures
+
+Textures is a way to get details without increasing geometry. Each point on the texture have coordinates normalised between 0 and 1.
+
+=== 1D Textures $(s)$
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  line((0, 1), (8, 1), mark: (end: ">"))
+  content((4, 0.75), $s$)
+  content((0.1, 0.75), $0$)
+  content((7.9, 0.75), $1$)
+
+  line((0, 0), (8, 0))
+  line((0, 0.5), (8, 0.5))
+
+  for i in range(17) {
+    line((i / 2, 0), ((i / 2), 0.5))
+  }
+})
+
+#grid2(width: 40%,
+  [
+    === 2D Textures $(s, t)$
+
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0, 0), (4, 4))
+
+      line((0, 4.5), (4, 4.5), mark: (end: ">"))
+      content((2, 4.25), $s$)
+      content((0.1, 4.25), $0$)
+      content((3.9, 4.25), $1$)
+
+      line((-0.5, 4), (-0.5, 0), mark: (end: ">"))
+      content((2, 4.25), $s$)
+      content((-0.25, 3.9), $0$)
+      content((-0.25, 2), $t$)
+      content((-0.25, 0.1), $1$)
+    })
+  ],
+  [
+    === 3D Textures $(s, t, p)$
+
+    #cetz.canvas({
+      import cetz.draw : *
+
+      rect((0.5, -0.5), (4.5, 3.5))
+      rect((0.25, -0.25), (4.25, 3.75), fill: white)
+      rect((0, 0), (4, 4), fill: white)
+
+      line((0, 4.5), (4, 4.5), mark: (end: ">"))
+      content((2, 4.25), $s$)
+      content((0.1, 4.25), $0$)
+      content((3.9, 4.25), $1$)
+
+      line((-0.5, 4), (-0.5, 0), mark: (end: ">"))
+      content((2, 4.25), $s$)
+      content((-0.25, 3.9), $0$)
+      content((-0.25, 2), $t$)
+      content((-0.25, 0.1), $1$)
+
+      line((-0.25, -0.25), (0.5, -1), mark: (end: ">"))
+      content((-0.5, -0.25), $0$)
+      content((0, -1), $1$)
+      content((-0.25, -0.625), $p$)
+    })
+  ]
+)
+
+#grid2(width: 40%,
+  [
+    OpenGL uses a UV-map, a $(u, v)$ coordinate is defined for each vertex so by interpolation, every surface point gets a texture value.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    rect((0, 0), (4, 4))
+
+    line((0, 4.5), (4, 4.5), mark: (end: ">"))
+    content((2, 4.25), $u$)
+    content((0.1, 4.25), $0$)
+    content((3.9, 4.25), $1$)
+
+    line((-0.5, 4), (-0.5, 0), mark: (start: ">"))
+    content((-0.25, 3.9), $1$)
+    content((-0.25, 2), $v$)
+    content((-0.25, 0.1), $0$)
+  })
+)
+
+=== Upscaling and Downscaling
+
+Upscaling algorithms:
+- *Nearest neighbour* creates blocky artifacts.
+- *Bilinear interpolation* creates blurry artifacts.
+
+Downsampling algorithm:
+- *Area avreaging* averages the colours in the region a screen pixel covers. This is a slow operation.
+- *Mipmap* stores texture in multiple resolution so that calculation don't need to be done every time.
+  
+  A full scale texture image, half scaled, quarter scaled, etc., images are stored. This only requires $1 slash 3$ extra storage.
+
+=== Texture Tiling
+
+We want to store small fragments of the texture, and allow it to wrap around in coordinates.
+$
+T(2.1,0) = T(1.1, 0) = T(0.1, 0)
+$
+
+#note([
+  We can store all UV maps of a surface in a single image so it is easier to manage.
+])
+
+=== Other Mappings
+
+#grid2(
+  [Bump mapping], [Use a texture to deflect hte normal, which affect the shading.],
+  [Displacement mapping], [Also changes the shape (outline) of an object.],
+  [Environment mapping], [Environment texture have infinite distance to the source of reflection.]
+)
+
+#note([
+  A *cube map* is used for *sky boxes*, each face captures the environment in that direction.
+])
+
+A texture can contain attributes, e.g. how to interpolate between mipmap levels.
