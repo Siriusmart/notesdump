@@ -1,4 +1,5 @@
 #import "@local/lecture:0.1.0" : *
+#import "@preview/fletcher:0.5.8" : *
 #import "@preview/cetz:0.4.2"
 
 #set page(
@@ -577,3 +578,149 @@ class MyClass implements InterA {
 ```
 
 #hr
+
+== Object Lifecycle
+
+=== Object Creation
+
+#diagram(
+  node((0, -1)),
+  edge("-|>"),
+  node((0,0), "Is the class in memory?"),
+  edge("r", "-|>", [no]),
+  node((1,0), "Load the class to memory"),
+  edge("d", "-|>"),
+  node((1,1), [Create a `java.lang.Class` object]),
+  edge("d", "-|>"),
+  node((1,2), [Allocate memory for static blocks]),
+  edge("d", "-|>"),
+  node((1,3), [Run static initialiser blocks]),
+  edge("l", "-|>"),
+  node((0,3), [Allocate memory]),
+  edge((0, 0), "ddd", "-|>", [yes]),
+  edge("-|>"),
+  node((0,4), [Run nonstatic initialiser blocks]),
+  edge("-|>"),
+  node((0,5), [Run constructors]),
+)
+
+#note([
+  Static blocks are code that runs only once when the class is loaded.
+  ```java
+  static {
+    // statements
+  }
+  ```
+])
+
+=== Object Deletion
+
+#grid2([Approach 1], [The programmer specifies what to delete, it can cause *memory leaks* if objects are not deleted.],
+[Approach 2], [Garbage collection: if an object has a *reference count* of zero - it has no references pointing to it, so there is not way to access the object.],)
+
+Once in a while Java stops the running process, follows all references and mark items that has a reference count of zero.
+
+==== Deletion Strategies
+
+#grid2([Delete immediately], [If there is lots to delete, it can take while.],
+[Queue for deletion], [If it is taking too long, delete them at the next GC pause.])
+
+After deletion, the GC may *compact the heap* to remove gaps in memory. This cannot be done while the program is running.
+
+#note([
+  Since most objects don't live that long, the heap is divided into
+  1. All objects are created in *eden*.
+  2. If they survived a few GCs, they are promoted to *survivors*.
+  3. A few more GCs and they go to *tenured*.
+  This is called *heap division*.
+])
+
+==== Garbage Collectors
+
+You can select the GC to use.
+#grid2([Serial GC], [Pauses the program for GC],
+[Parallel GC], [Same as serial, but uses multiple threads for deletion.],
+[G1 (default)], [Monitors while the program is running, and use the GC pause to do deletions.],
+[Epsilon GC], [A no-op GC, use only if completly certain that program uses constant memory.])
+
+=== Object Copying
+
+#note([
+  Hearing about a bunch of programmers failing to conform to a standard for 30 minutes in lecture is making me slightly angry.
+])
+
+#defs([
+  - A *shallow copy* copies the object, but the copied object references the same objects internally if it contains other objects.
+  - A *deep copy* copies everything, and is almost always what we want.
+])
+
+There are no way to copy a Java object! Yay!
+
+==== Copy Constructors
+
+The object has a constructor that copies itself.
+
+```java
+class Vec2 {
+  int x, y;
+
+  public Vec2(Vec2 other) {
+    this.x = other.x;
+    this.y = other.y;
+  }
+}
+```
+
+But if we have the following code.
+
+```java
+class Vec3 extends Vec2 {
+  int z;
+
+  public Vec3(Vec3 other) {
+    this.x = other.x;
+    this.y = other.y;
+    this.z = other.z;
+  }
+}
+
+Vec2 v1 = new Vec3(1, 2, 3);
+Vec2 v2 = new Vec2(v1); // this will not use the constructor from Vec3
+```
+
+The other "solution" is to use the `Cloneable` interface which gives the `.clone()` function. There are two problems.
+
+```java
+ArrayList<MyClass> arr1 = new ArrayList(...);
+ArrayList<MyClass> arr2 = arr1.clone(); // since MyClass does not implement
+                                        // Cloneable, this will crash
+```
+
+`Cloneable` is a *marker class*, it exists solely to tell us that the class can be clone, but contains no methods to override.
+The `.clone()` method is implemented by default in `java.lang.Object` _for some reason_ so there are no way to tell if an object can actually 
+be cloned except checking for the `Cloneable` interface (and crashing) at runtime.
+
+Who tf designed this.
+
+=== Covariant Return Type
+
+If ```java class A extends B``` and the parent class requires you to override ```java A myMethod()```, then you can override it with ```java B myMethod()``` instead.
+
+== Collections
+
+A collection is a grouping of objects that can be iterated over (i.e. ```java Collection<T> extends Iterable<T>```).
+
+Common collections includes, `HashSet`, `ArrayList` and `LinkedList`
+
+#table(
+  columns: (auto, auto, auto),
+  [], [ArrayList], [LinkedList],
+  [get], [$O(1)$], [$O(n)$],
+  [add], [$O(1)$ amortised], [$O(1)$],
+  [contains], $O(n)$, $O(n)$,
+  [remove], $O(n)$, $O(n)$
+)
+
+LinkedList is suitable when there are a lot of add/removing from the head or the tail, but not accessing the middle elements.
+- ArrayList have better time complexity in most cases.
+- And allows the CPU to be more *cache sympathetic*.
