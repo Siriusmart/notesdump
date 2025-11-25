@@ -12,6 +12,10 @@
   ],
 )
 
+#note([
+  This is more of a mess than an actual usable lecture note, please check the #link("https://github.com/Siriusmart/notesdump/blob/master/computing/y1/michaelmas/discrete-mathematics-proofs.pdf")[_discrete mathematics without words_] document for a more organised notes.
+])
+
 = Discrete Mathematics
 
 Discrete mathematics deals with finite or countably infinite sets, this includes integers and related concepts.
@@ -661,14 +665,82 @@ $
 
 Which is Euclid's algorithm.
 
-#propos([
-  $Fa(m,n,a,b in nat) cd(m,n) = d(a) and cd(m,n) = d(b) imp a = b$
-])
-
-#propos([
-  $Fa(m,n,k in nat) cd(m,n) = d(k) "iff" k|m and k|n and Fa(d in nat) d|m and d|n imp d|k$
-
-  In other words, $k$ is the GCD of $m$ and $n$.
-])
-
 #hr
+
+#propos([
+  75. $Fa(m,n,a,b in nat) cd(m, n) = d(a) and cd(m,n) = d(b) imp a = b$
+
+  Proof:
+  $
+  a|a iff a in d(a) iff a in d(b) iff a|b
+  $
+
+  Run the same argument for $b$, we have $a|b and b|a$, this is true if $a=b$.
+])
+
+#propos([
+  76. $cd(m,n) = d(k) iff (k|m and k|n and (Fa(a in nat) a|m and a|n imp a|k))$
+
+  Proof:
+  $
+  &cd(m,n) = d(k) \
+  iff&Fa(a) a|m and a|n iff a|k "by equal predicates" \
+  $
+  which contains the for all condition and $k|k imp k|m and k|n$ we require.
+])
+
+#def([
+  77. $Fa(m, n in nat) Ex(!k) k|m and k|n and (Fa( a in nat) a|m and a|n imp a|k)$ _how?_
+])
+
+We can prove that the `gcd` ML algorithm computes GCD by
+- Proving partial correctness, we have already done that.
+- Proving that it terminates.
+
+We notice for every 2 steps, the value of $r_(k+2) < r_k / 2$, and it decreases in natural numbers which has a lower bound.
+
+$therefore$ gcd has running time $O(log n)$
+
+=== Properties of GCD
+$
+gcd(m, n) &= gcd(n, m) "commutative"\
+gcd(l, gcd(m, n)) &= gcd(gcd(l, m), n) "associative" \
+gcd(l times m, l times n) &= l times gcd(m, n) "distributive over multiplication"
+$
+
+#def([
+  $a, b in nat$ are coprime if $gcd(a, b) = 1$
+])
+
+#theorem("82",[
+  $Fa(k,m,n in whole^+) k|(m times n) and gcd(k, m) = 1 imp k|n$
+
+  Proof:
+  $
+  Ex(l in whole) m times n &= k times l \
+  n times gcd(k, m) &= n \
+  &= gcd(n times k, n times m) \
+  &=gcd(n times k, l times k) \
+  &=k times gcd(n, l)
+  $
+]) 
+
+#propos([
+  83. $Fa(m, n in whole^+, p "prime") p|(m times n) imp p|m or p|n$
+
+  - If $p|m$ then close.
+  - If not $p|m$ then $gcd(p, m) = 1 imp p|n$
+])
+
+If $i$ is not a multiple of $p$
+$
+cong(i^p, i, p) &imp p|(i^p - i) \
+&imp p|i(i^(p-1) -1) \
+&imp p|(i^(p-1) - 1) \
+&imp cong(i times i^(p-2), 1, p)
+$
+$i^(p-2)$ is called the multiplicative inverse of $i$
+
+$because Fa(p "prime", i in whole_p^+) "has" [i^(p-2)]_p "as multiplicative inverse", therefore whole_p $is a field
+
+I missed 85 completely.
