@@ -1052,3 +1052,140 @@ Goal: $Fa(k in whole) Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
   $
   Then get the goal by setting $k' = k + i times m$ using the previous subgoal.
 ])
+
+#def(title: "Definition: modular arithmetic", [
+  $
+  k +_m l &= [k+l]_m = rem(k + l, m) \
+  k times_m l &= [k times l]_m = rem(k + l, m)
+  $
+])
+
+== Proposition 62: modular arithmetic is a commutative ring
+
+Goal: $(whole_m, 0, +_m, 1, times_m)$ is a commutative ring
+
+#surround([
+  Subgoal: $(whole_m, 0, +_m)$ is a commutative monoid
+
+  #tab2(
+    [Property], [Proof],
+    [Commutative], [$a_m +_m b_m = rem(a_m + b_m) = b_m +_m a_m$],
+    [Neutral element], [$0_m +_m a_m = a_m = a_m + 0_m$],
+    [Associativity], [$(a_m +_m b_m) +_m c_m = rem(a_m + b_m + c_m) = a_m +_m (b_m +_m c_m)$]
+  )
+])
+
+#surround([
+  Subgoal: $(whole_m, 1, times_m)$ is a commutative monoid
+
+  #tab2(
+    [Property], [Proof],
+    [Commutative], [$a_m times_m b_m = rem(a_m times b_m) = b_m times_m a_m$],
+    [Neutral element], [$1_m times_m a_m = a_m = a_m times 1_m$],
+    [Associativity], [$(a_m times_m b_m) times_m c_m = rem(a_m times b_m times c_m) = a_m times_m (b_m times_m c_m)$]
+  )
+])
+
+#surround([
+  Subgoal: $(whole_m, 0, +_m, 1, times_m)$ is a semiring
+
+  Apply subgoals (1) and (2).
+
+  New goal: distributivity $a_m times (b_m +_m c_n) = a_m times_m b_m +_m a_m times_m c_m$
+
+  $
+  a_m times (b_m +_m c_n) &eqv a_m times (b_m +_m c_m) space (mod m)\
+  &eqv a_m times (b_m + c_m) space (mod m)\
+  &eqv a_m times b_m + a_m times c_m space (mod m)\
+  &eqv a_m times_m b_m +_m a_m times_m c_m space (mod m)
+  $
+])
+
+#surround([
+  Subgoal: $(whole_m, 0, +)$ is a group
+
+  Apply subgoal (1).
+
+  New goal: $Fa(x_m in whole_m) Ex(y_m in whole_m) [x_m +_m y_m] = 0$
+
+  Assume:
+  1. $x_m in whole_m$
+
+  Let $y_m = [-x_m]_m$
+
+  New goal: $x_m +_m y_m = 0$
+
+  $
+  x_m +_m y_m &eqv x_m + [-x]_m space (mod m) \
+  &eqv x_m + (m - x_m) space (mod m) "by trivial"
+  &eqv m space (mod m) \
+  &eqv 0 space (mod m)
+  $
+])
+
+#surround([
+  Sugboal: $(whole_m, 0, +_m, 1, times_m)$ is a commutative ring.
+
+  Exact by subgoal (2) and (4).
+])
+
+== Proposition 63: condition for reciprocal
+
+Goal: $Fa(m in whole^+, k in whole_m) (Ex(l in whole_m) k times_m l &=1) iff (Ex(i, j in whole) k times i + m times j = 1)$
+
+Assume:
+1. $m in whole^+, k in whole_m$
+
+#surround([
+  Subgoal: $(Ex(l in whole_m) k times_m l &=1) imp (Ex(i, j in whole) k times i + m times j = 1)$
+
+  Assume:
+  2. $Ex(l in whole_m) k times_m l =1$
+
+  New goal: $Ex(i, j in whole) k times i + m times j = 1$
+
+  Let $i = k$
+
+  New goal: $Ex(j in whole) k times l + m times j = 1$
+
+  $
+  &Ex(l in whole_m) cong(k times l, 1, m) \
+  imp&Ex(a in whole )k times l - 1 = m times a \
+  imp&Ex(j in whole )k times l + m times j = 1 \
+  $
+])
+
+#surround([
+  Subgoal: $(Ex(i, j in whole) k times i + m times j = 1) imp (Ex(l in whole_m) k times_m l &=1)$
+
+  Assume:
+  2. $Ex(i, j in whole) k times i + m times j = 1$
+
+  New goal: $Ex(l in whole_m) k times_m l &=1$
+
+  $
+  &Ex(i, j in whole) k times i - 1 = m times (-j) \
+  &Ex(i, a in whole) k times i - 1 = m times a \
+  &cong(k times i, 1, m) \
+  &k times_m [i]_m = 1
+  $
+])
+
+#def(title: "Definition: linear combination",[
+  $r in whole$ is a linear combination of $m, n in whole$ if
+  $
+  Ex(s, t in whole) s times m + t times n = r
+  $
+])
+
+== Proposition 65: condition for reciprocal (linar combination)
+
+Goal: $Fa(k in whole_m) (Ex(l in whole_m) k times_m l = 1) iff "1 is a linear combination of" m "and" k$
+
+Exact by (P63).
+
+#def(title: "Definition: sets", [
+  - $x in A$ if $x$ is an element in $A$
+  - $A = B iff (Fa(x) x in A iff x in B)$
+  - ${ x in A | P(x) } = { x in A | Q(x) } iff (Fa(x in A) P(x) iff Q(x))$
+])
