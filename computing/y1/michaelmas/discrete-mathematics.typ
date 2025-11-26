@@ -744,3 +744,83 @@ $i^(p-2)$ is called the multiplicative inverse of $i$
 $because Fa(p "prime", i in whole_p^+) "has" [i^(p-2)]_p "as multiplicative inverse", therefore whole_p $is a field
 
 I missed 85 completely.
+
+#hr
+
+The GCD is a linear combination of $m$ and $n$.
+$
+gcd(m,n) = m  times l_1(m,n) + n times l_2(m,n)
+$
+
+#coro([
+  - $cong(n times l_2(m,n), gcd(m,n), m)$
+  - $gcd(m,n) = 1 imp [l_2]_m "is the multiplicative inverse of" whole_m$
+])
+
+C92 and L93 I have no idea how to prove them.
+
+== Mathematical Induction
+
+Let $P(m)$ be a statement for $m in nat$.
+$
+P(0) and (Fa(n in nat) P(n) imp P(n+1)) imp Fa(m in nat) P(m)
+$
+
+#lemma("Sum of combinations", [
+  $vec(n, k) + vec(n, k - 1) = vec(n + 1, k)$
+
+  To choose $k$ elements from a set of $n+1$ elements, we either
+  - Choose the first element, then choose $k-1$ elements from the other $n$ elements.
+  - Don't choose the first element, then choose $k$ elements from the other $n$ elements.
+])
+
+
+Either
+
+Goal: binomial theorem.
+
+Let $P(n) : (x+y)^n = sum^n_(k=0) vec(n, k) x^(n-k) y^k$
+
+Goal: $Fa(n in nat) P(n)$
+
+#grid2(
+  $P(0)$, [Trivial],
+  $P(n) imp P(n+1)$,
+  [
+    $
+    (x+y)^(n+1) &= (x+y) sum_(k=0)^n vec(n, k) x^(n-k) y ^k \
+    &= sum_(k=0)^n vec(n, k) x^(n+1-k) y ^k + sum_(k=0)^n vec(n, k) x^(n-k) y ^(k+1) \
+    &= x^(n+1) + sum_(k=1)^n vec(n, k) x^(n+1-k) y ^k + sum_(k=0)^(n-1) vec(n, k) x^(n-k) y ^(k+1) + y^(n+1) \
+    &= x^(n+1) + sum_(k=1)^n vec(n, k) x^(n+1-k) y ^k + sum_(k=1)^n vec(n, k - 1) x^(n-k) y ^(k+1) + y^(n+1) \
+    &= x^(n+1) + sum_(k=1)^n [vec(n, k) + vec(n, k - 1)] x^(n+1-k) y ^k + y^(n+1) \
+    &= x^(n+1) + sum_(k=1)^n vec(n+1, k) x^(n+1-k) y ^k + y^(n+1) \
+    &= sum_(k=0)^(n+1) vec(n+1, k) x^(n+1-k) y ^k \
+    $
+  ]
+)
+
+=== Principle of Strong Induction
+
+Let $P(m)$ be a statement for $m in nat$ where $m >= "some fixed" l$
+
+$
+P(l) and ((Fa(k in [l..n]) P(k) imp) imp P(n+1)) imp Fa(m >= l in nat) P(m)
+$
+
+#propos([
+  95. Either $n>=2$ is a prime or $n$ is a product of primes.
+
+  Goal: $Fa(n >= 2 in whole^+) n "prime" or n "product of primes"$
+
+  #grid2(
+    $P(2)$, [2 is a prime, so true.],
+    $(Fa(k in [l..n]) P(k)) imp P(n+1)$, [
+      Assume $Fa(k in [l..n]) P(k)$
+
+      - Case 1: $n+1$ is prime, then done.
+      - Case 2: $n+1$ is composite, $Ex(a, b in whole) n+1 = a times b$
+        
+        $a$ and $b$ are smaller than $n+1$ and $>= 2$, by $P(a)$ and $P(b)$, $a times b$ is a product of primes.
+    ]
+  )
+])

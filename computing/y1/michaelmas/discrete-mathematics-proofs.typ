@@ -738,7 +738,7 @@ New goal: $x "rational" iff Ex(m, n in whole^+) x = m slash n and (not Ex(p "pri
   $
 ])
 
-#def(title: "Definition: moniod laws", [
+#def(title: "Definition: monoid laws", [
   $(A, e, times.circle)$ satisfies monoid laws iff
   $
   0 times.circle e = e = e times.circle 0 \
@@ -748,13 +748,307 @@ New goal: $x "rational" iff Ex(m, n in whole^+) x = m slash n and (not Ex(p "pri
   A monoid is commutative if $(A, e, times.circle)$ satisfies the commutative laws.
 ])
 
+#def(title: "Definition: semiring", [
+  $(A, e_1, plus.circle, e_2, times.circle)$ is a semiring if
+  - $(A, e_1, plus.circle)$ is a commutative monoid.
+  - $(A, e_1, times.circle)$ is a monoid.
+  - $times.circle$ is distributive over $plus.circle$ : $a times.circle (b plus.circle c) = (a times.circle b) plus.circle (a times.circle c)$
+
+  A semiring is commutative if $times.circle$ is.
+])
+
+#def(title: "Definition: cancellation", [
+  - $plus.circle$ allows cancellation by $c$ on the left if $c plus.circle x = c plus.circle y imp x = y$
+  - $plus.circle$ allows cancellation by $c$ on the right if $x plus.circle c = y plus.circle c imp x = y$
+  - $plus.circle$ allows cancellation by $c$ if it allows cancellation both on the left and on the right.
+])
+
 #def(title: "Defintion: natural numbers", [
   ```ml
   type N =
   | zero
   | succ of N
   ```
+  - $(nat, 0 +, 1, times)$ is a commutative semiring.
+  - $plus$ supports cancellation by any $c$
+  - $times$ supports cancellation by any $c != 0$
+])
 
-  - $(nat, 0 +)$ is a commutative monoid.
-  - $(nat, 1, times)$ is a commutative monoid.
+
+#def(title: "Definition: inverse", [
+  $
+  Ex(l in A) l plus.circle x = e &imp x "admits an inverse to the left" \
+  Ex(l in A) x plus.circle r = e &imp x "admits an inverse to the right" \
+  x "admits an inverse to the left and right" &imp x "admits an inverse"
+  $
+])
+
+== Proposition 47: equality of inverses
+
+Goal: $Fa((A, e, plus.circle) "monoid") x "admits an inverse" imp l = r$
+
+Assume:
+1. $(A, e, plus.circle)$ monoid
+2. $Ex(l) l plus.circle x = e$
+3. $Ex(r) x plus.circle r = e$
+
+New goal: $l = r$
+
+$
+l &= l plus.circle e \
+&= l plus.circle (x plus.circle r) \
+&= (l plus.circle x) plus.circle r "commutative by monoid property" \
+&= e plus.circle r \
+&= r
+$
+
+#def(title: "Definition: group", [
+  - A group is a monoid which every element has an inverse.
+  - The group is commutative if the monoid is commutative.
+])
+
+#def(title: "Definition: additive and multiplicative inverses", [
+  - $x$ admits an additive inverse if $Ex(y) x + y = 0$
+  - $x$ admits a multiplicative inverse if $Ex(y) x times y = 1$
+])
+
+#def(title: "Definition: ring", [
+  A ring $(A, e_1, plus.circle, e_2, times.circle)$ is a semiring where $(A, e_1, plus.circle)$ is a group.
+
+  The ring is commutative if $(A, e_2, times.circle)$ is.
+])
+
+#def(title: "Definition: field", [
+  A field $(A, e_1, plus.circle, e_2, times.circle)$ is a commutative ring where every element besides $0$ has an inverse with respect to $times.circle$.
+])
+
+#def(title: "Definition: integers and rationals", [
+  - The integers $whole$ admits all additive inverses, $(whole, 0, plus, 1, times)$ is a commutative ring.
+  - The rationals $rat$ also admits all multiplicative inverses, $(rat, 0 plus, 1, times)$ is a field.
+])
+
+== Theorem 53: division theorem
+
+Let $P(q, r) : q >= 0 and 0 <= r <= n and q times n = r$
+
+Goal: $Fa(m, n in nat) Ex(!q,!r in whole) P(q, r)$
+
+Assume:
+1. $m, n in nat$
+
+New goal: $(Ex(q, r in whole) P(q, r)) and (P(q, r) and P(q', r') imp q = q' and r = r')$
+
+#grid2(
+  surround([
+    Subgoal: $Ex(q, r in whole) P(q, r)$
+
+    #missing([
+      This goal is not proved.
+    ])
+  ]),
+  surround([
+    Subgoal: $P(q, r) and P(q', r') imp q = q' and r = r'$
+
+    Assume:
+    2. $q >= 0 and 0 <= r < n and q times n + r = m$
+    3. $q' >= 0 and 0 <= r' < n and q' times n + r' = m$
+
+    Goal: $q = q' and r = r'$
+
+    $
+    & 0 <= r < n and -n < r <= 0 \
+    imp& -n < r - r' < n "by (2) and (3) as (4)" \ 
+    m - r = q times n imp& cong(m,r, n) "by (2)" \
+    m - r' = q' times n imp& cong(m,r', n) "by (3)" \
+    imp& cong(r, r', n) "by (L24.1)" \ 
+    imp& Ex(i in whole) r - r' = i times n \
+    imp& i = 0 and bold(r = r') "by (4)" \
+    imp& bold(q = q') "by cancellation"
+    $
+
+  ])
+)
+
+#def(title: "Definition: quo and rem", [
+  For the $q$ and $r$ associated by $m = q times n + r$
+  - $quo(m, n) = q$
+  - $rem(m, n) = r$
+
+  And satisfies the property $m = quo(m, n) times n + rem(m,n)$
+])
+
+== Theorem 56: existence of quotient and remainder
+
+```ml
+let divalg m n =
+  let diviter q r =
+    if r < n then (q, r)
+    else diviter (q + 1) (r - n)
+  in diviter 0 m
+```
+
+Goal: $mono("divalg") "terminates" and (mono("divalg") "terminates with" (q_0, r_0) imp r_0 < n and m = q_0 times n + r_0)$
+
+#grid2(
+  surround([
+    Subgoal: $mono("divalg") "terminates"$
+
+    #note([
+      This goal is also called *total correctness*.
+    ])
+
+    #informal([
+      $r in nat$ decreases in each step, which is bounded below. This cannot continue forever.
+
+      It must terminate.
+      #diagram(
+        node((0,0), `divalg m n`),
+        edge("-|>"),
+        node((0, 1), `diviter 0 m`),
+        edge("-|>", $r < n$),
+        node((1, 1), `(0, m)`),
+        edge((0, 1), "d" ,"-|>"),
+        node((0, 2), `diviter 1 (m - n)`),
+        edge("-|>", $r < n$),
+        node((1, 2), `(1, m - n)`),
+        edge((0, 2), "d" ,"-|>"),
+        node((0, 3), `...`),
+      )
+    ])
+  ]),
+  surround([
+    Subgoal: $mono("divalg") "terminates with" (q_0, r_0) imp r_0 < n and m = q_0 times n + r_0$
+
+    #note([
+      This goal is also called *partial correctness*.
+    ])
+
+    Assume:
+    1. `divalg` terminates with $(q_0, r_0)$
+
+    New goal: $r_0 < n and m = q_0 times n + r_0$
+
+    #informal([
+      In the $n$th call of `diviter`
+      1. `diviter 0 m` : $m = q_0 times n + r_0$ by trivial, if $r_0 < n$ terminate. Otherwise
+      2. `diviter q1 r1` $m = q_1 times n + r_1$ by trivial, if $r_1 < n$ terminate. Otherwise
+      3. $dots$
+
+      $
+      m = (q + 1) times n + (r - n)
+      $
+
+      If the property holds for one point of the computation, then it holds for the next point of computation, this is called *proof by invariant*.
+    ])
+  ])
+)
+
+== Proposition 57: uniqueness of remainder
+
+Goal: $cong(k, l, m) iff rem(k, m) = rem(l, m)$
+
+#surround([
+  Subgoal: $rem(k, m) = rem(l, m) imp cong(k, l, m)$
+
+  Assume:
+  1. $rem(k, m) = rem(l, m)$
+
+  New goal: $cong(k, l, m)$
+
+  $
+  &Ex(q, r in nat) k = q times m + r "by (1)"\
+  &Ex(q', r' in nat) l = q' times m + r' "by (1)"\
+  imp&k - l = (q - q') times m + (r - r') \
+  imp& Ex(a in nat) k - l = a times m \
+  imp& cong(k, l, m)
+  $
+])
+
+#surround([
+  Subgoal: $cong(k, l, m) imp rem(k, m) and rem(l, m)$
+
+  Assume:
+  1. $cong(k, l, m)$
+
+  New goal: $rem(k, m) = rem(l, m)$
+
+  $
+  &Ex(a in whole) k - l = a times m \
+  imp&Ex(q, r, q', r' in whole) (q times m + r) - (q' times m + r') = a times m "by (T56)" \
+  imp&r - r' = (a - q + q') times m \
+  imp&r - r' = 0 times m "by bound" (-m) < r - r' < m \
+  imp&r = r'
+  $
+])
+
+== Corollary 58.1: congruence with remainder
+
+Goal: $Fa(m in nat) cong(n, rem(n, m), m)$
+
+Assume:
+1. $m in nat$
+
+New goal: $cong(n, rem(n, m), m)$
+
+$
+&Ex(a in whole) n = m times quo(n, m) + rem(n, m) \
+imp&n - rem(n, m) = m times quo(n, m) \
+imp&cong(n, rem(n, m), m)
+$
+
+== Corollary 58.2: existence of modulus integer
+
+Goal: $Fa(k in whole) Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+#surround([
+  Subgoal: $Fa(k in nat) Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+  Assume:
+  1. $k in nat$
+
+  New goal: $Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+  Let $[k]_m = rem(k, m)$.
+
+  Let $P(k) : 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+  New goal: $P([k]_m) and (P(a) and P(b) imp a = b)$
+
+  #grid2(
+    surround([
+      Subgoal: #br $0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+      Exact by (T56) and (P57).
+    ]),
+    surround([
+      Subgoal: $P(a) and P(b) imp a = b$
+
+      Assume:
+      2. $0 <= a < m and cong(k, a, m)$
+      3. $0 <= b < m and cong(k, b, m)$
+
+      New goal: $a = b$
+
+      $
+      & -m < a - b < m "by (2) and (3)" \
+      &Ex(i in whole) a - b = i times m "by (2) and (3)" \
+      imp&i = 0 and bold(a = b) "by bounds"
+      $
+    ]),
+  ),
+])
+
+#surround([
+  Subgoal: $Fa(k in whole^-) Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+  Assume:
+  1. $k in whole^-$
+
+  New goal: $Ex(![k]_m) 0 <= [k]_m < m and cong(k, [k]_m, m)$
+
+  $
+  &Ex(i in whole) k + i times m >= 0 "by magic" \
+  &cong(k + i times m, k, m) "by trivial" \
+  $
+  Then get the goal by setting $k' = k + i times m$ using the previous subgoal.
 ])
