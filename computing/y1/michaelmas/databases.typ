@@ -832,3 +832,206 @@ type distance_t = branded float
 Now there are two types, `[velocity_t] + [distance_t]` will give a type error, which is helpful.
 
 #hr
+
+== Misc SQL Information
+
+#defstable(
+  [Declaration], [A statement that holds at all times.],
+  [Recursion], [A statement that refers to itself.]
+)
+
+=== Complexity of Joins
+
+- $R join S$ takes $O(R times S)$ time (quadratic) using the brute force approach.
+- If joined using a key, we can use an index. So lookups are done in $O(log n)$ time instead of $O(n)$.
+  
+  ```sql
+  CREATE INDEX index_name on S(B);
+  DROP INDEX index_name;
+  ```
+
+#note([
+  Index speeds up reads and slows down updates.
+])
+
+=== SQL as a Multiset
+
+SQL queries returns a multiset:
+#tab3(
+  [name], [age], [salary],
+  [Alex], [19], [0],
+  [Bob], [18], [-1000],
+  [John], [19], [1000]
+)
+
+- ```sql SELECT age FROM table``` clearly gives a multiset.
+- To get a set (no duplicates) ```sql SELECT DISTINCT age FROM table```.
+
+Multisets are required by *aggregated function*.
+
+```sql GROUP BY age``` creates multiple tables.
+#grid2(
+  tab3(
+    [name], [age], [salary],
+    [Bob], [18], [0]
+  ),
+  tab3(
+    [name], [age], [salary],
+    [Alex], [19], [-1000],
+    [John], [19], [1000]
+  )
+)
+
+These tables then get passed to functions like ```sql AVG(salary)```
+
+#tab2(
+  [age], [avg(salary)],
+  [18], [-1000],
+  [19], [500]
+)
+
+All aggregated function have the following properties:
+- *Associative, commutative*. Otherwise the order of the items will affect the output.
+- Takes a vector (multiple values) then return a scalar.
+
+=== Null
+
+```sql NULL``` is not of any type, for all values ```sql (X = NULL) = NULL```
+
+This gives us *three valued logic*.
+
+#grid3(
+  tab2(
+    $v$, $not v$,
+    `T`, `F`,
+    `F`, `T`,
+    $perp$, $perp$
+  ),
+  tab4(
+    $or$, `T`, `F`, $perp$,
+    `T`, `T`, `T`, `T`,
+    `F`, `T`, `F`, $perp$,
+    $perp$, `T`, $perp$, $perp$
+  ),
+  tab4(
+    $and$, `T`, `F`, $perp$,
+    `T`, `T`, `F`, $perp$,
+    `F`, `F`, `F`, $perp$,
+    $perp$, $perp$, $perp$, $perp$
+  )
+)
+
+Where $perp$ denotes ```sql NULL```.
+
+==== Interpretations of Null
+1. There is a value, but we don't know it yet.
+2. No value is applicable.
+3. Value is known, but we are not allowed to see it.
+
+We have the null testing predicates:
+```sql
+foo IS NULL;
+foo IS NOT NULL;
+```
+
+When using ```sql GROUP BY``` in a nullable field, nulls are considered equal and will be grouped together.
+
+=== SQL Recursion
+
+#def([
+  *Function composition* $(f circle.small g)(x) = f(g(x))$ satisfies
+  - Given two binary relations $R subset.eq S times T$ and $S subset.eq T times U$
+  - Then $Q circle.small R subset.eq S times U$
+])
+
+If $(s, t_1) in R and (s, t_2) in R imp t_1 = t_2$, then $R$ is a function.
+
+#note([
+  Joins are a generalisation of function (relation) composition, we can write
+  $
+  Q circle.small R = R_(join 2 = 1) Q
+  $
+])
+
+==== Bacon Numbers
+
+$G = (V, A)$ is a *directed graph* if $V$ is the set of vertices and $A subset.eq V times V$ is the set of arcs. If $(u, v) in A$ then there is an arc from $u$ to $v$.
+
+Let
+$
+A^1 &= A \
+A^(n+1) &= A circle.small A^n
+$
+
+Then $(v_0, v_k) in A^k$ if there is a sequence of vertices $v_0, v_1, dots, v_k$ of arc length $k$ from $v_1$ to $v_k$.
+
+Define the distance from $s_0$ to $s'$ be the smallest $n$ such that $(s_0, s') in R^n$.
+
+==== Shortest Path Query
+
+Without using recursion:
+
+```sql
+CREATE VIEW path_1 AS
+  SELECT DISTINCT id2 AS id, 1 AS n
+  FROM neighbours
+  WHERE neighbours.id1 = 'source_id'
+
+CREATE VIEW path_2 AS
+  SELECT DISTINCT id2 as id, 2 AS n
+  FROM path_1
+  JOIN neighbours ON neighbours.id1 = path_1.id
+  WHERE neighbours.id2 <> 'source_id' AND
+        NOT (neighbours.id2 IN (SELECT id FROM path_1))
+
+CREATE VIEW path_3 AS
+  SELECT DISTINCT id2 as id, 2 AS n
+  FROM path_2
+  JOIN neighbours ON neighbours.id1 = path_1.id
+  WHERE neighbours.id2 <> 'source_id' AND
+        NOT (neighbours.id2 IN (SELECT id FROM path_1))
+        NOT (neighbours.id2 IN (SELECT id FROM path_2))
+```
+
+This pattern repeats until $"path"_n = "path"_(n+1)$ (no more new nodes can be added).
+
+```sql
+CREATE VIEW distances AS
+  SELECT *  FROM path_1
+  UNION SELECT *  FROM path_2
+  UNION SELECT *  FROM path_3;
+```
+
+#def([
+  Let $R subset.eq S times S$, the *transitive closure* of $R$, denoted $R^+$ is the smallest binary relation on $S$ such that $R subset.eq R^+$  and $R^+$ is transitive.
+  $
+  (x, y) in R^+ and (y, z) in R^+ imp (x, z) in R^+
+  $
+])
+
+If $R^+$ is a transitive closure of $R$, then
+$
+R^+ = union.big_n R^n
+$
+
+If the relation is finite, then there exists a $k$ such that
+$
+R^+ = R^1 union R^2 union cdots union R^k
+$
+
+We can write the *recursive* query:
+```sql
+WITH distances AS
+  (SELECT 0 AS n, id2 AS id
+   FROM neighbours
+   WHERE id1 = 'source_id' AND id1 = id2
+   UNION SELECT n + 1 as n, neighbours.id2 as id
+         FROM distances
+         JOIN neighbours ON neighbours.id1 = id
+         WHERE NOT (neighbours.id2 IN (SELECT id FROM distances)) AND n < 20)
+SELECT n, COUNT(*)
+FROM (SELECT min(n) AS n, id FROM distances GROUP BY id)
+GROUP BY n
+```
+
+#hr
