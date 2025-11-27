@@ -824,3 +824,21 @@ $
     ]
   )
 ])
+
+#theorem("96. uniqueness of prime factors", [
+  Goal: $Fa(n in whole^+) Ex(!p_1 <= p_2 <= p_3 <= dots <= p_l, l in nat) product_(i=1)^l p_i = n$
+
+  Assume:
+  1. $n in whole^+$
+
+  Existence by (P95)
+
+  New goal: $n = p_1p_2p_3 dots p_l and n = q_1q_2q_3 dots q_l imp Fa(i <= l) p_i = q_i$
+
+  Clearly $p_1 | product q_i$ and $q_1 | product p_i$
+  - $Ex(i) q_1 <= p_1 = q_i$
+  - $Ex(j) p_1 <= q_1 = p_j$
+  $q_1 <= p_1 and p_1 <= q_1 imp p_1 = q_1$, repeat for other primes.
+])
+
+#hr
