@@ -1165,7 +1165,7 @@ Upscaling algorithms:
 - *Bilinear interpolation* creates blurry artifacts.
 
 Downsampling algorithm:
-- *Area avreaging* averages the colours in the region a screen pixel covers. This is a slow operation.
+- *Area avreaging* averages the *texels* (texture elements) the pixel covers. This is a slow operation.
 - *Mipmap* stores texture in multiple resolution so that calculation don't need to be done every time.
   
   A full scale texture image, half scaled, quarter scaled, etc., images are stored. This only requires $1 slash 3$ extra storage.
@@ -1194,3 +1194,232 @@ $
 ])
 
 A texture can contain attributes, e.g. how to interpolate between mipmap levels.
+
+#hr
+
+== OpenGL Buffers
+
+*Render buffers* are where we render screen pixels.
+
+#tab2(
+  [Buffer type], [Buffer names],
+  [Colour], [`gl_front`, `gl_back`],
+  [Stereo (for different image in each eye)], [`gl_front_left`, `gl_back_left`, `gl_front_right`, `gl_back_right`],
+  [Depth], [The z buffer],
+  [Stencil], [Block rendering for specific pixels]
+)
+
+#note([
+  To simulate *perfect specular reflection*:
+  1. Render the world without the reflection.
+  2. Move the camera to the surface, then put what it sees on the reflective surface.
+])
+
+=== Front and Back Buffers
+
+- The *back buffer* is the one that the GPU draws to.
+- The *front buffer* is displayed to the screen.
+
+#note([
+  The GPU can draw to the front buffer, it clear the buffer before drawing to it, this cause flickers.
+])
+
+#grid2(width: 34%,
+  [
+    When we are done drawing, call the *swap* command to swap the buffers.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    content((-1, 0.25), "front buffer")
+    content((-1, -0.25), "back buffer")
+    for i in range(8) {
+      let fill1;
+      let fill2;
+
+      if calc.rem(i, 2) == 1 {
+        fill1 = gray
+      } else {
+        fill1 = white
+      }
+
+      if calc.rem(i, 2) == 1 {
+        fill2 = white
+      } else {
+        fill2 = gray
+      }
+
+      rect((i, 0), (i+1, 0.3), fill: fill1)
+      rect((i, 0), (i+0.6, -0.3), fill: fill2)
+    }
+
+    line((0, 0), (8, 0))
+  })
+)
+
+Notice there are gaps between times we can draw to the back buffer, this is time wasted. We can remove them by using a 3rd buffer.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  content((-1, 0.25), "front buffer")
+  content((-1, -0.25), "back buffer")
+  for i in range(8) {
+    let fill1;
+
+    if calc.rem(i, 3) == 0 {
+      fill1 = white
+    } else if calc.rem(i, 3) == 1 {
+      fill1 = gray
+    } else {
+      fill1 = black
+    }
+
+    rect((i + 1.2, 0), (i+2.2, 0.3), fill: fill1)
+    rect((i, 0), (i+1, -0.3), fill: fill1)
+  }
+
+  line((0, 0), (8, 0))
+})
+
+=== V-Sync
+
+Since pixels are copied to the screen row by row, if *swap* is called while this is still happening, *tearing artifacts* can occur.
+
+#def([
+  *Tearing artifacts* is where upper screen shows the current frame but the lower screen shows the old frame.
+])
+
+To remove this, the GPU have to wait for the current frame (buffer) to finish copying to the screen before calling swap.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  content((-1, 0.25), "front buffer")
+  content((-1, -0.25), "back buffer")
+
+  for i in range(7) {
+    line((i + 1, -0.7), (i + 1, 0.7), stroke: gray)
+    line((1, -0.9), (2, -0.9), mark: (start: ">", end: ">"), stroke: gray)
+    content((1.5, -1.2), "monitor scan")
+  }
+
+  for i in range(5) {
+    let fill1;
+
+    if calc.rem(i, 2) == 0 {
+      fill1 = white
+    } else {
+      fill1 = gray
+    }
+
+    rect((i, 0), (i+1, 0.3), fill: fill1)
+  }
+
+  for i in range(2) {
+    let fill1;
+
+    if calc.rem(i, 2) == 0 {
+      fill1 = white
+    } else {
+      fill1 = gray
+    }
+
+    rect((i + 5, 0), (i+6, 0.3), fill: fill1)
+  }
+
+  rect((0, 0), (8, 0.3))
+
+  rect((0, 0), (0.7, -0.3), fill: gray)
+  rect((1, 0), (1.5, -0.3))
+  rect((2, 0), (2.8, -0.3), fill: gray)
+  rect((3, 0), (3.7, -0.3))
+  rect((4, 0), (5.2, -0.3), fill: gray)
+  rect((6, 0), (6.7, -0.3))
+  rect((7, 0), (7.5, -0.3), fill: gray)
+
+  line((5, -1), (5.5, -0.4), mark: (end: ">"))
+  content((5, -1.3), "skipped frame")
+
+  line((0, 0), (8, 0))
+})
+
+=== Variable Refersh Rate
+
+VRR allows the GPU to control the timing of the frames, this allows.
+- Saving power when the screen is static.
+- Reduce lag for real time graphics.
+
+== Human Vision
+
+
+#grid2(
+  [
+    The lens of our eyes acts like a camera to project an ubside down image onto the retina.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    line((0, 0), (0.5, 1.5), (1, 0), (0, 0), fill: green)
+
+    circle((6, 0.75), radius: 0.6)
+
+    line((0.5, 1.5), (6.58, 0.57))
+    line((1, 0), (6.58, 0.93))
+
+    line((7, 1), (7.2, 0.4), (7.4, 1), (7, 1), fill: green)
+  })
+)
+
+#defstable(
+  [Retina], [The inner surface of eyeball with the photoreceptors.],
+  [Forea], [Where our eye gives the highest resolution.],
+  [Cornea & lens], [Focus light onto the retina.],
+  [Pupil], [Shrink and expands to control the amount of light entering the eye.]
+)
+
+=== Colour Representation
+
+Phong's model only has 3 channels
+- But we need the absorption spectra of a surface for a fully accuracte reflection.
+- This is expensive and requires hundreds of channels.
+
+Although it is true that
+$
+L(lambda) &= I(lambda) R(lambda) \
+"reflected light" &= "illumination" & "reflectance"
+$
+
+There are 3 types of cone cells: $S, M, L$ responsible for colour vision.
+
+For a particular light, the cone response for $S$ is
+$
+R_s = int^730_380 I(lambda) R(lambda) d lambda
+$
+where the visible light has a wavelength range of $380 - 730$.
+
+The percepted colour is entirely characterised by $R_s$, $R_m$ and $R_l$. It is possible for two different light specturms to appear the same if
+$
+R_s &= R_s' \
+R_m &= R_m' \
+R_l &= R_l'
+$
+
+=== CIE-XYZ Colour Space
+
+Any colour can be matched using three linear independent reference colour.
+
+CIE-XYZ is a standard colour space:
+- R, G, B values can be expressed as a funciton of the spectrum.
+- Does not require negative contribution (some colour space requires negative red light to accomodate for all wavelengths).
+
+=== CIE Chromaticity Diagram
+
+#note([
+  Search the image up yourself.
+])
+
+The diagram ignores luminosity, it shows:
+- Pure colours on the edge of the diagram.
+- All colours are mixture of pure colours.
+- No colours are possible outside of the diagram.
