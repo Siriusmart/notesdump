@@ -706,7 +706,9 @@ Who tf designed this.
 
 If ```java class A extends B``` and the parent class requires you to override ```java A myMethod()```, then you can override it with ```java B myMethod()``` instead.
 
-== Collections
+== Common Interfaces
+
+=== Collections
 
 A collection is a grouping of objects that can be iterated over (i.e. ```java Collection<T> extends Iterable<T>```).
 
@@ -724,3 +726,104 @@ Common collections includes, `HashSet`, `ArrayList` and `LinkedList`
 LinkedList is suitable when there are a lot of add/removing from the head or the tail, but not accessing the middle elements.
 - ArrayList have better time complexity in most cases.
 - And allows the CPU to be more *cache sympathetic*.
+
+You can create an ```java UnmodifiableList``` with
+```java
+List intList = Collections.unmodifiableList(list);
+```
+
+#hr
+
+=== Iterators
+
+The two pieces of code below don't do what you expect them to do.
+#grid2(
+  ```java
+  for(int i = 0; i < list.length(); i++) {
+    if(list.at(i) == 2)
+      list.remove(i);
+  }
+  ```,
+  ```java
+  for(int n : list) { // compile error
+    list.remove(n);
+  }
+  ```
+)
+
+To allow modifying a collection while iterating over it, use the ```java Iterator<T>``` class.
+
+```java
+Iterator<Integer> iter = list.iterator();
+while(iter.hasNext()) list.remove(iterator.next());
+```
+
+=== Queues
+
+The queue interface is also implemented by LinkedList (but LinkedList is not necessarily FIFO).
+```java
+q.offer(1);
+q.offer(2);
+q.poll(); // 1
+q.poll(); // 2
+```
+
+=== Map
+
+```java
+map.put("A", 1);
+map.put("B", 2);
+map.get("B"); // 2
+```
+
+==== HashMap
+
+An object is given a single number (*hash*) in a range. Ideally two different objects have different hash. This is clearly not possibly because it is impossible to uniquely map all integers into a finite range.
+
+A LinkedList is used to store multiple objects in the same array index.
+
+#grid3(
+  [], `get`, `put`,
+  [TreeMap], $O(log n)$, $O(log n)$,
+  [HashMap], $O(1)$, $O(1)$
+)
+
+=== Set
+
+TreeSet and HashSet implements `get`, `add` and `contains`.
+
+#note([
+  An object added to a set or used as a key on a hash map should not be updated.
+
+  To update a key or a set value, remove the entry, update it, then add it again.
+])
+
+=== Object Equality
+
+```java obj1 == obj2``` only tests for reference equality. ```java obj1.equals(obj2)``` tests for *value equality*.
+- To support that, override the `equals` method with your own implementation.
+- It _must satisfy the constraint_ ```java a.equals(b)``` $imp$ ```java a.hashCode() == b.hashCode()```. So `equals` and `hashCode` must be implemented at the same time.
+  
+  ```java Objects.hash(o1, o2, o3, ...)``` is a conventient way to implement the `hashCode` method.
+
+=== Comparable
+
+Comparable provides method ```java int compareTo(T obj)```
+- ```java a.compareTo(b) < 0``` if $a < b$
+- ```java a.compareTo(b) > 0``` if $a > b$
+- ```java a.compareTo(b) = 0``` if $a = b$ in terms of order.
+
+We can declare a class implementing ```java Comparator``` to sort a list in a particular order.
+
+```java
+Collections.sort(list); // ascending order
+Collections.sort(list, new MyComparator()); // custom order
+```
+
+== Generics
+
+Generics allows for better type safety: if we can assign more types to our code, then the compiler can stop us from doing silly things.
+- *Static type checking* is done by the compile.
+- *Dynamic type checking* cause crashes if the type is wrong at runtime.
+
+Generics allows more type checking to be done at compile time.
