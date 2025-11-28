@@ -842,3 +842,88 @@ $
 ])
 
 #hr
+
+== Naive Set Theory
+
+#def([
+  $x in.not A iff not (x in A)$
+])
+
+- If a set a finite, then I can list its elements.
+- Set equality: $A = B iff Fa(x) (x in A iff x in B)$
+
+#propos([
+  L103
+  $
+  Fa(A) A &subset.eq A \
+  A subset.eq B and B subset.eq C &imp A subset.eq C \
+  A subset.eq B and B subset.eq A &imp A = B
+  $
+])
+
+- If there is a set $A$, then there exist a set ${x in A | P(x)}$ - you can construct a subset from a set.
+  
+  $a in { x in A | P(x) } iff a in A and P(a)$
+- The empty set exists $emptyset = {x in A | "false"}$
+
+=== Russell's Paradox
+
+Suppose we allow the existence of ${ x | P(x) }$
+
+Let $U = {x | x in.not x }$
+
+If $U in U$?
+$
+U in U iff U in.not U
+$
+
+There is a contradiction, so ${ x | P(x) }$ should not be allowed in our theory.
+
+#defs([
+  - *Cardinality* is the number of elements in the set.
+  - If $\#S$ is a natural number, then it is a finite set.
+])
+
+- Powerset axiom: There exist a set $cal(P)(U)$ where $Fa(X) X in cal(P)(U) iff X subset.eq U$
+
+#propos([
+  P104: $\# cal(P)(U) = 2^(\#U)$
+
+  $
+  \#cal(P)(U) &= \#{X | X subset.eq U} \
+  &= sum_(i=0)^(\#U) \#{x | x subset.eq U and \#X = i} \
+  &= sum_(i=0)^(\#U) vec(\#U, i) \
+  &= (1+1)^(\#U) \
+  &= 2^(\#U)
+  $
+])
+
+#grid2(
+  [
+    $cal(P)$ is called a *family of sets*, we can draw a *Hasse diagram* to show relation in a family of sets.
+  ],
+  diagram(
+    node((0, 0), ${0, 2, 4}$),
+    edge((0, 0), "dl"),
+    edge((0, 0), "d"),
+    edge((0, 0), "dr"),
+    node((-1, 1), ${0, 2}$),
+    edge((0, 1), "dl"),
+    edge((0, 1), "dr"),
+    node((0, 1), ${0, 4}$),
+    edge((-1, 1), "d"),
+    edge((-1, 1), "dr"),
+    node((1, 1), ${2, 4}$),
+    edge((1, 1), "d"),
+    edge((1, 1), "dl"),
+    node((-1, 2), ${0}$),
+    edge((-1, 2), "dr"),
+    node((0, 2), ${2}$),
+    edge((0, 2), "d"),
+    node((1, 2), ${4}$),
+    edge((1, 2), "dl"),
+    node((0, 3), $emptyset$),
+  )
+)
+
+#hr
