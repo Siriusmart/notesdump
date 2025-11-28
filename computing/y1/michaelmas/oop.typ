@@ -827,3 +827,147 @@ Generics allows for better type safety: if we can assign more types to our code,
 - *Dynamic type checking* cause crashes if the type is wrong at runtime.
 
 Generics allows more type checking to be done at compile time.
+
+#hr
+
+We can have generic classes or function
+```java
+public static <T> void myMethod(T value);
+```
+
+=== Generics Implementations
+
+The two ways of implementing generics are:
+#grid2(
+  [Templates], [
+    Generate *pseudoclasses* for the class when you compile.
+
+    ```cpp class MyClass<T>``` compiles to
+    - ```cpp class MyClass_int```
+    - ```cpp class MyClass_double```
+    - Etc
+  ],
+  [Type erasure], [
+    Do type checking at compile time, then delete all type information.
+
+    ```java ArrayList<Integer> value;``` compiles to ```java Arraylist value;```
+
+    #grid3(
+      ```java
+      for(Integer i : list) {
+        do_thing(i);
+      }
+      ```,
+      [Compiles to $imp$],
+      ```java
+      for(Object i : list) {
+        do_thing((Integer) i);
+      }
+      ```
+    )
+
+    #tab2(
+      [Pros], [Cons],
+      [Bytecode is backwards compatible (Java version 1 does not have generics)], [No dynamic type checking.],
+      [Compile time type checking exists.], [It can create confusing errors.],
+      [Less bloat than using templates.]
+    )
+  ]
+)
+
+=== Weirdness with Type Erasure
+
+#grid2(
+  [You cannot do this], [Because the compile bytecode looks like this],
+  ```java T value = new T();```, ```java Object value = new Object(); // not what you wanted!```,
+  ```java T[] arr = new T[10];```, ```java Object[] arr = new T[10]; // wrong type```,
+  ```java
+  // overloading
+  void addAll(List<String> items) {}
+  void addAll(List<Integer> items) {}
+  ```,
+  ```java
+  // function signatures clash
+  void addAll(List items) {}
+  void addAll(List items) {}
+  ```
+)
+
+Arrays violates *covariance* - if $B$ is a subtype of $A$, you can use $B$ everywhere you expected $A$.
+This is because Java arrays are *reified* (it knows its own type), and a cast will not change that.
+
+```java
+Student[] students = new Student[10];
+Person[] people = (Person []) students; // ok
+people[0] = new Lecturer(); // runtime error, the underlying array is still Student[]
+```
+
+=== Bounded Wildcards
+
+```java <?>``` matches anything, for example ```java List<?>``` matches anything that is a list.
+
+#grid3(
+  [Lower bound], ```java List<? extends Number>```, [
+    A list of values that are a subclass of ```java Number```
+    - You can read ```java Number``` or its superclass from the list.
+    - You cannot write to the list because you don't know the actual type of the ```java <? extends Number>```
+  ],
+  [Upper bound], ```java List<? super Number>```, [
+    A list of values that are a superclass of ```java Number```
+    - You can write ```java Number``` or its subclass to the list.
+    - You cannot read from the list because it can be any of ```java Number```'s ancestor.
+  ]
+)
+
+=== Coupling
+
+#def([
+  *Coupling* is the degree to which different parts of the program depends on each other.
+])
+
+- High coupling rely on internal impl details.
+- (Better) Low coubling rely on interfaces defined.
+
+High coupling is caused by
+- Reckless inheritance.
+- Poor encapsulation (so internal variables can be accessed)
+
+=== Boxing and Unboxing
+
+Primitives can be boxed ```java int -> Integer``` or unboxed ```java Integer -> int```: they are different types, ```java int``` is stored in 4 bytes, ```java Integer``` is stored in 16 bytes.
+
+Java automatically boxes and unboxes to make life easier.
+```java
+Integer n = 1; // 1 is an int
+n = null;      // this is fine
+int i = n;     // compiles, but runtime error
+```
+
+=== Errors
+
+Traditionally, functions return special values called *return codes* to indicate error. This mixes the normal code with the error handling code.
+
+#def([
+  An *exception* is an object that can be thrown and caught by the calling code.
+])
+
+This separates the normal and error handling code. There may be multiple catch blocks.
+
+```java
+try {
+  // statements
+} catch (FileNotFound e) {}
+  catch (IOException e) {}
+```
+
+To ensure a resource is closed even if there is an error, use a finally block.
+
+```java
+try {
+  // do stuff
+} finally {
+  // this gets ran no matter what
+}
+```
+
+#hr
