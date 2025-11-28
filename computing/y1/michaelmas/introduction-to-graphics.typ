@@ -1423,3 +1423,46 @@ The diagram ignores luminosity, it shows:
 - Pure colours on the edge of the diagram.
 - All colours are mixture of pure colours.
 - No colours are possible outside of the diagram.
+
+Luminosity is the ability to distinguish black from white (green + red). All possible colours forms a 3D vaolume in an XYZ space.
+
+=== Dynamic Range
+
+A image with standard dynamic range encodes only colours the screen can display.
+
+Since we now have different kinds of screens (OLED, laser, etc.), HDR tries to encode all visible wavelengths, so the screens can display the image more accurately with the encoded information.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  rect((0, 0), (3, 1.5))
+  content((1.5, 0.65), align(center, [Physically-based \ rendering]))
+  line((3, 0.75), (5, 0.75), mark: (end: ">"))
+
+  rect((5, 0), (8, 1.5))
+  content((6.5, 0.75), align(center, [Tone mapping]))
+  line((8, 0.75), (10, 0.75), mark: (end: ">"))
+
+  rect((10, 0), (13, 1.5))
+  content((11.5, 0.75), align(center, [Display encoding]))
+  line((11.5, 0), (11.5, -1.5), mark: (end: ">"))
+
+  rect((10, -3), (13, -1.5))
+  content((11.5, 0.75 - 3), align(center, [Screen]))
+
+  rect((5, -3), (8, -1.5))
+  content((6.5, 0.75 - 3), align(center, [Eye]))
+  line((8, 0.75 - 3), (10, 0.75 - 3), mark: (start: ">"))
+
+  content((1.5, 2), align(center, [Dynamic range of scene \ (HDR)]))
+
+  content((11.5, 2), align(center, [Dynamic range of display \ (SDR)]))
+
+  rect((-0.8, -1), (8.8, 3), stroke: blue)
+  content((4, -0.5), [Linear colours (floating point)])
+
+  rect((9.2, -4.5), (13.8, 3), stroke: red)
+  content((11.5, -3.75), align(center, [Display-encoded colours \ (0-255)]))
+})
+
+#hr
