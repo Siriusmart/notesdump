@@ -1189,3 +1189,51 @@ Exact by (P63).
   - $A = B iff (Fa(x) x in A iff x in B)$
   - ${ x in A | P(x) } = { x in A | Q(x) } iff (Fa(x in A) P(x) iff Q(x))$
 ])
+
+#def(title: "Definition: common divisiors", [
+  $
+  D(m) &= { d : d|m} \
+  CD(m, n) &= {d : d|m and d|n}
+  $
+])
+
+== Lemma 71: key lemma
+
+Goal: $Fa(m, m' in nat, n in whole^+) cong(m, m', n) imp CD(m,n) = CD(m', n)$
+
+Assume:
+1. $m, m' in nat, n in whole^+$
+2. $cong(m,m',n)$
+
+New goal: $d|m and d|n iff d|m' and d|n$ (equality of predicates)
+
+$
+&Ex(k in whole) m' = m + k times n "by (1)" \
+$
+
+#grid2(
+  surround([
+    Subgoal: $d|m and d|n imp d|m' and d|n$
+
+    Assume:
+    3. $d|m and d|n$
+
+    New goal: $d|m' and d|n$
+
+    $
+    &d|n "by (3)" \
+    &Ex(i in whole) m-m' = i times n "by (2)" \
+    imp&m' = i times n - m \
+    imp&Ex(j, k in whole) m' = d times j times i - d times k \
+    imp&Ex(l in whole) m' = d times l \
+    imp&d|m'
+    $
+  ]),
+  surround([
+    Subgoal: $d|m' and d|n imp d|m and d|n$
+
+    #note([
+      This is true by symmetry of the first subgoal.
+    ])
+  ])
+)

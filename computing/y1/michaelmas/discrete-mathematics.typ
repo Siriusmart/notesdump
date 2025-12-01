@@ -927,3 +927,101 @@ There is a contradiction, so ${ x | P(x) }$ should not be allowed in our theory.
 )
 
 #hr
+
+#note([
+  Alternative proof for P104:
+
+  Let $U = {u_1, u_2, dots, u_n}$, for every $n$, write $1$ if $u_i in U$, $0$ otherwise.
+
+  Given a sequence of 0 and 1s of length $n$, it corresponds to a subset of $U : {u_i in U | s_i = 1}$
+  $
+  \# cal(P)(U) &= "number of sequences of length" n\
+  &= 2^(\# U)
+  $
+])
+
+=== Powerset Algebra
+
+Let $A, B in cal(P)(U)$
+$
+A union B &= { x in U | x in A or x in B } \
+A inter B &= { x in U | x in A and x in B } \
+A^c &= { x in U | x in.not A }
+$
+
+- $union$ and $inter$ are associative, commutative and idempotent ($A union A = A$).
+- $union$ and $inter$ are distributive and absorptive with each other.
+  #grid2(width: 65%,
+    $
+    A inter (B union C) = (A inter B) union (A inter C) \
+    A union (B inter C) = (A union B) inter (A union C)
+    $,
+    $
+    A union (A inter B) = A \
+    A inter (A union B) = A
+    $
+  )
+- $U$ is annihilator for $union$ and $emptyset$ is annihilator for $inter$.
+  $
+  U union A = U \
+  emptyset inter A = emptyset
+  $
+- Complemention laws
+  $
+  A union A^c &= U \
+  A inter A^c &= emptyset
+  $
+
+#propos([
+  P105
+  $
+  Fa(X in cal(P)(U)) A union B subset.eq X iff (A subset.eq X and B subset.eq X) \
+  Fa(X in cal(P)(U)) X subset.eq A inter B iff (X subset.eq A and X subset.eq B)
+  $
+])
+
+#propos([
+  P106
+  - $A union B$ is the smallest set that includes $A$ and $B$.
+    $
+    C = A union B iff A subset.eq C and B subset.eq C and Fa(X in cal(P)(U)) A subset.eq X and B subset.eq X imp C subset.eq X
+    $
+  - $A inter B$ is the largest set that is included in $A$ and $B$.
+    $
+    C = A inter B iff C subset.eq A and C subset.eq B and Fa(X in cal(P)(U)) X subset.eq A and X subset.eq B imp X subset.eq C 
+    $
+])
+
+There is a correspondance between sets and boolean algebra
+#tab2(
+  [Sets], [Boolean algebra],
+  $cal(P)(U)$, ${"false", "true"}$,
+  $emptyset$, "false",
+  $U$, "true",
+  $union$, $or$,
+  $inter$, $and$,
+  $A^c$, $not A$,
+)
+
+#def(title: "The Pairing Axiom", [
+  For all $a, b$, there exist a set ${a, b}$, and
+  $
+  Fa(x in {a, b}) x = a or x = b
+  $
+
+  ${a, a} = {a}$ is called a *singleton*.
+])
+
+#propos([
+  P107.
+  $
+  {x, y} subset.eq {a} &imp x = y = a \
+  {c, x} = {c, y} &imp x = y
+  $
+])
+
+=== Kuratoshi's Pairing
+
+Let $K(a, b) = {{a}, {a, b}}$, then $K(a, b) = K(x, y) iff a = x and b = y$.
+
+#hr

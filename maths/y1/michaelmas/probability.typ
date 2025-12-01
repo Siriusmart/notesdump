@@ -200,7 +200,8 @@ sigma^2 &= E((X - mu)^2) \
 &= E(X^2) - mu^2
 $
 
-== The Binomial Distribution
+== Discrete Probability Distributions
+=== The Binomial Distribution
 
 #note([
   The handout use a different way of calculating expected value and variance.
@@ -227,4 +228,97 @@ E(X^2) &= sum_(k = 0)^m k^2 vec(m, k) q^k (1 - p)^(n-k) \
 &= m p + q^2 times d^2/(d q^2) (q + 1 - p)^m \
 &= m p + p^2 times m(m-1) \
 E(X^2) - E(X)^2 &= m p(1 - p)
+$
+
+=== The Poisson Distribution
+
+For binomial distribution where $p << 1$ and $n p = lambda$, as $n to infty$, we have another well defined distribution
+$
+mu &= n p = lambda \
+sigma^2 &= n p (1 - p) \
+&= lambda
+$
+
+When $n$ is large and $p$ is small, the poisson distribution is a good approximation for the binomial distribution.
+
+#note([
+  Missing notes because the camera in the recording pointing towards the sheet of paper is off.
+])
+
+$
+P(X=r) &= (lambda^r e^(-lambda))/r! \
+sum_(r=0)^infty P(X=r) &= e^(-lambda) sum_(r=0)^infty lambda^r / r! \
+&= 1
+$
+
+The poissoin distribution is useful for events that happens in time:
+- Probability of something happening at a time is very small.
+- *Over a unit time*, the probability is $lambda^r e^(-lambda) slash r!$
+
+== Continuous Probability Distribution
+
+The normal distribution is a *continuous probability distribution* given by the *probability density function*, which gives the _probabilty per unit length_.
+$
+P(x <= X <= x + d x) = f(x) dx
+$
+
+The probability for any individual $P(X = x)$ is zero. For a fixed range $alpha <= X <= beta$
+$
+P(alpha <= X <= beta) = int^beta_alpha f(x) dx
+$
+
+$f(x)$ obeys properties:
+- $0 <= f(x) < infty$ for all $x$
+- $
+  int^infty_(-infty) f(x) dx = 1
+  $
+
+#def([
+  The *cumulative probability function* is defined as
+  $
+  F(x) = P(X <= x) = int_(-infty)^x f(x) dx
+  $
+
+  Which has property $F'(x) = f(x)$.
+])
+
+And also these equations are true.
+$
+P(alpha <= X <= beta) &= F(beta) - F(alpha) \
+mu = E(X) &= int^infty_(-infty) x f(x) dx \
+sigma^2 = E(X^2) - E(X)^2 &= int^infty_(-infty) x^2 f(x) dx - mu^2
+$
+
+=== Uniform Probability Distribution
+
+$
+f(x) &= cases(
+  1/(beta-alpha) quad & "when" alpha <= x <= beta,
+  0 &"otherwise"
+) \
+F(x) &= cases(
+  0 quad & "when" x < alpha,
+  (x-alpha)/(beta-alpha) quad & "when" alpha <= x <= beta,
+  1 & "when" x > beta
+) \
+mu &= (alpha+beta)/2 \
+sigma^2 &= (beta - alpha)^2 / 12
+$
+
+This makes sense because $sigma^2$ should only depend on the difference between $alpha$ and $beta$, not their individual values.
+
+=== The Normal Distribution
+
+$
+f(x) &= 1/(sigma sqrt(2 pi)) exp(-((x-mu)/(sqrt(2) sigma))^2) \
+F(x) &= 1/2 + 1/2 exp((x-mu)/(sqrt(2) sigma))
+$
+
+You are required to know how to prove the result for $F(x)$ and the mean, variance of the normal distribution from definition, not included here.
+
+=== Central Limit Theorem
+
+If $x$ are samples taken from a distribution, then the arithmetic mean over $n$ samples is normally distributed as $n$ becomes large.
+$
+overline(x) = 1/n sum^(n-1)_(i=0)x_i
 $
