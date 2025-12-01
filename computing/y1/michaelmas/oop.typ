@@ -971,3 +971,89 @@ try {
 ```
 
 #hr
+
+There is also a _try with resources_ syntax that allows us to pass in anything implementing `java.lang.AutoCloseable` so it is closed after execution.
+```java
+try (FileOutputStream f = new FileOutputStream("file.txt")) {
+  // statements
+}
+```
+
+=== Types of Exceptions
+
+Exceptions are good for
+- Documentation: they are on the signature of a function.
+- Type safety: same reason as above.
+- Separation of concert: recovery logic is separated from normal logic.
+
+#grid2(
+  [
+    #v(10pt)
+    Error comes from the JVM, they are not fixable.
+    - Unchecked errors are not fixable.
+    - Checked errors must be passed up or handled.
+
+    === Rules for Exception Handling
+    1. Never ignore exceptions.
+    2. Do not catch `Exception`, that also catches `RuntimeException`.
+    3. Write JavaDoc to include exceptions that may occur.
+    4. Avoid exceptions specifying implementation details, as it breaks encapsulation.
+    5. *Don't use exceptions for control flow*.
+  ],
+  cetz.canvas({
+    import cetz.draw : *
+
+    content((0,0), "Throwable")
+    rect((-1.2, -0.5), (1.2, 0.5))
+
+    content((-2,-3), "Error")
+    rect((-3.2, -3.5), (-0.8, -2.5))
+
+    content((-2,-5), "RuntimeException")
+    rect((-3.8, -4.5), (-0.2, -5.5))
+
+    content((2,-3), "Exception")
+    rect((3.2, -3.5), (0.8, -2.5))
+
+    line((-2, -2.5), (-2, -1.5), (-0, -1.5), (0, -0.5), mark: (end: ">"))
+    line((2, -2.5), (2, -1.5), (-0, -1.5), (0, -0.5), mark: (end: ">"))
+    line((-0.2, -5), (2, -5), (2, -3.5), mark: (end: ">"))
+
+    rect((-4, -2.0), (-0.05, -6.5), stroke: red)
+    rect((4, -2.0), (0.05, -6.5), stroke: blue)
+
+    content((-2, -6.2), "Unchecked")
+    content((2, -6.2), "Checked")
+  })
+)
+
+=== Assertions
+
+Assertions are enabled with the `-ea` flag.
+
+- Used for *preconditions*: things that are assumed to be true at the start.
+
+  They should only be used for private functions, use exceptions in public functions.
+- Used for *postconditions* to ensure the algorithm is functioning correctly.
+
+#note([
+  Assertions can be turned off for production.
+])
+
+== Design Patterns
+
+#def([
+  A *design pattern* is a reusable solution to commonly occuring problems.
+])
+
+#tab2(
+  [Principle], [Description],
+  [The open-close principle], [Classes are open for extension close to modification.],
+  [Composite], [Group objects together, add methods to operate on the objects.],
+  [Decorator], [Create a wrapper class that contains another class to add additional methods.],
+  [State], [Include a state variable in the object, so the state can be changed without creating a new parent object.],
+  [Strategy], [Selecting an algorithm at runtime.],
+  [Singleton], [Allow only one instance of an object to be created by making the constructor private (e.g. a database connection handle).]
+)
+
+#hr
