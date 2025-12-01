@@ -1199,6 +1199,26 @@ Exact by (P63).
 
 == Lemma 71: key lemma
 
+#surround([
+  === Lemma 71.1: divisibility of linear combinations
+
+  Goal: $Fa(d, i, j, m, n in whole) d|m and d|n imp d|(i times n + j times n)$
+
+  Assume:
+  1. $d, i, j, m, n in whole$
+  2. $d|m and d|n$
+
+  New goal: $d|(i times m + j times n)$
+
+  $
+  &Ex(x, y in whole) m = x times d and n = y times d "by (2)"\
+  imp&i times m + j times n = i times x times d + j times y times d \
+  imp&i times m + j times n = (i times x + j times y) times d \
+  imp&Ex(z in whole) i times m + j times n = z times d \
+  imp&d|(i times m + j times n)
+  $
+])
+
 Goal: $Fa(m, m' in nat, n in whole^+) cong(m, m', n) imp CD(m,n) = CD(m', n)$
 
 Assume:
@@ -1237,3 +1257,141 @@ $
     ])
   ])
 )
+
+== Lemma 73: common divisor reduction
+
+Goal:
+$
+CD(m, n) = cases(
+  D(n) & n|m,
+  CD(n, rem(m, n)) quad quad&"otherwise"
+)
+$
+
+#surround([
+  Case:
+  1. $n|m$
+
+  Subgoal: $CD(m, n) = D(n)$
+
+  $
+  Fa(x in whole) x|n imp x|m "by (1) and (T23) as (2)"
+  $
+
+  New goal: $Fa(d in whole) d|m and d|n iff d|n$ by equality of predicates
+
+  Assume:
+  3. $d in whole$
+
+  New goal: $d|m and d|n iff d|n$
+
+  #grid2(
+    surround([
+      Goal: $d|m and d|n imp d|n$
+
+      Trivial.
+    ]),
+    surround([
+      Goal: $d|n imp d|m and d|n$
+
+      Assume:
+      4. $d|n$
+
+      New goal: $d|m$
+      
+      Exact by (2).
+    ])
+  )
+])
+
+#surround([
+  Goal: $CD(m, n) = CD(n, rem(m, n))$
+
+  $
+  &cong(m, rem(m, n), n) "by (C58.1)" \
+  imp&CD(m, n) = CD(n, rem(m, n)) "by (L71)"
+  $
+])
+
+#def(title: "Definition: Euclid's Algorithm", [
+  $
+  GCD(m, n) = cases(
+    n &"if" n|m,
+    GCD(n, rem(m, n)) quad quad&"otherwise"
+  )
+  $
+])
+
+== Proposition 75: uniqueness of common divisor
+
+Goal: $Fa(m, n, a, b in nat) CD(m, n) = D(a) and CD(m, n) = D(b) imp a = b$
+
+Assume:
+1. $m, n, a, b in nat$
+2. $CD(m, n) = D(a) and CD(m, n) = D(b)$
+
+New goal: $a = b$
+
+$
+&D(a) = D(b) "by (2)" \
+imp&Fa(d) d|a iff d|b "by equality of predicates" \
+imp&a|b and b|a "by setting" d = a "and" d = b \
+imp&a = b
+$
+
+== Proposition 76: defining property of the greatest common divisor
+
+Goal: $Fa(m, n, k in whole) CD(m, n) = D(k) iff (k|m and k|n and Fa(d in nat) d|m and d|n imp d|k)$
+
+Assume:
+1. $m, n, k in whole$
+
+#surround([
+  Subgoal: $CD(m, n) = D(k) imp (k|m and k|n and Fa(d in nat) d|m and d|n imp d|k)$
+
+  Assume:
+  2. $CD(m, n) = D(k)$
+
+  New goal: $k|m and k|n and Fa(d in nat) d|m and d|n imp d|k$
+
+  $
+  &Fa(d in whole) d|k imp d|m and d|n "by (2)" \
+  imp&k|m and k|n "by setting" d= k
+  $
+
+  New goal: $Fa(d in nat) d|m and d|n imp d|k$
+
+  Assume:
+  3. $d in nat$
+  4. $d|m and d|n$
+
+  New goal: $d|k$
+
+  Exact by (2) and (4)
+])
+
+#surround([
+  Subgoal: $(k|m and k|n and Fa(d in nat) d|m and d|n imp d|k) imp CD(m, n) = D(k)$
+
+  Assume:
+  2. $k|m and k|n$
+  3. $Fa(d in nat) d|m and d|n imp d|k$
+
+  New goal: $Fa(d in nat) d|m and d|n iff d|k$
+
+  Assume:
+  4. $d in nat$
+
+  #grid2(
+    surround([
+      Subgoal: $d|m and d|n imp d|k$
+
+      Exact by (3)
+    ]),
+    surround([
+      Subgoal: $d|k imp d|m and d|n$
+
+      Exact by (2)
+    ])
+  )
+])
