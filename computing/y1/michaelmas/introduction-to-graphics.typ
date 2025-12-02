@@ -1,6 +1,7 @@
-#import "@preview/cetz:0.4.2"
 #import "@preview/fletcher:0.5.8" : *
 #import "@local/lecture:0.1.0" : *
+#import "@preview/cetz:0.4.2"
+#import "@preview/cetz-plot:0.1.3"
 
 #set page(
   numbering: "1",
@@ -1466,3 +1467,135 @@ Since we now have different kinds of screens (OLED, laser, etc.), HDR tries to e
 })
 
 #hr
+
+=== Gamma Correction
+
+Gamma correction is used to encode *luminance* and *tri-stimulus colour*, so the pixels give a scale of brightness level that is _perceptionally uniform_.
+So only 8 bits is needed to remove banding artifacts (instead of 12).
+$
+V_"out" = a dot (V_"in")^gamma
+$
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  rect((0, 0), (3, 1))
+  content((1.5, 0.5), "Linear colour")
+
+  rect((6, 0), (9, 1))
+  content((7.5, 0.5), "Corrected colour")
+
+  line((3, 0.75), (6, 0.75), mark: (end: ">"))
+  content((4.5, 1.1), "Gamma")
+  line((6, 0.25), (3, 0.25), mark: (end: ">"))
+  content((4.5, -0.1), "Inverse gamma")
+})
+
+*Luma* is the gamma corrected greyscale brightness. Let $R'G'B'$ be the gamma corrected $R G B$.
+$
+"luma" = 0.21R' + 0.71G' + 0.07B' "by experimentation"
+$
+
+=== SDR to HDR Conversion
+
+HDR can represent wider colours than SDR as each pixel has more bit.
+
+#diagram(
+  node((0, 0), [Display \ encoded \ $R'G'B'$], stroke: black, shape: circle),
+  edge("<|-|>"),
+  node((1, 0), [Linear \ $R G B$ \ ITUR-709], stroke: black, shape: circle),
+  edge("<|-|>"),
+  node((2, 0), [Device \ independent \ $X Y Z$], stroke: black, shape: circle),
+  edge("<|-|>"),
+  node((3, 0), [Linear \ $R G B$ \ ITUR-2020], stroke: black, shape: circle),
+  edge("<|-|>"),
+  node((4, 0), [PQ-encoded \ $R'G'B'$], stroke: black, shape: circle),
+)
+
+$
+vec(X, Y, Z) &= M_"RGB to XYZ" dot vec(R, G, B)_"R709" \
+vec(R, G, B)_"R2020" &= M_"XYZ to R2020" dot M_"R709 to XYZ" dot vec(R, G, B)_"R709"
+$
+
+- Let $L$ be an $n times 1$ matrix represent the sample intensities of $n$ different wavelengths.
+- Let $S_"XYZ"$ be a matrix that transforms $L$ to XYZ colour space.
+$
+vec(X, Y, Z) = (S_"XYZ")^T dot L
+$
+Let $P_"RGB"$ be an $n times 3$ matrix that transforms $R G B$ colours to $L$. $M_"RGB to XYZ"$ is a $3 times 3$ matrix.
+$
+M_"RGB to XYZ" = (S_"XYZ")^T dot P_"RGB"
+$
+
+=== Alternative Colour Spaces
+
+#tab2(
+  [Colour space], [Description],
+  [RGB], [Represents colour in the fewest number of bits, can be linear or display encoded, scene referred or display encoded.],
+  [CMY], [Inverse of RGB, used for printing because ink absorbs light.],
+  [CMYK],[CMY with black ink, because CMY gives dark grey instead of black, and printing black text using CMY causes *colour fringement* due to misalighment.],
+  [HSV], [Hue, saturation and value (brightness). All pure colours and white have value 1.],
+  [HLS], [Similar to HSV, all pure colours have value 0.5, white have value 1 (because white is brighter than pure colours).]
+)
+
+=== The CIE u'v' Colour Space
+
+Grouping indistinguishable colours in the CIE-XYZ colours space shows some parts of the colour space are less distinguishable than others: the groups are larger where they are less distinguishable.
+
+The CIE u'v' colour space transforms CIE-XYZ so each groups have equal size.
+
+=== Tone Mapping
+
+The human eye can adapt to different light levels, tone mapping is used for:
+- Reduce dynamic range.
+- Customise the look.
+- Simulate human vision.
+- Adapt image to conditions.
+- Make renders more realistic.
+- Map scene to display encoded colours.
+
+*Exposure* changes scene white $S_"white"$
+$
+R_d = R_s/S_"white"
+$
+Where $R_s$ and $R_d$ are scene and display encoded colour. (assume $R_d = 1$ is the most white the display can show)
+
+==== Tone Curve
+
+This is the *sigmoidal tone curve*. The goal of the tone curve is to be steep where it is the most visible: colours with very high and very low luminance is discarded as they are less distinguishable.
+
+#cetz.canvas({
+  import cetz.draw : *
+
+  set-style(axes: (stroke: .5pt, tick: (stroke: .5pt)), legend: (stroke: none, orientation: ttb, item: (spacing: .3), scale: 80%))
+
+  cetz-plot.plot.plot(size: (12, 6.1),
+      x-tick-step: none,
+      y-tick-step: none, y-min: 0, y-max: 20,
+      x-label: "exposure",
+      y-label: "screen luminosity",
+      legend: "inner-north",
+      {
+
+        let domain = (0, 15)
+
+        cetz-plot.plot.add(x => 10 * calc.exp(x - 5) / (1 + calc.exp(x - 5) + 0.5) + 2, domain: domain)
+        cetz-plot.plot.add(x => 2, domain: domain, label: "display min colour")
+        cetz-plot.plot.add(x => 12, domain: domain, label: "display max colour")
+      })
+})
+
+This mimics the analogue film, and is fast to compute.
+
+$
+R'(x, y) = R(x, y)^b / ((L_m/a)^b + R(x, y)^b)
+$
+- $L_m$ sets the medium colour of the image.
+- $a$ shifts the curve to left or right.
+- $b$ is the steepness of the curve.
+
+*Contrast* can be increased by increasing $b$, but lowers dynamic range.
+
+#hr
+
+#align(center, `END Introduction to Graphics`)
