@@ -1035,3 +1035,63 @@ GROUP BY n
 ```
 
 #hr
+
+== Graph Databases
+
+#def([
+  A *graph* is a collection of nodes and edges.
+])
+
+- Entities are represented by *nodes*.
+- Relations are represented by *edges*.
+
+We could store a graph in a relational database, but they are inefficient as:
+- All edges must be scanned to find neighbour of a node.
+- Recursive SQLs are painful, graph databases have them built-in.
+- Ends of an edge are interchangeable:
+  - Both fields need to be examined for undirected search.
+  - Two inverted indexes needed to be stored.
+
+=== Neo4J Queries
+
+Create nodes and edges.
+
+```java
+CREATE (id123456:Entity { name: 'Name' }) // new node
+CREATE (id123456) -[:RELATION_NAME { property: 'Property' }]-> (id234567) // new edge
+```
+
+==== Patterns
+
+```java
+(a) --> (b) // all pairs of nodes from one to another
+(a) -- (b) // all pairs with an edge between them
+() --> (a) <-- () // any node with two or more incoming edge
+(a:Person) --> (b:Movie) // connection from a Person to Movie
+(a) -- (b) -- (c) --> (d) // four connected nodes (a can equal c)
+() -[:ACTED_IN]-> (b) // nodes with an incoming ACTED_IN edge
+(a) -[:ACTED_IN]-> (b) // all pairs related by ACTED_IN
+(a) -[:ACTED_IN*]-> (b) // transitive matching
+(a) -[*3..5]-> (b) // all pairs a and b separated by 3 to 5 edges
+```
+
+==== Querying with Patterns
+
+```java
+MATCH [pattern]
+RETURN a.name, b.name
+```
+
+The Bacon number query:
+```java
+MATCH paths=allshortestpaths(
+  (m: Person { name: 'Kevin Bacon' }) -[:ACTED_IN*]- (n:PERSON))
+WHERE m.person_id <> n.person_id
+RETURN length(paths)/2 AS bacon_number,
+       COUNT(distinct n.person_id) AS total
+ORDER BY bacon_number;
+```
+
+#hr
+
+#align(center, `END Databases`)
