@@ -705,7 +705,7 @@ Transformation by non-orthogonal matrix does not preserve angle, this breaks nor
   line((7.5, 0.75), (8, 1.75), mark: (end: ">"))
   line((7.5, 0.75), (8.5,-0.4), mark: (end: ">", fill: black))
   content((8, 2), $bold(N)'$)
-  content((8.5, 0.2), $bold(T)$)
+  content((8.5, 0.2), $bold(T')$)
 })
 
 We want $bold(N) dot bold(T) = 0$ after transformation $M$. Then we need to transform $bold(N)$ by matrix $G$.

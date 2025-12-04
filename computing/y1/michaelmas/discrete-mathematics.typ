@@ -1020,8 +1020,119 @@ There is a correspondance between sets and boolean algebra
   $
 ])
 
+== Ordered Pairing
+
 === Kuratoshi's Pairing
 
 Let $K(a, b) = {{a}, {a, b}}$, then $K(a, b) = K(x, y) iff a = x and b = y$.
+
+#hr
+
+There are many constructors for *ordered pairing*, the property of ordered pairing:
+$
+K(a, b) = K(x, y) iff a = x and b = y
+$
+
+#def([
+  Product of 2 sets:
+  $A times B = {x | Ex(a_1,a_2 in A, b_1,b_2 in B) x = (a,b) }$
+
+  We can prove uniqueness of $a_1,a_2,b_1,b_2$ by showing
+  $
+  Fa(a_1,a_2 in A, b_1,b_2 in B) (a_1,b_1) = (a_2,b_2) imp a_1 = a_2 and b_1 = b_2
+  $
+])
+
+#note([
+  ${x in A times A | Ex(a_1,a_2 in A) x=(a_1,a_2), P(a_1, a_2)}$ can be written in shorthand notation as
+  $
+  {(a_1, a_2) in A times A | P(a_1, a_2)}
+  $
+])
+
+#propos([
+  P110: $\#(A times B) = \#A times \#B$
+
+  A pair has form $(a_i, b_j)$ where $A = {a_1, a_2, dots, a_(\#A)}$ and $B = {b_1, b_2, dots, b_(\#B)}$
+
+  We can show $\#(A times B)$ is the number of cells in a $\#A times \#B$ grid by constructing a bijection.
+])
+
+== Big Union and Intersection
+
+Let $cal(T)$ be a family of sets
+$
+n in union.big cal(T) iff Ex(T in cal(T)) n in T
+$
+
+#def([
+  Format definiton of the big union (without using universal specification)
+
+  Let $cal(U)$ be a set, for any $cal(F) in cal(P)(cal(P)(cal(U)))$
+  $
+  union.big cal(F) = {x in cal(U) | Ex(A in cal(F)) x in A}
+  $
+])
+
+And clearly $union.big cal(F) in cal(P)(cal(U))$
+
+#propos([
+  P112: For all $cal(F) in cal(P)(cal(P)(cal(P)(cal(U))))$
+
+  $
+  union.big(union.big cal(F)) = union.big {A in cal(P)(cal(U)) | A in cal(F)}
+  $
+
+  Proof:
+  $
+  x in Union (Union cal(F)) &iff Ex(A) A in Union cal(F) and x in A \
+  &iff Ex(A, B) B in cal(F) and A in B and x in A \
+  &iff x in union.big {B in cal(P)(cal(U)) | B in cal(F)}
+  $
+])
+
+#def([
+  D113: Big intersection
+
+  For all $cal(F) subset.eq cal(P(U))$
+  $
+  Inter cal(F) = {x in cal(U) | Fa(A in cal(F)) x in A}
+  $
+])
+
+#def([
+  T114: If $cal(F) = {S in bb(R) | (0 in S) and Fa(x in real) x in S imp x + 1 in S}$
+
+  Then
+  - $nat in cal(F)$ ($nat$ has the *closure property*)
+  - $nat subset.eq Inter cal(F)$ ($S$ is closed under successor)
+
+])
+
+$Inter cal(F)$ finds the biggest set that is the subset of all $A in cal(F)$
+
+=== Union Axiom
+
+Every collection of sets has a union.
+
+== Disjoint Unions
+
+$
+A union.plus B = ({1} times A) union ({2} times B)
+$
+
+```ml
+type 'a 'b sum =
+  | one of 'a
+  | two of 'b
+```
+
+#note([
+  $({1} times A) inter ({2} times B) = emptyset$
+])
+
+#propos([
+  P118: $A and B = emptyset imp \#(A union B) = \#A + \#B$ 
+])
 
 #hr

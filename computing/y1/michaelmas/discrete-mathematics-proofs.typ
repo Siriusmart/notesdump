@@ -1395,3 +1395,7 @@ Assume:
     ])
   )
 ])
+
+#def(title: "Definition: greatest common divisor", [
+
+])
