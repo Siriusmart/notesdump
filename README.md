@@ -23,3 +23,4 @@
 5. [Analysis](./maths/y1/michaelmas/analysis.pdf)
 6. [Infinite series](./maths/y1/michaelmas/infinite-series.pdf)
 7. [Integration](./maths/y1/michaelmas/integration.pdf)
+8. [Probabilities](./maths/y1/michaelmas/probability.pdf)
