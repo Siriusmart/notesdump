@@ -1053,7 +1053,70 @@ Assertions are enabled with the `-ea` flag.
   [Decorator], [Create a wrapper class that contains another class to add additional methods.],
   [State], [Include a state variable in the object, so the state can be changed without creating a new parent object.],
   [Strategy], [Selecting an algorithm at runtime.],
-  [Singleton], [Allow only one instance of an object to be created by making the constructor private (e.g. a database connection handle).]
+  [Singleton], [Allow only one instance of an object to be created by making the constructor private (e.g. a database connection handle).],
+  [Observer], [When an object changes state, call all functions listening to the event.],
+  [Optional], [Returns an optional value instead of null, so the return type not being present is shown in the type signature.]
 )
 
 #hr
+
+== Lambda and Streams
+
+An interface with only 1 function is called a *functional interface*.
+
+```java
+interface MyPredicate {
+  boolean test(Apple apple);
+}
+```
+
+Then ```java filter(MyPredicate)``` can be called with ```java filter((Apple apple) -> true)```.
+
+The syntax for a *lambda* is
+- ```java (parameters) -> expression```
+- ```java (parameters) -> { statements; }```
+
+Java provides the following (functional) interfaces.
+
+#tab2(
+  [Interface], [Lambda signature],
+  ```java Predicate<T>```, ```java T -> boolean```,
+  ```java Consumer<T>```, ```java T -> void```,
+  ```java Function<T, R>```, ```java T -> R```,
+  ```java Supplier<T>```, ```java () -> T```,
+  ```java UnaryOperator<T>```, ```java T -> T```,
+  ```java BinaryOperator<T>```, ```java (T, T) -> T```,
+  ```java BiFunction<T, U, R>```, ```java (T, U) -> R```,
+)
+
+=== Method References
+
+Method references allows us to use methods as first class objects.
+
+Instead of writing ```java filter((Apple a) -> a.getWeight())```, we can just write ```java filter(Apple::getWeight)```.
+
+=== Streams
+
+#def([
+  A *stream* is a sequence of elements from a source that supports aggregate operations.
+])
+
+```java
+students.stream()
+  .filter(student -> student.isFrom("Cambridge"))
+  .count();
+```
+
+- *Intermediate operations* such as `filter` has type ```ml Stream -> Stream```
+- *Terminal operations* such as `count` has type ```ml Stream -> T``` where `T` is not a stream.
+
+Stream evaluations are lazy: if a terminal operator is not called, it is not ran.
+
+Benefits of using streams:
+- Concise
+- Lazy evaluation
+- Short circuiting: does not look through the whole collection if the result is found before reaching the end.
+
+#hr
+
+#align(center, `END Object Oriented Programming`)
