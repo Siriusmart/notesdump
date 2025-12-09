@@ -24,3 +24,7 @@
 6. [Infinite series](./maths/y1/michaelmas/infinite-series.pdf)
 7. [Integration](./maths/y1/michaelmas/integration.pdf)
 8. [Probabilities](./maths/y1/michaelmas/probability.pdf)
+
+## Self Reading
+
+- [Groups and Symmetry (M.A. Armstrong)](./maths/reading/groups-and-symmetry.pdf)

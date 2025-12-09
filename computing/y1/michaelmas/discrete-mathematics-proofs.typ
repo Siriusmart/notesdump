@@ -1397,5 +1397,59 @@ Assume:
 ])
 
 #def(title: "Definition: greatest common divisor", [
+  $Fa(m, n in nat) Ex(!k in nat) k|m and k|n and Fa(d in nat) d|m and d|n imp d|k$
 
+  - Uniqueness of $k$ by (P75)
+  - Existence of $k$ by Euclid's algorithm (below).
+])
+
+== Theorem 78: partial and total correctness of Euclid's algorithm
+
+#surround([
+  Subgoal: $"terminates" imp GCD(m,n)|m and GCD(m,n)|n$
+
+  Assume:
+  1. $GCD(m,n)$ terminates
+
+  New goal: $GCD(m,n)|m and GCD(m,n)|n$
+])
+
+#surround([
+  Subgoal: $Fa(m, n in nat) "Euclid's algorithm terminates"$
+
+  #informal([
+    Consider the computation tree of $GCD(m, n)$, at each step either:
+    - $n|m$ where the program terminates.
+    - Calls, $GCD(n, r)$ where $0 < r < n$, so $n in nat$ decreases at each step. Because it is bounded below, this cannot continue forever.
+  ])
+])
+
+== Lemma 80: properties of GCDs
+
+#surround([
+  Subgoal: $GCD(m, n) = GCD(n, m)$
+
+  $
+  D(GCD(m, n)) &= CD(m, n) \
+  &= CD(n, m) \
+  &= D(GCD(n, m))
+  $
+
+  Exact by (P75).
+])
+
+#surround([
+  Subgoal: $GCD(l, GCD(m, n)) = GCD(GCD(l, m), n)$
+
+  #missing([
+    This goal is not proved.
+  ])
+])
+
+#surround([
+  Subgoal: $GCD(l times m, l times n) = l times GCD(m, n)$
+
+  #missing([
+    This goal is not proved.
+  ])
 ])
