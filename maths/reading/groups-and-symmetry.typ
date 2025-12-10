@@ -136,3 +136,96 @@ The even permutations in $S_n$ forms a subgroup of order $n! slash 2$ called $A_
 === Theorem 6.5: 3-cycles generates $A_n$
 
 For $n >= 3$, the 3-cycles generates $A_n$
+
+== Isomorphism
+
+#def(title: "Isomorphism", [
+  $G$ and $G'$ are isomorphic if there is a bijection $phi : G mapsto G'$ which satisfies $phi(x y) = phi(x)phi(y)$.
+])
+
+- $phi(x^(-1)) = phi(x)^(-1)$
+- $phi(e) = e'$
+- $G "albelian" imp x'y' = y'x'$
+
+=== Plato's Solids
+
+- The tetrahedron is isomorphic to $A_4$
+- The cube and octahedron is isomorphic to $S_4$
+- The dodecahedron and icosahedron is isomorphic to $A_5$
+
+=== Theorem 8.1: Cayley's Theorem
+
+Let $G$ be a group, then $G$ is isomorphic to a subgroup of $S_G$
+
+=== Theorem 8.2: Cayley's with integer permutations
+
+Let $G$ be a group, then $G$ is isomorphic to a subgroup of $S_(|G|)$
+
+== Matrix Groups
+
+Let $f_A (bold(x)) = bold(x) A^t$ such that it is a group under function composition: $f_(A B) (x) = x (A B)^t = x B^t A^t$ (notice $B$ is applied first).
+
+#def(title: "General Linear Group", [
+  $G L_n(T)$ is the set of all $n times n$ matrices such that $f_A: T^n mapsto T^n$ is invertible.
+])
+
+E.g. $G L_n (real)$ and $G L_n (complex)$
+
+- Orthogonal matrices satisfies $A^t A = I$ where $A in G L_n(real)$ (the dot product of column $m$ and $n$ is 1 if $m=n$, 0 otherwise).
+- $O_n$ is the set of all orthogonal matrices in $G L_n (real)$, $|A| = +1 "or" -1$
+- $S O_n$ is the set of all orthogonal matrices where $|A| = +1$ only.
+
+Orthogonal matricies preserves length and angles.
+
+- Orthogonal matrices in complex numbers satisfies $A^(*t)A = I$, this is because the distance between two points in complex number is given by $z^*z$.
+- $U_n$ is the set of all orthogonal matrices in $G L_n (complex)$
+- $S U_n$ is the set of all orthogonal matrices where $|A| = +1$
+
+== Products
+
+#def(title: "Direct product", [
+  The *direct product* $G times H$ is $(g, h)$, with multiplication $(g, h)(g', h') = (g g', h h')$
+])
+
+=== Theorem 10.1: Cyclic direct product
+
+$
+whole_m times whole_n "cyclic" iff gcd(m, n) = 1
+$
+Then $whole_m times whole_n = "<"(1, 1)">"$
+
+=== Theorem 10.2: Subgroup isomorphic
+
+Let $H < G$, $K < G$, $H K = G$, $H inter K = {e}$, every $h in H$ commutes with $g in G$, then
+$
+H times K iso G
+$
+
+=== Theorem 11.1: Legrange's theorem
+
+The order of a subgroup of a finite group is always a divisor of the order of the group.
+
+
+==== Corollaries
+
+1. The order of every $g in G$ is a divisor of $|G|$
+2. If $|G|$ is prime, then $G$ is cyclic.
+3. If $x in G$ then $x^(|G|) = e$
+
+#def(title: $R_n$, [
+  - Let $R_n$ be the set of all $x in whole_n$ where $gcd(x, n) = 1$
+  - Let $phi(n) = |R_n|$
+])
+
+=== Theorem 11.5: Euler's theorem
+
+$
+gcd(x, n) = 1 imp cong(x^(phi(n)), 1, n)
+$
+
+=== Theorem 11.6: Fermat's little theorem
+
+If $p$ prime and $x$ is not a multiple of $p$, then
+$
+cong(x^(p-1), 1, p)
+$
