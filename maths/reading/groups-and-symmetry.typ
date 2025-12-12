@@ -229,3 +229,61 @@ If $p$ prime and $x$ is not a multiple of $p$, then
 $
 cong(x^(p-1), 1, p)
 $
+
+== Partitions
+
+#def(title: "Partition", [
+  Properties of a partition:
+  - Each $x in X$ is related to itself.
+  - $(x, y) in relate imp (y, x) in relate$
+  - $(x, y) in relate and (y, z) in relate imp (x, z) in relate$
+])
+
+=== Theorem 12.1: Equal equivalence classes
+
+$
+(x,y) in relate imp relate(x) = relate(y)
+$
+
+=== Theorem 12.2: Union of equivalence classes
+
+The distinct equivalence classes forms a partition on $X$.
+
+=== Theorem 13.1: Cauchy's theorem
+
+If $p$ is a prime divisior of the order of a finite group $G$, then $G$
+contains an element of order $p$.
+
+=== Theorem 13.2: isomorphism order 6
+
+A group of order 6 is isomorphic to
+- $whole_6$ or
+- $D_3$
+
+#def(title: "Quaternion group", [
+  A quaternion is an expression of form $a+b i+c j+d k$
+  $
+  i^2=j^2=k^2=-1 \
+  i j = -j i = k
+  $
+
+  - $Q$ is the quaternion group.
+  - $quat$ is the set of all quaternion.
+])
+
+=== Theorem 13.3: isomorphism order 8
+
+A group of order 8 is isomorphic to either
+- $whole_8$
+- $whole_4 times whole_2$
+- $whole_2 times whole_2 times whole_2$
+- $D_4$
+- $Q$
+
+== Conjugacy
+
+$x$ is conjugate to $y$ if $Ex(g in G) g x g^(-1) = y$
+
+=== Theorem 14.1: albelian and conjugacy
+
+The centre is a subgroup of $G$ made up of the conjugacy classes with just one element.
