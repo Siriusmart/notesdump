@@ -287,3 +287,50 @@ $x$ is conjugate to $y$ if $Ex(g in G) g x g^(-1) = y$
 === Theorem 14.1: albelian and conjugacy
 
 The centre is a subgroup of $G$ made up of the conjugacy classes with just one element.
+
+#def(title: "Normal subgroups", [
+  Subgroup $H$ is a normal subgroup $H normsub G$ if $H$ is a union of conjugacy classes of $G$.
+])
+
+Test for normal subgroup: $g h g^(-1) in H$ for all $h in H$ and $g in G$.
+
+=== Theorem 15.1: left cosets of normal subgroups
+
+If $H normsub G$, the set of all left cosets of $H$ forms a group under multiplication.
+
+#def(title: "Quotient group", [
+  Let $H normsub G$, then $G slash H$ is the set of all distinct left cosets of $H$.
+])
+
+=== Theorem 15.2: normal subgroups with generators
+
+Let $X$ be the set of generators for $G$.
+
+If $x h x^(-1) in H$ for all $h in H$ and $x in X$, then $H normsub G$.
+
+=== Theorem 15.3: commutative normal subgroup
+
+$H normsub G$ iff $x H = H x$ for all $x in G$.
+
+#def(title: "Index of normal subgroup", [
+  The index of $G slash H$ is $|G slash H|$
+])
+
+=== Theorem 15.4: isomorphism of $G slash H$
+
+If the index of $H$ in $G$ is 2, then $H normsub G$ and $G slash H iso whole_2$
+
+=== Theorem 15.5: group of order $2p$
+
+If $p$ is an odd prime, any group of order $2p$ is either cyclic or dihedral.
+
+#def(title: "Commutator subgroup", [
+  - An element in form $x y x^(-1) y^(-1)$ where $x, y in G$ is called a commutator.
+  - The set of all commutators is called a commutator subgroup of $G$, $[G, G]$
+])
+
+=== Theorem 15.6: commutator subgroup in $H$
+
+If $G slash [G, G]$ is albelian and $H normsub G$ where $G slash H$ is albelian, then $[G, G]$ is contained in $H$.
+
+$[G,G]$ is the smallest normal subgroup of $G$ where the corresponding quotient group is albelian.
