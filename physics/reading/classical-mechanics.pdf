@@ -1,0 +1,3298 @@
+%PDF-1.7
+%€€€€
+
+1 0 obj
+<<
+  /Type /Pages
+  /Count 2
+  /Kids [229 0 R 231 0 R]
+>>
+endobj
+
+2 0 obj
+<<
+  /Type /Outlines
+  /First 3 0 R
+  /Last 3 0 R
+  /Count 1
+>>
+endobj
+
+3 0 obj
+<<
+  /Parent 2 0 R
+  /First 4 0 R
+  /Last 6 0 R
+  /Count -3
+  /Title (2. Linear Motion)
+  /Dest 228 0 R
+>>
+endobj
+
+4 0 obj
+<<
+  /Parent 3 0 R
+  /Next 5 0 R
+  /Title (The Harmonic Oscillator)
+  /Dest 225 0 R
+>>
+endobj
+
+5 0 obj
+<<
+  /Parent 3 0 R
+  /Next 6 0 R
+  /Prev 4 0 R
+  /Title (The Damped Oscillator)
+  /Dest 226 0 R
+>>
+endobj
+
+6 0 obj
+<<
+  /Parent 3 0 R
+  /Prev 5 0 R
+  /Title (Resonance)
+  /Dest 227 0 R
+>>
+endobj
+
+7 0 obj
+<<
+  /Nums [0 197 0 R 1 198 0 R]
+>>
+endobj
+
+8 0 obj
+<<
+  /Type /StructTreeRoot
+  /RoleMap <<
+    /Datetime /Span
+    /Terms /Part
+    /Title /P
+    /Strong /Span
+    /Em /Span
+  >>
+  /K [11 0 R]
+  /ParentTree <<
+    /Nums [0 9 0 R 1 10 0 R]
+  >>
+  /IDTree <<
+    /Names [(U1x0y0) 194 0 R (U1x1y0) 192 0 R (U1x2y0) 190 0 R (U2x0y0) 152 0 R (U2x1y0) 150 0 R (U2x2y0) 148 0 R]
+  >>
+  /ParentTreeNextKey 2
+>>
+endobj
+
+9 0 obj
+[196 0 R 195 0 R 193 0 R 191 0 R 187 0 R 185 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 184 0 R 181 0 R 179 0 R 178 0 R 178 0 R 178 0 R 178 0 R 178 0 R 175 0 R 173 0 R 172 0 R 172 0 R 172 0 R 172 0 R 172 0 R 172 0 R 166 0 R 167 0 R 167 0 R 167 0 R 167 0 R 167 0 R 167 0 R 167 0 R 167 0 R 166 0 R 165 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 164 0 R 161 0 R 160 0 R 160 0 R 160 0 R 160 0 R 160 0 R 160 0 R 160 0 R 160 0 R 160 0 R 155 0 R 156 0 R 156 0 R 156 0 R 156 0 R 156 0 R 155 0 R 154 0 R 153 0 R 151 0 R 149 0 R 145 0 R 143 0 R 142 0 R 142 0 R 142 0 R 139 0 R 137 0 R 136 0 R 136 0 R 136 0 R 127 0 R 131 0 R 131 0 R 131 0 R 127 0 R 130 0 R 130 0 R 130 0 R 130 0 R 130 0 R 130 0 R 130 0 R 127 0 R 129 0 R 127 0 R 128 0 R 128 0 R 128 0 R 128 0 R 128 0 R 128 0 R 127 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 126 0 R 124 0 R 125 0 R 125 0 R 125 0 R 125 0 R 125 0 R 125 0 R 125 0 R 125 0 R 124 0 R 123 0 R 121 0 R 122 0 R 119 0 R 117 0 R 118 0 R 117 0 R 115 0 R 114 0 R 111 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 110 0 R 108 0 R 109 0 R 109 0 R 109 0 R 109 0 R 109 0 R 109 0 R 109 0 R 107 0 R 106 0 R 106 0 R 106 0 R 105 0 R 101 0 R 102 0 R 102 0 R 102 0 R 101 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 100 0 R 98 0 R 99 0 R 98 0 R 97 0 R 96 0 R 96 0 R 96 0 R 96 0 R 96 0 R 96 0 R 96 0 R 93 0 R 92 0 R 92 0 R 92 0 R 92 0 R 92 0 R 92 0 R 88 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R 87 0 R]
+endobj
+
+10 0 obj
+[80 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 84 0 R 80 0 R 83 0 R 83 0 R 83 0 R 83 0 R 83 0 R 83 0 R 80 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 82 0 R 80 0 R 81 0 R 80 0 R 80 0 R 79 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 78 0 R 75 0 R 77 0 R 77 0 R 77 0 R 77 0 R 77 0 R 75 0 R 76 0 R 76 0 R 76 0 R 76 0 R 76 0 R 76 0 R 75 0 R 73 0 R 74 0 R 74 0 R 74 0 R 74 0 R 72 0 R 70 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 71 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 67 0 R 64 0 R 66 0 R 66 0 R 66 0 R 66 0 R 66 0 R 66 0 R 66 0 R 64 0 R 64 0 R 65 0 R 65 0 R 65 0 R 61 0 R 62 0 R 62 0 R 62 0 R 62 0 R 60 0 R 58 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 59 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 55 0 R 53 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 54 0 R 52 0 R 50 0 R 51 0 R 51 0 R 48 0 R 45 0 R 45 0 R 47 0 R 47 0 R 47 0 R 47 0 R 45 0 R 46 0 R 46 0 R 46 0 R 46 0 R 46 0 R 46 0 R 46 0 R 39 0 R 40 0 R 40 0 R 40 0 R 40 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 38 0 R 37 0 R 35 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 36 0 R 35 0 R 35 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 34 0 R 33 0 R 28 0 R 32 0 R 32 0 R 28 0 R 31 0 R 31 0 R 31 0 R 31 0 R 28 0 R 30 0 R 28 0 R 29 0 R 29 0 R 29 0 R 29 0 R 29 0 R 29 0 R 29 0 R 29 0 R 29 0 R 28 0 R 26 0 R 22 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 25 0 R 22 0 R 24 0 R 24 0 R 24 0 R 24 0 R 24 0 R 22 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 23 0 R 22 0 R 20 0 R 16 0 R 19 0 R 19 0 R 16 0 R 18 0 R 18 0 R 18 0 R 18 0 R 16 0 R 17 0 R 17 0 R 17 0 R 16 0 R 12 0 R 13 0 R 12 0 R]
+endobj
+
+11 0 obj
+<<
+  /Type /StructElem
+  /S /Document
+  /P 8 0 R
+  /K [196 0 R 168 0 R 166 0 R 157 0 R 155 0 R 154 0 R 132 0 R 127 0 R 126 0 R 124 0 R 112 0 R 111 0 R 110 0 R 108 0 R 85 0 R 80 0 R 79 0 R 78 0 R 75 0 R 41 0 R 39 0 R 38 0 R 37 0 R 35 0 R 34 0 R 14 0 R 12 0 R]
+>>
+endobj
+
+12 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [377 13 0 R 379]
+  /Pg 231 0 R
+>>
+endobj
+
+13 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 12 0 R
+  /K [378]
+  /Pg 231 0 R
+>>
+endobj
+
+14 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 11 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [27 0 R 21 0 R 15 0 R]
+>>
+endobj
+
+15 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 14 0 R
+  /K [20 0 R 16 0 R]
+>>
+endobj
+
+16 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 15 0 R
+  /K [364 19 0 R 367 18 0 R 372 17 0 R 376]
+  /Pg 231 0 R
+>>
+endobj
+
+17 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 16 0 R
+  /K [373 374 375]
+  /Pg 231 0 R
+>>
+endobj
+
+18 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 16 0 R
+  /K [368 369 370 371]
+  /Pg 231 0 R
+>>
+endobj
+
+19 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 16 0 R
+  /K [365 366]
+  /Pg 231 0 R
+>>
+endobj
+
+20 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 15 0 R
+  /K [363]
+  /Pg 231 0 R
+>>
+endobj
+
+21 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 14 0 R
+  /K [26 0 R 22 0 R]
+>>
+endobj
+
+22 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 21 0 R
+  /K [330 25 0 R 344 24 0 R 350 23 0 R 362]
+  /Pg 231 0 R
+>>
+endobj
+
+23 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 22 0 R
+  /K [351 352 353 354 355 356 357 358 359 360 361]
+  /Pg 231 0 R
+>>
+endobj
+
+24 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 22 0 R
+  /K [345 346 347 348 349]
+  /Pg 231 0 R
+>>
+endobj
+
+25 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 22 0 R
+  /K [331 332 333 334 335 336 337 338 339 340 341 342 343]
+  /Pg 231 0 R
+>>
+endobj
+
+26 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 21 0 R
+  /K [329]
+  /Pg 231 0 R
+>>
+endobj
+
+27 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 14 0 R
+  /K [33 0 R 28 0 R]
+>>
+endobj
+
+28 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 27 0 R
+  /K [308 32 0 R 311 31 0 R 316 30 0 R 318 29 0 R 328]
+  /Pg 231 0 R
+>>
+endobj
+
+29 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 28 0 R
+  /K [319 320 321 322 323 324 325 326 327]
+  /Pg 231 0 R
+>>
+endobj
+
+30 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 28 0 R
+  /K [317]
+  /Pg 231 0 R
+>>
+endobj
+
+31 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 28 0 R
+  /K [312 313 314 315]
+  /Pg 231 0 R
+>>
+endobj
+
+32 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 28 0 R
+  /K [309 310]
+  /Pg 231 0 R
+>>
+endobj
+
+33 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 27 0 R
+  /K [307]
+  /Pg 231 0 R
+>>
+endobj
+
+34 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306]
+  /Pg 231 0 R
+>>
+endobj
+
+35 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [226 36 0 R 240 241]
+  /Pg 231 0 R
+>>
+endobj
+
+36 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 35 0 R
+  /K [227 228 229 230 231 232 233 234 235 236 237 238 239]
+  /Pg 231 0 R
+>>
+endobj
+
+37 0 obj
+<<
+  /Type /StructElem
+  /S /H3
+  /P 11 0 R
+  /T (Resonance)
+  /K [225]
+  /Pg 231 0 R
+>>
+endobj
+
+38 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [213 214 215 216 217 218 219 220 221 222 223 224]
+  /Pg 231 0 R
+>>
+endobj
+
+39 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [208 40 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+40 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 39 0 R
+  /K [209 210 211 212]
+  /Pg 231 0 R
+>>
+endobj
+
+41 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 11 0 R
+  /K [63 0 R 42 0 R]
+>>
+endobj
+
+42 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 41 0 R
+  /K [61 0 R 56 0 R 55 0 R 53 0 R 43 0 R]
+>>
+endobj
+
+43 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 42 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [49 0 R 44 0 R]
+>>
+endobj
+
+44 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 43 0 R
+  /K [48 0 R 45 0 R]
+>>
+endobj
+
+45 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 44 0 R
+  /K [194 195 47 0 R 200 46 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+46 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 45 0 R
+  /K [201 202 203 204 205 206 207]
+  /Pg 231 0 R
+>>
+endobj
+
+47 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 45 0 R
+  /K [196 197 198 199]
+  /Pg 231 0 R
+>>
+endobj
+
+48 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 44 0 R
+  /K [193]
+  /Pg 231 0 R
+>>
+endobj
+
+49 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 43 0 R
+  /K [52 0 R 50 0 R]
+>>
+endobj
+
+50 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 49 0 R
+  /K [190 51 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+51 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 50 0 R
+  /K [191 192]
+  /Pg 231 0 R
+>>
+endobj
+
+52 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 49 0 R
+  /K [189]
+  /Pg 231 0 R
+>>
+endobj
+
+53 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 42 0 R
+  /K [172 54 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+54 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 53 0 R
+  /K [173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188]
+  /Pg 231 0 R
+>>
+endobj
+
+55 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 42 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171]
+  /Pg 231 0 R
+>>
+endobj
+
+56 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 42 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [57 0 R]
+>>
+endobj
+
+57 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 56 0 R
+  /K [60 0 R 58 0 R]
+>>
+endobj
+
+58 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 57 0 R
+  /K [123 59 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+59 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 58 0 R
+  /K [124 125 126 127 128 129 130 131 132 133 134]
+  /Pg 231 0 R
+>>
+endobj
+
+60 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 57 0 R
+  /K [122]
+  /Pg 231 0 R
+>>
+endobj
+
+61 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 42 0 R
+  /K [117 62 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+62 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 61 0 R
+  /K [118 119 120 121]
+  /Pg 231 0 R
+>>
+endobj
+
+63 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 41 0 R
+  /K [73 0 R 68 0 R 67 0 R 64 0 R]
+>>
+endobj
+
+64 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 63 0 R
+  /K [104 66 0 R 112 113 65 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+65 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 64 0 R
+  /K [114 115 116]
+  /Pg 231 0 R
+>>
+endobj
+
+66 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 64 0 R
+  /K [105 106 107 108 109 110 111]
+  /Pg 231 0 R
+>>
+endobj
+
+67 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 63 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103]
+  /Pg 231 0 R
+>>
+endobj
+
+68 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 63 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [69 0 R]
+>>
+endobj
+
+69 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 68 0 R
+  /K [72 0 R 70 0 R]
+>>
+endobj
+
+70 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 69 0 R
+  /K [70 71 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+71 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 70 0 R
+  /K [71 72 73 74 75 76 77 78 79 80 81 82 83 84]
+  /Pg 231 0 R
+>>
+endobj
+
+72 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 69 0 R
+  /K [69]
+  /Pg 231 0 R
+>>
+endobj
+
+73 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 63 0 R
+  /K [64 74 0 R]
+  /Pg 231 0 R
+>>
+endobj
+
+74 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 73 0 R
+  /K [65 66 67 68]
+  /Pg 231 0 R
+>>
+endobj
+
+75 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [50 77 0 R 56 76 0 R 63]
+  /Pg 231 0 R
+>>
+endobj
+
+76 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 75 0 R
+  /K [57 58 59 60 61 62]
+  /Pg 231 0 R
+>>
+endobj
+
+77 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 75 0 R
+  /K [51 52 53 54 55]
+  /Pg 231 0 R
+>>
+endobj
+
+78 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [38 39 40 41 42 43 44 45 46 47 48 49]
+  /Pg 231 0 R
+>>
+endobj
+
+79 0 obj
+<<
+  /Type /StructElem
+  /S /H3
+  /P 11 0 R
+  /T (The Damped Oscillator)
+  /K [37]
+  /Pg 231 0 R
+>>
+endobj
+
+80 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [0 84 0 R 13 83 0 R 20 82 0 R 33 81 0 R 35 36]
+  /Pg 231 0 R
+>>
+endobj
+
+81 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 80 0 R
+  /K [34]
+  /Pg 231 0 R
+>>
+endobj
+
+82 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 80 0 R
+  /K [21 22 23 24 25 26 27 28 29 30 31 32]
+  /Pg 231 0 R
+>>
+endobj
+
+83 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 80 0 R
+  /K [14 15 16 17 18 19]
+  /Pg 231 0 R
+>>
+endobj
+
+84 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 80 0 R
+  /K [1 2 3 4 5 6 7 8 9 10 11 12]
+  /Pg 231 0 R
+>>
+endobj
+
+85 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 11 0 R
+  /K [103 0 R 86 0 R]
+>>
+endobj
+
+86 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 85 0 R
+  /K [101 0 R 100 0 R 98 0 R 89 0 R 88 0 R 87 0 R]
+>>
+endobj
+
+87 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 86 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300]
+  /Pg 229 0 R
+>>
+endobj
+
+88 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 86 0 R
+  /K [265]
+  /Pg 229 0 R
+>>
+endobj
+
+89 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 86 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [94 0 R 90 0 R]
+>>
+endobj
+
+90 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 89 0 R
+  /K [93 0 R 91 0 R]
+>>
+endobj
+
+91 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 90 0 R
+  /K [92 0 R]
+>>
+endobj
+
+92 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 91 0 R
+  /K [259 260 261 262 263 264]
+  /Pg 229 0 R
+>>
+endobj
+
+93 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 90 0 R
+  /K [258]
+  /Pg 229 0 R
+>>
+endobj
+
+94 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 89 0 R
+  /K [97 0 R 95 0 R]
+>>
+endobj
+
+95 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 94 0 R
+  /K [96 0 R]
+>>
+endobj
+
+96 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 95 0 R
+  /K [251 252 253 254 255 256 257]
+  /Pg 229 0 R
+>>
+endobj
+
+97 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 94 0 R
+  /K [250]
+  /Pg 229 0 R
+>>
+endobj
+
+98 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 86 0 R
+  /K [247 99 0 R 249]
+  /Pg 229 0 R
+>>
+endobj
+
+99 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 98 0 R
+  /K [248]
+  /Pg 229 0 R
+>>
+endobj
+
+100 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 86 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246]
+  /Pg 229 0 R
+>>
+endobj
+
+101 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 86 0 R
+  /K [218 102 0 R 222]
+  /Pg 229 0 R
+>>
+endobj
+
+102 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 101 0 R
+  /K [219 220 221]
+  /Pg 229 0 R
+>>
+endobj
+
+103 0 obj
+<<
+  /Type /StructElem
+  /S /Div
+  /P 85 0 R
+  /K [107 0 R 106 0 R 105 0 R 104 0 R]
+>>
+endobj
+
+104 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 103 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K []
+>>
+endobj
+
+105 0 obj
+<<
+  /Type /StructElem
+  /S /Span
+  /P 103 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [217]
+  /Pg 229 0 R
+>>
+endobj
+
+106 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 103 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [214 215 216]
+  /Pg 229 0 R
+>>
+endobj
+
+107 0 obj
+<<
+  /Type /StructElem
+  /S /Span
+  /P 103 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [213]
+  /Pg 229 0 R
+>>
+endobj
+
+108 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [205 109 0 R]
+  /Pg 229 0 R
+>>
+endobj
+
+109 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 108 0 R
+  /K [206 207 208 209 210 211 212]
+  /Pg 229 0 R
+>>
+endobj
+
+110 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204]
+  /Pg 229 0 R
+>>
+endobj
+
+111 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [173]
+  /Pg 229 0 R
+>>
+endobj
+
+112 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 11 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [120 0 R 116 0 R 113 0 R]
+>>
+endobj
+
+113 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 112 0 R
+  /K [115 0 R 114 0 R]
+>>
+endobj
+
+114 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 113 0 R
+  /K [172]
+  /Pg 229 0 R
+>>
+endobj
+
+115 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 113 0 R
+  /K [171]
+  /Pg 229 0 R
+>>
+endobj
+
+116 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 112 0 R
+  /K [119 0 R 117 0 R]
+>>
+endobj
+
+117 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 116 0 R
+  /K [168 118 0 R 170]
+  /Pg 229 0 R
+>>
+endobj
+
+118 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 117 0 R
+  /K [169]
+  /Pg 229 0 R
+>>
+endobj
+
+119 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 116 0 R
+  /K [167]
+  /Pg 229 0 R
+>>
+endobj
+
+120 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 112 0 R
+  /K [123 0 R 121 0 R]
+>>
+endobj
+
+121 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 120 0 R
+  /K [165 122 0 R]
+  /Pg 229 0 R
+>>
+endobj
+
+122 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 121 0 R
+  /K [166]
+  /Pg 229 0 R
+>>
+endobj
+
+123 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 120 0 R
+  /K [164]
+  /Pg 229 0 R
+>>
+endobj
+
+124 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [154 125 0 R 163]
+  /Pg 229 0 R
+>>
+endobj
+
+125 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 124 0 R
+  /K [155 156 157 158 159 160 161 162]
+  /Pg 229 0 R
+>>
+endobj
+
+126 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /Placement /Block
+  >>]
+  /K [112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153]
+  /Pg 229 0 R
+>>
+endobj
+
+127 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [90 131 0 R 94 130 0 R 102 129 0 R 104 128 0 R 111]
+  /Pg 229 0 R
+>>
+endobj
+
+128 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 127 0 R
+  /K [105 106 107 108 109 110]
+  /Pg 229 0 R
+>>
+endobj
+
+129 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 127 0 R
+  /K [103]
+  /Pg 229 0 R
+>>
+endobj
+
+130 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 127 0 R
+  /K [95 96 97 98 99 100 101]
+  /Pg 229 0 R
+>>
+endobj
+
+131 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 127 0 R
+  /K [91 92 93]
+  /Pg 229 0 R
+>>
+endobj
+
+132 0 obj
+<<
+  /Type /StructElem
+  /S /Table
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /BorderColor [0 0 0]
+    /BorderThickness 1
+  >>]
+  /K [146 0 R 133 0 R]
+>>
+endobj
+
+133 0 obj
+<<
+  /Type /StructElem
+  /S /TBody
+  /P 132 0 R
+  /K [140 0 R 134 0 R]
+>>
+endobj
+
+134 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 133 0 R
+  /K [138 0 R 137 0 R 135 0 R]
+>>
+endobj
+
+135 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 134 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x2y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [136 0 R]
+>>
+endobj
+
+136 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 135 0 R
+  /K [87 88 89]
+  /Pg 229 0 R
+>>
+endobj
+
+137 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 134 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x1y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [86]
+  /Pg 229 0 R
+>>
+endobj
+
+138 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 134 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x0y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [139 0 R]
+>>
+endobj
+
+139 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 138 0 R
+  /K [85]
+  /Pg 229 0 R
+>>
+endobj
+
+140 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 133 0 R
+  /K [144 0 R 143 0 R 141 0 R]
+>>
+endobj
+
+141 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 140 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x2y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [142 0 R]
+>>
+endobj
+
+142 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 141 0 R
+  /K [82 83 84]
+  /Pg 229 0 R
+>>
+endobj
+
+143 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 140 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x1y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [81]
+  /Pg 229 0 R
+>>
+endobj
+
+144 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 140 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U2x0y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [145 0 R]
+>>
+endobj
+
+145 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 144 0 R
+  /K [80]
+  /Pg 229 0 R
+>>
+endobj
+
+146 0 obj
+<<
+  /Type /StructElem
+  /S /THead
+  /P 132 0 R
+  /K [147 0 R]
+>>
+endobj
+
+147 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 146 0 R
+  /K [152 0 R 150 0 R 148 0 R]
+>>
+endobj
+
+148 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 147 0 R
+  /ID (U2x2y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [149 0 R]
+>>
+endobj
+
+149 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 148 0 R
+  /K [79]
+  /Pg 229 0 R
+>>
+endobj
+
+150 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 147 0 R
+  /ID (U2x1y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [151 0 R]
+>>
+endobj
+
+151 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 150 0 R
+  /K [78]
+  /Pg 229 0 R
+>>
+endobj
+
+152 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 147 0 R
+  /ID (U2x0y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [153 0 R]
+>>
+endobj
+
+153 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 152 0 R
+  /K [77]
+  /Pg 229 0 R
+>>
+endobj
+
+154 0 obj
+<<
+  /Type /StructElem
+  /S /H3
+  /P 11 0 R
+  /T (The Harmonic Oscillator)
+  /K [76]
+  /Pg 229 0 R
+>>
+endobj
+
+155 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [69 156 0 R 75]
+  /Pg 229 0 R
+>>
+endobj
+
+156 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 155 0 R
+  /K [70 71 72 73 74]
+  /Pg 229 0 R
+>>
+endobj
+
+157 0 obj
+<<
+  /Type /StructElem
+  /S /L
+  /P 11 0 R
+  /A [<<
+    /O /List
+    /ListNumbering /Circle
+  >>]
+  /K [162 0 R 158 0 R]
+>>
+endobj
+
+158 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 157 0 R
+  /K [161 0 R 159 0 R]
+>>
+endobj
+
+159 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 158 0 R
+  /K [160 0 R]
+>>
+endobj
+
+160 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 159 0 R
+  /K [60 61 62 63 64 65 66 67 68]
+  /Pg 229 0 R
+>>
+endobj
+
+161 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 158 0 R
+  /K [59]
+  /Pg 229 0 R
+>>
+endobj
+
+162 0 obj
+<<
+  /Type /StructElem
+  /S /LI
+  /P 157 0 R
+  /K [165 0 R 163 0 R]
+>>
+endobj
+
+163 0 obj
+<<
+  /Type /StructElem
+  /S /LBody
+  /P 162 0 R
+  /K [164 0 R]
+>>
+endobj
+
+164 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 163 0 R
+  /K [44 45 46 47 48 49 50 51 52 53 54 55 56 57 58]
+  /Pg 229 0 R
+>>
+endobj
+
+165 0 obj
+<<
+  /Type /StructElem
+  /S /Lbl
+  /P 162 0 R
+  /K [43]
+  /Pg 229 0 R
+>>
+endobj
+
+166 0 obj
+<<
+  /Type /StructElem
+  /S /P
+  /P 11 0 R
+  /K [33 167 0 R 42]
+  /Pg 229 0 R
+>>
+endobj
+
+167 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 166 0 R
+  /K [34 35 36 37 38 39 40 41]
+  /Pg 229 0 R
+>>
+endobj
+
+168 0 obj
+<<
+  /Type /StructElem
+  /S /Table
+  /P 11 0 R
+  /A [<<
+    /O /Layout
+    /BorderColor [0 0 0]
+    /BorderThickness 1
+  >>]
+  /K [188 0 R 169 0 R]
+>>
+endobj
+
+169 0 obj
+<<
+  /Type /StructElem
+  /S /TBody
+  /P 168 0 R
+  /K [182 0 R 176 0 R 170 0 R]
+>>
+endobj
+
+170 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 169 0 R
+  /K [174 0 R 173 0 R 171 0 R]
+>>
+endobj
+
+171 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 170 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x2y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [172 0 R]
+>>
+endobj
+
+172 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 171 0 R
+  /K [27 28 29 30 31 32]
+  /Pg 229 0 R
+>>
+endobj
+
+173 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 170 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x1y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [26]
+  /Pg 229 0 R
+>>
+endobj
+
+174 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 170 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x0y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [175 0 R]
+>>
+endobj
+
+175 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 174 0 R
+  /K [25]
+  /Pg 229 0 R
+>>
+endobj
+
+176 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 169 0 R
+  /K [180 0 R 179 0 R 177 0 R]
+>>
+endobj
+
+177 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 176 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x2y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [178 0 R]
+>>
+endobj
+
+178 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 177 0 R
+  /K [20 21 22 23 24]
+  /Pg 229 0 R
+>>
+endobj
+
+179 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 176 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x1y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [19]
+  /Pg 229 0 R
+>>
+endobj
+
+180 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 176 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x0y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [181 0 R]
+>>
+endobj
+
+181 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 180 0 R
+  /K [18]
+  /Pg 229 0 R
+>>
+endobj
+
+182 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 169 0 R
+  /K [186 0 R 185 0 R 183 0 R]
+>>
+endobj
+
+183 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 182 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x2y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [184 0 R]
+>>
+endobj
+
+184 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 183 0 R
+  /K [6 7 8 9 10 11 12 13 14 15 16 17]
+  /Pg 229 0 R
+>>
+endobj
+
+185 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 182 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x1y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [5]
+  /Pg 229 0 R
+>>
+endobj
+
+186 0 obj
+<<
+  /Type /StructElem
+  /S /TD
+  /P 182 0 R
+  /A [<<
+    /O /Table
+    /Headers [(U1x0y0)]
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [187 0 R]
+>>
+endobj
+
+187 0 obj
+<<
+  /Type /StructElem
+  /S /Formula
+  /P 186 0 R
+  /K [4]
+  /Pg 229 0 R
+>>
+endobj
+
+188 0 obj
+<<
+  /Type /StructElem
+  /S /THead
+  /P 168 0 R
+  /K [189 0 R]
+>>
+endobj
+
+189 0 obj
+<<
+  /Type /StructElem
+  /S /TR
+  /P 188 0 R
+  /K [194 0 R 192 0 R 190 0 R]
+>>
+endobj
+
+190 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 189 0 R
+  /ID (U1x2y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [191 0 R]
+>>
+endobj
+
+191 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 190 0 R
+  /K [3]
+  /Pg 229 0 R
+>>
+endobj
+
+192 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 189 0 R
+  /ID (U1x1y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [193 0 R]
+>>
+endobj
+
+193 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 192 0 R
+  /K [2]
+  /Pg 229 0 R
+>>
+endobj
+
+194 0 obj
+<<
+  /Type /StructElem
+  /S /TH
+  /P 189 0 R
+  /ID (U1x0y0)
+  /A [<<
+    /O /Table
+    /Scope /Column
+  >> <<
+    /O /Layout
+    /BorderStyle /Solid
+  >>]
+  /K [195 0 R]
+>>
+endobj
+
+195 0 obj
+<<
+  /Type /StructElem
+  /S /Strong
+  /P 194 0 R
+  /K [1]
+  /Pg 229 0 R
+>>
+endobj
+
+196 0 obj
+<<
+  /Type /StructElem
+  /S /H2
+  /P 11 0 R
+  /T (2. Linear Motion)
+  /K [0]
+  /Pg 229 0 R
+>>
+endobj
+
+197 0 obj
+<<
+  /Type /PageLabel
+  /S /D
+  /St 1
+>>
+endobj
+
+198 0 obj
+<<
+  /Type /PageLabel
+  /S /D
+  /St 2
+>>
+endobj
+
+199 0 obj
+<<
+  /Type /Font
+  /Subtype /Type0
+  /BaseFont /NOXNAH+LibertinusSerif-Regular-Identity-H
+  /Encoding /Identity-H
+  /DescendantFonts [200 0 R]
+  /ToUnicode 203 0 R
+>>
+endobj
+
+200 0 obj
+<<
+  /Type /Font
+  /Subtype /CIDFontType0
+  /BaseFont /NOXNAH+LibertinusSerif-Regular
+  /CIDSystemInfo <<
+    /Registry (Adobe)
+    /Ordering (Identity)
+    /Supplement 0
+  >>
+  /FontDescriptor 202 0 R
+  /DW 0
+  /W [0 0 500 1 1 485 2 2 477 3 3 431 4 4 458 5 5 250 6 6 587 7 7 556 8 8 565 9 9 311 10 10 602 11 11 541 12 12 699 13 13 563 14 14 529 15 15 412 16 16 519 17 17 504 18 18 316 19 19 447 20 20 542 21 21 271 22 22 457 23 23 264 24 24 310 25 25 372 26 26 428 27 27 512 28 28 500 29 29 515 30 30 485 31 31 790 32 32 220 33 33 747 34 34 560 35 35 505.99997 36 36 236 37 37 351 38 38 646 39 39 390 40 40 497 41 41 538 42 42 220 43 43 503.00003 44 44 531 45 45 597 46 46 493 47 47 695 48 48 661 49 49 297 50 50 465 51 51 528 52 52 490 53 53 582 54 54 951 55 56 298 57 57 465]
+>>
+endobj
+
+201 0 obj
+<<
+  /Length 13
+  /Filter /FlateDecode
+>>
+stream
+xœûÿ  #¥º
+endstream
+endobj
+
+202 0 obj
+<<
+  /Type /FontDescriptor
+  /FontName /NOXNAH+LibertinusSerif-Regular
+  /Flags 131078
+  /FontBBox [0 -238 947 708]
+  /ItalicAngle 0
+  /Ascent 894
+  /Descent -246
+  /CapHeight 658
+  /StemV 95.4
+  /CIDSet 201 0 R
+  /FontFile3 204 0 R
+>>
+endobj
+
+203 0 obj
+<<
+  /Length 1412
+  /Type /CMap
+  /WMode 0
+>>
+stream
+%!PS-Adobe-3.0 Resource-CMap
+%%DocumentNeededResources: procset CIDInit
+%%IncludeResource: procset CIDInit
+%%BeginResource: CMap Custom
+%%Title: (Custom Adobe Identity 0)
+%%Version: 1
+%%EndComments
+/CIDInit /ProcSet findresource begin
+12 dict begin
+begincmap
+/CIDSystemInfo 3 dict dup begin
+    /Registry (Adobe) def
+    /Ordering (Identity) def
+    /Supplement 0 def
+end def
+/CMapName /Custom def
+/CMapVersion 1 def
+/CMapType 0 def
+/WMode 0 def
+1 begincodespacerange
+<0000> <FFFF>
+endcodespacerange
+57 beginbfchar
+<0001> <0053>
+<0002> <0065>
+<0003> <006C>
+<0004> <0066>
+<0005> <0020>
+<0006> <0052>
+<0007> <0061>
+<0008> <0064>
+<0009> <0069>
+<000A> <006E>
+<000B> <0067>
+<000C> <004E>
+<000D> <006F>
+<000E> <0074>
+<000F> <0073>
+<0010> <0070>
+<0011> <006F>
+<0012> <0074>
+<0013> <0065>
+<0014> <006E>
+<0015> <0069>
+<0016> <0061>
+<0017> <006C>
+<0018> <0066>
+<0019> <0072>
+<001A> <0063>
+<001B> <006B>
+<001C> <0067>
+<001D> <0079>
+<001E> <0046>
+<001F> <006D>
+<0020> <002C>
+<0021> <0077>
+<0022> <00660069>
+<0023> <0064>
+<0024> <003A>
+<0025> <2022>
+<0026> <0043>
+<0027> <0073>
+<0028> <0076>
+<0029> <0068>
+<002A> <002E>
+<002B> <0071>
+<002C> <0075>
+<002D> <0054>
+<002E> <0062>
+<002F> <0041>
+<0030> <0055>
+<0031> <0049>
+<0032> <0031>
+<0033> <004C>
+<0034> <0078>
+<0035> <00660066>
+<0036> <0057>
+<0037> <0028>
+<0038> <0029>
+<0039> <0032>
+endbfchar
+endcmap
+CMapName currentdict /CMap defineresource pop
+end
+end
+%%EndResource
+%%EOF
+endstream
+endobj
+
+204 0 obj
+<<
+  /Length 6583
+  /Filter /FlateDecode
+  /Subtype /CIDFontType0C
+>>
+stream
+xœ…ytWö¾cDl<(13É!,É†¡š©ÅŒ»{‘Ü°ŠUG£Ş\%¹7ÉMÆ¸C}„j	%„…TöyüÏş.lÊïYë¾wï}ßıîwŸ¼½ÆŒñòööö_™š›˜‘¶)256ê­‘Ññ»S=ÿ[ÎàÌKªñóòx/b¬©R=~¼ôí^hzÉÿí¡ïË^^^½^öòòûüË^^ÿıïø)G÷ÇOõüº;~š—·7‹³zQDRXäÊˆÈÄôØô¬%IÉY©±Ñ1é“GŞÍšùÎ¬·fÍœõŞäÍ1‘“GÜš¼>5).2<}ò¢Œô˜¤Ô´^^Ïxy{¬Ì¢‚R+˜hn,¨3³ Ø‚c},ÿÿ¬jü¸¦±ããŸcú¸>^Ş^^^^s=M¤U*Ú€Ç·¿{^úı¼æz–[ëuÌ[ê}ÿ™âgl>|®	ãòò½ÌÊg@6#çÙfö­g·>{p¬l2®|Ü£ñùÏ½ü\,'pÂÊ	àouÏ7?ÛÏfLœ=1v"5ñ{®ø…1/|şÂ/šıù_˜”‰ÃØ/øFüàK^î%ê‰{ä[¤;HÕËü»Ï[ÕËLíõQa)XWşßK\° Àhğ}Äbz¹wĞóÈ†Áÿù>Ò!0àÂ@ïî°8ËEMyàm&Äå×÷9…v0äÃq\ãµm:şÚ¬^™r#øf,y$ı|ÒtlîÎİóf¬kÿ!ƒ@3ó´"¥H¦] M±ng£ÇkÒoáí–²FòpSÓÑØƒy]sê‰ue¯·|…}Ú÷égßÕ¯]i',ÊÚdwËkDÙœªzğqXàÔòıÀ˜ô A÷¥&u²R•NÇ¦Ê)W1VH7Ğ•„L—¥’ÉØ;•Já*|#˜Â*)°ØˆC¬«qKI3eRµlô’Ü%¸¬4°Õ­$Ğ;Š½"*‡á¬Ä4MJ¥*^Ê>*·È02âÉSºi?İ€ƒ,÷)¥Š´¶YúûÄº|µPÁ^Ÿ“¸- eíYœ$xáÀ	*³pĞïè&ôkfÂªò{†}ÄÈç·¯Áw²Ò÷ÛHP†\³hê½^åêÙQTJGŸú;”²eŠ!Ğ3=ô)Z…qŞ´ñ@LX;˜¨g<‰zp¸OùŞB·ÑÎÆVªyüÔ'»j…º«ØÍCÈIuFìHBTEVC—Óö‘„RÂ•øFğÎã„^bû«„*÷J”|OBÂh:üé„rà!ST¯äNètÉø~¿|â¿EÛÁÀá‚ùÈW¶ÜôBò?p±oHmûî#xQ‰Zg&µÊ$7²w¦ºÚSHè¢|Û¿9ğ+Ö›İí":‚×jÖ„ì–DãhbLM‡íyVQ"ÀMC²G%­ƒî¢[Zº¨ıÃ‰@Û—i²u×°kŒ„{ô‹8>¿4é2d±j­ŸµÒ	sZ¾·°A˜ás÷W.— õcÙ“EKé2ºªº…ªZ4H+)(ïµµû5M1Ö±AeAt~lÒ“Fº•n¨«¥j‡L>6(Œi‡áæ9ÿÜüÌ|¾‚ı-¬åÂ7Y|uİHó´/Ç¢t2SœŞÀ{ oø€¿3¡Üä4ñ×Èm¡;èÚ*·òÊø©Àüí X&ÍùÎ#WD+q÷£‰\p©¬Ô·‚–Ãg_…“×FÁg>””Ô(·ñ˜¾7`ø€-à6÷)¨FR¡T|Ân:â :Úfºv5ì§GÃO{ãt›xõ<ğ3@âœ~À«tt¡!àmÀá¢N°é)—'@ OùæK‹p«Ù`'ÁEyÊ*šJHˆ¡ş×uH²";~³À	8E­Tø¦!r½RC´(,sV#By |ÈÏ:º‘®«k¢êFüÔ	5×0NÈÉÌrú5l1uèOLümî5½¦~Ø…,*‰ŠOØA'rA'À‚ñ8YŸ¯‚ç_»G¢w~Ø·muiV˜Uf=Õ¦Ø'î`',*Ş„ÃW!ëm8¢w§‚WIô§ÓçÍM§H‰An2`0ÍÂ«å1œ~?÷0Ó{ĞLæ câÂ+H¦J(‘ç–6'ğ³âêÇLjWÔÅèSØf#³²¥Ë$CA¶ÓtEy'µo8Èe†lím|†¸TEF½E˜QB àçGk}s-âb¼Ğdµ‘Œ ¹U¢?kŠ8Œ
+¡Òx;è]Ã£™g%%ò™Ç4˜-ïæàÌ¦¸`
+dİ/@ròkğuøÒı7n¼@@=ØÉ½uiÄà„À…³ŞX~L ø…ÓHNªÇ,t™ù~ c T£—À!QèfsQQÅ:^À_b'ÍJ“Ê¨c£²ªYÙå¡¤˜ÕÒğ²¦oĞé’É*BB˜&ÊD³¿°[ì'ñ
+V½UABıÀôYÒS8Eà¤xÌ*§_OCÆ0ërp9Z¾e6sSSÊæâËæ‡ÏY|9¢-“DÛN&´§oÄ6$'­ß´³áV‘§S"9MW/SGö°Ñ6­Å¬¶Új³/á·õ_¿<³#¸œDë·U„TîÃÚkjôì[]äñWeÒ©kU­Ò6'Æò@º‹ñíÔğı®\üp ¯£`&3†KÕ)«df6zA§Tjòñ$aŠx¹X)Uç¨¥ìOdÙìÑ‡H€P8Ìt3ívwSÎá0—†	¼-e–¢Ê:işioIkÙÕY}ìK½û`á÷ÓvlMØN R©\E™Ùèm[·¡ª³®?Ñ¿úÎIœÇdÅèŠ³H~©\ß„UˆCk²œm¢FfB£wÛu ¹îÓvs§†¾`Ê‰r§‹èØo?~ûe#x¾µ2(94ŠˆÍÜ°Û@0÷úÁùp*ô[òj,ğ»tÃqë’Å¢~ğ}+˜jò¾5àÓÎ,âî•òÉ<DFSZâ3ø	ki}RggoÙşVBi–êE4›Ÿ’Ÿ‚'Kë‘@ÿb.ÔšH;¢U¨eßÊ:©u«½B#“‹å21!”Šdy
+¶@.RHôÁ8“E= ¼Œsz7‚¯û0/ÜáFF%ælÀ£w;úâI¾SĞy6¥¯Õ ·|•ğ$ßƒ¾ğ›
+ƒœ‘d¸«+íüâ'Ü¤Â,Õ	h6,¸À×vÖT·tğ>ËeB’#°ñ˜I4|¿{c@Ï5à7.Ú&•H•&ŒªV¶zÛù§Ç· sDòuÃ¨®£İ´Û]7ŠÔ¶êDÚ«@Ğ““Õh"š[:ÊZq»#/İJšùêäşÃ³È!“ªx:Ï"´Û=ÈŒ:½Ê!Ó³7é„E¦#ıòîôz¢,;Şƒ£ç¶oÊ[±äÀ&YiPñÁó?ªø~ßüøî ZVzÊ7A÷jO¨­L“O$	ÃGè—™¥=<U–Nº•v»[Fá­\˜hÛL&…›R‘RQSQí¨àÕ$¨3-)-ä¼!jëfÆ8ıš®­¾f_FÛ@g77^oIîÅ[šJìWZå&¡-•d‹òğDªµ“¯#`ÊüêÅs‚6¦Yåµ¥ePj	JCé-Xı>K‹«+úJrEÌæù¢mo¦-ÿx6çÓ”³uF×~Â^ì«k¹ĞÉ“Jò¥/%6=	ß–á®ïpt·‘Ønã=\nVñıî ÍwµÚïÊst¸¡îÆìFĞ3ƒ85È5b"U´po¸B™¯ÎÑKÙ‡åzÅBŒ6óR+¸¼ïø€%t;î ¦Ñ`÷:Ä3:+œuÅ‚˜B"ËhÙëÀK*öa)¯˜,MIÑDâÌXg’á[‘,ÙHYV@<h¸[6Òƒ<2ÒÕçk¥ƒt¹ÊÆ÷¾_{LÃ÷ûñâ‡hX
+~ã*İÔ S™ş
+ºùÚQ;xN¾sÔËtÍ5ZYe-·–Å–r§7™”B#‰¬y%xEye%‰ÖÚ²jw‡„íŠH'Ğ©PfÔaè'êa|œŞÍ×}˜)·¹rS¾VL³wÅ†f„â‹ÏƒgÁ3İ§N}fŒ‰Ñ’ÉšB±wÔÔ÷ot¿ù÷WfÁ)ûÅ,àwä íj/ÉÙ­t‚å• À	¢êJ<§y} Ì3Ğo¯¨|ÓpNÚE»Tùpaƒğ½Ø¨BÊ¬°ä›ÄÖœsÓık#¬™´€­ •ÂN—ÑöúzÊ>d«MÕ&» ?˜ë/×)´:L«RkµÄÍÛuF·vÒ“¥Ó©$*:2ŠNêËŸÊÓbÄ‚ôÄøØ”ÌŒœdA¦‚~FĞ{#PBy
+LJƒïWXTÿÄ8APÜ6ç²$_ªWñıÎ„]]tl¿RÚ^r0ë™¹¶ÒR»#³89%8;6…DÏ9Œ‚8ûz|ÖœuoUÄ×$“h[hRZNh,mOªÊ#Ğó3ƒö$íÅŞ»š|	ààµ“À«!·2±‚hˆXFGáèç¡Y©JEIåŠ(SØn×;¬%äŞŠI+~óËşï»öV'Ö‘fƒ½° 7b=‰^räkD=?|ô
+Wa)VÔ×h
+ñŞ}TN-Ùšaİ›‚-y%òèjO»Ô•µzÎÖ}Ü!™Qˆ??q¶²©ÿ¸kG Á‰€¹—˜^§Ÿ¼‚!ô…ïq‹k
+j¬uW@PÇı`Œ}_aq—~ˆ™~âSéTRBü(1ŠŞiP4Hs¢ÿ³ü%9bE¾}ˆğÏÚ'³}ªùÂ©èØdš?dä–ˆ«/,ö7ñ‹vˆ’q‚¤Üx6_¸WœºW®â‰¹	y<{NµÃm<ÑDr–ÛxàrËi~lvkù~¿~€&p‘ûµ&}§†ÔK*½Ş¥*©Zæ¢«è*O'×óTR){³B‘÷>>|ÄúÄjŞOt°T†//#­µÆH¢dm¹÷”FÏˆ§ ĞE¶ŒJÅ¡‘µgã¨ïÇ­Fº—îèè]ÀƒÃØp€p¨Óı{ lòüL|	íÀoMÓ$3³ÿ²ÅåÉ6Òí-´Û]ÿT‹ìNúåã×ên¶×ã-5i‘p12'_$êm•ƒ„ë¤*‡{Û6­Xwï"…ªBÊJìî(hÅ[Ê2>"áRdH¶ål©šaÛÍmg!·rÏ¾»umææ-„B!•)Mì6qDÃ|Ã–Øİ$Ú#“I%”•Í7à$é^lõùå.7>ƒ—_%*U6e‰4ãEïØ’GˆÔƒ„8b9Ü};’ÒNp@‰ÇÌpzÀŒû`ˆc}À.f
+wx"Š¡¢#“é”!<uÉ,"Çğ"¼è¿Wo”šq“Q_l Ô}Hû?*Ò“àEp¶¸­¤¦O3Ä(|*ƒJHØ=‚èrQâŞ˜`„¿(U®ÊwÌIş™]jóÁ!8'PáTBjÜˆE—ÜšXºSŸã¿.Ë‹SRy“æ°Ìnº¸[3‰£ìZ| sy°8€~ÉÄyzW4‚ö´J©ZN _
+©n;Äºëºvºİ%3ÛÌÜz¼Ìaw{¿{ÆÍYÁaäîíâÀùXîö§ú×¿<ıK8ª¹è&º±±cT£]­yt°¬@êü­$ÜæéG#8k¤›è¦?‚E]’jğc#Øù¸´^Éh¸ÑËÕiMjZÂÖ¤cT˜Q¡£õj6º§¬´±è¨A¯Wy¶Õ‰m=³EÉî?£d8‘(•BV‡¯Ü•N††¦¬_„Á	ÇŞ^ZÓÚlw÷–óÜLeş^±'jON*´é3ğü…î"ÙU¿OcÇ›*óÒídaFqàç†`óï³|Îá&V¤ÕÖVTÔÖ¦U$&¦¥% oÌïqà.À™ŞÇ@¦Ï1Í]Ó·õøñ¾¾ãÇ·ö­Y³uë‚ó­¨¹Ñìİ|Û<q¿»Õyë4i’IôB|şÒñ3pˆÏ ÿ ¯]/ÿ¢©ƒ<Ú{¸æ ˆş9³«H«Ü¬±èe$İ¢~¶nëN7œ€¿¿4>h=¹20|ú«\ü+|ì!80@äTò˜7œ*¾_Eöçà•‹h\7 ¸Úíšİ˜Úl¦u8ZoĞ«”RR]-oÆ?½_ıÃéíî•$Z½®<¼¨kk*w•Î¿€ĞKí´‡%-š&u3íd£ÕºøàÂ-ø¢‚W/vÆ_ÚC^‹µñB±íÁ¼(­È(°ˆÈŒrá~i%“ê3)©”ÍÙ8TšoƒXğ¬¸ÌLá~"×x[çÂ­ş92UÎ¾% È?«[n=hx¤8*†Š‹K)™ƒRC}+˜ÏøçêõÒÜlĞ—H0	œ²í·T~ª)Ï4*%.–Nn8œœAfãÍ5€şÌ­Ü!½ß÷èıdq;=µñ{½ß“^÷Dïo_—·"¤(E
+¹LjÅhá‹^äÛäG+=Åµa”Jj¦İ-N•‘¸V<('oˆxzàs¨ı÷ÈälœŒ÷g•2ˆKÃ÷k¼2ĞàèãÑ`ÿ‡ªöŒÿb*‘B¹E(‘æó	ôB^–\!0²í{"L»qÈyçuè?ã8ü˜ZíÔ›KH´½¼@«æaiÌ®=C››†¡`6’EÉò$„ =™ÊÁ7¼·¼ùË¾óWH´½®ZZFrÒ=üÀŒ<‹­hHq[»<e:D©ÆØzÈüz ›‘:í9¡Qhd„ŒÊ¥r÷DÓ±ÃgŞ£(¬ÄĞ„•}dN*°­ğ	Vı¥i·¼P¸
+ƒ›‘åuı@pÚ•Næ‹V#ß”~÷‡Ëø!'Ì-MDëBWÊ‚ÒRHkM$Ú,é”õQlZ©¦ôŒ"úÈş‰Ïf¡ÍàX&’T*•)ß)Ú"fËÍVÊŠ£g®Ø;«Ná=¬fsd ùˆëÑó†O©‡î£İ-}Tïğ)ÍÔœ@‘KÁcÈıC˜¾< b¯£5`Cp¥R¹Ú„5Ú0
+wiŠ»\$‚ÊRì%Ğš|NnÅõz³Éh2[õ*‹˜Y^'mÄãî€wçï…Ff'Å“†xnyU©?Ú»èÈÚ1ûñ¼²J>	4ˆCk.°ğŠÒ	¢ö1ãøŞ0İ¼=ÀíÓ|tzm¢Y‡á|kl¤<X1tÜL÷Ó­m-#Ú(B«Éî†aÌqn²0‡üGÎ”µ	Ò]Ã6U´“®këi@‘šmqxPn†DcÖ’?«¯õoXéËù¨¹âô¾ñ5øOXÈØ¹×Št—4C7x!Ôv*""lÔíí‘AÛ
+ü#~»{ 
+– ¹R¢=2|õI…Qé¼íôaÃ’Å\R“18?8¬´6ØŞ¥¼xã@³÷ğe¾÷ƒ¯}À&š¦!×Jtg‡ıØE…PqÛéáåşìî¾‡njê¦:şGLrf)Ìy¾7ˆ¾äÚ<ºáGä}T]@è”*9±9öãÔwÃÔB­È$eÛ:Ëô6¼D“KÂ$ yÔò=tıIwÅ(ì=Y>EÕÊüúØıé/€XVõ·Jiî5ŸÔé„j’½„µş|+"ËÖG2³o'BEF‡ŒÊÖ‡G·¢]8gµÒ	&ß¤Ó¯øA?0¾¦7}^æÂ7Á{Ï£ÕÁ*ğ7İe ;tOvI¦vQ			#ŠÏ¥¨É®	»QD¥ËØhíÂ WøÖEŒrO!³®®†ª¹Z¹/ŒÖækËßö7Zµ”^|xcprbXl;é¦–jªbÈf§&W~è€úËõ”F§÷ìôÕš»*tMÃ­óòF		I#²Ñ[›åEZìª™ş‘œÎ·°95o0Rë²ı¾ Á-èp|ûô¥×A–îĞ»ˆs…U¦2¼Â±—o"yfsf5n/*²·íp.ŠÚ˜ñq,‰~W‘·Ó5ON‘xäòğ¸¥ƒmgı¥4tz„^ƒ‹jÎËmŞci/v¶–n ]íTûH¿\1(—3\q4ÁÇÂa°	A¿;mlÔÛˆ+KŞXš–j!ù&¿
+G¿Tkhš&9Ì+&ŞC–ÓOŞ‹Á¢Íıà˜„şú°9Æ…3-WĞ`æfÒ¨q§6ŒÚE…ÇÅĞ{FòúİAEY¼)¥|¥¿V ‰1•ŸŸM@.ì”Ñğ5&PĞX­kT-Gí¢"bG¾»èP([Xÿ¨Å?G§Zğ½Ù#=¦ƒ›¾v“F§ÃµZa¶üÚ7[¯Yq‹ÁR¤#Á¦© ±´¼Ø¹Dj•’²‹qî×6…[‘Êæ@ıíUïı×|öw§æ€øaV#;®>PŒb0M„Â,1i67mœ14=\Á÷^ó ãvÈAŒ "e¾D‘ÏvF‚g!‹1XÇBbO4¡$ŠÆı|Ìg–ê$chô;pmÑ……7Àâ›èÉ£L—gËr”Ô•–•z¥@Ï)R“«¬j:×Ô—úæêô-ë×‹û¢·¦¿¼Sõ©°„ÕĞ©T‘Íè:©.O-R²—fg§Fãp9«ûÌiøé;ßCıíû/bÀëİıs	ô$ôY>gÉùÿu¨ğ
+endstream
+endobj
+
+205 0 obj
+<<
+  /Type /Font
+  /Subtype /Type0
+  /BaseFont /FCWPGI+LibertinusSerif-Italic-Identity-H
+  /Encoding /Identity-H
+  /DescendantFonts [206 0 R]
+  /ToUnicode 209 0 R
+>>
+endobj
+
+206 0 obj
+<<
+  /Type /Font
+  /Subtype /CIDFontType0
+  /BaseFont /FCWPGI+LibertinusSerif-Italic
+  /CIDSystemInfo <<
+    /Registry (Adobe)
+    /Ordering (Identity)
+    /Supplement 0
+  >>
+  /FontDescriptor 208 0 R
+  /DW 0
+  /W [0 0 500 1 1 616 2 2 266 3 3 486 4 4 353 5 5 276 6 6 389 7 7 250 8 8 804 9 9 401 10 10 519 11 11 518 12 12 306 13 13 280 14 14 783 15 15 489 16 16 357 17 17 447 18 18 477 19 19 499 20 20 313]
+>>
+endobj
+
+207 0 obj
+<<
+  /Length 11
+  /Filter /FlateDecode
+>>
+stream
+xœûÿÿ ö÷
+endstream
+endobj
+
+208 0 obj
+<<
+  /Type /FontDescriptor
+  /FontName /FCWPGI+LibertinusSerif-Italic
+  /Flags 131142
+  /FontBBox [-19 -238 874 708]
+  /ItalicAngle -12
+  /Ascent 894
+  /Descent -246
+  /CapHeight 645
+  /StemV 95.4
+  /CIDSet 207 0 R
+  /FontFile3 210 0 R
+>>
+endobj
+
+209 0 obj
+<<
+  /Length 886
+  /Type /CMap
+  /WMode 0
+>>
+stream
+%!PS-Adobe-3.0 Resource-CMap
+%%DocumentNeededResources: procset CIDInit
+%%IncludeResource: procset CIDInit
+%%BeginResource: CMap Custom
+%%Title: (Custom Adobe Identity 0)
+%%Version: 1
+%%EndComments
+/CIDInit /ProcSet findresource begin
+12 dict begin
+begincmap
+/CIDSystemInfo 3 dict dup begin
+    /Registry (Adobe) def
+    /Ordering (Identity) def
+    /Supplement 0 def
+end def
+/CMapName /Custom def
+/CMapVersion 1 def
+/CMapType 0 def
+/WMode 0 def
+1 begincodespacerange
+<0000> <FFFF>
+endcodespacerange
+20 beginbfchar
+<0001> <0043>
+<0002> <006C>
+<0003> <0061>
+<0004> <0073>
+<0005> <0069>
+<0006> <0063>
+<0007> <0020>
+<0008> <004D>
+<0009> <0065>
+<000A> <0068>
+<000B> <006E>
+<000C> <0028>
+<000D> <0049>
+<000E> <006D>
+<000F> <0070>
+<0010> <0072>
+<0011> <006F>
+<0012> <0067>
+<0013> <0050>
+<0014> <0029>
+endbfchar
+endcmap
+CMapName currentdict /CMap defineresource pop
+end
+end
+%%EndResource
+%%EOF
+endstream
+endobj
+
+210 0 obj
+<<
+  /Length 2826
+  /Filter /FlateDecode
+  /Subtype /CIDFontType0C
+>>
+stream
+xœ}UiTW®"r:*@•V™„˜˜™˜à–5¢Y4\‚ƒA ‘fkºY{ïªîªêš¥Ù—Y#(ñ¨`Ğ$¸Å‰â2Æx&Æ3›ç•)f˜Ó˜Ä$'gş¼wßrŞ½ï»ß½Ÿ ò÷‡Á³HÄòIfnöV±\’üêû9»Ó%‰¾£w8Œ›m
+Æ¹9Á&Ó£1xÆìo‹ùÑÙ¡Ø‹á9}úä<ûÔšš
+~Ş·5î›@ğ‹Ÿ@ Üğv’4Aü~’83G’³7RšµW.Ù“’3÷±µğõˆ…¯.|}áâ¹ÛRÄsG57J.M'æÌ};7'E*Ï^ AO@)uq«]îŠ»e§]mÎ ^]6£´œ{ûç@¾Ô>òKN.i
+åº<‹ûLä	 ‚D¾ÿ=M›L´ï;¾H—ú†c!È÷øFh¿à%÷‰°'ºüÂüfû?å/‡Ãáo–tÌğjf†ÎÌ
+z'è¿³¶l2æî˜sá‡ıLşù0j’øú?¸¬v°’·Ã“Ü‘Ïâ}+P ìÓgğ¤mŠxßÜ©ös·z·or{üÀ•èîßŞ¾F8H½U‰ıùÍÈô…ó0³…õXZ	×ştı2ÂúŞZb'<fúó©õXûQæ'|Æ/â×òóø1¡—SÙr”»Ä5¸THR<$Ú«œ¦¼»ã+@&²x¹¯EÈ–ÊQgŸ	µ‘¬G²T‘%	$™JÒ”o§`—]—«¤
+ô¹òÁË“Q°6M+ÉGó-ò¡æK8B;z[	¶'#-·Ó¬v;[éè#„«UC`ª]“råk°ì
+2Æ-àÖ‰Ø¬6›Ë¿ÈGğ[]+®º}‚`¨’İ°6‡Ì+Eóm²ÎÏûú7ã½ïİä¬üBFª™r‡µÕ\C gÁ—°VgÒbÈØ^c±ÈÃ§Š"v¬|#“¨ú†L€%ßÖÕkKk“ê9ù\È'©:8¤C üòú%?°F%ªø~äØÅCY_;IdÔªÜMhWm÷¦j‚Å³Ùji3ÖjwWuoïß¸8zÃ¦ÄúøÑ8âè{ªİ–˜¿KVl©'ñ²¸-ËÔd+“&Ÿ5B¾×ò”À®„¦ W”)ïÁw!`&˜¿äæúïX@"‡·Ü[Vhl%i»´ºXI×j¥Uˆ¤ö‘p¹ÑªV¡jªX+ÅcùX›¦JÈGóËŠÛp$vp sä T;H½Ëeæ©0-i)wXê­ÍCs[D²úÜææúúææÜz™,7W†ùÕªÀ·&®Ígı€X%:?zäô á$U65—”˜ä›kŠ‰¢Uí	Ì?÷×±ŠV}ªÒzœ4PJZè,¬niªmò’ÇyAâYÜn|GtêÊ4Õ¶«!Ï¬ëÌß	ù/…À@yJı=!Uï#=_¸%"e%Y”Œ
+5èI½‘ ò
+>H{èVO§q 8œa˜ØBX&càlFçªCm´¶ã'¹B¶ÙUáaÂšØb¥­4ÁÔRÌ‡ğÃ“VX¥#FÍ#1Ÿ³òá4EQy°&mx7P]1ª3ê(Î?7Y¤Í*‘fPa2
+Ö‘?â¡;è††ckp8ËĞ5°…dõx6çÓZW5j§¬!Üz˜	@²îMVÁZÆb°bk·à<×3B~±êø¡]011ñr°Sœ‡M—{}­mÊù4’_É¯ä‘¥}ïMœ>Ùuy/Óë,¥Øæ-9êØ®ôÆ;Sm'@X%Šx>u•
+Ïwy>Áº]êLB¸ÛÇ+.ìØõ¨~¹ˆq$¬=/êoÁ×¾éÆê*téÅT¾FBˆùÅ°&Mı#o¦Iƒ#í¿Oš^°¶wYÜè‰¬Ú¤íÛÏ½†Ÿğ/[‚üÿ´^0Y
+ëó4rZèPîÃ‘ä^c¯ƒÆÿñÔÔW?CÈ¿ÀÁ+ãÈ&nøƒÈçIş…óx½†iÖ#›\=•Ê$V§Å‘èGeÒG†>ªY¤“â[yæ'÷eÊ}Ó¾q&Hòµ/†¦QÑ§—ê¤ZéoQœF…ı-*²i\ÈÛ®ËÜ¼à gê—{×ª«İ:^xY{ P×Avu£ı–ƒöCxåÍ–qï¥ºıÆnŒ¹Cç­z3ããè?K–¾¨O%ÓRÑí¶í•1¸ï¤¦ \	q7¦'Açï$Ü)Ñ+“*´¨8Á–NT¡Y6@wÓŞŞcp8kfkI‹„Mb•.kÛ=Njm­¬ØongCÍf¦ÊàÜeÜcLï¢ã‚ÃI™Çê;ÉP/YV¢Ëùï%<æƒcß_-C”`=¸(ÚòI‡r_/ÕßëÄûÀÀW†;öaµVmF©1[›Nìäã~yñGÈ#`0ë†·}VãÔf(™štI„’øX• IP£yî’Š‘!ÏµNi„”ÖR‚‰³¥Y{1=eµ˜™&¶Œ@’•‡À;°µÁÜ^ƒ~‘Ñ˜¾vÛ¦5›q¶Šv»ĞsÕÒÈõÑ«¢pŠf|Q:½®_7Òhåo(‚$(Õd±NŠ#ùâ)(L	MMİñ0Çg=PB
+ÛÅùáV]CbA÷²Èìv´•£Õ*gšØ'Öà%Q1{’3¤)aÅf‡ÖÕ{êİ­HuødœNZTš¦Ë'a½QoÔ¡ÈŠü#±¦3–nïÊ„3\;ÃB1Ïg‹™ÅŞÖ>€+=ì«ÏúöÇNµœ9^—zé/Éù…Y8XÂ?+Ú™·N¼ß-KÌc²,—GAœpU“Çİ‹q®İAùø2¸ÿÏuç~•ÖÛà.Ì{s2Ğ+²wÁˆÑáutU£•jgIZÂ4N¶ŸÇúXpL>ÁÙæ£€B³·Ğ—YO}ÀëÄ=`&ŒÔß¾Û€9-z­•@kl®’
+¬Åíi©+jN&¡˜ÍÄB>@ÕÃ=Ù!¸2d~WÀRQ´‹Ÿ}íæJ~«ÿÌ„ßûÿ$¿|ÁãvÑ7^0ïA[U¡´/—³Éh¢nIòV<^š¸WŒeÆ÷ş›¾Á«;@¶`mÀÔb;ıÉğÎ‹à…‹Ñ£q‹@¿¨E×]\‹WT6•Ù0«×³„ÆbSWanWE»°*G&V¥¥Í¹iUqï·jy\Íî–4™TÊe™;SP•)§¹Î\¶íCô-à§¸
+æÜñŞİÙñQ¾¼q3ˆÖV4:ªqUU£¶CxèÖè‰ûoã‰”nÃ¹Ü¢ÀaYcn
+*–$.âı?êÂü¼¿Éƒ÷À!ÑÆ’÷>Ü¤>?x¾|èÔú˜wqáFÊì`¨EŞRÇÀÈ0ã+‘^Z L"åT¨~Z¥>•ê¢é¾ŞÁGriöÉ%É°NgŠmu(k2Óü ÁÚÚj²‘À¬Uã¤åèˆdŒGîÉ7ª“0ñšN!HÊ €F†2c=\a¬Óf£¤É`$qäê•g<WõYìø±½ËŠ¨CÁCŠã`Ù©«"„<ığİ<¨¸àF9Z”;tjËˆ¢ txEÕ*[| UÂJö qú5±xÑ’¬I«	ñ+—.¯,ıû¥‘‰¶£ã×ªïZ:Ø}èí‘¢Ã¸ğ¸ºí7
+endstream
+endobj
+
+211 0 obj
+<<
+  /Type /Font
+  /Subtype /Type0
+  /BaseFont /WIIEGE+NewCMMath-Book-Identity-H
+  /Encoding /Identity-H
+  /DescendantFonts [212 0 R]
+  /ToUnicode 215 0 R
+>>
+endobj
+
+212 0 obj
+<<
+  /Type /Font
+  /Subtype /CIDFontType0
+  /BaseFont /WIIEGE+NewCMMath-Book
+  /CIDSystemInfo <<
+    /Registry (Adobe)
+    /Ordering (Identity)
+    /Supplement 0
+  >>
+  /FontDescriptor 214 0 R
+  /DW 0
+  /W [0 0 500 1 1 583 2 2 665 3 3 648 4 4 681 5 5 643 6 6 389 7 7 572 8 8 407 9 9 389 10 10 520 11 11 778 12 12 595 13 13 675 14 14 584 15 16 569 17 17 878 19 19 778 21 21 778 22 22 738 23 23 490 24 24 720 25 25 668 26 26 437 27 29 500 30 30 647 31 31 837 32 32 773 33 33 521 34 34 722 35 35 556 36 36 444 37 37 392 38 38 750 39 39 466 40 40 589 41 41 432 42 42 759 43 43 778 44 44 503.00003 45 45 1000 46 46 500 47 48 778 49 49 404 50 50 622 51 51 1000 52 52 529 53 53 544 54 54 444 55 55 500 56 56 394 57 57 361 58 58 469 59 59 465 60 60 429 61 61 433 62 62 345 63 63 490 64 64 583 65 65 518 66 66 678 67 67 1014.00006 68 68 569 69 69 1000 70 70 607 71 72 778 73 73 600 74 76 778 77 77 278 78 78 500 79 79 900 80 80 791 81 81 298 82 82 572 83 83 1000 84 85 523 86 86 500 87 87 576 88 88 469 89 89 389 90 90 500 91 91 556 92 92 570]
+>>
+endobj
+
+213 0 obj
+<<
+  /Length 13
+  /Filter /FlateDecode
+>>
+stream
+xœûÿ~  M·î
+endstream
+endobj
+
+214 0 obj
+<<
+  /Type /FontDescriptor
+  /FontName /WIIEGE+NewCMMath-Book
+  /Flags 131076
+  /FontBBox [-401 -951 1020 1450]
+  /ItalicAngle 0
+  /Ascent 806
+  /Descent -194
+  /CapHeight 683
+  /StemV 95.4
+  /CIDSet 213 0 R
+  /FontFile3 216 0 R
+>>
+endobj
+
+215 0 obj
+<<
+  /Length 2070
+  /Type /CMap
+  /WMode 0
+>>
+stream
+%!PS-Adobe-3.0 Resource-CMap
+%%DocumentNeededResources: procset CIDInit
+%%IncludeResource: procset CIDInit
+%%BeginResource: CMap Custom
+%%Title: (Custom Adobe Identity 0)
+%%Version: 1
+%%EndComments
+/CIDInit /ProcSet findresource begin
+12 dict begin
+begincmap
+/CIDSystemInfo 3 dict dup begin
+    /Registry (Adobe) def
+    /Ordering (Identity) def
+    /Supplement 0 def
+end def
+/CMapName /Custom def
+/CMapVersion 1 def
+/CMapType 0 def
+/WMode 0 def
+1 begincodespacerange
+<0000> <FFFF>
+endcodespacerange
+92 beginbfchar
+<0001> <D835DC49>
+<0002> <222B>
+<0003> <D835DC65>
+<0004> <0030>
+<0005> <D835DC39>
+<0006> <0028>
+<0007> <D835DC65>
+<0008> <2032>
+<0009> <0029>
+<000A> <D835DC51>
+<000B> <2212>
+<000C> <D835DC51>
+<000D> <D835DC49>
+<000E> <D835DC47>
+<000F> <0031>
+<0010> <0032>
+<0011> <D835DC5A>
+<0012> <0307>
+<0013> <003D>
+<0014> <0308>
+<0015> <002B>
+<0016> <D835DC38>
+<0017> <D835DC53>
+<0018> <D835DF14>
+<0019> <D835DF0B>
+<001A> <D835DF0F>
+<001B> <0030>
+<001C> <0031>
+<001D> <0032>
+<001E> <2033>
+<001F> <2026>
+<0020> <2248>
+<0021> <D835DC58>
+<0022> <0077>
+<0023> <0068>
+<0024> <0065>
+<0025> <0072>
+<0026> <D835DC34>
+<0027> <D835DC52>
+<0028> <D835DC5D>
+<0029> <D835DC61>
+<002A> <D835DC35>
+<002B> <2212>
+<002C> <D835DC5D>
+<002D> <221A>
+<002E> <002F>
+<002F> <003C>
+<0030> <003E>
+<0031> <D835DC56>
+<0032> <D835DF14>
+<0033> <221A>
+<0034> <D835DC4E>
+<0035> <D835DF03>
+<0036> <0063>
+<0037> <006F>
+<0038> <0073>
+<0039> <D835DC61>
+<003A> <D835DF03>
+<003B> <D835DC67>
+<003C> <D835DC4F>
+<003D> <D835DC50>
+<003E> <D835DC56>
+<003F> <D835DC66>
+<0040> <D835DF06>
+<0041> <D835DEFE>
+<0042> <D835DF06>
+<0043> <D835DC5A>
+<0044> <0030>
+<0045> <221A>
+<0046> <D835DC58>
+<0047> <00B1>
+<0048> <00B1>
+<0049> <D835DEFE>
+<004A> <002B>
+<004B> <2212>
+<004C> <002B>
+<004D> <002C>
+<004E> <002F>
+<004F> <D835DC44>
+<0050> <D835DC44>
+<0051> <D835DC59>
+<0052> <D835DC62>
+<0053> <221A>
+<0054> <0028>
+<0055> <0029>
+<0056> <0034>
+<0057> <210E>
+<0058> <D835DC60>
+<0059> <0074>
+<005A> <0061>
+<005B> <006E>
+<005C> <D835DF0B>
+endbfchar
+endcmap
+CMapName currentdict /CMap defineresource pop
+end
+end
+%%EndResource
+%%EOF
+endstream
+endobj
+
+216 0 obj
+<<
+  /Length 11442
+  /Filter /FlateDecode
+  /Subtype /CIDFontType0C
+>>
+stream
+xœ…zw|U¾¯…3ò‚`-Ä.» esaw)!´¥m¡¥‘bR§Ø±÷nYÍ–¬®QùÉê’%Ù–dY¶%×¸Ä-¶SéB¥İ@XÊÂ3^îûŒM(w÷½÷=Ï)sÎ™ßï[~¬¤’X,Öµò¥O®_Ÿ#*ZòDee)sk%õê&XÈ§nfñ¯J Ìÿ\˜òCü¦.¼éZê¦k>%nNJbq¯e~Š~ssRÒÿüÏÂÅÌ»ŞÂüÚ²ğÖ¤d‹Íéz<¯27M^~…¨XTû—'o[tïİ÷<¼äŞ»ï½gÑã¢ÊŠâšE[j*Ë*Ë‹EÅ5w-ºjKQqÍ"i¥°tQqÍ"a~Y~NM~Ş"qE^¾p‘¨(Ñª­›·,ZYY!Z´®xO~EMş¢%KÕäç/*‰ªYºT$.¼«RX¸´ ²BT³´lş™š¥L³%+7nØ²dİš'ŸŞ°ùé»D2Ñ¢‚Já¢¼|QNqYÍ]IIW$±’vÎ„®§¾â‰[©'›qø:Ùt®5…Õ‚-•¯t.¼
+^=tU«Ça·7:œ]=äØN»İé\xMr+))))“YÄë­ VfÑnNJJZÆ¬ÉïR“2™!ş+i’µêŠ›¯hK6'ÿcÁs¾ ¶²of?–"H™B!ôõ•¦«º¯:}õÂ«Ÿ¼Ú¼°ùšÕ.§ëÚk®5^ûÁuÕ×ÿæªß|™zŠ[sı×wòîá}pƒò·i¿}ïwÓ¿{ïÆÉñï—ş¾æ÷ÿ ºiÉMÂ›ÿtsÿN~H°VpvQÆşãë‹·ıñ_/İ²æ–÷oİğ'ÉŸ¯øóò¿<ôû_>¾MzÛÔmïŞ~ëí¥·ûîPİ)»óÃ%£KşqWş]o.}êî¤»;ï¹âø½kï}m1LQk¦XSSøàTòÔÔ-Tïì-ì©Y9ZƒÎ®Iáˆ-’™»Y3÷Í,ãÉ`£M
+Ğé@é·tZ¨-©Ò*==[¾†òÍ÷HØãjö*¾5‰A
+«lR@
+N¡ö’!A34šİæ&Òb¶ÉĞ³ß¶:·Ö~ğºÜ~„)ê$ío¶z‚®½Õê³:\Ö Õgp¨@& Î1úhâûşë¹¨+?J¦3ã¼Ç ãÙjúJcY¤ß†”"êéÚ‡Œ[ŒB»|Ñ£ Z‡ÂqúĞŠ:jCUå
+yYúá’#ü·à¹c	|uäİ¾½	—£Â~Ä5æéöïótCZÈ€FbP×ƒUµÈ:Á¦®ƒ[z6ñ9#š>ê7}©û¿Æï|µv÷KêMŠÅ›ŞÛÊÏ‚qåîšÑ=­[  òäy%¹Å’"(µËà¸œ?j94yòì…)ä‚R_¬Ü‚ŠéßÚü‚Ìl¨…Må
+{ZZ!ŠÚdÍ5ÅÕåÅÛVâÃŞÖÑ¶İƒâÃpF[{G÷Óø`0!ğœJPƒNoTÖ¥g¬[ Ã›_íÅ7¢æÓ‰1@Ñ&‰¸_
+ÕªZ¨F5¡º6~o,Ñ+à¼&¦¾f]øŸü6™º„Ïó`Ü†ñZüÇßÑÀbxrWáª¢5Ê•p5”ÚËZhÁk‹ñ_}ç'úÏôŸi|."z!ÎâyJë`	ü…\¥É«[³3wˆ@è¬ö•Å	Õ„f€|.!¸è8ãëï~^…‰âĞJÄ€AÜ7ˆ{YTiw´7ïœ¹…§ñ‘‘¡°QË“YoR"ú†Ù0ak”õ¤Ş\k)$Ö˜%j'éàlø/&¢Éí6«-Õ‚İ l08LV‹ènùˆñns¾ ”f9)³˜,F‹ÔÒ«Ëå
+¢C¸”hp[`3y=èÀ 3*4ùõ5r•\UiØè8-„»¬û áØŸ*î€ÔRkVXÔX˜½à§§!„Âø1ÂÖ©·Uš•±Ej‹HÀ¡Ë¾<–ŒÏÑVÇáğÀf¶›ìÛ†rÎ”}\u¡şx½›¯Şè¸Ğõñ¾3†l¶;ØÁC:´`“ÅdŞ˜¹}Uîİ(ï~éÃ°=˜ËÂŞ?|÷Ôªc™6³ÍbÄ)QÇ)A<5~iu7şèÒºnîëTu%o<+ºŸÅ¢êLÉxQ4vÀQiVU^}È@ËLİNGƒ…ß÷âĞMÈIí£EôïëV——dC=(mjâ~Øîõ·@;jWú«J„•%™¢Iş>èvŒ‡2ûE`?E»Ç:q1Ó×€HÒ¤Eu›²V®…¨Ã0ø¾1Ô‹ÿ@„^í… øçNéëUZe-T¡ê€²ƒß‹w8ôÓ¸3ï¥ÆyB¨Óh%ˆ^6ûÈ`!•L8<6/ø Qİ^ˆC—aÙ±ä7h3ïØøÔ‹Ã~~.0+{AúvŞ¹oqã¸©ÁdµÌM
+´`l0ÚLöì[Óu7êXx–3+»¼şÑªeewç¬Ù¶Çd4ÁÄ¬‘¬`³Úçu‚Z”À»&YCoàô$SÏ,ä¥ÑFB²·"”kaSÉöÕ™ëEka5Ü7ıø»0û¢C¾üŞÒ	@g¡õíà+——Æ 7ÕK—Õì©b‚l : ØĞdoBx1uì„Ée°ë@9ÆzµÅ ƒz¤ñ-¡vk=ÿ>ÚÃóJõ µ-¤EvĞé„I­WiUY…¢"ÈiB›³¿qä½Äó{»ÂÍ!wP„•Õˆƒë†X3p”7û[®Ó+•n}“€úİävùUn•€£ÑôS©ı8cÔ+M=şwîëTõÌ•<0Zô&ÚJ—Â¾â–\XÊÒ×g¤	×ÂJXzü±O`Æ['F›rû…Ó€F¡§;zÚ×å|z§H0ZLf½Ê¨1këV‰Š+É4Á¸ ü›á›©qÂÚ`u6xP£Ş©äs?¥S5DE§…:¤öBüæP–Ò>^£Ä© æ1[Ìh'½•0ˆjEåârq¥JY ê‚ãĞæìõúF}İ¾pßñ¡®1@]Ğªòç%«dæÏ£¬™uøáäÇÌßx2Xk—˜‘˜´Ä,L2Ô”ê:DŸŸ-¹Ò—Å6¹#~G„oO1{ôˆà£$°Ê.$×iëT^CH0›£á¤ÙK„MêÕ! n_Qê Ñ;5Ô1fo±º]Ğ§
+ê!ÃXˆ#Aêq	Ş<˜ÚÖO½Ñ+:Àı'ş|æj˜æ6€şİlŒ0*ŒZ“Q«.&7*«·U«]¤_0/ÛG,èm€Ãæf@Ínw“Wå
+¶AyƒÖaj0ÛÁ‰ğ¨}„-`óØlvg›mÃ€1¤i½(†ZS5YŒ¸”Yg1 	j‡ÁÇ„	­uà÷ŸV‡Õ	NäÕ8$üÙ1v5˜M:J£Ÿ LZ³Ábeİàr;‚±ó±±h¨=2å=hík´êœB¡|£,lÿ ?7s'/;çÉı€v§…	O3š%S@iÑ™Œ¤ºÜ°Pn6¯´ãUFÉb”;>³İâ?¢FS:Œ2>§>¡ÚGROâXúuî>î—øjj¯»­­[ ı²Pµubjà4ü_÷ÁÎºÌ¢¬:‘R®Õ"ZC«¥ªÁåˆºî§]8-}º®L«'Meæ4@ôröGO<:1Ö×İî@Ü/ƒÁa5“;ú³{¶6?[`—<·4»H¼¶¢â˜°‹ÏÁís‘™ïˆ§ª_p½<Ğ—<s+µ·ÒË³Ò´Gó« 2ªsÒu£E}å%’µêRR¤u>¾c.ú8<6Wƒ«åµè@´€§*AIV©sÑ&ZJUd5@êÓD ¯+lu¸b¾ù0Ù„/Úmm‹w÷70!^ÙL[M.ª¢Ù„¾B¾QWjÑ[Œ`fzh¸m.W0hu9;ĞQ¬!lş@´­;14¼Ü>OúDî"­È(%ìØ[¸ĞôÆbSá!oø™ §½E¯%Õâe¥{²A	z/„­]Ãß…ÏÃ œÛ5ğ ÎìWÔ‹ß²èsß%Ó…3xñš¶Š
+aMEE[M<k‹ó9øÆq¼xœ5³JX:…Â­û1b¹ƒjŸR@§-øÿò«½J3À+Y³·~uî«d:u†àµ#ÕÕBIuu›¸=wòéÇoh¯‰TW	¥UUm’NæKö³(Öşä™¸ƒGàv“Î-—ëtr>=@¤0Wrf0<@°™«&·»‰ğ@
+sågæÅÁ7Â Ş?ˆ#ƒ¬™=ÿCŠ5JÅ¯@Œ(/»ÜÍhè#¢ãDhÜ×eö˜œjĞƒ4j…i5Y5¥{¶¦I— ¢oek@F«L`ƒ†—ÍÎàğE & fp(H«4ó€ÈLZ˜§q’s_·ÛDÏaá%j¾n.=iò”Â:UªÒè>x×ÿ„„ìiè#CšNE ² ÎRkª3˜,F¤Ma ÿ?@"ãeH”Bç$|©¼|ÓE_‚uğ~îR259so4»s=dï-#kÕòÑZ¶Xm‘¨½dDp˜ı-¡Ş¤ÉÑVª
+êdbP€Ê®vu;šBĞ=‡LŠkÊ‹wWNğcõ†"İ=±‰–“¾Aï€k =O½DÔkz4©`9Û9Ü‰ïğ„¼‘€·‚à7úôezy-”¡j¿²£·-ÑËçàÍ{Ô’ÔŞq,şûò×qİî?©(”µW“ú«¡H‹ÁB²k÷TgHö@·)&‘¿Ã—p÷Ø\V8!¦ñKq?¼NWŒ¸ÿÔ—+¡
+éSò¶í®ŞiP2'àX÷Ù“Î'8  õÊA:#©G9[+6Ö­ÑK¡îzú=xvMœˆ¬ßWvğ•pó;ñ(pØ5íĞ£m«ê:›Py•°\À9é“PW¼Ê¢~w&™Ú¢áÅbÑ˜ &7é«S³°×>ìCx!{ ˆG¾2Á,bï¼º‚b¥²^®*¤:&‡«]d€‰îv§»{l¤õ0 ÃlÉŠœ?o ¹&½Éh±˜µL ò«bĞ
+--Á~›ÇİÑ8á:|5wª‡t”|`ŒÏ¡—y$ç4û÷&SEÔ“<:ÎN‡Å»W+¥z%6•l8íNO÷äPlĞëp'}’Ğ‹MJ0Í=xmN§¿Ñj³GĞiü>~ ˆ¾æÆX´Ö!p‹3(Áü?LÆbşãK˜eÀKJ¿Z7UÔ‘ÈDÿñi:…–Óë&é{ñ_x5ÂsÙ»`©q•~·òo{6€DIsUT>¡Ù³€>°wôx·ôu[CÎf8ıé¾4ÄYƒTëàI)—¿™Œ[gîâåæl”,”—r FÜ=MhÖ–µF•–Ô’BÓ@EyìXÃ!ë;ğ²ÄÌh°(%„6Cç ¡QÓ)mfg5Ÿ³ŞÅŸâ¦Nád¼ùóÒ.…53wñ2 »¶ ° P–sY(kOôÔDKù&0ƒÙš9	oÃøSğWX]üäªÇFJ…Õ
+ˆJ‚ûÏ8^]„.C_aĞ’d¹y úoğùEâÅSïŸD\*Üçíƒ>„¯Zú½ÏÙG…©q^5ÔitD?6ûÈ8`ñ/€zÔiõ¿~BD%Î_>ÁÁ
+ø–õ&ğƒx~É×WÍèòÕÑò²jQyy»¨+ÑMğéøs÷„¢òòØå{Ì½²òùç‰h‚ÏÁËFûù–çß~õ\7u±+y&‡zŠ×âcH£I¯/ª¯’Ö•TÕçC”ûÊ"›†‹£jWv,¿±Ğ"Ø¹Br2¥0°†ï‡½Áíêó·‡›{â}AˆC\İ%>²§WäÓT½€¾ƒı¯F.!ºl-Åû«ª¥µ¿¨uÓĞ¿df"èÿu É‘Üˆó :÷_t2ä$õğY¼ôìúW&¿ÈèáÒIÔü-¡U}Ñ®ŞÁÒ<~ì,OOËÍ*©¨R¢/©»³ÇìTB)<¦UYf½?³úÖÙ÷	“Ú¢#H|ê4ƒßí
+:<-çºñï‡…°qgÕ Ğ—ƒ6íÍ:ÏÃàğ7¿d:âeU{J Õj.M‡ 	döİˆ6µG;‰pÈïëhm÷EÁn³ÓˆªH‘¶r¥WBıe€5“„ßã;#ÃV4Rfª¶È¬èä–*Áh1˜´è~Ú°7&Å1‡Ôİƒ|Xd"¤–2k®å§ôA„tim&w¯=BKîÁÂä1; ÃsOÓLsıN‚ßê+Aø7ô—„SîÖ1ÇÔírÑg8ò9İJ8êİz¸¬nFÚâì€AjaïğIS1ë<Şõ÷-üuo,Zô”€®K™I¥7êbK ÈÃ)6Ì6Á Q
+«Æ¦±]àCøÙØoé1…4Ç³º–ÁÈ¬,ÛŒ ¿Op?§oWC>Ñ­&·Ám°ÕƒÍúR@füİ€Äª·ëíÆF!¼6å­éóoğ9ô_Õİ8·?Oíü‹Ï—ôpÿIİ‡í<œ²úmz#låîÊß-K‡°.’¾/s_æÑ	8£áÄ`¬§±š×0HÒ¤¯É.y² (R5"ëÒNXN!e·:Z÷^âq)_‰£*-bÛÎ4%¢±p«7cw!]ÔÆS¿yù³O¸cTÅáÄòøW^½ÁÇ÷uúæ½û 2÷Şv%ˆİôórš™÷ÎÇ)6bŸuÄ2bB5)% ±éz‡‰‰™øq{w,<o´j4¤
+êQYPÑÅïEÚ|+âgY}ø¯Éøf¯N˜B—‚à18•Ö
+k½—‘6<áP¢c,ÔãoEØÈ½µŞ&v=aß$’‰µY2­N®q’ü6xÍÖa8g
+
+ºÜM^­£VP	u¤´=– ÚHı@˜BV·T 1è•ˆş|ö¢|ûªF¹e^ŒeğY´5Â˜:ÇKĞ'éR 8´@Çùq|Oœ5ş¶%ãë0mï0šdŸ†)w°'ĞöÅ\Í¶&ğÃámİ›!ò4yÒå{VßôèÖ£û‚&üÃ±ŞH,Òqyl.°tªÒhĞ•ìÎ­Ü¥Be:‘±6ğAØ%¼5Ï”Ğ<~;t¦st ’hyÂ€ú»Å…œNÁ‚>*µŸE•|LİF­çí€LqönÅhQk:ì‚¢‚šºcıœ0 VŸ£5ŸmíÓPj‹Æ¬Cô‚ÙtB_i&‹ I4†Z¥ÓĞ(h‚öfÁicP“ÛÓìÓ8¥
+›C V«£Á…öáåD´¨·n^„c]O‚³ğé³¯-d*äEË7`SùŸ¤yÒÜ]éé …:g½_QG s}LâÄèÑ±ø£0=®é§’FXŸ¼…ïI¦®£îçùÔN1ÿ>èÃ‹	h°y¡ÚTB(‡:¡¾•Ò7Ş„He«|†VÁßa3-#4{H!h!m2ï(LÃh[ßd|8ØyUwN± ƒŞ¨7“â™k6‚4Aˆƒ¯ÁooBgqÏç@DßƒøPw¦RÿøGÖ%î§3&jˆ÷ñ=“·ñé÷Ø"E$[	K‹ÙaqXL@‚Ùb˜—:Í6$\Ã lü-û4DÜ/Ot„paíş§èï‘/_€Ïõ%ûéÙ¾ÒµÈæäçï’g ¢pëv ;XJ_âq¿ˆ\"Â6iVnAnAfm: ú¿f(Œ°fïÂÜ¶ÏšN!¼=ñúæ*ÄÁÒqF›içÍ~Ï–4J¥SPß³ÃN¯¿Ñà“
+8·ÒéƒxqœZ”`%:ğw’1¦6ğvC(7S=^İñ#‘Ö”0Dš‘ñ|0O¤Ã¤­¿dÒU 0×‘µˆ¾böB[b1æ1™J§P;IŸ lAÁ1Sè§¯XV[ei€ßco$dCpôL½0~<z^€¶½ú S9o0\&€*C¡:KtÅ¦¢
+IL+ƒ
+úÕÚ7šÆù„£µ%ÚíŒÆ£€8”àûİ“Éß›göóŞ'Ø€! ^¯@³Æéª¾•^¿t‹g[‰.pY=ÄYüÜ8O¦ÒfryVf…l«=iT#úâë‹L`†°2>…ÃîCÊ2Æš¹+‹×¬oñCxI—Öf»°ƒêÂÂcw¸ÀÍLOÆùC:{’ÔƒÔ½—Dœ]c”uŒ5ó–ò¼‡|à#]š=‡c„Éj´}MÇè½Çˆ¨.Ú1ÛE;­‘Ôƒê˜	ÙÁnµY‡ÎœW ¯şGêÄ¾ğ…Ök¾ªÛÇı¿1ÃâµÉZjÊ+*ËkBµmüD¼3! o¤Ÿæí‚‚šª¢=êJ3eŞ…±7F/ôâş+àÒH Ô”J·¡õô}„Anª%l+< ĞßÖ1òu@p^«4Xô¤^ƒ,‹,¢å%yŒ®÷B‚ˆ¯]À9„İ×àÈêßˆÓ¬¾@]-aùpñy\>•L5PàÚ®qëc’ÆJ(¥EeRKKÿó#°Ê:5Ïù;¼®.dóY=à„°Î«€|ĞÜaÎ)HË®È€-PÕç l‹8Z‘o4~xâ´İÑà øõ.èAo2èw¬ŞI_4îèßù2 #0Ù3r:°v ä8ô@—¿³}b´ï¥¶Ï‚Çİ#Ğq}¤Şô.­MÕP5‡°(Uø¯j]ü½˜ş]Lz#z¿ú
+Ë~ØO‚ÍâJ jßMWò[£Õuùh©@§!¥ˆóØ¼Ğõ£2Nâ[xŸ¥„_(İà··yúĞ,&¡æ³«½b@½J/’ì-oÉŸWÒ×d®=«ÑıÓ¿ËŸSÒÇ}ù½ep"o5½‚è{pÏ3'„Ãe!|Ëe!<ó?áGşMß éÇFñ~ÖÉ·ñŞ·“¯ïÖğ&a²}òÀ»?øA8¬Ù/N´ï€°£zGÆƒ÷-§ÿôƒˆN¦“¾àãe3ğC¹	 Gûlí
+DW²c_ÃÛ?Dï¤?ãáJ¶ø¯Õ«Êwä?SPÊLK6ïÀ~Ïó-gÑ £İ©½âg.‰{¸_b;u?otkZ¥5¦:1ˆPI“¼§§©¹çÜòåüõ!ÎÍÌÍ”lu°!²u8k8kJ|¦`0ĞFƒQwâ~jóXŒd°«AÇdunñ:¨€JeGI—ü ¼‚ş1pé#>g±º›Zgu~ˆ[z¬æ€­#£#£­L8)9œ33Ş¶ÖÁ¶šìÌì¹¡¬¤ìÙ}P|µ›·
+#Ây§nNÂq÷h°³m¤?2É|Y’Xns¥;Ö#?pŸCªãÔŸ;R{oéÅê²ÃÜñ,¾¯mÛKx—§Ü'÷É}º&ÁD_ô%@ÜO_„½ùåVÃèäszZ_¤„H†¯E­F'l.óÂ½ğÔx ŠqQ_Eá¤qÏŸVöT@l*ªx
+VÂîqÙÇ&?éÒR42ÍK‘9´^¾6·«¥Igji‰Wõ×ïtñÌä'mR'¨…¬g“ñ;Ôƒ<£z?ÂnÿÆìQ{% ‚z¥¡ĞwİÄOrÕ[ìô¶š[@	›òƒèi÷µÅ›;}vß\XŸ#HHÇ(yêâ‡rswüÚ:‡‡?¢İÕĞ*àĞ7©øø>`í;Ãç™£úš7ã‡Şüô<^ÁÕaıHıHíÁâYU»¶şméãô
+ B·ö,ş9¨Oğzšó— [³Vú ¢·³cŸ¶í}¡¯·½‘ş’‡3Ø²GDk…;òVæA	Èáu˜ò
+¿8ô"õ+Ç‡WRñµ=ÜüÀ'¼:3±boo,Š>ûˆFÚÚ£ñ®`Üóo¨ƒ‘Ô"î_„¹"©Ä oÑ6"îïjâ5A„T•Õ•ÕõÕP=o¸Àé°{|ñÀ0  „É-âÆÛ´Q2bÙ¼%{OYº÷!B¡I%Â²<¹´óùİ	N‡Ë‹¸«cƒáNh‚UXˆ¸¦°0ªŠB/ô¶ô÷õ÷µôBÏú4HR£ÈÎ.Ø¨×0@ï©ŸL¾‰pÍÉ¸—z–W…uEÅè, ùU%ğ„ViQ˜u?’åĞY#)Õ ¿Ñ¯ê²„ğ×ñ'ŞşŒ˜80—óC?‚U–øŠg‹Ê¤u2rAÚ§ ÕÑãE­¶ ÃçtN´ïe¦·BÇ­ÿİg¿‰÷|‘ŒßÂoğ„~eG´«ÿ¹´îü•°®|kÚÖ´ªµğ4ÜvúÉKğïø1øÿK|ŞWöÁY8ÿ¨m¤mtúÀQ@Ğ®HÊLUR(AÚ?¿:?K÷ÎôÙü™°—û=Ş;Ãâqg;”ş*>÷ûÊÊÊÊª€²CĞÙÑÙ)àşK8+å1.@.ãx Íñ÷â»İQ{øa²¸dC±P˜¤¹š*P‚Öaôœö@ôÍ®¡!ğƒK2¨7Éõ2$ZW³Zš®Ø£«‚zØÑ_¸Fæ¬‡Ğ ·‚h.ë˜ZÕBsÏÅŞ8uŸÔšH÷Õ‘ó’íî%5~ÚÀË‚"¡p»,OSŠù «ÓŒ^è³œ©+òo‘­„xl"ëu&©6v¶Ñ¿Û²fƒÈ§jEÜ¯ÕCáô£˜Ò_U .+Ø2Uô<§À»„ş›â6ŸÕ=Ÿë$ ¥N«0HÈZ“=C{	MazV î%u¾,6-€}Í§zŞ÷÷¹Ú €&‹úwğ9b·dæáë}%Ï.áz'úîh²y‡¯ÌUëĞû!]; ÛkuØÁf»Ñ¡wéƒº(¢3©£DİdnÛZP€è¤Ï0zH‡Á¥óJ}¥è"¦£t+¡TÔ …Ú ¢ç~ü?ÔÒÔ–>7”uq«¨ÅáùcN?Xç?#Äë4™Eks—î¤¯6Q©x%kïX[r*óJvÕiİd3ßá"šÄ{†VG nÕ7¦@±T',¦“ë‚2P8õ>h„Æˆo¸ùTã×”-Øà·yP?^0†“~8ç=’™{ûY8YÅ@£ÓçCØ…;‰áÛ»ïğU¹62PÒE…Ø­>‡O eÓ`E´:CÈF²ZŸbÈ•T uMı†FQ aDwÒûè Q¯Ô«@’æº0ƒÈ—Ì×áä7±äM\ó¦şñîwøaj=¯*k%õBuµ¾ÂÄÔ„˜çmˆa´‘æ³Ñ¾8 WQ. 5Y­ÎF[éB_eªË¼B‚€ÛÓds:#>Ôúw¢qÂÕŞàt·7Æš£ûN&C?´0[¡\…ré‡	m)cöÆ¹æÁ_5o:aÛÛ94vvº÷èå†y²•yFÜï5Õd-¨aëhñ!Ømû£Ã¾9úÉ ^½E£3¨u³æ¡nîöà â~×÷aË)€×wŞË€³²Œõš»»–ÃZØR™µi'³û6âJû)ªŸuàsı<™òã—y€	éûyGK§Ù»J¡‚ªé+2éë^
+Å¥¶²fú·Çéd| nˆ;b>|ÅX?şà%ˆfc!ÏWà\	·ÀmÆ•Ú\UZÎU ¡[Ô\•éÎš¢–ixÁç¼ıÍ§†ºOÂ1ÍìœcQYSÉßÃ÷7ól¾†Ÿàª´ƒÍ6ÜD¯£©úOôc­ÒÓ¯céìÇÄ Ø,îNÄiøEù~õ­ïMÍ}•:E¥ğFã»ùY^±>-+»°R¨BŸQ7üºfáãÿU³À”,ğçk'vÒ›3é­;èMsÖ›j˜ŒASĞo:ıØ³]Ğ	!q/€ÖP
+ZX?±û8ôC¢%Úéñ÷8û~$'s…ˆÔu½ô‰ÊÂ"æ47A46lÍˆûªÍ×ÀÈ•#âDV°Ò[éª´…ümáxûÄ¾ÑéãŒÉH¬e:¹ÊæKÃúÛºûœb×!şáPòÌ3e<º»p»ÅíkjÒùjtîf·¨=r¹Z[Ë§»é”ZZ.w«[¸‡vÑİìZ­Z!÷¨[ÅnñøšU…€óànºì¦0fjc§ºİMÌş?æjc¯êt
+ùÏÎnÓœéË!ñwh¤©ÜÔ×Ô­<›³ÁÁhWz‡’‘Í&2óo9÷Ü¦?]ıVÕ$âª‹îJl€È”åäUw=Eó<Ñ.—ÃßràÅÁ— á+>@?&€R³ˆTÑæâ‘Ì¥õƒÑ¬›§ÅÛ:ÙxÜuÙâç¦0Euê:Œ8¸êÓÇ’gÁ=<:ãìP½[.¯×Éøtœ§Ètõr¹»>$Àq:Î–tMMwˆã8ršüêf¹€ƒEX3kqœ7û[ªS*•neX@}Ç»ışF]@*ààšË›„Ì.u³›Ô>¹\­–3»ÒÂ\É}ê&î¦»ÙÌU“Ï×ÄÇİ¸;…¹ò×”ı&‰“YøÉÎd,ø–W*©)-
+‚ 4Ú=dÕ°N²5'[¯3À;é466G{÷7„#è`íÁL>g1%˜©âÑŸüğ4¡û4ÆFcÜ­òıS„»UíUÙÕv¹U'F¼ŸNÇ}ÕOÙ‡RÏ~ƒ‰>êú>Å7Üğ¿Ä¼.èµ÷yĞÎ(p–û„şòÅ0œ€©‰Øh|*Øáù*-H³)2³rÓ Têt½rèøkˆû¯“ov¿Â»•/n™Ş2½²ıAxVˆŸÈ¦¯~Š¾ş#Ğ+ı¾–¾?Ê§’¨2¤)V—­(º7míC¹²‹{wÀfxvlf¸µ•|,‘ş {¿:ÿÑSŸş0Îßôoııo Â•¶Meê2C 2yct`8> ààtú7gz0;A5õ¤N^ü<¿N¹?à£5¼8t9z<¦|KhaE<ÿ‡‰ÉèXì€¿š~ds†‘V‘™»k3d€~XwøİsG¼¸ÿ:òvœyÉ¢S»¦wM¯o_é®L¯¢“Ò—=˜AÂMÊÍ°	Ñ÷|E/ÀKùøJÉƒŠ§Ë)ºkëÊ»­†°®E™¨	ÁØ¾¶€ÖªmĞ£Õ]%'á3Øçn>Ö‡¹'?úøàHÛPã^ÀWÀ‘»NAôú3ŞŞPUº ´&Ò`®TUªUÖûÛö8ô1ub†=É={±'3õqôu³^ÂTof6.}0ç LBßÈœ;Ä0Óyu@´§
+P.Ğ!¸\'ø©N¥ğø¼3¥ÒzÈPs;(ùsE÷Hâ©ñ¾‘s¶p°‡û5tYxĞ©7Õ“2R¦—)sk%b¨—š]½ş)Ôñ-áéwÇœ]ÈÙA4¸¬Lä˜Ó!ÄP¯2Ñãô$a1õ:•¼:¯täƒ¬¦a¸åLß'¾„3ˆ;=UÔ·ÿY?#/CWFÀ¥…A¢®Èÿ“ìi(€åû³^‡÷rÒq¦6pNÒ`’|ÿÑÿ%aÍLÒ…3µ?'¬õı”°Æw¿”L¥Í–ñ|N§O N³´=yxÓ§Ùø†œ,ÃWÀw¯HïB˜µ/Á¼#Ÿ¾üœƒ)6u2ê³ŒL±©é‘u«îH§¯Gô5B:h¢W0¿btÊ4}ÍAš÷âo­³™l;0£N½”üálï­“/^<ˆyÓøšNÌš
+³„8%_“y«.>rÒh3YM ƒÔ@6vÓË[_:Bÿí¥„h,šj‘ŒfĞ²éß>»ôÉ-F“™d,§Á6F´ÍyêøºAªRÊÂûßHÆßÎ<ÌÓ‚4h}x6
+q àa‚1Õõ¤”™K 	óØñ†që	8ã–¸
+SJ@ÖÀDFÆ zûÒàmTVŠWïRòŸ¥¯ãÑßĞ²NÅOL¿}Æun°7™ò`>O´¬tOÎe*tF»†˜z¦A8—9ø¤C¦8/Ç~´UÉ±U!QkC=¢ÿô¿œÕ¹Ê­Â“½®˜ÍåøÃı‡F;^®»Ê•>±çZ‘±hgÁ~ş(ôÅbÓ¡¹²«9îÃP>£ÄG/bş›ñÔ_HNaÁ©ïp¿¥Âßñ<Ûµ¿²dUù¢U9TAz_ñYEœlÕ7ë÷ûˆÖ[5P«“Ö‰$ŠtØ
+EAy¼ÛÒÑİs§PTR¸æå’—ù¯Â¡Öî±½şHÀˆ¤;7Ræ«q)lˆûm‘§Ğ#ppªû9ØJ¿PlÉ@ˆ$>u”ßÕÒÙÅTG«{¨+òã©_½ZÚ¯íæÇïáTŞ±ÒgS¶×nŞ+í}‘Û°` …{šàµ¥lK‰©B_¸ÃukòŠÓL¨âº5ÒZòûdõ1}Ğ™Ş3çœÅêxÍ ÎîÄKã©İïnşßùÚ©n®”’~Ì;Zš–’§–J¤ªX˜·§@Ÿ±]ßRsteÿÓ€–?–ıdIs]OOSS âŠæ2[k¬Ç?èÄÀ¦µ‚’”GÉ4U®qå«ËŠ³aT{Å¡:Äí®­Â¾Xû4âJ]ù%#€vï;,àî§ûŸàeæ÷àÓÏ‡.9Ğ)«wo^Íçì¸ìbÖkxûkÜ1üuÏ±ì?Xœ˜m‚_:ÆoL‰Ÿãu°«¼l#‚ãôÏ¿2Œ2N4ŒÿW¯ iøÙ0^ı£a\ä•P×œf}õ
+^ú|2a
+tŞaçB¡¼¢¬^±ëPÚõ`ø¹@g˜)Ğ™f‹îÏY´‘æ’*“Èù|HËÿ¨+ã’¯¨¢¯®v¡¾e{#Ñp„³Ûè•Mh29Ñ9í;„0‹ıs%Ïÿ«H¿
+endstream
+endobj
+
+217 0 obj
+<<
+  /Type /Font
+  /Subtype /Type0
+  /BaseFont /XUAPAD+LibertinusSerif-Bold-Identity-H
+  /Encoding /Identity-H
+  /DescendantFonts [218 0 R]
+  /ToUnicode 221 0 R
+>>
+endobj
+
+218 0 obj
+<<
+  /Type /Font
+  /Subtype /CIDFontType0
+  /BaseFont /XUAPAD+LibertinusSerif-Bold
+  /CIDSystemInfo <<
+    /Registry (Adobe)
+    /Ordering (Identity)
+    /Supplement 0
+  >>
+  /FontDescriptor 220 0 R
+  /DW 0
+  /W [0 0 500 1 1 514 2 2 244 3 3 250 4 4 577 5 5 322 6 6 616 7 7 489 8 8 505.99997 9 9 428 10 10 899 11 11 551 12 12 358 13 13 504 14 14 558 15 15 905 16 16 542 17 17 325 18 18 521 19 19 734 20 20 641 21 21 652 22 22 619 23 23 817 24 24 456 25 25 730 26 26 427 27 27 581 28 28 561 29 29 716]
+>>
+endobj
+
+219 0 obj
+<<
+  /Length 12
+  /Filter /FlateDecode
+>>
+stream
+xœûÿÿÿ 	÷ú
+endstream
+endobj
+
+220 0 obj
+<<
+  /Type /FontDescriptor
+  /FontName /XUAPAD+LibertinusSerif-Bold
+  /Flags 131078
+  /FontBBox [0 -238 893 700]
+  /ItalicAngle 0
+  /Ascent 894
+  /Descent -246
+  /CapHeight 645
+  /StemV 168.6
+  /CIDSet 219 0 R
+  /FontFile3 222 0 R
+>>
+endobj
+
+221 0 obj
+<<
+  /Length 1016
+  /Type /CMap
+  /WMode 0
+>>
+stream
+%!PS-Adobe-3.0 Resource-CMap
+%%DocumentNeededResources: procset CIDInit
+%%IncludeResource: procset CIDInit
+%%BeginResource: CMap Custom
+%%Title: (Custom Adobe Identity 0)
+%%Version: 1
+%%EndComments
+/CIDInit /ProcSet findresource begin
+12 dict begin
+begincmap
+/CIDSystemInfo 3 dict dup begin
+    /Registry (Adobe) def
+    /Ordering (Identity) def
+    /Supplement 0 def
+end def
+/CMapName /Custom def
+/CMapVersion 1 def
+/CMapType 0 def
+/WMode 0 def
+1 begincodespacerange
+<0000> <FFFF>
+endcodespacerange
+29 beginbfchar
+<0001> <0032>
+<0002> <002E>
+<0003> <0020>
+<0004> <004C>
+<0005> <0069>
+<0006> <006E>
+<0007> <0065>
+<0008> <0061>
+<0009> <0072>
+<000A> <004D>
+<000B> <006F>
+<000C> <0074>
+<000D> <0053>
+<000E> <0079>
+<000F> <006D>
+<0010> <0062>
+<0011> <006C>
+<0012> <0067>
+<0013> <0044>
+<0014> <00660069>
+<0015> <0054>
+<0016> <0068>
+<0017> <0048>
+<0018> <0063>
+<0019> <004F>
+<001A> <0073>
+<001B> <0070>
+<001C> <0064>
+<001D> <0052>
+endbfchar
+endcmap
+CMapName currentdict /CMap defineresource pop
+end
+end
+%%EndResource
+%%EOF
+endstream
+endobj
+
+222 0 obj
+<<
+  /Length 3572
+  /Filter /FlateDecode
+  /Subtype /CIDFontType0C
+>>
+stream
+xœ¥WixUºîNè¦¨« *ƒ"ÂeP.«,ÂDAÃC0¡Ó,déìK'étwõŞÈ¾ïé¤ÓB‚²(adTŒ^õÎp•E®:_qOîu&¨Ìè8ÌsÔ©:§ªŞï«s¾÷­÷p9S¦p¸\.şFô!iRJt|jò›Ò¤hÙ’WGxnø³$;GëC±s}8Ô4­ÕN¶>‚9ÎA7æÌ&ÿ‡áÍåp8'gÎåp¸ÓŸœËá|ÿ½Ï<ÏĞ7>ó=§¯|åxs¹|Ñë›"I·FHãS¢S26'$f$EGF¥øıtµ|Ùo—/Y¾lùK~AQR¿ŸròÛ™”#•¤ømJM‰JHJ^Êáxq¸œ9y¥ì–²Ò2ğµu–7Yø¨ A@MóRûãßûLÕúLwMñtÛ|f°C¸7‡Ëáp8”ç«fé´Zç#<ù½àiNûr(d ççç.WÂı£—Üë¶wÁ”)SÎğ|yuü—¾ÂÂ£Âï¦yOË™0ıãŒ·f´Šx"fæÒ™<¡Ö±·†¸Ú!vş·v
+«¾¿sBÍÿè)ÖƒÖ#o‚ÏÆ=WÈÓƒL°<¸Ç›( }0Œ#OnòEÚÙÜ^ß¡ï~Sa9ÌÂ®±{ñ¤Úø®ææšV“¦Dm¥°›êµÅNÔvöœê|cÇkªƒÁ!Ô¿¯AO i™	êÄ§±<VÌwt;ÆJÎ
+Í¹ÆòÕÔøÄ0‰ù†6[c{Ë;gfÃtğrÕİ$¾yñì|
+»ñ_@‹ĞĞÜAXà=ø6.m‹s¹:Úº{b[$’èØJ„FEuZ7{/|ğ·xÃ=7¾ƒ/Ï©<G³ãMÆe3kkfáj&‘H_¯õ™¯PjSmJáˆºIµŠ˜xV°*A¤¦jA ï¡ ™ßü'–¶ÙŞ3ŸV˜äú<psšìÍy¤eUÊÙÀ´ï`÷ˆ½!D8„
+†Œ£ZÊ^`Î¡ò×úh”ú4½R8Rl+$P`U¾f{1¥TjSÍJ¡[çÖ÷2Ç}æ›ÍÚ¥Y¸İ˜o'ÉÆã1u1®¾†®†–”®ğ})±q”èb¥œ^ãŞ1¬ó„L÷„Ü/ht¹ª*HWKF Ö
+VfRÿ M70râÑ †,ë',€×¾¡’-¤A”ºSÕ¢%L¡)‡”)väü}Ö;~!ëş¦G@Ã
+Ã8!z]ñğ¢0·¯HD‚P€a·ØÍ€ãá‡vçKIìÛ—CûnÓ%:£‰€"~©¼ìÓ˜›h!İš‡|–¢%»ª· £»³®’cW:ß¢K‹+*¸®ÓÔ]V%¬;Öh³“Î#k•Ú\†íSœÛñ{øÒí{|/˜³°^Ä•4fœ Gzª;4vXãPYò,BE®B•N¦*+i=ÌçÁüåÍ«_ASÂ·&8R{ºjêLŒ™1S›Æ¦·	í:‹£twf Œ~MÎÃzçÅlŠ_GøwG~Öüv[C;¥ƒõ8š-HKJÊÊ f7·:­Wkiz²RWa–gµ<+UwÙ–¥lkÉQÒj/PXèÂ’òÂZ²¹©Åİ×%ÛºŸVñ5-ÅƒZÂÊZrÈ}yÁ9[‹4J}úäjüƒÕø…ÁRy£œUÃ"Ä6Í×öÆıÅ ÄMkTÚmj¡Vğã¤î?u--ıLû¯Ôåx»z¶êŒ©ôŠqrí×ÌF;yÅ|ô*»…ë'ßzLefŠ6J&–ÍVîÈK,~Û¢kÓÕÕcZ~€İj*n1
+±úv:ÏÈ‡	¯È`WšI³Õh5ÒX¤²<=_¤Q¸Y¾›ë??o'HpôÔ7+€¸úN•³—:ÕW~e”€§–ßB‹VÄ‡EPÒ™;v{ğ+ıkĞ\ä³/6ru,Ì¼öçc7.Ó"´Gñ{¸>­¾Ÿƒa€!fc__dıñœlU~./(Ö1Fê=¾fƒf…QÖèê*½¶« 9ßÔTE;”æ<¥ÈMòPjù=Äüå.ñ5ßVf´Ò­£Z_La_ ©|]OÙĞ¯%ÌjC1…İ,’åeÑ™EñÊ¢aQ*q-!Ú«p§Âöµ^ß^x6€/ÖÇ®¾?·É+—’a;s¢ÃiY\Âş½„ÔZGõŒGöÇöIŞ$öŒŞşšÿÈŸÒ(,=Ëœ¥ÊV	†aÈ–`»ŒÂúÎÒ€"ÏV8{é®Ö¶şÄéÔÎ¸v*âø›­UBIÕ–Óg‰ÑSŸ6­ßZA•©êµv«pXÕ[ô6%2¡ì»¿Y%¿/êğ5Ã~x	¶#1ˆ±5PŒÖáÇšv9Z>‚İƒÀ†)eÍ-­NÃÃÊÃÖ%1LBT´Næ3ÿa`GÛÔmÅY‘óQÖlF«eJ§Õ1zj)HyŒN«Ó=Eåï˜BÈ˜Ldt .í€*KQã€£ÁÙ†b£Ê *Í°g+s’ƒfÎÍËH ±½jc)M=’–kÈ²æÓùÖò¢R²´Åh.£±5Õ¶¦:{•Pß>ÏÌr_|®˜<fÍÁnLªh¨À¤5™ˆºN[ù¯Hé@ë#<“2'¥´©RÛ¨Êîãc¤«é_•aÉĞ
+ÙJIì.êx¶¤y'¹YHcƒêu­–Ànüÿe9_áÎ”³3¯‚²T›æ{Ä°
+ü°Îk€áXü*MJJaÇU»ÚN–ÚmeÖ
+a\ÏyE?	Ş0¼à™³©£±Nº72ÔL’ÇÓ°GğÁ©¥¬EÆJ–·6‹Z§Ë7/›Ä(¯i¯1Ô’ƒÎ°E«sp]|Š£6¡ôJùıÍDî‚sŞ_•U°ı‘©êÓülªÆ	vŸ ûÕ ¢XTà†ÿµ[Ïuƒ¼[uÊ×ÜwxDy_c½Ãl$KáMÇÎÊ#ÍÒ»bÄÓXß°-C®#†+RcèCG#Ş"ö6¡°ş‡CƒÓˆtC-›ÂNúYs…UJáÁ#3	™ã`c:•ØsI9@/¾^4ö_µâ¸¤‘jˆ@Ï—l"3õ®c¶2“ƒVTW3­$Ö;|êdiKİÜPÕÙGŒ&8£›(›¥½ÂFZK”Jk¬×“Ø‡~¨ob%~SGfŠÉ 3¿¥‘’[ÃOuhkíU´ÊVª©&±¾aÀ%|qBŞ‘€Âk§®U4öœ¬ŠXG‰`«ÆÍw?0EĞ‹½!@ìúXã"?¿Ssá*=àn¿G@ òC‡3ò1¢ÿ‰/âë]ÔLÇÙ¥‚‘†ª.©A/£ÅhâløİÇeJôy¥œÙÒ Ûíû-ˆa;ˆ±³p°ÂS‚şbkşîV(OòHõvéá7¡lğ'S…İÈVÆk¢5B”p‚‹.5×´Wg:JÅ:êcœdgsM_EzÛárº"æ­ÒİdÀîìH½?LxDn Z–]Hg
+ŠŒêZjÙù«Vy§d°Ç˜mù„İÑt°c½–4_¨ ?lŒ]3qö	Á»6gUÃÿ£;i}9m¯Ô­4æ,ê/>Íô	u=Cacêhä]¼D¿ácÎõhšÉ ¥5C«ÂÁù¡B•­œqØØGU½õ—ÈA¾Ó&ÛNO`‚U™ÅkLkPwZ÷î¥afèÇ´Ö2Mã„èÒA›$õİIKˆİ`ë=ÓüĞİÉ¶È¢)ˆ`·~•9Û?çàßH]¸!Û:N@¸ Áİî¨ ]%rØI™Ay¥®@{·®dÜcÒŸ<{³çÙ*-CaÙßZu	³™‘H6é$ÿÄ©»t×t.×—Ïü‡oŒã„ÀEòxÏ²Ï>^lÑóŠ?ÀM-!½Ù5ŸáMe>%“D§Ç“wğ®vˆ5Ğ‰†Æ´6²­¶¾µo÷;ˆ‹¦=ózn[m`Œ–õôg_%Ï¹GºiüNáfox ÀbïûÛàcBÑs F¯/|é ÿ.jO@üª#Ğ^ø-šëÿûç…³ÔÈ¹Öoè+páùt:€ÖìB^×
+àÂN8xmüZ„|=ìT7÷"ğ>¡÷ ,À{Mû,R¡²òİ¬QòúWîÏ:
+Sêé„¶ğúıUBIyN[3Q[YÙÜÙ»½ªPÛu¶a—ª» *‹M²‘Á!i±±tJJ~B"çH®”S­Ñ#Q-9BW†=2™ˆÍLí_Ne
+™,•PÔ„¢åâ†Û—¹_‚üÁÏûK¸€O¬|<Sù5ÕÊ:^¸sÊ/DôĞQ!G÷ñ»£b£h%_Ó¤®ù•İˆ‘«À¬5™‰†fgi-Ù;‚¦®Œ[òR~’¹1‰Y—à;?ê=\òxÎW@Œ]ÀõÉúL-‘§³—‘NÛ¹²1«Ş¬©Ò˜…»MùÇÎl° ;şÜÊı‘[H,À.›Ó“Mñ$ÂñĞÓ;«ı¥tBW}Î(ÙxíDY5m>‰gÊƒSóÈˆQ˜:lî¯l¥Ëµõê˜:1‚Bm®ÁJ…;WİnèíõÜï‚,ÆNÁÿİŸ‡K±HBş=]°ÜÇ#Ì
+Á‡Ö¢”2;SÑ+¼°ÖŞçH×iƒÉFK˜J•E–RçN ÑñÎÔ|púáÊ>à¤jdAöäM´G37¥¯¤B(ÿJmõğÛ—“‘ˆıÖTuK
+endstream
+endobj
+
+223 0 obj
+[/ICCBased 224 0 R]
+endobj
+
+224 0 obj
+<<
+  /Length 258
+  /N 1
+  /Range [0 1]
+  /Filter /FlateDecode
+>>
+stream
+xœu±JÃPFOŒµUªv¬DœD@¤`]\Ú
+F§ëMkŠIˆ¹‘RŸB|êê&Ø¥n‚à¤‹¸º(¸H¹rëTÅ³üË9ğ`ùÕ¨a”&åÊº»ãî:Ùl
+Œ3Å¬*ŞªnÔ ”h)™&C|>b™û°ä‹ÈëŞìçº«é»“æõAçívØıCÆ«+	ô€y')ğ
+ÌµÒ8+¤/<°ŠÀâa­RkpÂàØ´óA¾mWÓQ”IhÿãŒœ%–Álş½E5VW~ªüdµşX€ì)ôÏ´ş:×ºöôb‘ˆk#&¼_Â¤3÷0±÷ØIì
+endstream
+endobj
+
+225 0 obj
+[229 0 R /XYZ 70.86614 605.4552 0]
+endobj
+
+226 0 obj
+[231 0 R /XYZ 70.86614 743.28265 0]
+endobj
+
+227 0 obj
+[231 0 R /XYZ 70.86614 476.64044 0]
+endobj
+
+228 0 obj
+[229 0 R /XYZ 70.86614 781.0236 0]
+endobj
+
+229 0 obj
+<<
+  /Type /Page
+  /Resources <<
+    /ProcSet [/PDF /Text /ImageC /ImageB]
+    /ColorSpace <<
+      /c0 223 0 R
+    >>
+    /Font <<
+      /f0 199 0 R
+      /f1 205 0 R
+      /f2 217 0 R
+      /f3 211 0 R
+    >>
+  >>
+  /MediaBox [0 0 595.2756 841.8898]
+  /StructParents 0
+  /Parent 1 0 R
+  /Contents 230 0 R
+>>
+endobj
+
+230 0 obj
+<<
+  /Length 5300
+  /Filter /FlateDecode
+>>
+stream
+xœÅ]]s%·q}ç¯[±V+k{Ñh )—«,Ù©$¥œÚ}“õ°ZíÊJE\eMWÊÿ>ÕCŞ{ç›ÓCîHä’âœ§FŸÆË?|¼ùñı›·7Ãï~w5/ÿpsóæí_ß}?|óòõ‡Ÿ¿µ_½úûw7ÿøùİğò_ß½ùşİGûÕëñç?¿ùáÇë77?~¸¾úıï‡/ÿøÕÕÿ^á†4¼À¡$¨ª(CiTYòğö§«—oÓğöoWiøÛÛë«/__¥áõÇ«—ïÓP‡×ïO¶o¯ºúæ³¿¤”ş’Ş}§»ï|÷]î¾ç»ï:û»2~ÿnüz3~½¾ı?ÈgŸ|?~ıø|À4Üµ‰³gayşíğúß¯şôúê¿¦ïÉ5CJ(¼êEqã‹>ôÂ¼ôâÏ‡åğZwŸ¸>ÿÜ¬;NÏ•³çİuÓya™<ÿ¶“¥Ùó||Ç÷¥ù{ÓÙÓÎ~:|–îIéùPÏ›ŸwÉdìşôõWW/_ıüæúÎâ¿şêßş8¤EV‚œšÊÂÀÒ€ÔÕˆïïá3çFüşüóÇ±ÔùK§ú—_?ğ¢Y äÉ‹~õê*¯¾úÏ+¾¾²¿şé*…døŸ«WÑ“+âEİ´\äÑ¤¥‰örIÀÇ¦àÉö†ªÈ÷l.€*z‰GcT˜.[[ƒ¬é2Ï®IÊS=g
+´ıÇ›ë†ÏŞ]?÷h#f“ĞÙ8ø¬œqiOŒ÷bâ©DˆËQ„Él»€¿vhìDn3²#Š°sˆ½•!lÆ~t.Gg#.şÕÔ;Y4ĞŒKøùüG_ó|xıßíçåÁ'FºèğRÔƒiºì88ø;W~rŞ2ûı]OÒÁ.¦«.÷MtÙÆ®,¸¡+)èÊâ  $Ğªb
+'(J¸´(ä¡@Y‚À„êB`Hi„€RC¼$‚æ"(ĞZ.·nk£Eò	 ·„#PÂR{Ì©!@1 Ö>4B@.‚"¥”J„€=ÌP¸}PAEtÃlø.BàQ+q©M;ôÁMÔ¾G­$E«v°‚ë¨}I
+”Lº¸Œ˜’ˆîcuÑ½&9_h^‚Ú²ƒM•3mğ¯œÎ=+ãiœøèfÃ%aZöŸÛû
+#ßA.o¦LÍÜWªP›ĞÓÍå}À¥MDh…H: øpY3U ¬­%Ù"“^°\ÖD‚–Rê‚àşâÁí÷dè0z[Â™êğÓí‚ÔlŞ(/ƒÖr¾K|‚±G.št‘QÙÂ<[KÖØì¯µdqØÅÜ[›ßıÌ¦¹û=ç\<O€­B)ˆyĞ†À7L¬1ø¸ÜßuBe L[ ØFg•]O[mPZYe×b]ÄYûËo1‘t±kŠ6”ì.¿)Ø] D1vı24L’{@—>ì/ÀP¢!$I]­íÏ—#¼ªÌ‹¾,¤uÇUÈ!°r{§ûÄu8·21»1sº¶OØ€¢uû® !a¢l}Aµ^”¹rÌò.9}wTOİ¿‘ Ùõ¤ óØÜæÑ	ÒİVÎ¹‚ˆÅ]ê³Jë‚ ¤GÁú@³ÏT.Jâ14JáZu;?ÓµÔ¯¦yvÄúëéëûòOaÈx™ØE¡‰>øğ7Q¿yt]dJcëÍ¢\µ^®k¢r÷úZ0Ø lsâñµ-aY´uºqé:4©”»@ˆxL\*CÌÚ	Bê—J‘@“Rî‚!¤²ì’)e¦NİÍˆì²)Z°¢>tnpé”*äºË”È-"7¨¹±vé„(Ø—=nD© I;Aˆ¸)»‹Ùl«‹Ü	Bh
+îr6Wh¥pé !Š¼g—Õ¶Ú©OÄSÒ%Gµƒî5mq™ÀcÚÅ–	š½4¤T/`S\öÒÛ!„”¤´ì¥ráJ«ËŠHæ¥sëÑ!+ªËŠ”@…sÍ]0„Æàç9XvõÂMHuy‘G¹BÄ‹êò"gÆ]l!:’T—AJéÒ+a™Ú†ã¸OgY.ã¶îÙ<|nY[ùn?xà’cşÓ,fö¤IlşgKOÙO?÷lÖøOş(è7œ
+ÔJë:ykVSñ#À¶7a3´Í("½â€9ï&ê€ ôÅ=KJú rÅ=KÌÇEÀva¸9Š©õ˜îÇøÎøÃs÷8íùl‚N'Üá—Çcz—7æ³ò,Uîóp6êãåZÍ"7¤HÎRõ9ı*rò×¬§DÉY‡hmN_ô íë¾›&eŞµqóè,ø\(úÆMúÎHø¸øŞ.Z­ıllã‚½óƒùØö\\~.Rûè£¬	'‰
+ı,r:÷{0hµ=ò½_V§¦g­çİôËç¦—º>9½üÎÙé¥…è«fëvôÏO¯iÑ|r:›OpáÑ‚½â²ä¥”	tççØ|ÊZÿ­}ùÂ__R¸*®n0 VHÍ^Ãò 5Øú,yqtäUİX@UHÕN³(”tÙS·êÆZ‹ÉH6Šë™O/ÏsÎ˜äœË2ıÖÅÜ²ÌtÎòŸ3}êrnYfÒM¹÷RÇfZÌãºì\ü1[Í6¹Ï‡
+­µ¦íncüI8ŸÜhÆiPÙè&
+µ‹˜s]6çîÙó=m‰W¨nJY½O++&gËówV2O›QmQ•›S*úts~q¶{;·àÃo¹N3{Ÿ…gL¥ÄÉ†î¸Û;üÏ2û>¿3»gıİ)ô€ïš·7şŞœüâ±Y\Í¸H,‚yÍmì57â’2aé  w47à¢3õè¸—Â k¬w<[ŠY>›¦µ<.pØ<ÏÉhÊK)è`D™6Ïs210³!°€‘6âËIVšçÖ˜
+¤Ê¨=ú 
+š5Ï©1#ğ(_ÜÃ=—Æ¬Pû ¥[És8,Ø´Ğd‚É#TÎ*&*{Œ&QÙãÖBX¦“Ï§œòé™»u„3':_in¡®¡&L»‹0T²sü&Š:“Gï’	2ó:£w\ß9q‹¨Z¨îAÜ˜<æ–¢ ,} ÄããQ·Ôy¯)ëq·Té!fNº¥1)•waNW S^¹[Ø<
+® <£mX¶íWni3lŞ]	'«…Qk¤4àÄtÑéèë¿1ÀöÁÎG_Ù.ªvÁJ }8!ä¤]ú!œ‘¾œ*TA¡½°bJºJpI YZÙÉ"İâÒ€;aˆ-ÒÕçe†œRëb‘19¹BoÊLà[÷°H_ç­
+‰p‹eù¾Ô»(ÒZöá_í]íàÒ$(»Ì
+_ïİJÍ†Ád±M/¹áEW‹M-Cæ\vš˜®›ZƒŠRöš˜îÎßÖ-0ÄÓİù[²(WÚi^º[@Ijö¨PrÚ2aı WÁ<PJ.Á”XÆW†Ô§/Nò¤óBêV@i¹t«f«PeJ…}ØÏ•H3HLš{0O|~ƒ®Hš… Qk²»h¶síf‰ê=:‚CtEĞœ¸IíÓ17øª	´pİ‰„]4«vÂ’°+QæBP›ÅRvaaW£Ì•¡¶VºxùÁU)Oö-Ò ²<†‡€¤… ­Ù†! ŠtQ_äª”'ÄT<›2æWû¢é›ä:éúM¾È•3“Øùu³=ÑÖqşUØÇ~š2[ÍÂ±7Xã]Q3iªÅ:![œ9*Y²Õººf;Àl\hÛHÜ˜}¹Û—ßŒÿ
+ƒË®Ö™­m…µÒ@\FN´ÔÊ=$ ¸Rg&Ë_'éb£á:ÅU:Û¢1e[¦t0Ñx™âJ™³Õví2ñ*ÅU:37h¬æŸ·cˆW)®Ö™ÅDç}0ÄÅ-e)%G,ÀYò"€'ääœDP!i¸:è¦ĞjZ‰osåG_2dK©Ï]@ÄÖêŠhP“öz7_
+©Õ> b{}¨§0iëÑ1‡»šhÓ_&±ô–Â›èª¢Q4I¡3õ5ÑÒ,nŞ|{ôEÑ9C19ğ&öZwB§Ëì™¬úÙr„i“8]9ôQ/I¡!m`ï—ÉÍx‚,ö³ë)­®‡;ıĞ'÷/’¹Ÿ´<)Ñ4SïİK-ÆÖÓò†nÌÕŒ›„R4c^5RÛgKY2Vn™ä’ÆZ—ŒÕÚ'±Epc=˜Â)æ`¦ÇŒö=-óĞÎ'÷°ÅRñÓÕ	KfùXÛ_2goæŞËõ×IÒñÚyèìùg:Ú¹†àø×ç¥ŸjîKó˜xÉ«ìl{Átw‹U¸ØtßnëgUéM3½}±²ŞÏÂãèæíİËw?i¦†Ünÿ*”1£«é?ÑP±d3»}éR4ä*úO4´¡ı3šÏÖ'Ç|¹uZùtÑ	ªŠ(§Âì³`§%ÆüCs‚äÓ½+ìq±#çBË!òe{Hõ‡²øl}úé“‹éOâ€İu*[¨Ú¹s’è·'Ä*?˜P^;aƒ÷nåR+$vÀ°Â£¸™Wvš$\j—~÷œÅÍ¼ª’w‹xß[ÜÌ«6	àcî{]!5µ
+‘w2WKM\k³@âmµÙÃIáÊ ‰Ñ­¶cXÑş‘S2Ti]ú!ŒºJh»GÑ¬ÀBû:©{İß]‚Ìå–¤“‚ÚÖ²#I?x²xj-B»î>„škp¶XŞÅØî`l!ûÕ€·cˆÏ,\òi,J¹lÎ‘+$>EñXøJÙš!cAÍj3Ê¦±IØ×Ê0”˜6•']ŸVpjÕ®¼±›–º¤øjÜF€¹psû4ìc7­+%ÔÀ³€›ÒeçOÌ¬U»~ÍbîO>°ı,„àfta‚¤U»@xBp³PArîÂ:±«÷µTÍî[ŞiÆ·e;ÎøI«=g<ù¢]Î6ãoêèT‡|É®0”Šm‡O¾`W*´tÛ[§ÛoCnb‚7j5óœC®J–sa®²ç+‡=††¬&I{Ë¡¡ór““àœq‹ï}ôÓĞ¶£+Ñ.Zíao¹)
+˜€…ÊööW¬ÉÈ•ÍÚ-D-kÓ¬Ğ¨—-`x±¶„‡ºmRÕjƒ¯Ú	QEŠØÑM€8µ·½›WÜïé&@BFé!Úô’+Ì/ı±Û¦¶€€›ıÉ®¦ë3
+ah”\iî‰,™nSêÖ½ÊÔ!¹B];ZiŒ²ÒF»pó!HÙŞüË°yŸ‚Ôl÷l°b{N®D“¯Æğˆ£Çû‡‹õ‘ïçÅ;ª¢ğ˜ùr…²>_oñn@F	2ª9½_bºñ™‚ĞÄJG\~úÂäšìÎåº½ı(ı|Y²¥·¤jûå=f¡/KnÕîEX‰áò³páÎ€½'\hÕ¾ÆZ­ÚªíWlı³é–ğâa_b]°bÑâ®¯±®
+µÙ¶ÌîÌN\ò#äK¬°YšTv‰8^;YµÙIÏo
+?¸òm;a”Û¶6ro$_¼Šôh?>øÊí¤PZûšÕúxê®;\Öú²íd'ş„´ÀŠËäëªÑRşµ†0ôà«ªm'‹ÔúMï$_TÍbgí²Ùøšê„ÉæôÚ]ÉÆ—kÛ	öm[G9uúRm+¦ÃMv _¦XÇ÷ß8ÏÂ8§/ÒÖœu®ósUDµîCu®<›µÙÅİu¦såÙlÿRŞ¶²Û V%W°-©Û=C›'FTù\5µ ]AJEöYlº‚j1¡(ª­2X'ó?¯¤^¼kqÌ¥áUzuDºìëªµ­hk¥Ãj:Ü)»Bm«€öºÛ½ÛêÌc›ñn+wÈÕ|Ÿâ#XjPX?¼öCª®Or?&İ%Ñ¬A·yWé
+Âmk“©uê¡™´bRöìüIã|ïƒ"e®Ù˜ç}Ò›Å¯ª?Íd?å¡ßÓYÍ“ÂÈ–Ëeæ7'’/™6âÈ•ÍOLYçË	ÈÕÌ[`¯«Ÿ` P7\âîL]Å¼Õ¹ÃJu{ûk\’+˜§&Vc‰;ôA¸!Ée)æ Âs~(¨ 0[é‹­™]=<#Bal=„ËfWoÉU¨”Â­±«„Ÿd(…¤YIm™¬†Ä–ÅY¸stEğF9kİŞş2p5ğVpKâ¼CH®ŞÈ ÕÖ@H® ŞbuxËFÒ@ZÚPr.œŠ®Ş¢uDŠ¥‚p*ºøÉT¤l…m(Iï&áŠÁ}7iªÙ] zÙÕ¥«ù6Í-q+&©_‹”­ğ\U»a¼öà’AD_|„PdÙ´nYE<6j%i§÷nŠ"úrclĞ×í†v°+ée²BĞÔ¡ı]I¯U´ªRk“à’•¹º"RfÒ4ÕVÔ"W¯i‚´–¥õÇ]Á¦Ub•Vû€#Š®^ÓªjUÊÜÃÂ%²«ÖäŒP1·B¯èj5­lJV„ºÃ0D¥šÈ•j²¤1²ÛÁù„½àŠ5ÙìÕNÑöp>®VóaOçsl´«óq… \¥&—w>®”-€V±Cû¡óq l•÷“i#v`WÊ­€¶šóîÏÕgŠ%>¦Æ{¹?W )‰¡&Ñ½ÜŸ«Ğ”Ô€Å”R{¸?W )H–q–v1HWi‡WªY{ ‰ßg
+Ô,²ûsµ™Ç­×-_´^¹ÒI»‚Æ-ÈV!3ûÊIlP³Ò–æo·åã!ÂÇ¯áVÜ×P²@.²	Êjvò%”\¡fŞ <Oöå“¶&¶µØÖæ[Ø¼¿% J* ­øÊIe âT7Cøç }öeZ!³¦²½æ„t\Ş‚øÃÍÍ›·}÷ığÍË/?ÜÜ|øé[ûí«¿wóŸß/ÿåÃ‡›wíW¯ÇŸÿüæ‡¯ßÜüøáÚA±µñ'ÖJu)Ô¾è>7ÜÿƒÏç¸
+endstream
+endobj
+
+231 0 obj
+<<
+  /Type /Page
+  /Resources <<
+    /ProcSet [/PDF /Text /ImageC /ImageB]
+    /ColorSpace <<
+      /c0 223 0 R
+    >>
+    /Font <<
+      /f0 199 0 R
+      /f1 205 0 R
+      /f2 211 0 R
+      /f3 217 0 R
+    >>
+  >>
+  /MediaBox [0 0 595.2756 841.8898]
+  /StructParents 1
+  /Parent 1 0 R
+  /Contents 232 0 R
+>>
+endobj
+
+232 0 obj
+<<
+  /Length 6233
+  /Filter /FlateDecode
+>>
+stream
+xœÅ][—Çm~ß_1ŠO,Ó–ÀÂ¥P…DQ¬›c;‘c‡ÌUÒE‘¶r"R‘×'Çÿ>=»s#¦«¹Uİ~Ùá,wèªÂ¥ |Àã~¸ıöå³ç·»>¸Ùít{ûìù^|³ûâñÓ×ßå¿zò§¯oÿüı‹İã_¾xöÍ‹üWO§÷¿}öûo_=»ıöõ«›?Ü}üé'7ÿ{ƒ»´K»÷qWTU”]1ª,y÷ü»›ÇÏÓîùoÒîÏ_İ|üô&íşpóøeÚÕİÓ—ÇûËÓïn¾øÉ—)¥/SÂ»Wº{å»W¹{Íw¯zñwezızúy;ı|µÿä³O¾œ~şğh‡iwG/¾Ë£¯vO}óÙÓ›ß>'×)¡ğ¢ÅÎ½öÀ<÷àvï—ûÇºûÄ«óÏ],Çñ{åìûî–é|°œ|ÿ~‘¥‹ï‹ù;</]>7}ÛÙ»ûÏÒİwRz´«çä/—‹ädï>ûü“›ÇO¾öêîÄşÉ¯>İ¥Ù¬“Î`Ä™}yş˜wtx„ûe¢»W>,_‹oøÆ$À•—1NWŸø–G»§ÿ=C"ê¨PÔPŸömH@‰0ğ·êR¯sñø¹Á@ ƒd’¨›Ô5¢.	r©‰G<>5(Ì`Z0ĞÚı>>BÍ*›ì¾Ed‚š«õïşß5¨c¤21¨¦¶şêc¨ùT­ŒY~nqj¿R!!9ÿÜä TÕé.ä a¶.Ó»¿¼wNÿó`â&+ıŞ…½Ë4Ùçİé×¼3½ytn&şÄh6c¤ ©(ÈıØ<¢‘z¦*`&ºÉ	44™‚¦Šy ©´8ˆT4§,’ËJ#5Í¨ÀRœ[ä#%Í” …(‰¿o9h‘’fÊP%Ğg¢{óéİKù=qEÃ´D›"õÏEAy„óÑt|#İÏµ‚9U<_Št?WÉ#œŸ²M‘veC@ãm Š¬$´lëû¿©WAMd[ø¿iWI’VÛäDÊU0CM™u“#éW!…šJ]İæH½
+#Trln GjPd’AŞÄÇàHŠßB’Á^0GšPr^ÊÁb/XOÚ–Ø¾¶%ãHŠ EZG*4'¤d=kwXº:y$êÙ<?Á÷áÉŸŞIöûö“‹­½.Êéîş´¹™eöiHk™{n=Íåİë>zÏ/Ÿ~–£„€O¶‰ï½³Ã]ëî•.c‘w7<¡ôò,Œ|Û\¦ÈnPfĞ*UvpbÍz[ç.2¤•©êZ.œDÖƒ”eMû!‘ı BŠQ²
+- ‘¡Ê*îgáç-ú|å’œ¨–<d	Z~œ„qŠj§ÃBû „±
+«@ŒX¶9‘%àd@Ì:@)¼Ó¢Æ*0’ ¿dÂ`	H)ƒv¡åMI°`…di„8.pèòl2Nk-åá.Á¹¥<Ä&ÛZ”e-P±,ãkva>j­J¤'­ fVë'¿àhä8ÛÆÀóN=ò=Ï@r•ƒ[äÃt[2¨Z(ëN«@­ôpö©äyÂŒ
+ÔœûYøä‚ş¡8ããÏ¯>¶!7ş“'7i÷ä“ßÜ$ÈTwÿw#»Ïoücßİ Vó/ùŸ›'W1LëfåÜ/~ÍëTSÃ´Ÿd ÄeÎ
+BËXç0ï—	Rö+·Ö¦IùÁgàÓaŞO`RÚBh˜ù+­ø
+py°øl©Tº'hY1ÉH<24+ækv™ë×t¿h-p˜Y¬õn·Ò2G’Ë•LÙ‡Şæ8´$FP¨äÒ£c¦çûik}eÖÁĞ¦Òï`èÅ…Z¢¢Ÿ]üñ}ü!]Ü÷åâ¶şàŠ!MXN@UİŒ·Ÿ¾ËÑĞ¼d%*İÔ[ö[CÛQˆ•ú¾e;´^+(u"Ÿ¤¡»{L‡ÚìÁÏ¹¨>XîşºU¯š€hr 3{tŒş}Á+¾u©ë’‰êûDP‹¢8	¦¼âCÏÅ?´ˆ={‚Ì•ûŸOQBç0ãäY¯¾¡Zdßƒ2`	~Ù"Ó1ÔbÅ_ JÃåáT9=EÍ¨/ú3&?'@´bóF¿„º÷Hpõ•¯" ¦âB¦Àª´æõ±Ä®{õŒñ€ğ |«h1öİ4‰õ¤-bïš¡VÁBË×PÛZ‚BÙ(Û–®±ó›¡Ó kãõşó„áæä7#"ß€
+ªyUA¨qå²B&,e§ä·y!^1ÖZCËªÓšF¯Æ‘Œ
+¹Rµ2*RO¬µ•ƒªu, Z©ƒƒ¼Ôô‰Òä…—~Îô@·:5®’Î€•jíßæ·Š´C…«ÂCè¿Û¢×IWÈ¹Nô(•‡ûÏZôã*i,&èÿªE?Ô¶Å uO¿ §<¿ü~È®Ñÿu‹¾\³vÅtÀóù¨Å@¨j-©f¢çš@…°9°V+›è9+ó,l§çNˆÔs–T¤
+¦Õ´›[15ë)°@6šue=‡)¬¦ ï`eE‡)¬¥ 
+%™çiÖÖt˜ÂJ
+f`2ªöªºl2–Rp…ÄSyu]‡i6²›MÁò¬g;`zÏEÇJÇô4¾ÛŠã^ BAãÒU&)ÔşŠ =´•¨ZCõÎ;ûÿmìŠÎ2‘ı>ôÂqÕË<¡jPÒñ0Ì(_‡Ó"Ïë_L¡3¯ 'Ytöºô/¦8¶œ¡@¿­CG»&°äÏ¯)I%YOÇˆÄªPÓš8%BFNy:rItEcM¡²y·Ü-Aò\)„¾Shçÿ{‘#;¼§yµx¦/Ñ…÷^ CåÑ^T2š=1ÍòãKæ.¬ÄC{ˆmÄT€JÎ¶ËUA©+šÙÖë!ÀÑ»Ô4iØRAlM'8zmŒĞ…l™e˜À]¯Ç9<´·‘“33cW˜5ìJ¡ôû
+—ÚŸ¬>öà8œÌËRøòÍWcŒà4…\xÑte0DpJÊ`˜Xºé?n¢ÌCŒ‘_¬ˆmõŒ5†@K!Ölëg¬1FZÿÚ)kŒq–¤`æá³¿\Îcü¥0˜Ø2Î:OF¤ı93X..d1„`²fÈ%ÙfYSÇï	Ošbˆñ<Ü _‡!Ê“k‚*f[´°$½PC[?_‡!Ê“@½ÏÊúù:QnÍC–[äë0†y&I6%M×O]côÄ‚äÀÚC5	A·) À¯ÉbŠl“7Å±É¹:`Õó×$N1ÄYrA@Îu“„†Æ#Û%4Gæ0Hr)Pö´VÎ›bˆôf‹VGĞoÆ³BhäÔŞÑµîêù„É^•˜H0Ğ¼]‡ÈHo¯‘¦Rİ^úÿÔ¤ªÛä¶˜d7Õm‹ô9{U`oFÅ;T6Yˆ»Œ¸Ê)•é@¤Tó&ùcq‘Â
+D~¶P÷!.òÈÂvêşHs¨ºA—"uOkåô1†àJÉ"“¤­­îCx¥ä)ÊÄhû\)JÕÃ<«+û])Z@êcÓ~şPÓñv›(ûù(Å áT)µ²±RÙ;Zå-´}ˆn<qî“£ü¨¬éÛ‡øF.	ÒäxvrĞÜ‚İÈ%CÍÒO¾©‡Bì¡[¬&'Ÿ=iİ@Wv	b>äª`H§›¦&
+ÁîxWÃ2€¶„ø@÷¼U‹ä3°ùN¹“)qR›QŞ®'HÀ5ËlÇÿBÈ ‚ªw³ĞŒÿ… =!†œö•ÌœV †°=¡
+99Ğ¹w¬I?ö== Ù}Ú¡·¹'’ÁµÿüM“ş5ïXtÀ4C°e6å™n¤ZœÚõ8Dó±T`M‹xíÜ„P>v„¯z‰^úK\ˆÌçq2*fİ4]ˆÌç¡³dµŸ|Ó…vŞ–H¼2„ 	ËzD´óæ¸„9÷ÓouvÃeç“r?ıvÇé8_”!cÆ~úmÿ%DØ±™÷ÎÔ} ?oÒ¿–,b©µ_4c	!ÂÎ–D•ë&(ÄØ	PA“õUP°fMè7uPˆ®vˆ—w«Z_	„Ø:ïŒ«VJŞB„N£d¨U³l¢lÖgÉ@÷nk•Î„Ğ·CéŒÓŸ“³J1~è;*Ú¦˜\”»ÍÎ¨*õt†@=!¯,TwYŠ8ŒbÍŠÎ­çL$ƒR*ÃîşWcÜŠŞÖJ‡d¶Hß|¢Â|”;DEBr5+ë‰„ÌŠDı% •k5›÷ïÏNø{§ÕóÒul'ü£“ËoÔp·ë¢tt~ÌÌ•:ÓKÎáKÒiÏã¸œ|ß5ø}ß3µ|òHË$8Ïn®§kÈ_G1ùÛê”ğ"ÂÚ2ú¼€uÉB€’]Ş=„a=Qı¦##Y
+0%êgá7Mú¡ÎXFĞÿç}
+q‘Ñ/¨4äTÜD!–ÒKîĞKîºîo›‹ß`¼¶6ég`Á‚Òµr·œûYh	±”B’Ğég d¶^é7…ØE¿C±Õ…Gwv É@|‰!¨c²şoòŞc¸Z„VÑ#…¸Â#DÊGè}{ª?~|Å_u]¢S RBÍuôBÚÊ*D>õ![˜-Qß]>bÑÒO‰²º‚|,PÌ[[uóĞÔV!ò‘’€2Mˆù<˜ÕÔUˆ%¤\¡²÷K—ê
+³Š¬9)x¨°"`aÁI'	ƒbRÊehe,)|XRá¢ı<4‡³… =2š.óCö¡i8bØ\b`6å~šÓÑâÑ‡ÉÓ 4BZiSŠ‡NMĞÇd+kHñ”BT²­Åè9BÈ…ÜIõ‚"”õêºè
+~®@.Hïç UOB1N	Ä,Ë š‘X
+¡rJ²A¯æxø\(Îçó îİ¥»‰Lw5'÷s¡îŞQ¸¥éä„H»ã#C©Şçá¡n`
+f\†iâˆĞ€àÎ›Î×ç>duv=x¤Ë¯µ!˜ƒñÒUlÙÆ¦]Ñ|ŞL_*â¡iŸCDŸ;¬E	s?MÓBú¦ <fš¦!Äô¡U{—»ĞöÔBL%­HºÍi1}äA7‚4¯™õ ×ç­Ã¸ˆu­Ã[×ûQğ#Ùš÷‹ÜD<C„	{/µ~š—¹ŞGâ®#O‹°É©¸6¤¶…’
+[êåâ­Kiue@!‚èÒxx;¡}€ç'oÓ>-Ì{™ø¼ <}>òóÍ‘›ç‘§™£o™X>¤°î“¾ÁÚ»ÍÕzïA©ì·YK!6òèzÒÚ¤ã\\Ô7<¸Ø•<ÿÜ{‘3úFlñÜé¼H‚îäI^|ÉåÔÕw/şş²ó`y›Ej³¥x4ç¤|]ü“ãÏ´¡…;ZñtNoùŒum?)Ï©Ö¨Ÿ‡f4)Î©Å››Lxë¹Á.0‡!•Š€¡Ë]«ğö^RJõ‰©lÑq4›^RJ%cPõ~¯İ<4½¤xTgJ=°±É±q£œ2ääµİ«Ğô’Bà(#‚‘9	Mt…ØQ&òÌ\ÀCA!x”©BªÙãÍÛœ„8Îæƒœ½ıfÿN4ıÕx:geïÏ’§
+x¶V oNCÉ©|„ßù§sê?şeúƒW“©nê°nJ¬TÔÃí2«bMI8kŞ±Ï„)óNÜ€3SgÍ{÷",1ï1Ş”Š1—WŸ	_×ƒÄ S2Ğ¬,S³+$\ùÂCOY@3«ö/D³Ş"†Jšf``nğ:œÊ€“³ç8d.öp-öda	¬{Vw$}Ğ©¤æÆ›²gÃÆüM
+®'$}$Uæüà§|Ú\ækYâZò–8pz-KŒY¬Ÿ…¦ÿâZÉx‚Â× {^ ¯X²[É2˜;ı›Ğ´ØzÍ…¥ÂäÒ&€Œ:{ªQnåT  XqÛ.dpeô*Í"ÛˆC¹êÅšÊâÃVi¯óHÃcWY r.[DŒ\eD)›	DX6.ˆ´Â¿6ÉÇUã>ñŞıÒ©§÷ºí.)†°fï ã7ºòØ.à‰a¬ZÓùo-ú1Œµ0Ô!ô›U1Šµ&H–°NpîÊ´òA¡¬Ş…0U¿¤m¡—C4«ûÂ¬.«ëåÊêİg§şoÛèåÎêÃk’I6PÌ1 5eïU×ÑËW¯ÇÛHÍ€rr?»8äeÁÕ JY½}UŞ± Í+ÍGQ¦ÀÉ¿â)ÿ±,ZÂi	Du [ÿé?şË|Ñf&ÌÌrôIÆ=¼,‹÷…ÈÚcèÆaÖ¥®-ñª'¡›ŞEXº	áªT}¸fª4õ<)âaà!¤”jÃCÓN†˜R¿Ä‘'é»é7íC{ô6±™¾·]È+Çã	“G=Éµ$]µj&1éà¡½¡Š,$¼ğ«”Òx½xB<²àˆ]hYi‡@V†ì`OG¾²ÔXà2r<ÒÃ:ê­?œÅf8Cü"'ô†±²‰8p_ä¤~e}ià¾Èèé¨,„aZâÁèQT©l"áMŞ+Ë:ò°ÀktZï>ãµª ±¦Æ”Q’‡‚$dÅãX–Ñ}8IÖDŞ4s½ÔùÑóQÚQä¢ˆ	ˆóBû¤1†(bTö+”!«Ç×Ç¤HäÃ3dÄ6]íşrQŸ…vwe^ï<ÚeÛÿs·x7ã)9ƒûÛv³uÿàêè£UYòV»N@TŸì®dı«°k2—$($éeàËÄMCO@¬Ş"~)oQ¢{Y/¹¸7
+Ç€HL fUG¬U³–CD$¡C‚pÈZ]Öæ†e˜ÓşÕ©&_ÜÏ…ñZE¸9qÍRQ•¤i´A<4}ËWI%A‘ê¹¢^ZEgâ*ıªUpÌ"4=»WIÕç%0Ø…ö%#V:ÈY¦&)İ<¼Ód ,"°
+,SÖt¥O LÅ‡ÃÙ‡fŒãhÀ‰ÆèÖ¶Šg’OÅ]ÊCêéùÉ!¤ğpğ²Ü}Ó–µn !¢ğppú9=Ü¶<>·%3}/‘!—}å¡ğU1‹ŞÎ«ØÂ‡ì»E„ˆEôéw„˜§ KiÌëî÷;CÈ"f¿Ê°Yÿ*,ù±ˆ«%ûBd@å‡G–N>E¯HºÏÏrl57Œ(ƒ¶'Ÿrˆ„<°ÎmG#DBzE±©à¡}âÃlœ%¨©æ'¾Óå‰–¡¦\GlCÓÕ‰q)Aª~ÇqƒoµtI};ªc!“áVqÛşVˆº#¬ÉÒ õ» ÛÅ1$ŒÒZÙ.aœ€1M(h­Aaİ‡!ô|9'ŸÊ×oí—Ç‚bl˜øLä¥¬ôÅ‚b\˜dPöÒõmlrŒóvÅŞ/r“ÃÁü^œ¨ø:8\»&˜µŠ×9D„9ÅŒiÈ•æ½añşã£+P>YşÙA…XDAˆ9£B ¥Lnàvâ¢Ï¨ø^,ı'¯…âá{æO½»øl!~!şŒÌ‡òläÇà³©Ûr›¶1„Ÿq²ixŸnµa<Ğ|ŞC÷B´@<œ¯E#tK¼”xŠ!åQ‹° HÄ1¬ÌKÉsªº§cÊÄ‡…ãˆEhŞ]b<™°â]\¶‘‡S–ÉÇâ²mèL…€²c`ª˜#ûh½ÀTõ:¦J…*:;;yİÔtˆ;¦¦—0ØyLu65ME½laÕSZf3Óı»4Ÿ™~³×ÌŞÛ|ïúä4Ìgû}Ş»æÑÛ9O!üÌ£+œ’äş­oŞ]BøÖ
+’M6Úú}†¦‘¸šYìyF©B*^ßßÍÀ—_69]XPÌn)‡şòh‡Ç=Gÿ›aõC›tÙiòìôëi¼}’›úvbŞ¦FÅ5ÕÊoI+Ä¼¹]ÁBû Æn³€Uµ2bÚé«ñ†	d1}^Bˆy;z	¹2ÏºJM¸Ïá²&`İmõORLg©¨{y¹lèÑvm‰ôÄöCîÚ©.YµÙ“óóæ®…öÃ'MŠÚ¶+ÎîkÉ.ìòq.‹O.Ò}ûFhï¾Å„ú|q6p|bòÑÓş+ŞèUvˆ:í·ã£ÛÛgÏÿğâ›İ?~}{ûú»¯ü·OşôõíŸ¿±{ü‹×¯o_üà¿z:½ÿí³ßûêÙí·¯_û—Ñ€Ì'[; F«ç¯(öçu$ÿ€òÆ¾
+endstream
+endobj
+
+233 0 obj
+<<
+  /Creator (Typst 0.14.0)
+  /ModDate (D:20251222221325Z)
+  /CreationDate (D:20251222221325Z)
+>>
+endobj
+
+234 0 obj
+<<
+  /Length 996
+  /Type /Metadata
+  /Subtype /XML
+>>
+stream
+<?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="xmp-writer"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns:xmp="http://ns.adobe.com/xap/1.0/"  xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"  xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"  xmlns:pdf="http://ns.adobe.com/pdf/1.3/" ><xmp:CreatorTool>Typst 0.14.0</xmp:CreatorTool><dc:language><rdf:Bag><rdf:li>en</rdf:li></rdf:Bag></dc:language><xmp:ModifyDate>2025-12-22T22:13:25+00:00</xmp:ModifyDate><xmp:CreateDate>2025-12-22T22:13:25+00:00</xmp:CreateDate><xmpTPg:NPages>2</xmpTPg:NPages><dc:format>application/pdf</dc:format><xmpMM:InstanceID>MeRh/QqYsNQe2RkI5Mbg4A==</xmpMM:InstanceID><xmpMM:DocumentID>MeRh/QqYsNQe2RkI5Mbg4A==</xmpMM:DocumentID><xmpMM:RenditionClass>proof</xmpMM:RenditionClass><pdf:PDFVersion>1.7</pdf:PDFVersion></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end="r"?>
+endstream
+endobj
+
+235 0 obj
+<<
+  /Type /Catalog
+  /Pages 1 0 R
+  /Metadata 234 0 R
+  /PageLabels 7 0 R
+  /Lang (en)
+  /StructTreeRoot 8 0 R
+  /MarkInfo <<
+    /Marked true
+    /Suspects false
+  >>
+  /ViewerPreferences <<
+    /Direction /L2R
+  >>
+  /Outlines 2 0 R
+>>
+endobj
+
+xref
+0 236
+0000000000 65535 f
+0000000016 00000 n
+0000000090 00000 n
+0000000170 00000 n
+0000000293 00000 n
+0000000396 00000 n
+0000000511 00000 n
+0000000600 00000 n
+0000000652 00000 n
+0000001021 00000 n
+0000003393 00000 n
+0000006072 00000 n
+0000006351 00000 n
+0000006450 00000 n
+0000006544 00000 n
+0000006690 00000 n
+0000006775 00000 n
+0000006900 00000 n
+0000007002 00000 n
+0000007108 00000 n
+0000007206 00000 n
+0000007296 00000 n
+0000007381 00000 n
+0000007506 00000 n
+0000007640 00000 n
+0000007750 00000 n
+0000007892 00000 n
+0000007982 00000 n
+0000008067 00000 n
+0000008203 00000 n
+0000008329 00000 n
+0000008423 00000 n
+0000008529 00000 n
+0000008627 00000 n
+0000008717 00000 n
+0000009119 00000 n
+0000009222 00000 n
+0000009364 00000 n
+0000009470 00000 n
+0000009660 00000 n
+0000009755 00000 n
+0000009861 00000 n
+0000009947 00000 n
+0000010054 00000 n
+0000010193 00000 n
+0000010278 00000 n
+0000010392 00000 n
+0000010510 00000 n
+0000010616 00000 n
+0000010706 00000 n
+0000010791 00000 n
+0000010890 00000 n
+0000010988 00000 n
+0000011078 00000 n
+0000011173 00000 n
+0000011327 00000 n
+0000011617 00000 n
+0000011749 00000 n
+0000011834 00000 n
+0000011933 00000 n
+0000012067 00000 n
+0000012157 00000 n
+0000012252 00000 n
+0000012358 00000 n
+0000012458 00000 n
+0000012568 00000 n
+0000012670 00000 n
+0000012788 00000 n
+0000012991 00000 n
+0000013123 00000 n
+0000013208 00000 n
+0000013306 00000 n
+0000013438 00000 n
+0000013527 00000 n
+0000013621 00000 n
+0000013723 00000 n
+0000013830 00000 n
+0000013938 00000 n
+0000014043 00000 n
+0000014221 00000 n
+0000014338 00000 n
+0000014467 00000 n
+0000014560 00000 n
+0000014686 00000 n
+0000014794 00000 n
+0000014911 00000 n
+0000014998 00000 n
+0000015114 00000 n
+0000015396 00000 n
+0000015484 00000 n
+0000015623 00000 n
+0000015708 00000 n
+0000015789 00000 n
+0000015903 00000 n
+0000015993 00000 n
+0000016078 00000 n
+0000016159 00000 n
+0000016277 00000 n
+0000016367 00000 n
+0000016466 00000 n
+0000016560 00000 n
+0000016799 00000 n
+0000016900 00000 n
+0000017004 00000 n
+0000017109 00000 n
+0000017240 00000 n
+0000017385 00000 n
+0000017541 00000 n
+0000017686 00000 n
+0000017783 00000 n
+0000017903 00000 n
+0000018170 00000 n
+0000018259 00000 n
+0000018409 00000 n
+0000018498 00000 n
+0000018592 00000 n
+0000018684 00000 n
+0000018773 00000 n
+0000018879 00000 n
+0000018975 00000 n
+0000019067 00000 n
+0000019156 00000 n
+0000019258 00000 n
+0000019354 00000 n
+0000019446 00000 n
+0000019547 00000 n
+0000019671 00000 n
+0000019982 00000 n
+0000020117 00000 n
+0000020233 00000 n
+0000020329 00000 n
+0000020444 00000 n
+0000020545 00000 n
+0000020714 00000 n
+0000020806 00000 n
+0000020903 00000 n
+0000021084 00000 n
+0000021185 00000 n
+0000021375 00000 n
+0000021556 00000 n
+0000021651 00000 n
+0000021748 00000 n
+0000021929 00000 n
+0000022030 00000 n
+0000022220 00000 n
+0000022401 00000 n
+0000022496 00000 n
+0000022580 00000 n
+0000022677 00000 n
+0000022868 00000 n
+0000022962 00000 n
+0000023153 00000 n
+0000023247 00000 n
+0000023438 00000 n
+0000023532 00000 n
+0000023652 00000 n
+0000023751 00000 n
+0000023858 00000 n
+0000024000 00000 n
+0000024089 00000 n
+0000024173 00000 n
+0000024292 00000 n
+0000024383 00000 n
+0000024472 00000 n
+0000024556 00000 n
+0000024693 00000 n
+0000024784 00000 n
+0000024883 00000 n
+0000024999 00000 n
+0000025168 00000 n
+0000025268 00000 n
+0000025365 00000 n
+0000025546 00000 n
+0000025656 00000 n
+0000025846 00000 n
+0000026027 00000 n
+0000026122 00000 n
+0000026219 00000 n
+0000026400 00000 n
+0000026507 00000 n
+0000026697 00000 n
+0000026878 00000 n
+0000026973 00000 n
+0000027070 00000 n
+0000027251 00000 n
+0000027375 00000 n
+0000027564 00000 n
+0000027745 00000 n
+0000027839 00000 n
+0000027923 00000 n
+0000028020 00000 n
+0000028211 00000 n
+0000028304 00000 n
+0000028495 00000 n
+0000028588 00000 n
+0000028779 00000 n
+0000028872 00000 n
+0000028984 00000 n
+0000029043 00000 n
+0000029102 00000 n
+0000029287 00000 n
+0000030087 00000 n
+0000030178 00000 n
+0000030432 00000 n
+0000031926 00000 n
+0000038615 00000 n
+0000038799 00000 n
+0000039226 00000 n
+0000039315 00000 n
+0000039572 00000 n
+0000040539 00000 n
+0000043471 00000 n
+0000043647 00000 n
+0000044703 00000 n
+0000044794 00000 n
+0000045044 00000 n
+0000047196 00000 n
+0000058745 00000 n
+0000058927 00000 n
+0000059448 00000 n
+0000059538 00000 n
+0000059790 00000 n
+0000060888 00000 n
+0000064566 00000 n
+0000064604 00000 n
+0000064963 00000 n
+0000065016 00000 n
+0000065070 00000 n
+0000065124 00000 n
+0000065177 00000 n
+0000065505 00000 n
+0000070885 00000 n
+0000071213 00000 n
+0000077526 00000 n
+0000077643 00000 n
+0000078729 00000 n
+trailer
+<<
+  /Size 236
+  /Root 235 0 R
+  /Info 233 0 R
+  /ID [(MeRh/QqYsNQe2RkI5Mbg4A==) (MeRh/QqYsNQe2RkI5Mbg4A==)]
+>>
+startxref
+78986
+%%EOF

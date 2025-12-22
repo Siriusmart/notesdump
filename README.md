@@ -28,3 +28,9 @@
 ## Self Reading
 
 - [Groups and Symmetry (M.A. Armstrong)](./maths/reading/groups-and-symmetry.pdf)
+
+# Physics
+
+## Self reading
+
+- [Classical Mechanics (Imperial College Press)](./physics/reading/classical-mechanics.pdf)
