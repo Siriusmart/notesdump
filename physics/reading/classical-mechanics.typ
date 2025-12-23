@@ -20,6 +20,7 @@
   $T$, [ kinetic energy ], $1/2 m dot(x)^2$,
 )
 
+
 From $T = 1/2 m dot(x)^2$, we find:
 - $dot(T) = m dot.double(x) dot(x) = F(x) dot(x)$
 - $T = int F(x) dx$
@@ -128,3 +129,45 @@ $
 - When $omega_1$ is very high, $theta_1 approx pi$ (out of phase), $x approx 0$.
 
 So the damping constant $lambda$ only matters when near resonance.
+
+=== General Periodic Forces
+
+Any periodic force can be written as a sum of harmonics.
+$
+F(t) &= sum_(n=-infty)^infty F_n e^(i n omega t) \
+F_m &= 1/tau int^tau_0 F(t) e^(-i m omega t) dt \
+$
+
+The position is the sum of the general solutions for each harmonic.
+$
+x = sum_(n = -infty)^infty A_n e^(i n omega t) + "transient"
+$
+
+=== General Forces
+
+Define impulse delivered in $Delta t$ be $I = Delta p = F(t) Delta t$.
+
+An oscillator at rest when given impulse $I$ has $dot(x) = I/m$, solving for small damping:
+$
+x(t) = cases(
+  0 quad quad quad quad quad quad quad &"when" t < 0,
+  I/(m omega) e^(-gamma t)sin omega t &"when" t >= 0
+)
+$
+
+For a series of impulses $I_r$ at $t_r$
+$
+x(t) = sum_r G(t - t_r) I_r + "transient"
+$
+where the Green's function $G$ is defined as
+$
+G(t') = cases(
+  0 quad quad quad quad quad quad quad &"when" t' < 0,
+  I/(m omega) e^(-gamma t')sin omega t' &"when" t' >= 0
+)
+$
+
+Then for any force $F(t)$
+$
+x(t) = int^t_0 G(t' - t) F(t') dt' + "transient" \
+$
