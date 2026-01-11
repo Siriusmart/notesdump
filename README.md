@@ -9,7 +9,7 @@
 - [Databases](./computing/y1/michaelmas/databases.pdf) ([Cheatsheet](./computing/y1/cheatsheet/databases.pdf))
 - [Digital Electronics](./computing/y1/michaelmas/digital-electronics.pdf) ([Cheatsheet](./computing/y1/cheatsheet/digital-electronics.pdf))
 - [Foundations of Computer Science](./computing/y1/michaelmas/foundations-of-computer-science.pdf) ([Cheatsheet](./computing/y1/cheatsheet/foundations-of-computer-science.pdf))
-- [Introduction to Graphics](./computing/y1/michaelmas/introduction-to-graphics.pdf)
+- [Introduction to Graphics](./computing/y1/michaelmas/introduction-to-graphics.pdf) ([Cheatsheet](./computing/y1/cheatsheet/introduction-to-graphics.pdf))
 <!-- - [Discrete Mathematics (up to date but very disorganised)](./computing/y1/michaelmas/discrete-mathematics.pdf)
 - [Discrete Maths Without Words (4 lectures behind in progress but very well structured)](./computing/y1/michaelmas/discrete-mathematics-proofs.pdf) -->
 - [Object Oriented Programming](./computing/y1/michaelmas/oop.pdf)

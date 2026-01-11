@@ -897,7 +897,7 @@ The rendering pipeline of OpenGL:
     *Tesselation control shader* \
     Tesselation (split surface into more \
     polygons) - can be conditional to \
-    give close objects more details.
+    give only close objects more details.
   ], stroke: blue),
   edge("-|>"),
   node((2, 1), [
