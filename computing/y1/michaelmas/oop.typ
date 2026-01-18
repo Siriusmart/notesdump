@@ -239,8 +239,8 @@ We want to provide an API that exposes what it needs to and hide everything else
   align: center,
   [], [*Class*], [*Subclass*], [*Package*], [*Everywhere*],
   [`public`], $tick$, $tick$, $tick$, $tick$,
-  [`protected`],$tick$,$tick$,$tick$, [],  
-  [no modifier],$tick$,$tick$,[], [],  
+  [no modifier],$tick$,$tick$,$tick$, [],  
+  [`protected`],$tick$,$tick$,[], [],  
   [`private`],$tick$  
 )
 
