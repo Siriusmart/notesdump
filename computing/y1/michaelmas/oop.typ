@@ -471,13 +471,13 @@ Interface groups classes that implements a set of methods.
 - *Ad-hoc polymorphism* uses overloading.
 
 #grid2([
-  *Static polymorphism* decides the function to run at runtime.
+  *Static polymorphism* decides the function to run at compile-time.
   ```java
   Person p = new Student();
   p.dance(); // this runs Person::dance()
   ```
 
-  Java applies dynamic polymorphism on state and static methods.
+  Java applies static polymorphism on state and static methods.
 ],
 [
   *Dynamic polymorphism* decides at runtime when we know the child's type.
@@ -704,7 +704,7 @@ Who tf designed this.
 
 === Covariant Return Type
 
-If ```java class A extends B``` and the parent class requires you to override ```java A myMethod()```, then you can override it with ```java B myMethod()``` instead.
+If ```java class B extends A``` and the parent class requires you to override ```java A myMethod()```, then you can override it with ```java B myMethod()``` instead.
 
 == Common Interfaces
 
@@ -823,7 +823,7 @@ Collections.sort(list, new MyComparator()); // custom order
 == Generics
 
 Generics allows for better type safety: if we can assign more types to our code, then the compiler can stop us from doing silly things.
-- *Static type checking* is done by the compile.
+- *Static type checking* is done by the compiler.
 - *Dynamic type checking* cause crashes if the type is wrong at runtime.
 
 Generics allows more type checking to be done at compile time.
