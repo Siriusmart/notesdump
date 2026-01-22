@@ -55,7 +55,7 @@ cong(a, b, m) &iff a - b = k dot m \
 &iff cong(n dot a, n dot b, n dot m)
 $
 
-== T19
+== T19: 6 divisible
 
 Goal: $fa n in whole : (6|n iff 2|n and 3|n)$
 
@@ -252,8 +252,285 @@ $
 &equiv m^p + i space (mod p)
 $
 
-== T36: Fermat's little theorem
+== T36: Fermat's little theorem (clause 1)
 
-Goal: $fa i in nat and p "prime" : cong(i^p, i, p)$
+Goal 1: $fa i in nat and p "prime" : cong(i^p, i, p)$
 
 Special case of (C35), $m=0$
+
+== T36: Fermat's little theorem (clause 2)
+
+Goal 2: $fa i in nat and p "prime" and p divides.not i : i^(p-1) equiv 1 space (mod p)$
+
+Assume:
+1. $i in n and p "prime" and p divides.not i$
+
+$
+cong(i^p, i, p) &imp ex k in whole and i^p - i = k p \
+&imp i^(p-1) - 1 = (k slash i) p quad "as" p divides.not i \
+&imp cong(i^(p-1), 1, p)
+$
+
+== C40: the contrapositive
+
+Goal: $(P imp Q) iff (not Q imp not P)$
+
+#grid2(
+  surround([
+    Assume:
+    1. $P imp Q$
+    2. $not Q$
+
+    Suppose $P$, then $Q$. By contradiction: $not P$
+  ]),
+  surround([
+    Assume:
+    1. $not Q imp not P$
+    2. $P$
+
+    Suppose $not Q$, then $not P$. By contradiction: $Q$
+  ])
+)
+
+== C41: irrational square root
+
+Goal: $fa x in.not rat : sqrt(x) in.not rat$
+
+Assume:
+1. $x in.not rat$
+
+Suppose $sqrt(x) in rat$, then $x in rat$. By contradiction: $sqrt(x) in.not rat$
+
+== C42: rational lowest terms
+
+Goal: $x in rat iff ex m,n in whole^+ and x = m slash n and not (ex p "prime" and p|m and p|n)$
+
+Assume:
+1. $x in rat$
+
+Suppose $fa m,n in whole^+ and x = m slash n : ex p "prime" and p|m and p|n$
+
+$
+&x = m/n quad "by (1)" \
+imp& ex p_1 "prime" and p|m and p|n \
+imp& m = p_1 m' and n = p_1 n' \
+imp& m = p_1 p_2 m'' and n = p_1 p_2 n'' quad "by running the same argument on" x' = m' slash n' \
+vdots
+$
+
+Then $m$ and $n$ are products of infinitely many primes. All positive integers are product of finitely many primes. So by contradiction: $ex m,n in whole^+ and x = m slash n and not(ex p "prime" and p|m and p|n)$
+
+== P47: equality of inverses
+
+Goal: For a monoid $(e, dot)$, an element $x$ admits an inverse if its left and right inverses are equal.
+
+$
+r &= (l dot x) dot r \
+&=l dot (x dot r) \
+&=l
+$
+
+== T53: division theorem
+
+Goal: $fa m in nat, n in whole^+: (ex !q,!r in whole and q >=0 and 0<=r<n and m = q dot n + r)$
+
+Assume:
+1. $m in nat and n in whole^+$
+
+$
+& imp ex!n in whole and 0 <= r < n and cong(m,r,n) quad "by (T24: uniqueness of congruence)" \
+& imp ex!q in whole and m = q dot n + r
+$
+
+== T56: correctness of ```ml divalg```
+
+```ml
+let rec divalg m n =
+  let diviter q r =
+    if r < n then (q, r)
+    else diviter (q + 1) (r - n)
+  in diviter 0 n
+```
+
+#surround([
+  Goal: ```ml diviter``` terminates
+
+  `r` decreases in the natural numbers, this cannot continue forever.
+])
+
+#surround([
+  Goal: ```ml diviter``` outputs $(q_0, r_0)$ satisfying $r_0 < n and m = q_0 dot m + r_0$
+
+  All calls to ```ml diviter``` satisfies $m = q dot m + r$
+
+  1. ```ml diviter 0 n```
+  2. ```ml diviter 1 (n - m)```
+  3. ```ml diviter 2 (n - 2 * m)```
+  4. $vdots$
+  5. ```ml diviter q_0 r_0```
+
+  The last call satisfies $r_0 < n$
+])
+
+== P57: uniqueness of ```ml rem```
+
+```ml
+let rem m n = let (_, r) = divalg m n in r
+```
+
+Goal: $fa m in whole^+ and k,l in nat : (cong(k, l, m) iff rem(l,m) = rem(k,m))$
+
+Assume:
+1. $m in whole^+ and k,l in nat$
+
+#grid2(
+  surround([
+    2. $cong(k, l, m)$
+
+    $
+    k &= q_k dot m + r_k \
+    l &= q_l dot m + r_l
+    $
+    $
+    imp &cong(r_k, r_l, m) \
+    imp &r_k - r_l = a dot m
+    $
+    Again by $-m < r_k - r_l < m$ we have $a=0$ so $r_k = r_l$.
+  ]),
+  surround([
+    2. $r_k = r_l$
+
+    Trivial.
+  ])
+)
+
+== C58: existence of modular integer (clause 1)
+
+Goal: $fa n in nat : cong(n, rem(n, m), m)$
+
+$
+&n = q dot m + rem(n, m) \
+imp&n - rem(n,m) = q dot m \
+imp&cong(n, rem(n, m), m)
+$
+
+== C58: existence of modular integer (clause 2)
+
+Goal: $fa k in whole : (ex! [k]_m and 0 <= [k]_m <m and cong(k, [k]_m, m))$
+
+Assume:
+1. $k in whole$
+
+Existence: let $[k]_m = rem(k, m)$
+
+Uniqueness:
+$
+&-m < [k]_m - [k]_m ' < m \
+&cong([k]_m, [k]_m ', m) \
+imp&[k]_m = [k]_m '
+$
+
+== P62: the modular integers is a commutative ring
+
+Goal: $fa m > 1:(whole_m, 0, +_m, 1, dot_m) "is a commutative ring"$
+
+Assume:
+1. $m > 1$
+
+- $(whole_m, 0, +_m)$ is a commutative group (trivial)
+- $(whole_m, 0, dot_m)$ is a commutative monoid (trivial)
+- $dot_m$ distributes over $+_m$ (trivial)
+
+== P63: existence of reciprocal
+
+Goal: $fa k in whole_m : (k "has reciprocal" iff ex i, j in whole and k dot i + m dot j = 1)$
+
+Assume:
+1. $k in whole_m$
+
+$
+ex a in whole_m and a dot_m k = 1 &iff (a dot k) mod m = 1 \
+&iff ex j in whole and a dot k = m dot j + 1 \
+&iff a dot k - m dot j = 1
+$
+
+== L71: key lemma
+
+Goal: $fa m,m' in nat and n in whole^+ and cong(m, m', n): CD(m, n) = CD(m', n)$
+
+Assume:
+1. $m, m' in nat and n in whole^+$
+2. $cong(m, m', n)$
+
+$
+m' = m+q dot n 
+$
+$
+d|m and d|n imp &d|(m+q dot n) \
+imp &d|m' and d|n
+$
+
+Same for reverse.
+
+== L73: Euclid's algorithm for all divisors
+
+Goal: For all positive $m$ and $n$:
+$
+CD(m,n) = cases("D"(n) &"if" n|m, CD(n, rem(m, n)) quad &"otherwise")
+$
+
+#grid2(
+  surround([
+    Case $n|m$
+
+    $
+    d|n iff d|m and d|n
+    $
+  ]),
+  surround([
+    Otherwise
+
+    Special case of (L71: key lemma)
+  ])
+)
+
+== P75: uniqueness of gcd
+
+Goal: $fa m,n,a,b in nat : (CD(m, n) = "D"(a) and CD(m,n) = "D"(b) imp a = b)$
+
+Assume:
+1. $m,n,a,b in nat$
+2. $CD(m, n) = "D"(a) and CD(m,n) = "D"(b)$
+
+$
+"D"(a) = "D"(b) &imp a|b and b|a \
+&imp a = b
+$
+
+== P76: definition of gcd
+
+Goal: the two statements are equivalent
+- $CD(m,n) = "D"(k)$
+- $k|m and k|n and (fa d in nat: d|m and d|n imp d|k)$
+
+#grid2(
+  surround([
+    Assume:
+    1. $CD(m,n) = "D"(k)$
+
+    $
+    k in CD(m,n) &imp k|m and k|n \
+    d|m and d|n &imp d in "D"(k) imp d|k
+    $
+  ]),
+  surround([
+    Assume:
+    1. $k|m and k|n and (fa d in nat : d|m and d|n imp d|k)$
+
+    $
+    d in CD(m,n) &imp d in "D"(k) \
+    d|k &imp d|m and d|n quad "by transitivity" \
+    &imp d in CD(m,n)
+    $
+  ])
+)
