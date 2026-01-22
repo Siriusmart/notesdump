@@ -14,6 +14,9 @@
 - [Discrete Maths Without Words (4 lectures behind in progress but very well structured)](./computing/y1/michaelmas/discrete-mathematics-proofs.pdf) -->
 - [Object Oriented Programming](./computing/y1/michaelmas/oop.pdf)
 
+### Lent
+- [Ordinary Differential Equations](./maths/y1/lent/ode.pdf)
+
 # Maths
 ## Year 1
 1. [Vectors](./maths/y1/michaelmas/vectors.pdf)
