@@ -15,10 +15,12 @@
 - [Object Oriented Programming](./computing/y1/michaelmas/oop.pdf)
 
 ### Lent
-- [Ordinary Differential Equations](./maths/y1/lent/ode.pdf)
+- [Algorithms I](./computing/y1/lent/algorithms1.pdf)
 
 # Maths
 ## Year 1
+
+### Michaelmas
 1. [Vectors](./maths/y1/michaelmas/vectors.pdf)
 2. [Complex Numbers](./maths/y1/michaelmas/complex-numbers.pdf)
 3. [Hyperbolic Functions](./maths/y1/michaelmas/hyperbolic-functions.pdf)
@@ -27,6 +29,9 @@
 6. [Infinite series](./maths/y1/michaelmas/infinite-series.pdf)
 7. [Integration](./maths/y1/michaelmas/integration.pdf)
 8. [Probabilities](./maths/y1/michaelmas/probability.pdf)
+
+### Lent
+1. [Ordinary Differential Equations](./maths/y1/lent/ode.pdf)
 
 ## Self Reading
 
