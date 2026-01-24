@@ -534,3 +534,108 @@ Goal: the two statements are equivalent
     $
   ])
 )
+
+== T78: Euclid's algorithm gives the gcd
+
+Goal: $fa m, n in whole^+: "gcd terminates, and"$
+- $gcd(m,n)|m and gcd(m,n)|n$
+- $fa d in whole : d|m and d|n imp d|gcd(m,n)$
+
+Assume:
+1. $m,n in whole^+$
+
+#surround([
+  $r$ decreases in natural numbers, this cannot continue forever, so gcd must terminate.
+])
+
+#surround([
+  Euclid's algorithm selects the greatest element of $CD(m,n)$
+  $
+  CD(m,n) = D(gcd(m,n))
+  $
+  The two statements become trivial.
+])
+
+== L80: properties of gcds
+
+*Goal: commutativity*
+$
+"D"(gcd(m,n)) &= CD(m,n) \
+&= "D"(gcd(n,m)) \
+therefore gcd(m,n) &= gcd(n,m)
+$
+
+*Goal: associativity*
+
+Let $d_1 = gcd(l, gcd(m,n))$ and $d_2 = gcd(gcd(l, m), n)$
+
+$
+d_1|gcd(l, gcd(m, n)) &imp d_1|l and d_1|gcd(m,n) \
+&imp d_1|l and d_1|m and d_1|n \
+&imp d_1|gcd(l, m) and d_1|n \
+&imp d_1|d_2
+$
+
+By same process, show $d_2|d_1$ so $d_1 = d_2$
+
+*Goal: linearity*
+
+Let $d_1 = gcd(l dot m, l dot n)$ and $d_2 = l dot gcd(m,n)$
+
+$
+d_1|gcd(l dot m, l dot n) &imp d_1|(l dot m) and d_1|(l dot n) \
+&imp d_1 '|m and d_1 '|n "where" d_1 = d_1 ' dot l \
+&imp d_1 '|gcd(m,n) \
+&imp d_1|d_2 \
+d_2|(l dot gcd(m,n)) &imp d_2 '|gcd(m,n) "where" d_2 = d_2 ' dot l \
+&imp vdots quad "same steps in reverse" \
+&imp d_2|d_1 \
+therefore d_1&=d_2
+$
+
+== T82: divisiblity of product with coprime factor
+
+Goal: $fa k,m,l in whole^+: k|(m dot n) and gcd(k, m) = 1 imp k|n$
+
+Assume:
+1. $k,m,l in whole^+$
+2. $k|(m dot n) and gcd(k,m) = 1$
+$
+k|(m dot n) &imp k|gcd(k dot n, m dot n) \
+&imp k|(n dot gcd(k,m))) \
+&imp k|n
+$
+
+== C83: Euclid's theorem
+
+Goal: $fa m,n in whole^+ and p "prime": (p|(m dot n) imp p|m or p|n)$
+
+Assume:
+1. $m,n in whole^+ and p "prime"$
+2. $p|(m dot n)$
+
+#grid2(
+  surround([
+    Case $p|m$
+
+    Goal closed.
+  ]),
+  surround([
+    Case $p divides.not m$
+
+    $
+    gcd(m,n) = 1 &imp p|n
+    $
+  ])
+)
+
+== C85: inverse of modular integers
+
+Goal: $fa p "prime" and i in whole_p and i != 0 : [i^(p-2)]_m dot_m i = 1$
+
+Assume:
+1. $p "prime" and i in whole_p and i != 0$
+
+$
+cong(i^(p-1), 1, p) "by Fermat's little theorem" : p "prime" and p divides.not i
+$
