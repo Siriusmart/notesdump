@@ -65,3 +65,83 @@ For every point $(x, y)$:
 ])
 
 #hr
+
+=== Linear ODE
+
+$
+dy/dx + y dot p(x) = f(x)
+$
+When $f(x) = 0$, the ODE is homogenous, two ways to solve it
+
+#grid2(width: 50%,
+  $
+  dy/dx &= -y dot p(x) \
+  int 1/y dy &= -int p(x) dx \
+  y &= A e^(-P(x))
+  $,
+  $
+  e^P(x) dot dy/dx + p(x) dot e^P(x) dot y &= 0 \ 
+  d/dx (e^P(x) dot y) &= 0 \
+  y&= A e^(-P(x))
+  $
+)
+
+#note([
+  $e^(int p(x) space dx)$ is called the integrating factor.
+])
+
+For inhomogenous cases, multiply both sides by the integrating factor.
+$
+e^P(x) dot dy/dx + p(x) dot e^P(x) dot y &= f(x) \
+d/dx (e^P(x) dot y) &= f(x) \
+e^P(x) dot y &= F(x) + C \
+y &= (F(x) + C)e^(-P(x))
+$
+
+#def([
+  $n$th order ODE contains $n$ arbitrary constants: $n$ pieces of informations to fix them. The extra information are called *boundary conditions*.
+
+  #note([
+    A *particular solution* has no unknown constants or $pm$ signs.
+  ])
+])
+
+=== Substitutions
+
+$
+dy/dx = f(y/x)
+$
+
+$
+"let" u(x) &= y(x)/x \
+x dot u(x) &= y(x) \
+u + x dot du/dx &= dy/dx
+$
+
+For example
+$
+dy/dx &= (x^2+y^2)/(x y) \ 
+&= ((x slash y)^2 + 1)/(x slash y) \
+u + x dot du/dx &= (u^2 + 1)/u \
+x dot du/dx &= 1/u \
+&vdots
+$
+
+=== Benoulli Equations
+
+$
+dy/dx + p(x) dot y = q(x) dot y^n
+$
+
+If $y=0$ or $y=1$, then the equation is homogenous, otherwise
+$
+"let" z(x) &= y(x)^(1-n) \
+dz/dx &= (1-n) dot y(x)^(-n) dot dy/dx \
+1/(1-n) dot dz/dx dot y(x)^n &= dy/dx \
+1/(1-n) dot dz/dx dot y^n + p(x) dot y &= q(x) dot y^n \
+1/(1-n) dot dz/dx + p(x) dot y^(1-n) &= q(x) \
+dz/dx + (1-n) dot p(x) dot z &= (1-n) dot q(x) \
+& vdots
+$
+
+#hr
