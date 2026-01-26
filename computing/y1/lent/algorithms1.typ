@@ -87,3 +87,149 @@ Use proof by induction for algorithms:
 ])
 
 #hr
+
+== Analysis
+
+#def([
+  *Analysis* is about predicting the resources (CPU, memory, disk operations) for input instances we haven't ran our algorithm on.
+])
+
+#tab2(
+  [Input measurement], [Description],
+  $A."length"$, [ Common for every day senarios, but may be incorrect if each item in array can have variable size (e.g. big integer)],
+  [no. of bits/bytes], [Useful for algorithm that operates on some bit/byte value.],
+  $2^(A."length")$, [ Overestimates the size in most cases, but can be used for search lists.]
+)
+
+#def([
+  The *running time* of a program is the number of *basic operations*. (as they all cost 1)
+  #tab2(
+    [Basic operation], [Cost],
+    [Indexing an array $A[i]$], [1],
+    [Arithmetic operation], [1],
+    [Comparisons], [1],
+    [Assigment to variables], [1]
+  )
+
+  One basic operation might not be equal to one clock cycle, if you change the cost of the basic operations, the running time changes.
+])
+
+#note([
+  Comparisons (numbers) is usually done by subtracting one from another, then compare with 0.
+])
+
+== Orer of Growth
+
+- $Theta(g(n))$ is the *asymptotic tight bound* for $g(n)$
+  $
+  f(n) in Theta(g(n)) imp ex c_1, c_2, n_0 in real^+: (fa n >= n_0 : c_1 g(n) <= f(n) <= c_2 g(n))
+  $
+- $O(g(n))$ is the *asymptotic tight upper bound* for $g(n)$
+  $
+  f(n) in O(g(n)) imp ex c, n_0 in real^+ : (fa n >= n_0 : f(n) <= c g(n))
+  $
+- $Omega(g(n))$ is the *asymptotic tight lower bound* for $g(n)$
+  $
+  f(n) in Omega(g(n)) imp ex c, n_0 in real^+ : (fa n >= n_0 : c g(n) <= f(n))
+  $
+- $o(g(n))$ is the *asymptotic non-tight upper bound* for $g(n)$
+  $
+  f(n) in o(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : f(n) < c g(n))
+  $
+- $omega(g(n))$  is the *asymptotic non-tight lower bound* for $g(n)$
+  $
+  f(n) in omega(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : c g(n) < f(n))
+  $
+
+=== Properties of Orders of Growth
+
+$
+Theta(g(n)) &subset.eq O(g(n)) \
+Theta(g(n)) &subset.eq Omega(g(n)) \
+$
+
+- *Transitive*: satisfied by all 5 orders
+  $
+  f(n) in Theta(g(n)) and g(n) in Theta(h(n)) imp f(n) in Theta(h(n))
+  $
+- *Reflexive*: satisfied by the tight bounds $Theta, O, Omega$
+  $
+  f(n) in Theta(f(n))
+  $
+- *Symmetric*: satisfied by $Theta$
+  $
+  f(n) in Theta(g(n)) imp g(n) in Theta(f(n))
+  $
+
+=== Analysis of Insertion Sort
+
+```js
+for j = 2 to A.length         // ran (n-1)+1 times
+  Key = A[j]                  // ran n-1 times
+  i = j - 1                   // ran n-1 times
+  while i > 0 && A[i] < Key   // ran sum_(j=2)^n t_j times
+    A[i+1] = A[i]             // ran sum_(j=2)^n (t_j - 1) times
+    i = i - 1                 // ran sum_(j=2)^n (t_j - 1) times
+
+  A[i+1] = Key                // ran n-1 times
+```
+
+Where $t_j$ is the number of times the while loop is tested on the $j$th cycle.
+
+- Best case: $t_j=1$ then $T(n) = p n + q$
+- Worst case: $t_j = j$ then $T(n) = p n^2 + q n + r$
+- Average case: the claim is that on average, half  of the keys in $A[1 dots j-1]$ will be less than $A[j]$
+  
+  $t_g = j slash 2$ gives $T(n) in O(n^2)$
+
+The worst case is useful because
+- It gives the upper bound on resource
+- Often the same as the average case
+
+Insertion sort is an *incremental algorithm*: it builds up an output that satisfies some properties.
+
+== Divide and Conquer
+
+1. Split into 2 or more smaller subproblems.
+2. call the same algorithm on each subproblem recursively.
+3. Combine solutions to the subproblems to build the solution to the original problem.
+
+#note([
+  Recursion will terminate because the subproblem will get smaller and smaller.
+])
+
+=== Merge Sort
+```js
+// we are sorting A[p..r]
+if p < r
+  q = floor((p + r) / 2)
+  MergeSort(A, p, q)
+  MergeSort(A, q + 1, r)
+  Merge(A, p, q, r)
+```
+
+And `Merge` defined as
+```js
+n1 = q - p + 1
+n2 = r - q
+
+L = new Array(1 .. n1 + 1)
+R = new Array(1 .. n2 + 1)
+
+L[1 .. n1] = A[p .. q]
+L[n1 + 1] = infinity
+R[1 .. n2] = A[q + 1 .. r]
+R[n2 + 1] = infinity
+
+i = j = 1
+
+for k = p to r
+  if L[i] <= R[j]
+    A[k] = L[i]
+    i = i + 1
+  else
+    A[k] = R[j]
+    j = j + 1
+```
+
+#hr
