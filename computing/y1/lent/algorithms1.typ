@@ -233,3 +233,85 @@ for k = p to r
 ```
 
 #hr
+
+- If the length of the array is not a power of 2, pad $infty$ to the end so that it is.
+- After sorting, remove the added $infty$ at the end of the sorted array.
+
+The input array is modified, ```js Merge``` has no return value.
+
+=== Recurrence Relations
+
+The input size is lengh of the region to be sorted $n = r - p + 1$
+
+Let $T(n)$ be the cost of solving $"MergeSort"(A, p, r)$
+- If $p = r$, $T(1) = 1$
+- If $p < r$
+  #tab2(
+    [Action], [Cost],
+    [Calculate $q$], $Theta(1)$,
+    [Calls itself on 2 subproblems], $T(n slash 2) times 2$,
+    [
+      Calls $"Merge"(A,p,q,r)$
+      #tab2(
+        [Action], [Cost],
+        [Creates 2 arrays of length $n + 2$], $Theta(n)$,
+        [Loop $n$ iterations: assign into array and increment $i$ or $j$], [$Theta(n)$]
+      )
+    ],
+    $Theta(n)$
+  )
+
+$
+T(1) &= 1 \
+T(n) &= Theta(1) "work" + 2 dot T(n/2) + Theta(n) "work" \
+&= k_1 + 2 dot T(n/2) + k_2 dot n
+$
+
+#def([
+  A *closed form solution* is not defined in terms of itself through direct or indirect recursion.
+])
+
+$
+T(n) &= k_1 + k_2 dot n + 2 dot T(n/2) \
+&=k_1 + k_2 dot n + 2 dot (k_1 + k_2 dot n/2 + 2 dot T(n/4)) \
+&=k_1 + k_2 dot n + 2 dot (k_1 + k_2 dot n/2 + 2 dot (k_1 + k_2 dot n/4 + 2 dot T(n/4))) \
+&vdots \
+&=k_1 dot underbrace((1 + 2 + 4 + dots), log n "terms")+ k_2 dot n dot underbrace((1+1+1+dots), log n "times") + 2^(log n) dot T(1) \
+&=k_1 dot (n - 1) + k_2 dot n log n + n \
+&in Theta(n log n)
+$
+
+#note([
+  We preserved the equal signs instead of saying "this term dominates" so we know $T(n) in Theta(f(n))$ instead of just $O(f(n))$
+])
+
+If the array length is not a power of 2
+$
+T(n) &= T(ceil(n slash 2)) + T(floor(n slash 2)) + k_1 + k_2 dot n
+$
+
+Which gives the same solution.
+
+=== The Master Theorem
+
+Let $a >= 1$ and $b > 1$ be constants.
+
+- $T(1) = 1$
+- $T(n) = a dot T(n slash b) + f(n)$
+
+#note([
+  $n slash b$ can be interpreted as ceil or floor, it doesn't matter.
+])
+
+$
+f(n) in O(n^(-epsilon + log_b a)) "for some" epsilon > 0 &imp T(n) in Theta(n log_b a) \
+f(n) in Theta(n^(log_b a)) &imp T(n) in Theta(n log_b a dot lg a) \
+f(n) in Omega(n^(epsilon + log_b a)) "for some" epsilon > 0 "and" f(n slash b) <= c f(n) \
+"for some" c > 1 "for all sufficiently large" n &imp T(n) in Theta(f(n))
+$
+
+#note([
+There is an extended master theorem for conditions between case 2 and 3.
+])
+
+#hr
