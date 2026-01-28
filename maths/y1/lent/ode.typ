@@ -145,3 +145,45 @@ dz/dx + (1-n) dot p(x) dot z &= (1-n) dot q(x) \
 $
 
 #hr
+
+== 2nd Order ODE
+
+We consider linear cases only: the ODE can be written as $L y = f$.
+
+$L$ is the *differential operator*
+$
+L = [d^2/dx^2 + p(x) d/dx + q(x)]
+$
+Similar to how $d slash dx$ is an operator on functions.
+
+#def([
+  A *linear operator* has properties:
+  - $L(alpha u) = alpha L(u)$
+  - $L(u + v) = L(u) + L(v)$
+
+  #note([
+    $d/dx$ is a linear operator.
+  ])
+])
+
+The differential operator is a linear operator that includes $d^n/dx^n$.
+
+#def([
+  A *linear ODE* can be written as $L y = f$ where $L$ is a linear operator.
+  - $f = 0 :$ homogeneous
+  - $f != 0 :$ inhomogenous
+])
+
+=== The Principle of Superposition
+
+If $y_1$ and $y_2$ are particular solutions of a homogeneous ODE
+- Then so is $y_1 + y_2$
+- And so is $alpha y_1 + beta y_2$ for any $alpha, beta in complex$
+
+If:
+- The *particular integral* $y_p$ solves an inhomogenous linear ODE, and
+- The *complementary function* $y_c$ is the general solution of the homogeneous equation of the complementary ODE
+
+Then the general solution is $y = y_p + y_c$
+
+#hr
