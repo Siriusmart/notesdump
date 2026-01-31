@@ -305,7 +305,7 @@ Let $a >= 1$ and $b > 1$ be constants.
 
 $
 f(n) in O(n^(-epsilon + log_b a)) "for some" epsilon > 0 &imp T(n) in Theta(n log_b a) \
-f(n) in Theta(n^(log_b a)) &imp T(n) in Theta(n log_b a dot lg a) \
+f(n) in Theta(n^(log_b a)) &imp T(n) in Theta(n log_b a dot lg n) \
 f(n) in Omega(n^(epsilon + log_b a)) "for some" epsilon > 0 "and" f(n slash b) <= c f(n) \
 "for some" c > 1 "for all sufficiently large" n &imp T(n) in Theta(f(n))
 $
@@ -313,5 +313,66 @@ $
 #note([
 There is an extended master theorem for conditions between case 2 and 3.
 ])
+
+#hr
+
+=== Quicksort
+
+```js
+QuickSort(A, p, r)
+  if p < r
+    q = partition(A, p, r)
+    QuickSort(A, p, q - 1)
+    QuickSort(A, q + 1, r)
+
+Partition(A, p, r)
+  x = A[r]
+  i = p - 1
+  for j = p to r - 1
+    if A[j] <= x
+      i = i + 1
+      swap(A[i], A[j])
+  swap(A[i + 1], A[r])
+  return i + 1
+```
+
+The strategy: *divide* (partition array into 3 parts), *conquer* (recurse on $L$ and $G$), *combine* (no-op).
+
+Requirements for *Partition(A, p, r)* is
+- Pick any element as pivot
+- Rearrange so array looks like $["items" <= "pivot", "pivot", "items" >= "pivot"]$
+
+$
+[L, x, G]
+$
+
+==== Proof
+
+Let $P$ be the statement:
+1. If $p <= k <= i$ then $A[k] <= x$
+2. If $i + 1 <= k <= j - 1$ then $A[k] > x$
+3. If $k = r$ then $A[k] = x$
+
+#note([
+  No statements made for $j <= x <= r - 1$ which is the unprocessed region.
+])
+
+- *Initialisation*: (1) and (2) vacuously true, (3) is true by definition.
+- *Maintenance*
+  - Case does not enters if branch: (1) and (3) remains true, (2) is true as the new item $ >x$
+  - Case enters if branch: (3) remains true, (1) and (2) are true as their new items both satisfies contraint.
+- The final swap ensures post-condition.
+
+==== Performance
+
+The number of comparisons depends on how $"Partition"$ splits the array.
+
+Best case: partition splits array in half
+$
+T(1) &= 1 \
+T(n) &= 2 dot T(n/2) + k dot n \
+T(n) &in Theta(n log n)
+$
+by master theorem.
 
 #hr
