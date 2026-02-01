@@ -134,11 +134,11 @@ Use proof by induction for algorithms:
   $
 - $o(g(n))$ is the *asymptotic non-tight upper bound* for $g(n)$
   $
-  f(n) in o(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : f(n) < c g(n))
+  f(n) in o(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : (fa n >= n_0: f(n) < c g(n)))
   $
 - $omega(g(n))$  is the *asymptotic non-tight lower bound* for $g(n)$
   $
-  f(n) in omega(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : c g(n) < f(n))
+  f(n) in omega(g(n)) imp fa c in real^+ : (ex n_0 in real^+ : (fa n >= n_0 : c g(n) < f(n)))
   $
 
 === Properties of Orders of Growth

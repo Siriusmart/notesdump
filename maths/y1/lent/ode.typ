@@ -187,3 +187,63 @@ If:
 Then the general solution is $y = y_p + y_c$
 
 #hr
+
+== 2nd Order ODE with Constant Coefficients
+
+Is the restricted case where $p(x), q(x)$ are restricted to constants.
+
+=== Homogenous Equations
+$
+(d^2 y)/(dx^2) + 2 p dy/dx + q y = 0
+$
+Try $y(x) = e^(lambda x)$
+$
+e^(lambda x) (lambda ^2 + 2p lambda + q) &= 0 \
+lambda &= e^(-p pm sqrt(p^2 - q))
+$
+
+- Case $p^2 > q$ : $
+  lambda_1 &= -p + sqrt(p^2 - q) \ 
+  lambda_2 &= -p - sqrt(p^2 - 1)
+  $
+  Then $y = A e^(lambda_1 x) + B e^(lambda_2 x)$ is the general solution, as the general solution has 2 solutions.
+- Case $p^2 < q$ : let $Omega = sqrt(q - p^2)$
+  $
+  lambda_1 &= -p + i Omega \
+  lambda_2 &= -p - i Omega
+  $
+  Then
+  $
+  y &= 1/2 (e^(lambda_1 x) + e^(lambda_2 x)) = Re(e^(lambda_1 x)) = e^(-p x) cos Omega x \
+  y &= 1/(2i) (e^(lambda_1 x) - e^(lambda_2 x)) = Im(e^(lambda_1 x)) = e^(-p x) sin Omega x
+  $
+  are both solutions. So the general solution is
+  $
+  y = e^(-p x) (A cos Omega x + B sin Omega x)
+  $
+  If $A = R cos phi$ and $B = R sin phi$
+  $
+  y = R e^(-p x) cos(Omega x - phi) "by double angle formula"
+  $
+- Case $p^2 = q$ : cannot use principle of solution because we only have one solution.
+  
+  Observe $x e^(-p x)$ is also a solution, then
+  $
+  y = e^(-p x)(A + B x)
+  $
+  is the general solution.
+
+=== Inhomogenous Equations
+
+$
+(d^2 y)/(dx^2) + 2p dy/dx + q y = f(x)
+$
+Then the general solution is $y = y_c + y_p$ (complementary equation and particular integral)
+
+To find $y_p$, guess the functional form and solve for some parameters.
+- If $f$ is a polynomial of degree $n$, try a general polynomial of degree $n$
+- If $f$ is an exponential, try a multiple of the same exponential.
+- If $f$ is in form $u sin k x + v cos k x$, try $a sin k x + b cos k x$
+- If $f$ is a sum of two known cases, take the $y_p$ of each of them and add them.
+
+#hr
