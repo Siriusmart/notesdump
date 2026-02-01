@@ -71,7 +71,7 @@ For every point $(x, y)$:
 $
 dy/dx + y dot p(x) = f(x)
 $
-When $f(x) = 0$, the ODE is homogenous, two ways to solve it
+When $f(x) = 0$, the ODE is homogeneous, two ways to solve it
 
 #grid2(width: 50%,
   $
@@ -245,5 +245,38 @@ To find $y_p$, guess the functional form and solve for some parameters.
 - If $f$ is an exponential, try a multiple of the same exponential.
 - If $f$ is in form $u sin k x + v cos k x$, try $a sin k x + b cos k x$
 - If $f$ is a sum of two known cases, take the $y_p$ of each of them and add them.
+
+#hr
+
+== Resonance, Transients and Damping
+
+A damped oscillator is described by
+$
+(d^2 x)/(dt^2) + 2 gamma dx/dt + (omega_0)^2 x = 0
+$
+where $x(t)$ is the time dependent position, $gamma, omega_0$ are positive constants.
+- The parameter $gamma$ describes friction/damping.
+- If $gamma=0$ then *simple harmonic oscillator*.
+- The equilibrium position is $x=0$
+
+Solving the homogeneous equation
+$
+lambda = -gamma pm sqrt(gamma^2 - (omega_0)^2)
+$
+
+- Case $gamma > omega_0$: $
+  x(t) &= A e^((-gamma + sqrt(gamma^2 - (omega_0)^2))t) + B e^((-gamma - sqrt(gamma^2 - (omega_0)^2))t)
+  $
+  This is called *overdamping*: the bigger the $gamma$, the slower it returns to equilibrium.
+
+- Case $gamma < omega_0$ : let $Omega = sqrt((omega_0)^2 - gamma^2)$ $
+  x(t) &= e^(-gamma t)(A cos Omega t + B sin Omega t)
+  $
+  This is the *underdamped* case.
+- Case $gamma = omega_0$ : repeated roots give solution
+  $
+  y = e^(-gamma t)(A + B x)
+  $
+  This is the boundary between overdamping and underdamping, the graph looks like the overdamped case.
 
 #hr
