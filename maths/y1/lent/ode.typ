@@ -280,3 +280,39 @@ $
   This is the boundary between overdamping and underdamping, the graph looks like the overdamped case.
 
 #hr
+
+=== Sinusoidal Forces
+$
+(d^2 x)/dt^2 + 2 gamma dx/dt + (omega_0)^2x = f_0 cos omega t
+$
+
+Try $x_p(t) = a cos omega t + b sin omega t$ to find
+$
+-a omega^2 + 2 gamma b omega + a (omega_0)^2 &= f_0 quad (1) \
+-b omega^2 - 2 gamma a omega + b (omega_0)^2 &= 0
+$
+
+Solving for $a$
+$
+a = b((omega_0)^2 - omega^2)/(2 gamma a)
+$
+Substitute $a$ into $(1)$
+$
+a((omega_0)^2 - omega^2) + 2 gamma b omega &= f_0 \
+b((omega_0)^2 - omega^2)^2 / (2 gamma omega) + 2 gamma omega b &= f_0 \
+b((((omega_0)^2 - omega^2)^2 + 4 gamma^2 omega^2)/(2 gamma omega)) &= f_0 \
+b&= (2 gamma omega f_0)/(((omega_0)^2 - omega^2)^2 + 4 gamma^2 omega^2) \
+a&= (((omega_0)^2 - omega^2)f_0)/(((omega_0)^2 - omega^2)^2 + 4gamma^2 omega^2)
+$
+
+Then $x = a cos omega t + b sin omega t$
+
+Let $mu f_0 = sqrt(a^2 + b^2)$, so $x = mu f_0 cos(omega t - phi)$
+$
+mu = 1/sqrt(((omega_0)^2 - omega^2)^2 + 4 gamma^2 omega f_0)
+$
+
+- The size of osciallation is proportional to $mu$ and $f_0$
+- The phase difference is $phi$
+
+When damping is small, $mu$ has a peak near $omega = omega_0$ when $mu$ is plotted against $omega_0$
