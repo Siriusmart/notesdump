@@ -367,12 +367,111 @@ Let $P$ be the statement:
 
 The number of comparisons depends on how $"Partition"$ splits the array.
 
-Best case: partition splits array in half
-$
-T(1) &= 1 \
-T(n) &= 2 dot T(n/2) + k dot n \
-T(n) &in Theta(n log n)
-$
-by master theorem.
+- *Best case*: partition splits array in half
+  $
+  T(1) &= 1 \
+  T(n) &= 2 dot T(n/2) + k dot n \
+  T(n) &in Theta(n log n)
+  $
+  by master theorem.
 
 #hr
+
+- *Unbalanced partition*, e.g.
+  $
+  T(1) &= 1 \
+  T(n) &= T(n/4) + T((3n)/4) + k n
+  $
+  The *computation tree* is unbalanced.
+  - The shallowest node has depth $log_4n$
+  - The deepest node has depth $log_(4 slash 3)n$
+
+  Both gives $Theta(n log n)$, so any ratio split gives $Theta(n log n)$
+- *Worst case* when the pivot is the largest/smallest item in array.
+  $
+  T(n) &= T(n-1) + T(0) + k n \
+  &= T(n - 1) + k n \
+  & in Theta(n^2)
+  $
+
+  The probability of worst case on each split is $2^n slash n!$, when $n$ is small, this is quite significant.
+- *Constant case* where a constant number of items are partitioned to one side. Still $Theta(n^2)$
+
+== Order Statistic
+
+#def([
+  The $i$th order statistic is the $i$th smallest item in a set.
+  - Input: a set $A$, and an integer $i$
+  - Output: $x in A$ so it is larger than exactly $i-1$ other elements.
+])
+
+- Selecting the minimum and maximum item is simple at $O(n)$
+- Selecting the $i$th item can be done in $Theta(n lg n)$
+  1. Sort the array
+  2. Get the $i$th element
+
+```py
+QuickSort(A, p, r, i)
+  if p = r
+    return A[p]
+
+  q = Partition(A, p, r)
+  k = q - p + 1
+  if i == k
+    return A[q]
+  else if i < k
+    return QuickSelect(A, p, q - 1, i)
+  else
+    return QuickSelect(A, q + 1, r, i - k)
+```
+
+Worst case:
+  $
+  T(1) &= 1 \
+  T(n) &= T(n-1) + k n \
+  &in Theta(n^2)
+  $
+
+=== Optimisations
+
+- Randomise input data before starting
+- Choose pivot at random
+- Medium of 3: choose the median of 3 selected items as pivot.
+
+  Hitting worst case if:
+  - One of the 3 element is max or minimum element
+  - The other median element is right next to the max/minimum element.
+  This has probability $2 slash n^2$
+- Median of medians:
+  1. Consider array as groups of 5 elements.
+  2. Pick the median of each group with insertion sort.
+  3. Use quick select to select the median of the medians as pivot.
+  The final median is a median of $ceil(n slash 5)$ "medians"
+  - Half the "medians" are greater than the median.
+  - Number of elements greater/smaller than the pivot is
+    $
+    "number of elements">= 3 dot ceil(1/2 ceil(n/5) - 2) >= (3n)/10 - 6
+    $
+    #note([
+      $-2$ removes 2 groups for worst case, includes the last group that is possibly incomplete, and the group that the pivot is in.
+    ])
+
+    Worst case is $3n slash 10 - 6$ on one side and $7n slash 10 + 6$ on the other.
+
+    Suppose
+    $
+    T(n) &= k quad "if" n < 140 \
+    T(n) &= T(ceil(n/5)) + T((7n)/10 + 6) + k n quad "as we are considering the worst case"
+    $
+
+    If we guess that $T(n) in Theta(n)$, then
+    $
+    T(n) &<= c dot ceil(n / 5) + c dot ((7n)/10 + 6) + k n \
+    &<= (c n)/5 + c + (7 c n)/10 + 6 c + k n \
+    &= c n + (-(c n)/10 + 7c + k n)
+    $
+
+    If $(-c n slash 10 + 7c + k n) <= 0$, then $T(n) in O(n)$
+    - (Not in handout) Also need to check lower bound is in $Omega(n)$ to show $T(n) in Theta(n)$
+
+  #hr
