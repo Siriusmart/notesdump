@@ -32,6 +32,7 @@
 
 ### Lent
 1. [Ordinary Differential Equations](./maths/y1/lent/ode.pdf)
+2. [Multivariable Differential Equations](./maths/y1/lent/multivariable-differential-equations.pdf)
 
 ## Self Reading
 
