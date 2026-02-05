@@ -304,8 +304,8 @@ Let $a >= 1$ and $b > 1$ be constants.
 ])
 
 $
-f(n) in O(n^(-epsilon + log_b a)) "for some" epsilon > 0 &imp T(n) in Theta(n log_b a) \
-f(n) in Theta(n^(log_b a)) &imp T(n) in Theta(n log_b a dot lg n) \
+f(n) in O(n^(-epsilon + log_b a)) "for some" epsilon > 0 &imp T(n) in Theta(n ^(log_b a)) \
+f(n) in Theta(n^(log_b a)) &imp T(n) in Theta(n ^(log_b a) dot lg n) \
 f(n) in Omega(n^(epsilon + log_b a)) "for some" epsilon > 0 "and" f(n slash b) <= c f(n) \
 "for some" c > 1 "for all sufficiently large" n &imp T(n) in Theta(f(n))
 $
@@ -474,4 +474,62 @@ Worst case:
     If $(-c n slash 10 + 7c + k n) <= 0$, then $T(n) in O(n)$
     - (Not in handout) Also need to check lower bound is in $Omega(n)$ to show $T(n) in Theta(n)$
 
-  #hr
+#hr
+
+== HeapSort
+
+#def([
+  - A *heap* is a full tree, except the lowest level, which is filled from left to right.
+  - The *ordering property*: for a *min-heap* the key of every node is less than its children. Similar for a *max heap*.
+])
+
+Heaps can be stored as a tree or in an array:
+- Root node at $A[1]$
+- Left/right child of athe node at $2i$ and $2i+1$
+- Parent of a node at $floor(i slash 2)$
+- A child exist only if $2i$ and/or $2i+1$ is $<=$ the array's length
+- A node has no parent if $floor(i slash 2) = 0$
+Storing in array uses less memory as no pointers need to be stored.
+
+Heaps are *semi-structures* - it only maintain *partial order*.
+- Smallest item at the root
+- 2nd smallest item in 2 possible places
+- 3rd smallest item in 3 places, etc.
+A semi-structure is cheaper to build than fully structured data structures.
+
+Consider operations on a *max-heap*.
+#tab3(
+  [Operation], $T(n)$,[Description],
+  [MaxPeek], $T(1)$, [Just return the root node],
+  [MaxReheapify], $T(lg n)$, [
+    Call on heaps where the root node is larger than one of its children to repair the heap.
+    1. Swap root node with child if needed, this damages the child heap
+    2. Call reheapify on the child heap.
+  ],
+  [MaxFullHeapify], $T(n)$, [
+    Perform swaps on an array so it is a valid heap.
+    1. The bottom level leaves are valid heaps.
+    2. Take two leaves, pick another node as the root node, call reheapify to make the tree of 3 a valid heap.
+    3. Repeat for next layer, etc.
+  ],
+  [MaxExtract], $T(lg n)$, [
+    1. Swap the root with bottom right leaf.
+    2. Remove the now bottom right leaf.
+    3. Call reheapify to repair the heap.
+
+    This is better than removing the root node then merge the heaps, because
+    the ordering property is easier to repair than the structural properity.
+  ]
+)
+So the HeapSort algorithm.
+```py
+MaxFullHeapify(A) # O(n)
+
+for i = A.length downto 2: # O(n lg n)
+  # ASSERT: A[i..] is sorted
+  swap(A[1], A[i]) # essentially a MaxExtract
+  A.length = A.length - 1
+  MaxReheapify(A)
+```
+
+#hr
