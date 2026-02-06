@@ -507,10 +507,7 @@ Consider operations on a *max-heap*.
     2. Call reheapify on the child heap.
   ],
   [MaxFullHeapify], $T(n)$, [
-    Perform swaps on an array so it is a valid heap.
-    1. The bottom level leaves are valid heaps.
-    2. Take two leaves, pick another node as the root node, call reheapify to make the tree of 3 a valid heap.
-    3. Repeat for next layer, etc.
+    Perform swaps on an array so it is a valid heap, by calling reheapify on all nodes from $floor(n slash 2)$ down to 1.
   ],
   [MaxExtract], $T(lg n)$, [
     1. Swap the root with bottom right leaf.

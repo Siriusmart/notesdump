@@ -1,4 +1,7 @@
-all: insertion-sort merge-sort quick-sort quick-select
+all: insertion-sort merge-sort quick-sort quick-select heap-sort
+
+heap-sort: heap-sort.o
+	gcc -o heap-sort heap-sort.o -g -O0
 
 quick-select: quick-select.o a1-utils.o
 	gcc -o quick-select quick-select.o a1-utils.o
