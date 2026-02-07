@@ -84,7 +84,7 @@ Assume:
 
 == P21
 
-Goal: $fa k in whole^+ : ex i,j in whole and 4k = i^2 - j^2$
+Goal: $fa k in whole^+ : (ex i,j in whole : 4k = i^2 - j^2)$
 
 Assume:
 1. $k in whole+$
@@ -108,7 +108,7 @@ $
 
 == T24: uniqueness of congruence
 
-Goal: $fa m in whole^+ and n in whole : ex !z and 0<=z<m and cong(z, n, m)$
+Goal: $fa m in whole^+ and n in whole : (ex !z: 0<=z<m and cong(z, n, m))$
 
 Assume:
 1. $m in whole^+ and n in whole$
@@ -116,7 +116,7 @@ Assume:
 #grid2(
   surround([
     #missing([
-      Goal: $ex z and 0 <= z <m and cong(z, n, m)$
+      Goal: $ex z: 0 <= z <m and cong(z, n, m)$
     ])
   ]),
   surround([
@@ -266,7 +266,7 @@ Assume:
 1. $i in n and p "prime" and p divides.not i$
 
 $
-cong(i^p, i, p) &imp ex k in whole and i^p - i = k p \
+cong(i^p, i, p) &imp ex k in whole: i^p - i = k p \
 &imp i^(p-1) - 1 = (k slash i) p quad "as" p divides.not i \
 &imp cong(i^(p-1), 1, p)
 $
@@ -303,22 +303,22 @@ Suppose $sqrt(x) in rat$, then $x in rat$. By contradiction: $sqrt(x) in.not rat
 
 == C42: rational lowest terms
 
-Goal: $x in rat iff ex m,n in whole^+ and x = m slash n and not (ex p "prime" and p|m and p|n)$
+Goal: $x in rat iff ex m,n in whole^+: x = m slash n and not (ex p "prime": p|m and p|n)$
 
 Assume:
 1. $x in rat$
 
-Suppose $fa m,n in whole^+ and x = m slash n : ex p "prime" and p|m and p|n$
+Suppose $fa m,n in whole^+ and x = m slash n : (ex p "prime": p|m and p|n)$
 
 $
 &x = m/n quad "by (1)" \
-imp& ex p_1 "prime" and p|m and p|n \
+imp& ex p_1 "prime": p|m and p|n \
 imp& m = p_1 m' and n = p_1 n' \
 imp& m = p_1 p_2 m'' and n = p_1 p_2 n'' quad "by running the same argument on" x' = m' slash n' \
 vdots
 $
 
-Then $m$ and $n$ are products of infinitely many primes. All positive integers are product of finitely many primes. So by contradiction: $ex m,n in whole^+ and x = m slash n and not(ex p "prime" and p|m and p|n)$
+Then $m$ and $n$ are products of infinitely many primes. All positive integers are product of finitely many primes. So by contradiction: $ex m,n in whole^+: x = m slash n and not(ex p "prime": p|m and p|n)$
 
 == P47: equality of inverses
 
@@ -332,14 +332,14 @@ $
 
 == T53: division theorem
 
-Goal: $fa m in nat, n in whole^+: (ex !q,!r in whole and q >=0 and 0<=r<n and m = q dot n + r)$
+Goal: $fa m in nat, n in whole^+: (ex !q,!r in whole: q >=0 and 0<=r<n and m = q dot n + r)$
 
 Assume:
 1. $m in nat and n in whole^+$
 
 $
-& imp ex!n in whole and 0 <= r < n and cong(m,r,n) quad "by (T24: uniqueness of congruence)" \
-& imp ex!q in whole and m = q dot n + r
+& imp ex!n in whole: 0 <= r < n and cong(m,r,n) quad "by (T24: uniqueness of congruence)" \
+& imp ex!q in whole: m = q dot n + r
 $
 
 == T56: correctness of ```ml divalg```
@@ -416,7 +416,7 @@ $
 
 == C58: existence of modular integer (clause 2)
 
-Goal: $fa k in whole : (ex! [k]_m and 0 <= [k]_m <m and cong(k, [k]_m, m))$
+Goal: $fa k in whole : (ex! [k]_m: 0 <= [k]_m <m and cong(k, [k]_m, m))$
 
 Assume:
 1. $k in whole$
@@ -443,14 +443,14 @@ Assume:
 
 == P63: existence of reciprocal
 
-Goal: $fa k in whole_m : (k "has reciprocal" iff ex i, j in whole and k dot i + m dot j = 1)$
+Goal: $fa k in whole_m : (k "has reciprocal" iff ex i, j in whole: k dot i + m dot j = 1)$
 
 Assume:
 1. $k in whole_m$
 
 $
-ex a in whole_m and a dot_m k = 1 &iff (a dot k) mod m = 1 \
-&iff ex j in whole and a dot k = m dot j + 1 \
+ex a in whole_m: a dot_m k = 1 &iff (a dot k) mod m = 1 \
+&iff ex j in whole: a dot k = m dot j + 1 \
 &iff a dot k - m dot j = 1
 $
 
@@ -631,11 +631,19 @@ Assume:
 
 == C85: inverse of modular integers
 
-Goal: $fa p "prime" and i in whole_p and i != 0 : [i^(p-2)]_m dot_m i = 1$
+Goal: $fa p "prime", i in whole_p: (i != 0 imp [i^(p-2)]_m dot_m i = 1)$
 
 Assume:
-1. $p "prime" and i in whole_p and i != 0$
+1. $p "prime", i in whole_p$
+2. $i != 0$
 
 $
 cong(i^(p-1), 1, p) "by Fermat's little theorem" : p "prime" and p divides.not i
 $
+
+== T87: gcd is a linear combination
+
+We have the *extended Euclid algorithm* for writing gcd as a linear combination.
+
+
+
