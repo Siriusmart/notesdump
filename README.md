@@ -12,6 +12,7 @@
 - [Introduction to Graphics](./computing/y1/michaelmas/introduction-to-graphics.pdf) ([Cheatsheet](./computing/y1/cheatsheet/introduction-to-graphics.pdf))
 <!-- - [Discrete Mathematics (up to date but very disorganised)](./computing/y1/michaelmas/discrete-mathematics.pdf)
 - [Discrete Maths Without Words (4 lectures behind in progress but very well structured)](./computing/y1/michaelmas/discrete-mathematics-proofs.pdf) -->
+- [Discrete Maths Proofs](./computing/y1/michaelmas/discrete-maths-proofs2.pdf)
 - [Object Oriented Programming](./computing/y1/michaelmas/oop.pdf)
 
 ### Lent

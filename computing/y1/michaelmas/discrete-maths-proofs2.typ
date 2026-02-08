@@ -838,3 +838,105 @@ Let $P(n): \# B_n = n imp \# (A times B_n) = \#A dot \#B_n$
   &A times B_(k+1) = A times B_k union A times {b_(k+1)} \
   &\# (A times B_(k+1)) = \# A dot \# B + \# A = \#A dot \# B_(k+1)
   $
+
+== P112: big unions
+
+For all $cal(F) in pset(pset(pset(U)))$,
+$
+Union (Union cal(F)) = Union {Union A | A in cal(F)}
+$
+
+$
+x in Union(Union cal(F)) &imp ex X in Union cal(F) : x in X \
+&imp ex Y in cal(F) : (ex X in Y: x in X) \
+x in Union { Union A | A in cal(F)} &imp ex W in {Union A | A in cal(F)} : x in W \
+&imp ex Y in cal(F) : x in Union Y \
+&imp ex Y in cal(F) : (ex X in Y : x in X)
+$
+
+LHS and RHS are the same.
+
+== T114: the naturals is the smallest inductive set
+$
+cal(F) = { S subset.eq real | 0 in S and (fa x in real : (x in S imp x+1 in S))}
+$
+
+Goal: $nat in cal(F)$
+- $nat subset.eq real$, and
+- $0 in nat$, and
+- $fa x in real: (x in nat imp x+1 in nat)$
+$imp nat in cal(F)$
+
+Goal: $nat subset.eq Inter cal(F)$
+- $0 in Inter cal(F):$ trivial
+- Assume $k in Inter cal(F)$
+  - $k+1 in Inter cal(F)$
+
+Goal: $nat = Inter cal(F)$
+- Again induction to show $Inter cal(F) subset.eq nat$
+
+== P115: union of family of sets
+
+Let $cal(F) subset.eq pset(U)$ and $S in pset(U)$
+
+Goal: $S = Union cal(F)$ iff
+- $fa A in cal(F) : A subset.eq S$, and
+- $fa X in pset(U) : ((fa A in cal(F) : A subset.eq X) imp S subset.eq X)$
+
+#surround([
+  Assume:
+  1. $S = Union cal(F)$
+
+  #grid2(
+    surround([
+      2. $A in cal(F)$
+      $
+      x in A and A in cal(F) &imp ex A in cal(F) : x in A \
+      &imp x in Union F = S
+      $
+    ]),
+    surround([
+      2. $X in pset(U)$
+      3. $fa A in cal(F) : A subset.eq X$
+
+      $
+      x in S = Union cal(F) &imp ex Y in cal(F) : x in Y \
+      &imp x in Y subset.eq X "by (3)" \
+      &imp x in X
+      $
+    ])
+  )
+])
+
+#surround([
+  Assume:
+  1. $fa A in cal(F) : A subset.eq S$
+  2. $fa X in pset(U):((fa A in cal(F) : A subset.eq X) imp S subset.eq X)$
+
+  #grid2(
+    surround([
+      $
+      x in Union cal(F) &imp ex Y in cal(F) : x in Y \
+      &imp Y subset.eq S "(by 1)" \
+      &imp x in  S
+      $
+    ]),
+    surround([
+      $
+      &x in S \
+      imp& ((fa A in cal(F) : A subset.eq Union cal(F)) imp S subset.eq Union cal(F)) "by (2)" \
+      imp& S subset.eq Union cal(F) "trivial"
+      $
+    ])
+  )
+
+  So $S subset.eq Union cal(F) and Union cal(F) subset.eq S imp S = Union cal(F)$
+])
+
+Let $T in pset(U)$
+
+Goal: $T=Inter cal(F)$ iff
+- $fa A in cal(F) : T subset.eq A$ and
+- $fa Y in pset(U) : ((fa A in cal(F):Y subset.eq A) imp Y subset.eq T)$
+
+Similar to the big union proof above.
