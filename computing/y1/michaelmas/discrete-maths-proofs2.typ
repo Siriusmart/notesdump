@@ -645,5 +645,196 @@ $
 
 We have the *extended Euclid algorithm* for writing gcd as a linear combination.
 
+== P95: every positive integer $>=2$ is a product of primes
 
+- $P(2):$ trivial
+- Assume $fa k < n : P(k)$
+  - Then $k$ is either a prime, or
+  - A product of two numbers $<k$, the two numbers are products of primes.
 
+== T96: fundamental theorem of arithmetic
+
+Goal: $fa n in whole^+ : "there is a unique finite ordered sequence of primes such that"$
+$
+n = p_1 p_2  dots p_l
+$
+
+Product of $m$ primes $>= 2^m$, if $m$ is not finite then $n$ is not finite.
+
+Let $p_1 p_2 dots p_l$ and $q_1 q_2 dots q_k$ be product of primes equal to $n$
+- $p_1|q_1q_2 dots q_k$, name $q_1$ to be the element equal to $p_1$ so $p_2 p_3 dots p_l = q_2 q_3 dots q_k = n slash p_1$
+- $p_2|q_2 q_3 dots q_k imp p_2 = q_2, dots$
+- $q_(l+1) dots q_k = 1$
+$therefore l = k "and" fa i : p_i = q_i$
+
+== T99: set of primes is infinite
+
+Suppose the set of primes ${p_1, p_2, dots, p_n }$ is finite
+- Let $p_m$ be the largest element
+- $p_1p_2dots p_n + 1$ is a prime and $> p_m$, contradiction.
+
+== L103: properties of set relations
+$fa A, B, C "sets"$
+- Reflexivity: $A subset.eq A$
+- Transitivity: $A subset.eq B and B subset.eq C imp A subset.eq C$
+- Antisymmetry: $A subset.eq B and B subset.eq A imp A = b$
+
+Trivial
+
+== P104: cardinality of the powerset
+
+Goal: $fa U "finite set": \# pset(U) = 2^(\# U)$
+
+Let $P(n):\# U_n = n imp \# pset(U_n) = 2^(\# U_n)$
+
+- $P(0):$ trivial
+- Assume $P(k)$
+  - $pset(U_(k+1)) = pset(U_k) union {{x_(k+1)} union A | A in U_k }$
+  - $\# pset(U_k+1) = 2 dot \# pset(U_k) = 2^(\# U_(k+1))$
+
+== P105: subset of unions and intersections
+
+Goal: $fa X in pset(U) : (A union B subset.eq X iff A subset.eq X and B subset.eq X)$
+
+Assume:
+1. $X in pset(U)$
+
+#grid2(
+  surround([
+    2. $A union B subset.eq X$
+    $
+    x in A imp x in A union B imp x in X \
+    x in B imp x in A union B imp x in X
+    $
+  ]),
+  surround([
+    2. $A subset.eq X and B subset.eq X$
+    3. $x in A union B$
+    Case $x in A imp x in X$ #br
+    Case $x in B imp x in X$
+  ])
+)
+
+Goal: $fa X in pset(U) : (X subset.eq A inter B iff X subset.eq A and X subset.eq B)$
+
+Assume:
+1. $X in pset(U)$
+
+#grid2(
+  surround([
+    2. $X subset.eq A and B$
+    $
+    x in X imp x in A inter B imp x in A \
+    x in X imp x in A inter B imp x in B \
+    $
+  ]),
+  surround([
+    2. $X subset.eq A and X subset.eq B$
+    $
+    x in X imp x in A and x in B imp x in A inter B
+    $
+  ])
+)
+
+== C106: set equality with unions and intersections (clause 1)
+
+Let $A, B, C in pset(U)$
+
+Goal: $C = A union B$ iff
+- $A subset.eq C and B subset.eq C$
+- $fa X in pset(U) : (A subset.eq X and B subset.eq X imp C subset.eq X)$
+
+#surround(grid2([
+  Assume:
+  1. $C subset.eq A union B$
+  $
+  A subset.eq C and B subset.eq C "by (P105)"
+  $
+],[
+  Assume:
+  1. $X in pset(U) and A subset.eq X and B subset.eq X$
+  $
+  C = A union B subset.eq X "by (P105)"
+  $
+]))
+
+#surround([
+  Assume:
+  1. $A subset.eq C and B subset.eq C$
+  2. $fa X in pset(U) : (A subset.eq X and B subset.eq X imp C subset.eq X)$
+
+  $
+  &A union B subset.eq C "by (1) and (P105)" \
+  &C subset.eq A union B "by (2) and (P105)" \
+  imp& A union B = C
+  $
+])
+
+== C106: set equality with unions and intersections (clause 2)
+
+Goal: $C = A inter B$ iff
+- $C subset.eq A and C subset.eq B$
+- $fa X in pset(U) : (X subset.eq A and X subset.eq B imp X subset.eq C)$
+
+The proof is exactly the same as clause 1.
+
+== P107: results from singleton and pair set equalities
+
+Goal: ${x, y} subset.eq {a} imp x = y = a$
+$
+x in {x, y} imp x in {a} imp x = a
+$
+Same for $y$
+
+Goal: ${c,x} = {c,y} imp x = y$
+
+#grid2(
+  surround([
+    Case $x = c$
+
+    $y = c$ by previous goal.
+  ]),
+  surround([
+    Case $x != c$
+
+    $
+    x in {c, y} imp x = c or x = y imp x = y
+    $
+  ])
+)
+
+== P108: fundamental property of ordered pairing
+
+Let $abracket(a, b) = {{a}, {a,b}}$
+
+Goal: $abracket(a, b) = abracket(x, y) imp a = x and b = y$
+
+#grid2(
+  surround([
+    Case $a = b$
+
+    $
+    abracket(a, b) = {{a}} = abracket(x, y)
+    $
+  ]),
+  surround([
+    Case $a != b$
+
+    $
+    & {x} in {{a}, {a, b}} imp {x} = {a} imp x = a \
+    & {a, b} in {a, {a, y}} imp {a, b} = {a, y} imp b = y
+    $
+  ])
+)
+
+== P110: cardinality of cartesian products
+
+Goal: $\# (A times B) = \# A dot \# B$
+
+Let $P(n): \# B_n = n imp \# (A times B_n) = \#A dot \#B_n$
+- $P(1): $ trivial
+- Assume $P(k)$
+  $
+  &A times B_(k+1) = A times B_k union A times {b_(k+1)} \
+  &\# (A times B_(k+1)) = \# A dot \# B + \# A = \#A dot \# B_(k+1)
+  $
