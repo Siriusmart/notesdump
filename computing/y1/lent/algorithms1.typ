@@ -1,5 +1,16 @@
 #import "@local/lecture:0.1.0" : *
 
+#set page(
+  numbering: "1",
+  supplement: [p.],
+  number-align: right,
+  header: [
+    #set text(8pt)
+    #smallcaps[Computer Science Lecture Notes]
+    #h(1fr) _Algorithms I_
+  ],
+)
+
 = Algorithms I
 
 #def([
@@ -118,7 +129,7 @@ Use proof by induction for algorithms:
   Comparisons (numbers) is usually done by subtracting one from another, then compare with 0.
 ])
 
-== Orer of Growth
+== Order of Growth
 
 - $Theta(g(n))$ is the *asymptotic tight bound* for $g(n)$
   $
@@ -499,17 +510,17 @@ A semi-structure is cheaper to build than fully structured data structures.
 
 Consider operations on a *max-heap*.
 #tab3(
-  [Operation], $T(n)$,[Description],
-  [MaxPeek], $T(1)$, [Just return the root node],
-  [MaxReheapify], $T(lg n)$, [
+  [Operation], $O(n)$,[Description],
+  [MaxPeek], $O(1)$, [Just return the root node],
+  [MaxReheapify], $O(lg n)$, [
     Call on heaps where the root node is larger than one of its children to repair the heap.
     1. Swap root node with child if needed, this damages the child heap
     2. Call reheapify on the child heap.
   ],
-  [MaxFullHeapify], $T(n)$, [
+  [MaxFullHeapify], $O(n)$, [
     Perform swaps on an array so it is a valid heap, by calling reheapify on all nodes from $floor(n slash 2)$ down to 1.
   ],
-  [MaxExtract], $T(lg n)$, [
+  [MaxExtract], $O(lg n)$, [
     1. Swap the root with bottom right leaf.
     2. Remove the now bottom right leaf.
     3. Call reheapify to repair the heap.
@@ -528,5 +539,101 @@ for i = A.length downto 2: # O(n lg n)
   A.length = A.length - 1
   MaxReheapify(A)
 ```
+
+#hr
+
+Cost of ```py MaxFullHeapify```
+- Best case: array satisfies heap properties, no swaps, 2 comparisons per key on $n slash 2$ keys. $Theta(n)$
+- Worst case: every recursive call of ```py MaxReheapify``` results in a swap. $Theta(n)$
+
+HeapSort MaxFullHeapify once then calls MaxReheapify $n-1$ times
+$
+T(n) &= k_1 n + k_2 ceil(lg n) + k_2 ceil(lg (n-1)) + k_2 ceil(lg (n-2)) + dots \
+&<= k_1 n + k_2 lg n + k_2 lg (n-1) + dots + k_2 n \
+&= (k_1 + k_2) n + k_2 lg (n!) \
+&<= (k_1 + k_2) n + k_2 (n lg n - n) \
+&in O(n lg n)
+$
+
+== $O(n)$ Sorting Algorithms
+
+Number of required comparisons for comparison sorts are $in Omega(n lg n)$
+
+=== $bold("CountingSort")(A, B, k)$
+
+Where $A$ is input, $B$ is output, $k$ is top limit on range of values.
+
+```py
+C = new Array[0..k]
+
+for i = 0 to k:
+  C[i] = 0
+
+for j = 1 to A.length:
+  C[A[j]] = C[A[j]] + 1
+
+for i = 1 to k:
+  C[i] = C[i] + C[i - 1]
+
+# ASSERT: C[n] is the ending index for
+# runs of `n`
+
+for j = A.length downto 1:
+  B[C[A[j]]] = A[j]
+  C[A[j]] = C[A[j] - 1]
+```
+
+The time complexity is $Theta(n + k)$
+
+== $bold("RadixSort")(A, d)$
+
+```py
+for i = 1 to d:
+  # sort array A on digit i with any stable sort
+```
+
+Where $1$ is the least significant digit.
+
+#def([
+  A *stable sort* preserves the order of inputs when their keys are equal.
+])
+
+- Time complexity is $in Theta(d(n+k))$ where $k$ is the number of values a digit can take.
+- Essentially run CountingSort once on each digit.
+
+== $bold("BucketSort")(A)$
+
+Used for sorting values distributed uniformly in a range.
+1. Put values into $n$ buckets
+2. Sort values inside each bucket
+3. Merge
+
+```py
+n = A.length
+B = new Array[0..n-1]
+
+for i = 0 to n-1:
+  B[i] = empty_list
+
+for i = 1 to n:
+  # insert A[i] into list B[floor(n * A[i])]
+
+for i = 0 to n-1:
+  InsertionSort(B[i])
+
+# concatenate B[0], B[1], .. B[n-1] in ordered
+```
+
+$
+T(n) &= Theta(n) + sum_(i = 0)^(n-1) O((n_i)^2) \
+&vdots \
+&= Theta(n)
+$
+
+#note(title: "Ending note", [
+  The two main types of strategies studied are:
+  - Incremental
+  - Divide and conquer
+])
 
 #hr

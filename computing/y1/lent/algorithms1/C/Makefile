@@ -1,4 +1,10 @@
-all: insertion-sort merge-sort quick-sort quick-select heap-sort
+all: insertion-sort merge-sort quick-sort quick-select heap-sort counting-sort radix-sort
+
+radix-sort: radix-sort.o
+	gcc -o radix-sort radix-sort.o a1-utils.o
+
+counting-sort: counting-sort.o
+	gcc -o counting-sort counting-sort.o a1-utils.o
 
 heap-sort: heap-sort.o
 	gcc -o heap-sort heap-sort.o -g -O0
