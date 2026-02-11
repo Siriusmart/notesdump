@@ -710,3 +710,97 @@ return m[n]
 
 #hr
 
+== Greedy Algorithms
+
+Chooses between the subproblems without evaluating all of them, some problems do not have greedy solutions.
+
+Examples of problems with greedy solutions.
+- Minimum spanning tree
+- Huffman encoding (data compression)
+- Calculating change
+- Scheduling problems
+
+=== Activity Selection Problem
+- A set of activities uses share resources: an activity runs in interval $[s_i, f_i)$
+- Find a maximum size subset of compatible activities.
+
+In an interval $[i, k)$, the subset with the maximum cardinality is
+
+$
+S(i, k) = argmax_j (S(i, s_(a j)) union {a_j} union S(f_(a j), k) )
+$
+
+We can avoid evaluating for all $s_(a j)$ if we pick the element with the earliest finish time:
+- It leaves the fewest conflicts in future choices.
+
+So the greedy algorithm:
+1. Sort activites
+2. Repeatedly select the activity that finishes first
+
+#note([
+  Greedy solutions only work if locally optimal choice still allows optimal choice to be reached.
+])
+
+== Data Structures
+
+#defs([
+  - The value of a *pointer* is the object's base address.
+  - *NIL* does not point to any object.
+])
+
+=== Stack
+
+A LIFO structure with $"push"("item")$ and $"pop"()$
+
+Condition for empty: index for stack top is $0$ or $1$ (depends if index points to or above top item).
+
+=== Queue
+
+A FIFO structure with $"enqueue"("item")$ and $"dequeue"()$
+
+Implementation using arrays _(circular buffer)_ requires two pointers:
+- Head points to first item
+- Tail points to or after last item
+
+Need to distinguish between a full queue and an empty queue, as their pointer values are the same.
+
+Solution: only allow $n-1$ items to be stored in a queue implemented by an array of length $n$
+- Small amount of memory is wasted
+- But removes a lot of special case code
+
+=== Singly Linked List
+
+#def([
+  *List cells* are tuples storing the data and a pointer to the next cell.
+])
+
+This allows for:
+- Straight linked lists
+- Cycle in linked list (a cell points to an earlier cell)
+- Two linked lists sharing the same tail
+
+#note([
+  *List search* will not work on linked lists with cycles, it will require cycle detection.
+])
+
+=== Doubly Linked List
+
+Similar to singly linked list, but if the list has a cycle, the cycle must include all cells.
+
+=== Dong Lea's Malloc Algorithm
+
+We want to allocate/deallocate objects in the heap in any order.
+
+Represent free and busy chunks in order they are found in memory in a linked list.
+- *Allocate* memory:
+  1. Search list for first chunk that is big enough
+  2. Split the chunk into two: one of them the size to be allocated
+- *Free* maintains no two chunks next to each other are blank.
+
+No metadata need to be stored about the size allocated: the allocated size is the space between the two linked list cells.
+
+Memory allocation is often a multiple of 4 bytes, this leaves 0s at the end of the pointer value.
+- Store free/busy status in one of the bits
+- Store free/busy status of the neighbouring blocks in another bit
+
+#hr
