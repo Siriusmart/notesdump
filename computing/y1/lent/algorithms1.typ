@@ -637,3 +637,76 @@ $
 ])
 
 #hr
+
+== Dynamic Programming
+
+- *Divide and conquer* splits into subproblems that don't overlap.
+- *Dynamic programming* is useful when the subproblems do overlap.
+
+#def([
+  *Optimal substructure problems* involves maximising or minimising something.
+])
+
+We want any optimal solution if there are many.
+
+#grid2([
+  Top-down:
+  1. Start with the problem
+  2. Split into subproblems
+  3. Continue until base case is solved
+], [
+  Bottom-up:
+  1. Start with base case
+  2. Solve every problem that combines solved subproblems
+  3. Continue until the original problem is encountered
+])
+
+Avoid solving same subproblem twice by memorising results in a table.
+
+=== Virtual Machine Hosting Problem (Rod Cutting Problem)
+
+==== Top-Down
+
+Subdivide a server with $n$ cores into virtual machines, a server machine with $i$ cores has value $v[i]$.
+
+#grid2(
+  ```py
+  def VMify(v, n):
+    if n == 0:
+      return 0
+
+    q = -1
+    for i = 1 to n:
+      q = max(q, v[i] + VMify(v, n - i))
+
+    return q
+  ```,
+  $
+  T(1) &= 1 \
+  T(n) &= 1 + sum_(i = 0)^(n-1) T(i) \
+  &in O(2^n)
+  $
+)
+
+If we add caching for the results
+$
+T(n) &= 1 + n \
+&= O(n^2)
+$
+
+==== Bottom-Up
+
+```py
+m[0 .. n] = new Array()
+m[0] = 0
+for j = 1 to n:
+  q = -1
+  for i = 1 to j:
+    q = max(q, v[i] + m[n - i])
+  m[j] = q
+
+return m[n]
+```
+
+#hr
+
