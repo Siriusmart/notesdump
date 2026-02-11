@@ -422,7 +422,7 @@ The number of comparisons depends on how $"Partition"$ splits the array.
   2. Get the $i$th element
 
 ```py
-QuickSort(A, p, r, i)
+QuickSelect(A, p, r, i)
   if p = r
     return A[p]
 
