@@ -111,3 +111,48 @@ $
 The last three lines are called the *cyclic relation* for partial derivatives.
 
 #hr
+
+== Exact Differentials
+
+#def([
+  If there exist a function $f(x, y)$ such that
+  $
+  df = P(x, y) dx + Q(x, y) dy
+  $
+  then $P(x, y) dx + Q(x, y) dy$ is an *exact differential*.
+])
+
+$
+d f &= (partial f)/(partial x) dx + (partial f)/(partial y) dy \
+$
+Since $(partial^2 f) / (partial x partial y) = (partial^2 f) / (partial y partial x) $
+$
+P(x, y) dx + Q(x, y) dy "is an exact differential" iff (partial P)/(partial y) = (partial Q)/(partial x)
+$
+
+=== Solving ODEs with Exact Differentials
+
+$
+dy/dx &= -(P(x,y))/(Q(x,y)) \
+df &= P(x,y)dx + Q(x,y)dy &= 0 \
+f(x,y) &= C
+$
+You will need to solve for $f(x,y)$ yourself, using the fact that
+$
+P=(partial f)/(partial x) "and" Q = (partial f)/(partial y)
+$
+
+=== Integrating Factors for Inexact Differentials
+
+In case $P(x,y)dx + Q(x,y)dy$ is not an exact differential, there may be a function $mu(x,y)$ such that
+$
+mu(x,y)[P(x,y)dx + Q(x,y)dy]
+$
+is an exact differential.
+
+This requires
+$
+partial/(partial y)(mu P) = partial/(partial x)(mu Q)
+$
+
+#hr
