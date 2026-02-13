@@ -156,3 +156,26 @@ Instead, a *validation corpus* (a separate set of data not used for training or 
 - Check if training is making the system perform worse on the validation corpus (is it overtraining?)
 
 #hr
+
+== Uncertainty and Agreement
+$
+overline(P_a) "observed agreement" = 1/N sum^(N-1)_(i=0) ("#observed pairs of agreements on item" i)/("#possible pairs")
+$
+where $N$ is the number of items to be classified.
+$
+overline(P_e) "chance agreement" = sum_(c in C) P(c)^2
+$
+
+=== Fleiss' Kamma
+$
+kappa = (overline(P_a) - overline(P_e))/(1- overline(P_e))
+$
+- $kappa = 1$ then complete agreement
+- $kappa = 0$ then no agreement beyond what is expected by chance
+- $kappa = 0.8$ means very good agreement
+
+#note([
+  $kappa$ can be negative.
+])
+
+#hr
