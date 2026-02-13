@@ -804,3 +804,101 @@ Memory allocation is often a multiple of 4 bytes, this leaves 0s at the end of t
 - Store free/busy status of the neighbouring blocks in another bit
 
 #hr
+
+== Rooted Trees
+
+#def([
+  *Rooted trees* have a single entry point and no cycles.
+])
+
+=== Binary Trees
+
+Each node holds:
+- A data item
+- Pointer to two children
+- (Optional) pointer to parent
+
+=== Binary Search Trees
+
+- The data is a $("key", "payload")$ tuple
+- The *binary tree property*:
+  - Keys in left subtree $<$ key at node
+  - Keys in right subtree $>$ key at node
+- No duplicate keys, otherwise bad asymptotic running times.
+
+All operations runs in $O(lg n)$ time, all recursive algorithms can be rewritten as an iterative algorithm (most languages don't perform tail call optimisations).
+#tab2(
+  [Operation], [Description],
+  $"search"(p,k)$,
+  ```py
+  if p == Nil:
+    return Nil
+  if p.key == key:
+    return p
+  if k < p.key:
+    return search(p.left, k)
+  else:
+    return search(p.left, k)
+  ```,
+  $"minimum"(p)$,
+  ```py
+  if p == Nil:
+    return Nil
+  if p.left == Nil:
+    return p
+  else:
+    return minimum(p.left)
+  ```,
+  $"maximum"(p)$, [Similar],
+  $"predecessor"(p)$,
+  ```py
+  if p.left != Nil:
+    return maximum(p.left)
+  y = p.parent
+  while y != Nil and p = y.left:
+    p = y
+    y = y.parent
+  return y
+  ```,
+  $"successor"(p)$, [Similar],
+  $"insert"(k, v)$,
+  [
+    Either replace a node with key $k$ with data $v$, or reach a leaf node and replacing it with node $(k, v)$.
+  ],
+  $"delete"(k)$,
+  [
+    - Find the node, if it has 0 children, replace the node with leaf.
+    - If it has 1 children, replace the node with that children.
+    - If it has 2 children, replace the node with its predecessor (as the predecessor has no right node, so at most 1 child), and delete the predecessor from where it came from.
+  ]
+)
+
+=== B-Trees\<$T$\>
+
+B-trees are balanced to achieve $O(lg n)$ worst case.
+
+- *Leaf nodes* hold no keys
+- *Internal nodes* hold varying number of keys and payloads
+
+For a B-tree of degree $T$:
+- Internal nodes holds at least $T-1$ (except root), at most $2T - 1$ (inc. root) keys and payloads
+- Node with $t$ keys have $t+1$ children
+- Leaves all exist in same level below root
+- Keys in an internal node divides the range of keys in the children
+
+At least 1 key at root level, $2(T-1)$ keys at first level, $2T(T-1)$ in second, $2T^2(T-1)$ in third.
+Summing up, number of levels to hold $N$ keys is $log_T ((N+1) slash 2)$ levels, $therefore$ performance $in O(lg n)$
+
+*Search* is obvious.
+
+==== Insert
+
+1. If root node is leaf, replace root node.
+2. Traverse down to find $k$, if found, replace the node.
+3. If reached the bottom level of internal nodes without finding $k$, increase key count of the internal node by 1.
+4. If bottom node key count $> 2T - 1$, split it by the median key into two nodes.
+  - Insert the median key into the parent.
+  - Add the two new nodes into the parent.
+5. If the parent is also full, split it and recurse up if needed. Replace the root pointer if the root node is split.
+
+#hr
