@@ -156,3 +156,67 @@ partial/(partial y)(mu P) = partial/(partial x)(mu Q)
 $
 
 #hr
+
+== Stationary Points
+
+For a function of two variables $f(x,y)$
+$
+nabla f = ((partial f)/(partial x), (partial f)/(partial y))
+$
+
+Let $bold(x) = (x, y)$
+
+$
+f(bold(x)) &= f(bold(x)_0) + (bold(x) - bold(x)_0) dot nabla f(x) + cdots \
+df &= (nabla f) dot d bold(x)
+$
+
+So $bold(x)$ is a stationary point if any of the equivalent statement is true at $bold(x)$
+- $nabla f(bold(x)) = 0$, or
+- $df = 0$, or
+- $partial f slash partial x = 0 and  partial f slash partial y = 0$
+
+#tab3(
+  [Form], [Type of stationary point], [Property],
+  $f = (x-x_0)^2 + (y-y_0)^2$, "Minimum", "Curvature positive in all directions.",
+  $f = -(x-x_0)^2 - (y-y_0)^2$, "Maximum", "Curvature negative in all directions.",
+  $f = (x-x_0)^2 - (y-y_0)^2$, "Saddle point", "Curvature sign depends on direction."
+)
+
+#note([
+  *Contour lines* form ellipses around maximum/minimum, and cross at saddle point.
+])
+
+=== Hessian Matrix
+
+Define the symbols $(delta x, delta y) = (x - x_0, y - y_0)$
+#grid2(
+  $
+  H_(x x) &= (partial^2 f)/(partial x^2) \
+  H_(y x) &= (partial^2 f)/(partial x partial y) \
+  $,
+  $
+  H_(x y) &= (partial^2 f)/(partial y partial x) \
+  H_(y y) &= (partial^2 f)/(partial y^2)
+  $
+)
+
+Let $D = H_(x x) H_(y y) < (H_(x y))^2$
+
+At a stationary point
+$
+f(x, y) - f(x_0, y_0) &= 1/2 (H_(x x) delta x^2 + 2 H_(x y) delta x delta y + H_(y y) delta y^2) \
+&= 1/(2 H_(x x))((H_(x x))^2 delta x^2 + 2 H_(x x)H_(x y) delta x delta y + H_(x x)H_(y y) delta y^2) \
+&= 1/(2 H_(x x))((H_(x x) delta x + H_(x y) delta y)^2 + (H_(x x)H_(y y) - (H_(x y))^2)delta y^2)
+$
+- Case $H_(x x) >0$ and $D > 0$, RHS positive so is a minimum.
+- Case $H_(x x) <0$ and $D > 0$, RHS negative so is a maximum.
+  #note([
+    When $D > 0 : (H_(x x) > 0  iff H_(y y) > 0)$
+  ])
+- Case $D < 0$
+  - Moving in direction of $y$ makes the 1st term disappear
+  - Moving in direction of $x$ makes the 2nd term disappear
+  So it is a *saddle point*.
+
+#hr
