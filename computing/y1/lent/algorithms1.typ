@@ -894,11 +894,137 @@ Summing up, number of levels to hold $N$ keys is $log_T ((N+1) slash 2)$ levels,
 ==== Insert
 
 1. If root node is leaf, replace root node.
-2. Traverse down to find $k$, if found, replace the node.
+2. Traverse down to find $k$, if found, replace the entry.
 3. If reached the bottom level of internal nodes without finding $k$, increase key count of the internal node by 1.
 4. If bottom node key count $> 2T - 1$, split it by the median key into two nodes.
   - Insert the median key into the parent.
-  - Add the two new nodes into the parent.
+  - Add the second half of the node into the parent.
 5. If the parent is also full, split it and recurse up if needed. Replace the root pointer if the root node is split.
 
 #hr
+
+==== Insert (Improved)
+1. If root node is leaf, replace root node.
+2. Traverse down to find $k$, if found, replace the node. While traversing, split any full nodes encountered.
+3. If reached the bottom level of internal nodes without finding $k$, insert key into the node and increase key count by 1.
+4. Instead of recursing up, split by the median key into two nodes of $T-1$ keys and the median. Insert the median into the root node, and insert the second half as child of the root.
+
+==== Delete
+
+Start at root search for key $k$
+- If not found, do nothing
+- If it is the only key in root, replace root with leaf
+- If it is found, but not in bottom level, swap with its predecessor, then remove it
+  - If after doing that, the node is less than minimum size, try:
+    - Redistributing keys from $"max in left sibling" -> "key in parent" -> "min in this node"$
+    - Or equivalent for the right sibling
+    - If all siblings are at minimum size, take a key from the parent node, if parent node is also of minimum size, cascade up towards the root.
+    - If the only key in root is being taken, merge the root with its immediate children and borrow from there, this is the new root
+
+#note([
+  When distributing keys between siblings, make the number of keys in each node equal so minimise future merging/splitting.
+])
+
+== Red-Black Trees
+
+A BST with nodes coloured red and black:
+
++ The root is black
++ The leaves are black, and contains no payload
++ Children of a red node are black
++ *Black height balanced*: For each node, all paths to a leaf has equal number of black nodes
+
+Let $"bh"$ be the *black height* of the tree. The number of nodes in a RB Tree $n$
+$
+2^"bh" - 1 &<= n <= 2^(2"bh") - 1 \
+"bh" &<= 1/2 lg(n+1) \
+"height" &<= lg(n+1)
+$
+
+A RB tree is *isomorphic to BTree\<2\>* (see lecture notes)
+
+A *tree rotation* rotates the tree about an edge so the ordering property is preserved.
+
+#hr
+
+== Priority Queue
+
+=== Using a Heap
+
+Use the normal MinHeapExtract and MinInsert.
+
+```py
+def pq_decrease_key(pq, index, k):
+  if pq[index] < k:
+    error("key already less than k")
+
+  while index > 1 && pq[parent(index)] > pq[index]:
+    swap(pq[parent(index)], pq[index])
+    index = parent(index)
+```
+
+=== Using a Red-Black Tree
+
+```py
+def pq_min(pq):
+  if pq.root == NIL:
+    error("empty pq")
+  x = pq.root
+  while x.left != NIL:
+    x = x.left
+  return x.key
+
+def pq_extract_min(pq):
+  min = pq_min(pq)
+  rb_delete(pq, min)
+  return min
+
+def pq_decrease_key(pq, oldk, k):
+  rb_delete(pq, oldk)
+  rb_insert(k)
+```
+
+#tab3(
+  [Operation], [Min heap], [Red-black tree],
+  [PQ-Minimum], $O(lg n)$, $O(lg n)$,
+  [PQ-Extract-Minimum], $O(lg n)$, $O(lg n)$,
+  [PQ-Decrease-Key], $O(lg n)$, $O(lg n)$,
+  [PQ-Insert], $O(lg n)$, $O(lg n)$
+)
+
+But the min heap has a larger constant of proportionality.
+
+== Hash Tables
+
+Hash tables are used as *sparse arrays* or index with non-interger keys.
+
+A hash function $: T -> "int"$
+- We want the hashed key to be uniformly distributed in a range. Then use remainder to give a uniformly distributed index.
+- It is hard for a hash function to give a uniform output: if the key is short, there is not enough *entropy* to map them in different places in the array.
+
+=== Collision Resolutions (Chaining)
+- *Chaining*: each entry in a hash table stores a pointer to a list cell.
+- *Negative cache*: if there are a lot of items in the table, store what is _not_ on the table instead of what is.
+- *Chaining (sorted)*: in normal chaining, if an item is not on hash table, it will have to search for the entire list. If the list is sorted, then it only need to search until the keys are larger than what's being sought after.
+- *Push on head*: push nodes recording write/deletes on the head of the list, downside time complexity cannot be expressed in terms of number of items in the table.
+- *Push on head*, but delete removes the first write node of $k$ it finds. Essentially calling delete _undo_ a write.
+
+=== Collision Resolutinos (Open Addressing)
+
+A *probe function* tries new positions, use the same *probe sequence* when searching. We want the probe sequence to hit every position.
+
+- *Linear probing* tries the next, and next... positions. Stops when reaches a Nil or returns to the same index.
+
+  Prone to *primary clustering*: build up of long sequences that doesn't contain keys with the same hash value.
+- *Quadratic probing* prevents one key hitting the probing sequence of another key.
+  $
+  "probe"("key", i) = (h("key") + a i + b i^2) mod T."size"
+  $
+
+  Prone to *secondary clustering*: keys that hash to the same value collide with each other in every position.
+  #note([
+    Need to prove that it hits every cell.
+  ])
+- *Double hashing* : $"probe"(T, "key", i) = (h_1("key") + i h_2("key")) mod T."size"$
+
+  We want to prevent $h_2$ from being zero, so use $h_2("key") = h_2 '("key") mod (T."size" - 1) + 1$
