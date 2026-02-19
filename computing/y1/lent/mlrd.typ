@@ -179,3 +179,41 @@ $
 ])
 
 #hr
+
+== Social Networks
+
+#defs([
+  - *Distance* is the length of the shortest path between two nodes.
+  - The *diameter* of a graph is the maximum distance between any pair of nodes.
+  - The *degree* of a node is the number of neighbours it has.
+])
+
+Natural networks often have the *small world property*.
+#def([
+  A *small world network* is one with
+  - Not many connections
+  - There are closely clustered regions
+  - Clusters are connected by only a few links
+])
+
+The measurable characteristics are
+- *High clustering coefficient*: a node neighbours are likely to be neighbours of each other.
+  #defs([
+    - *Triadic closure* is if $A <-> B$ and $A <-> C$, then very likely $B <-> C$.
+    - *Global clustering coefficient* is
+      $
+      "# of closed triads" / "# of possible closed triads" 
+      $
+  ])
+- *Small average path length*, typically grows logarithmically with network size.
+- *Sparse connectivity*: has few edges compared to the fully connected graph.
+
+#defs([
+  - *Giant component* is a connected component containing most of then nodes in a graph.
+  - *Weak ties* are distant links, oppisite of a *strong link*.
+    #note([
+      Links that keep two giant components together are often weak ties.
+    ])
+  - *Bridge* is an edge that connects to components which would otherwise be unconnected.
+  - *Local bridge* is an edge when removed, the two nodes will have no neighbours in common. (shortest path between the two nodes increases)
+])
