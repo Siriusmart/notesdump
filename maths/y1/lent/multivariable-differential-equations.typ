@@ -220,3 +220,40 @@ $
   So it is a *saddle point*.
 
 #hr
+
+== Conditional Stationary Points
+
+Problem: maximises the value of $f(x,y)$ with the constraint of $g(x, y) = 0$
+
+This would require the curve of $g(x,y) = 0$ to be parallel to the contour of $f$ at that point.
+$
+nabla f = lambda nabla g
+$
+
+Consider $L(x,y,lambda) = f - lambda g$
+$
+nabla L = ((partial f)/(partial x) - lambda (partial g)/(partial x), (partial f)/(partial y) - lambda (partial g)/(partial y), g)
+$
+
+So if we solve for $nabla L = bold(0)$, we get
+$
+nabla f - lambda nabla g &= 0 \
+g &= 0
+$
+
+#note([
+  $lambda$ is called the *Lagrange multiplier*.
+])
+
+Classifying maxima, minima and saddles require extra work.
+
+#hr
+
+For function of $n$ variable with $m$ constraints, find the unconditional stationary points of
+$
+L(x_1, dots, x_n, lambda_1, dots, lambda_m) = f(x_1, dots, x_n) + sum^m_(i = 1) lambda_i g_i (x_1, dots, x_n)
+$
+
+#hr 
+
+#align(center, `END Multivariable Differentials Equations`)
