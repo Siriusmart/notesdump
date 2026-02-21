@@ -15,7 +15,9 @@
 
 ### Lent
 - [Algorithms I](./computing/y1/lent/algorithms1.pdf)
+- [Algorithms II](./computing/y1/lent/algorithms2.pdf)
 - [MLRD](./computing/y1/lent/mlrd.pdf)
+- [Operating Systems](./computing/y1/lent/os.pdf)
 
 # Maths
 ## Year 1
