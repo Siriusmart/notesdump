@@ -1028,3 +1028,20 @@ A *probe function* tries new positions, use the same *probe sequence* when searc
 - *Double hashing* : $"probe"(T, "key", i) = (h_1("key") + i h_2("key")) mod T."size"$
 
   We want to prevent $h_2$ from being zero, so use $h_2("key") = h_2 '("key") mod (T."size" - 1) + 1$
+#hr
+
+To delete an item in open addressing, leave a marker behind that is:
+- Treated as an entry when searching
+- Treated as invisible when inserting
+
+Maintain counters $n_"keys"$ and $n_"markers"$, and resize to prevent overloading.
+#tab2(
+  [Senario], [Action],
+  $n_"keys" >> n_"markers"$, [Rehash into larger table],
+  $n_"keys" approx n_"markers"$, [Rehash into table of same size],
+  $n_"keys" << n_"markers"$, [Rehash into smaller table]
+)
+
+#hr
+
+#align(center, `END Algorithms I`)
