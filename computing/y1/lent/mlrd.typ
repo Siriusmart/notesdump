@@ -1,4 +1,7 @@
 #import "@local/lecture:0.1.0" : *
+#import "@preview/algorithmic:1.0.7"
+#import algorithmic: style-algorithm, algorithm-figure
+#show: style-algorithm
 
 = Machine Learning and Real World Data
 
@@ -217,3 +220,121 @@ The measurable characteristics are
   - *Bridge* is an edge that connects to components which would otherwise be unconnected.
   - *Local bridge* is an edge when removed, the two nodes will have no neighbours in common. (shortest path between the two nodes increases)
 ])
+
+#hr
+
+=== Betweeness Centrality
+
+#def([
+  A *gatekeeper* are cruicial edges in linking densly connected regions in the graph.
+])
+
+Define
+- $sigma(s,t):$ number of shortest path between nodes $s$ and $t$
+  $
+  sigma(s,t) = sum_(u in "pred"(t)) sigma(s, u)
+  $
+  where $"pred"(t) = {u | (u,t) in E and d(s,t) = d(s,u) + 1 }$
+- $sigma(s,t|v)$ number of those paths passing through $v$
+#note([
+  - If $s = t$, then $sigma(s,t) = 1$
+  - If $v in {s,t}$, then $sigma(s,t|v) = 0$
+])
+
+#defs([
+  Betweeness centrality of $v$
+  $
+  C_B (v) = sum_(s,t in V) sigma(s,t|v)/sigma(s,t)
+  $
+])
+
+Another way to calculate $C_B (v):$
+
+Define *pairwise dependencies* $delta(s,t|v)$ and *one-sided dependencies* $delta(s|v)$
+$
+delta(s,t|v) &= sigma(s,t|v)/sigma(s,t) \
+delta(s|v) &= sum_(t in V) delta(s,t|v) \
+&= sum_((v,w) in E \ w : d(s,w) = d(s,v) + 1) sigma(s, v)/sigma(s, w) dot (1 + delta(s|w)) \
+C_B (v) &= sum_(s in V) delta(s|v)
+$
+
+#algorithm-figure(
+  "Brandes Algorithm",
+  {
+    import algorithmic: *
+    For(
+      $s in V$,
+      {
+        Comment[Initialisation]
+        For(
+          $w in V$,
+          {
+            Assign($"pred"[w]$, "empty list")
+            Assign($"dist"[w]$, $infty$)
+            Assign($sigma[w]$, $0$)
+            Assign($delta[w]$, $0$)
+          }
+        )
+        Assign($Q$, $"empty list"$)
+        Assign($Q$, $"enqueue" s$)
+        Assign($S$, $"empty stack"$)
+
+        LineBreak
+        Comment[Calculate $sigma$ for all $v in V$]
+        While(
+          $Q "not empty"$,
+          {
+            Assign($v$, $"dequeue" Q$)
+            Assign($S$, $"push" v$)
+            LineBreak
+            For(
+              $w : (v,w) in E$,
+              {
+                Comment([Finding $w$ for the first time])
+                If(
+                  $"dist"[w] = infty$,
+                  {
+                    Assign($"dist"[w]$, $"dist"[v] + 1$)
+                    Assign($Q$, $"enqueue" w$)
+                  }
+                )
+
+
+                LineBreak
+                Comment([Update number of shortest paths through $w$])
+                If(
+                  $"dist"[w] =  "dist"[v]+1$,
+                  {
+                    Assign($sigma[w]$, $sigma[w] + sigma[v]$)
+                    Assign($"pred"[w]$, $"append" v$)
+                  }
+                )
+              }
+            )
+
+            LineBreak
+            Comment[calculate $C_B [w]$]
+            While(
+              $S "not empty"$,
+              {
+                Assign($"pop" w$, $S$)
+                For(
+                  $v in "pred"[w]$,
+                  {
+                    Assign($delta[v]$, $delta[v] + sigma[v]/sigma[w] dot (1 + delta [w])$)
+                  }
+                )
+
+                If($w != s$, Assign($C_B [w]$, $C_B [w] + delta[w]$))
+              }
+            )
+          }
+        )
+      }
+    )
+  }
+)
+
+For bidirectional graphs, divide the value of each $C_B [w]$ by $2$.
+
+#hr
