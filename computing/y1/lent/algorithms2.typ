@@ -1,4 +1,7 @@
 #import "@local/lecture:0.1.0" : *
+#import "@preview/algorithmic:1.0.7"
+#import algorithmic: style-algorithm, algorithm-figure
+#show: style-algorithm
 
 = Algorithms II
 
@@ -120,5 +123,134 @@ Run BFS with:
 - The output of any unreachable vertices have distance $infty$
 
 If average path length is $O(|V|)$, then output is $O(|V|^2)$
+
+#hr
+
+The path to a node is given by repeatedly visiting $v.pi$ until $v.pi = "NIL"$
+
+#algorithm-figure(
+  "SSAD_HOPCOUNT",
+  {
+    import algorithmic : *
+    Function(
+      "SSAD_HOPCOUNT",
+      ($G$, $s$),
+      {
+        For(
+          $v "in" V$,
+          {
+            Assign($v."pending"$, "false")
+            Assign($v.d$, $infty$)
+            Assign($v.pi$, "NIL")
+          }
+        )
+        LineBreak
+        Assign($s."pending"$, "true")
+        Assign($s.d$, $0$)
+        Assign($s.pi$, "NIL")
+        LineBreak
+        Assign($Q$, "new queue")
+        Assign($Q$, $"enqueue" s$)
+        LineBreak
+        While(
+          $Q "not empty"$,
+          {
+            Assign($u$, $"dequeue" Q$)
+            For(
+              $v "in" E."adj"[u]$,
+              If(
+                $"not" v."pending"$,
+                {
+                  Assign($v."pending"$, "true")
+                  Assign($v.d$, $u.d + 1$)
+                  Assign($v.pi$, $u$)
+                  Assign($Q$, $"enqueue" v$)
+                }
+              )
+            )
+          }
+        )
+      }
+    )
+  }
+)
+
+=== Proof of Correctness
+
+- Goal: when #smallcaps("Ssad_Hopcount") terminates, $v.d$ is the length of the shortest path from $s$ to $v$.
+- Let $delta(s,v)$ be the actual shortest path length from $s$ to $v$.
+  
+  If there is no path from $s$ to $v$, $delta(s,v) = infty$
+
+#lemma("1", [
+  If $(u,v) in E$ then $delta(s, v) <= delta(s, u) + 1$
+  - Case $u$ is unreachable: $delta(s,u) = infty$, so inequality holds.
+  - Case $u$ reachable: 
+  - If the shortest path is through $u$, then $(u,v)$ is shorter than any other edge from $u$ to $v$
+  - Otherwise $delta(s,v) < delta(s,u) + delta(u, v) = delta(s,u) + 1$
+])
+
+#lemma("2", [
+  On termination, $v.d >= delta(s,v)$ for all $v in V$
+
+  Induction hypothesis: $fa v in V : v.d >= delta(s, v)$
+  - Base case: before the first while loop
+    - $delta(s,s) = 0$ and $s.d = 0$ for source
+    - $v.d = infty$ for all other nodes
+  - $v.d$ is only updated if $v$ is not pending
+    $
+    v.d &= u.d + 1 \
+    &>= delta(s,u) + 1 \
+    &= delta(s,v)
+    $
+    $v.d$ is then never changed again.
+])
+
+#lemma("3", [
+  Inductive hypothesis: if $Q = v_1,v_2, dots,v_x$, then $v_x.d <= v_1.d + 1$ and $v_i.d <= v_(i+1).d$ for all $i$
+
+  Dequeue:
+  - If dequeuing leaves $Q$ empty, then vacuous.
+  - Otherwise $v_x.d <= v_1.d <= v_2.d$
+
+  Enqueue: the new $v_(x+1).d = v_1.d + 1$, then $v_(x+1).d <= v_1.d + 1$ and $v_x <= v_(x+1)$
+])
+
+#coro([
+  If $v_a$ is enqueued before $v_b$, then $v_a.d <=v_b.d$ on termination.
+
+  - If $v_a$ and $v_b$ are in $Q$ simultaneously, then $v_a <= v_b$
+  - Otherwise, apply transitivity
+])
+
+Suppose the algorithm doesn't work, then there is a minimum $delta(s,v)$ that has an incorrect $v.d$ upon termination. This means $v.d > delta(s,v)$
+- $v$ must be reachable from $s$, otherwise $delta(s,v) = infty >= v.d$ contradicts $v.d > delta(s,v)$
+
+Let $u$ be the node on the shortest path from $s$ to $v$ that comes immediately before $v$
+- We know $delta(s,u)=u.d$ is correct
+- $v.d > delta(s,u) + 1 = u.d + 1$
+
+When $u$ is dequeued, either
+1. $v$ is not yet queued, $v.d = u.d + 1$, but this contradicts $v.d > u.d + 1$
+2. $v$ is enqueued but not yet dequeued $v.d = w.d + 1 <= u.d + 1$, again contradiction
+3. $v$ has already been dequeued, then $v.d <= u.d$, contradiction
+
+Therefore there is no _first time_ the algorithm goes wrong, it must be correct.
+
+#note([
+  $v.pi$ traces a path of length $v.d$, which is the shortest path.
+])
+
+All edges $(v.pi,v)$ forms a *predecessor subgraph* of G called the *breadth-first tree*.
+
+- $V_"PSG" = {v in V | v.pi != "NIL"} union {s}$
+- $E_"PSG" = {(v.pi,v) | v in V \\ {s}}$
+- $"PSG" = (V_"PSG", E_"PSG")$
+
+=== Depth First Search
+
++ Pick a random vertex
++ Explores everything reachable
++ Repeat until all vertices have been visited
 
 #hr
