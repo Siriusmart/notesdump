@@ -78,3 +78,92 @@ Storage is organised in order of speed
 )
 
 #hr
+
+== Protection
+
+OS evolution:
++ Open shop: programming is in machine code
++ Batch systems: runs a set of programs in batch
++ Multiprogramming/time sharing: uses scheduling so PC remains responsive even if a program is in an infinite loop.
+
+The CPU runs in two modes (distinguished with a hardware *mode bit*)
+- *Kernel mode*: can interrupt programs in user mode
+- *User mode*: cannot interrupt programs in kernel mode
+
+This is CPU enforced, x86 CPUs have ring 0 to ring 3 instead.
++ PC resets to kernel mode
++ Kernel mode runs a program in user mode, CPU is now in user mode
++ User mode program calls an OS function from kernel mode, CPU is now in kernel mode
++ Go back to step 2 once completed
+
+=== Kernels
+
+The kernel does IO for user mode apps to prevent direct access.
+
+OS functions are accessed through *system calls*
+- Invoked by putting required parameters in the write place and *trapping*
+  
+  The different ways of passing parameters are:
+  - Load into registers
+  - Place onto stack
+  - Block in memory, address to block placed in register
+- OS contains vectors that enforces code run when mode switch happens
+
+#note([
+  An alternative is that the OS *emulates* for the application: checks every instruction before executing in some virtualisation system.
+])
+
+Syscalls are *language agnostic*, standard interface to OS services.
+
+==== Microkernels
+
+Microkernels tries to make the kernel minimum: putting most services in user mode.
+- Use message passing to access *servers* (in user mode)
+- But message passing requires context switching and is more expensive than trapping
+
+Many OS have servers but also include a lot of functions in kernel due to performance concerns.
+
+==== Virtualisation
+
+- *Virtual machine*
+  - Encapsulates the entire OS, multiple kernels in memory
+  - Almost no chance programs from different VMs can interfere with each other
+- *Containers*
+  - Expose functionality in a kernel so each container acts as a separate entity even though they share the same kernel.
+
+=== Security
+
+To determine the privillege of a user/app
++ Identify the user/app (or the group the user is in)
++ Identify privillege
+
+#defs([
+  - *Privillege escalation* allow user to gain permission it doesn't have
+  - *Principle of least privillege*: permission set to limit damage if abused
+])
+
+The OS should isolate apps from each other.
+
+#defs([
+  - *Covert channels* leak information through side effects, e.g. electromagnetic waves of a wire.
+  - A *domain* is a set of *access rights*, domain limits access to objects
+
+    In UNIX a domain is a user ID, or an app on a phone.
+  - *Objects* are things to be accessed.
+  - An *access matrix* is a set of domain against objects
+])
+
+Since the matrix is sparse, instead store as
+- *Access control list*: index by object
+- *Capabilities*: by domain
+
+ACL checks are done in software, frequent checks are cached to improve performance.
+
+==== Authentication
+- Password hashed with salt
+- Multifactor authentication
+- Failed accesses are logged
+
+Only the operating system can intercept _Ctrl-Alt-Del_, so you know the login screen is real. 
+
+#hr
