@@ -254,3 +254,140 @@ All edges $(v.pi,v)$ forms a *predecessor subgraph* of G called the *breadth-fir
 + Repeat until all vertices have been visited
 
 #hr
+
+- $v."discover"$ is the global time when the DFS first considered $v$
+- $v."finish"$ is the global time when DFS finished recursing into all descendents of $v$
+
+#note([
+  $u$ is a descendent of $u$ iff $v."discover" < u."discover" < u."finish" < v."finish"$
+])
+
+An edge $(u,v)$ can be classified into
+#tab2(
+  [Edge type], [Definition],
+  [Tree edge], [$v$ is discovered by exploring $(u,v)$],
+  [Back edge], [$v$ is an ancestor of $u$],
+  [Forward edge], [$v$ is a descendent of $u$],
+  [Cross edge], [Directed graphs only, $u$ is neither an ancestor or descendent of $v$]
+)
+- $u."discover" < v."discover" < v."finish" < u."finish" iff "tree or forward edge"$
+- $v."discover" < u."discover" < u."finish" < v."finish" iff "back edge"$
+- $v."discover" < v."finish" < u."discover" < u."finish" iff "cross edge"$
+
+#note([
+  Running DFS on a directed graph and sorting vertices by _finish time_ gives a *topological sort* for the original graph.
+])
+
+=== Strongly Connected Components
+
+- Input: a directed graph
+- Output: the strongly connected components of $G$
+
+#def([
+  A *strongly connected component* is the maximal set of vertices $C subset.eq V$ such that for all $u,v in C$, $u$ is reachable from $v$ and $v$ is reachable from $u$
+])
++ Run DFS on $G$ to populate _finish time_ for each $v in V$
++ Run DFS on $G^T$, but visit the neighbours in order of descending _finish time_ from step 1.
++ For each tree in the forest produced by $"DFS"(G^T)$, output the vertices as a separate strongly connected component of $G$
+
+=== Shortest Path Problems
+- Input: directed, weighted graph with weight function $w:E to real$
+
+#def([
+  The *weight of a path* $p=v_0, v_1, dots, v_k$ is the linear sum of the edge weights.
+  $
+  w(p) = sum^k_(i=1) w(v_(i-1), v_i)
+  $
+  Which is the quantity we wanted to minimise.
+])
+
+$delta(u,v) = min_p (w(p))$, the shortest path is the $p$ where $w(p) = delta(u, v)$
+
+Types of shortest path problems:
+- Single source shortest paths
+- Single destination shortest paths
+- Single pair shortest paths
+- All pairs shortest paths
+
+*Bellman-Ford* runs in $O(|V||E|)$
+- If there is a negative weight cycle, returns false
+- Otherwise returns true
+
+#grid2(
+  algorithm-figure(
+    "Bellman-Ford",
+    {
+      import algorithmic : *
+
+      Function(
+        "Bellman-Ford",
+        ($G$, $w$, $s$),
+        {
+          For(
+            $v "in" V$,
+            {
+              Assign($v.d$, $infty$)
+              Assign($v.pi$, "NIL")
+            }
+          )
+          Assign($s.d$, $0$)
+
+          LineBreak
+          Comment[Longest acyclic path is $|V| - 1$]
+          For(
+            $i=1 "to" |V| - 1$,
+            {
+              For($(u,v) "in" E$, Call("Relax", ($u$, $v$, $w$)))
+            }
+          )
+
+          LineBreak
+          Comment[Check for negative cycles]
+          For(
+            $(u,v) "in" E$,
+            {
+              If($v.d > u.d + w(u,v)$, Return("false"))
+            }
+          )
+
+          LineBreak
+          Return("true")
+        }
+      )
+    }
+  ),
+  algorithm-figure(
+    "Relax",
+    {
+      import algorithmic : *
+
+      Function(
+        "Relax",
+        ($u$, $v$, $w$),
+        {
+          If(
+            $v.d > u.d + w(u,v)$,
+            {
+              Assign($v.d$, $u.d + w(u,v)$)
+              Assign($v.pi$, $u$)
+            }
+          )
+        }
+      )
+    }
+  )
+)
+
+For directed graphs that are acyclic, we can do in $Theta(|V|+|E|)$
+#algorithm-figure(
+  "Topological sort",
+  {
+    import algorithmic : *
+    For(
+      $u "in" V$,
+      For($v "in" E."adj"[u]$, Call("Relax", ($u$,$v$,$w$)))
+    )
+  }
+)
+
+#hr
