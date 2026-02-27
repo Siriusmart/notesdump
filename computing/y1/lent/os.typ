@@ -167,3 +167,95 @@ ACL checks are done in software, frequent checks are cached to improve performan
 Only the operating system can intercept _Ctrl-Alt-Del_, so you know the login screen is real. 
 
 #hr
+
+== Processes
+
+#defs([
+  - A *program* is a file on disk.
+  - A *process* is a program in execution: instances of the same program can be ran side by side.
+])
+
+A process is a unit of *protection* and *resource allocation*: kept isolated from each other.
+
+- Each process executes on a *virtual memory*
+  #table(
+    align: center,
+    [Stack],
+    [$arrow.b$#br#br$arrow.t$],
+    [Heap],
+    [Data (global variables)],
+    [Text (program being ran)]
+  )
+- And has a one or more *threads of execution*.
+  
+  Each thread has
+  - Program counter for current instruction.
+  - Stack for temporary variables, parameters and return addresses.
+
+#def([
+  *Process control block* is the data structure representing a process.
+  - Process ID
+  - Current process state (waiting/running)
+  - CPU scheduling information (priorities/scheduled tasks)
+  - Memory management info
+  - IO status + accounting (e.g. CPU seconds used) info
+
+  A *process context* is the machine environment while the process is running.
+])
+
+#def([
+  A *thread* represents an individual execution context.
+
+  Each thread has an associated *thread context block* with context and scheduling info, which determines which thread to run.
+])
+
+=== Process States
+
+Context switching:
++ Save context of currently running process
++ Restores context of process being resumed
+How much time this takes depends on hardware support.
+
+The process starts at ready state
+- Ready: waiting for scheduler to run it
+- Running: self explainatory, interrupts while running puts the program in ready
+- Waiting: waiting for IO or event
+- Terminated: self explainatory
+
+Processes can be organised into a *tree*
+
+#tab2(
+  [Method], [Description],
+  [Fork (Unix)], [Clones parent into a child process, then *execve* can replace the program of child.],
+  [CreateProcess (NT)], [Requires the name of the program to be executed to be specified.]
+)
+
+Processes are terminated because
+- Process performed illegal operation (e.g. access memory without authorisation/executing a privileged instruction)
+- Parent terminates child (termination cascades to childrens)
+- Process finished execution
+  - A *zombie* process is requested to be terminated but hasn't yet exit.
+  - An *orphan* process remains running after the parent program exits.
+
+=== Interprocess Communication
+
+Requires between the processes:
+- Syntax and semantics agreed upon
+- Synchronisation: data transfer takes place according to agreed rules
+
+#grid2(
+  surround([
+    Message passing: sends message to each other, mediated by the kernel
+  ]),
+  surround([
+    Shared memory: Establishes some part of memory both processes can access, this requires the usual memory protections to be removed.
+  ])
+)
+
+#def([
+  *Signals* are simple messages: async notifications on a process.
+
+  E.g. SIGTERM (ignorable) and SIGKILL (unignoreable)
+])
+
+#hr
